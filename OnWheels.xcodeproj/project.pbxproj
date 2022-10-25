@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC3FE5F2290877E900514059 /* LogInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5EC290877E900514059 /* LogInPresenter.swift */; };
+		EC3FE5F3290877E900514059 /* LogInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5ED290877E900514059 /* LogInRouter.swift */; };
+		EC3FE5F4290877E900514059 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5EE290877E900514059 /* LogInViewController.swift */; };
+		EC3FE5F5290877E900514059 /* LogInProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5EF290877E900514059 /* LogInProtocols.swift */; };
+		EC3FE5F6290877E900514059 /* LogInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5F0290877E900514059 /* LogInInteractor.swift */; };
+		EC3FE5F7290877E900514059 /* LogInContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5F1290877E900514059 /* LogInContainer.swift */; };
 		ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */; };
 		ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */; };
 		ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991F129054F3A00BC3FA5 /* ViewController.swift */; };
@@ -16,6 +22,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC3FE5EC290877E900514059 /* LogInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInPresenter.swift; sourceTree = "<group>"; };
+		EC3FE5ED290877E900514059 /* LogInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInRouter.swift; sourceTree = "<group>"; };
+		EC3FE5EE290877E900514059 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		EC3FE5EF290877E900514059 /* LogInProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInProtocols.swift; sourceTree = "<group>"; };
+		EC3FE5F0290877E900514059 /* LogInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInInteractor.swift; sourceTree = "<group>"; };
+		EC3FE5F1290877E900514059 /* LogInContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInContainer.swift; sourceTree = "<group>"; };
 		ECC991EA29054F3A00BC3FA5 /* OnWheels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnWheels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +49,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC3FE5F8290877F400514059 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				EC3FE5EC290877E900514059 /* LogInPresenter.swift */,
+				EC3FE5ED290877E900514059 /* LogInRouter.swift */,
+				EC3FE5EE290877E900514059 /* LogInViewController.swift */,
+				EC3FE5EF290877E900514059 /* LogInProtocols.swift */,
+				EC3FE5F0290877E900514059 /* LogInInteractor.swift */,
+				EC3FE5F1290877E900514059 /* LogInContainer.swift */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
 		ECC991E129054F3A00BC3FA5 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +88,7 @@
 				ECC991F629054F3B00BC3FA5 /* Assets.xcassets */,
 				ECC991F829054F3B00BC3FA5 /* LaunchScreen.storyboard */,
 				ECC991FB29054F3B00BC3FA5 /* Info.plist */,
+				EC3FE5F8290877F400514059 /* LogIn */,
 			);
 			path = OnWheels;
 			sourceTree = "<group>";
@@ -138,8 +164,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3FE5F7290877E900514059 /* LogInContainer.swift in Sources */,
+				EC3FE5F2290877E900514059 /* LogInPresenter.swift in Sources */,
 				ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */,
+				EC3FE5F5290877E900514059 /* LogInProtocols.swift in Sources */,
+				EC3FE5F4290877E900514059 /* LogInViewController.swift in Sources */,
+				EC3FE5F6290877E900514059 /* LogInInteractor.swift in Sources */,
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
+				EC3FE5F3290877E900514059 /* LogInRouter.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
