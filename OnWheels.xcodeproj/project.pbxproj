@@ -13,6 +13,7 @@
 		EC3FE5F5290877E900514059 /* LogInProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5EF290877E900514059 /* LogInProtocols.swift */; };
 		EC3FE5F6290877E900514059 /* LogInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5F0290877E900514059 /* LogInInteractor.swift */; };
 		EC3FE5F7290877E900514059 /* LogInContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5F1290877E900514059 /* LogInContainer.swift */; };
+		EC3FE5FB2909C19500514059 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = EC3FE5FA2909C19500514059 /* PinLayout */; };
 		ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */; };
 		ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */; };
 		ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991F129054F3A00BC3FA5 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3FE5FB2909C19500514059 /* PinLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +111,9 @@
 			dependencies = (
 			);
 			name = OnWheels;
+			packageProductDependencies = (
+				EC3FE5FA2909C19500514059 /* PinLayout */,
+			);
 			productName = OnWheels;
 			productReference = ECC991EA29054F3A00BC3FA5 /* OnWheels.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +142,9 @@
 				Base,
 			);
 			mainGroup = ECC991E129054F3A00BC3FA5;
+			packageReferences = (
+				EC3FE5F92909C19400514059 /* XCRemoteSwiftPackageReference "PinLayout" */,
+			);
 			productRefGroup = ECC991EB29054F3A00BC3FA5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -390,6 +398,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EC3FE5F92909C19400514059 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EC3FE5FA2909C19500514059 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC3FE5F92909C19400514059 /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ECC991E229054F3A00BC3FA5 /* Project object */;
 }
