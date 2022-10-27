@@ -53,15 +53,6 @@ class eventVC: UIViewController {
 class mainVC: UIViewController {
     private let tableViewMain = UITableView()
     
-    init() {
-        tableViewMain.backgroundColor = UIColor(named: "OW.Gray")
-        tableViewMain.pin.all(pin.safeArea)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
