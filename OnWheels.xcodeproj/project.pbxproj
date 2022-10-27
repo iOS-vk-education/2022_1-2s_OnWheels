@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F0E7098290575D100476E47 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E7097290575D100476E47 /* MainScreen.swift */; };
+		7F0E709B29059AEC00476E47 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 7F0E709A29059AEC00476E47 /* PinLayout */; };
 		ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */; };
 		ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */; };
 		ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991F129054F3A00BC3FA5 /* ViewController.swift */; };
@@ -16,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F0E7097290575D100476E47 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		ECC991EA29054F3A00BC3FA5 /* OnWheels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnWheels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F0E709B29059AEC00476E47 /* PinLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +67,7 @@
 				ECC991F629054F3B00BC3FA5 /* Assets.xcassets */,
 				ECC991F829054F3B00BC3FA5 /* LaunchScreen.storyboard */,
 				ECC991FB29054F3B00BC3FA5 /* Info.plist */,
+				7F0E7097290575D100476E47 /* MainScreen.swift */,
 			);
 			path = OnWheels;
 			sourceTree = "<group>";
@@ -83,6 +88,9 @@
 			dependencies = (
 			);
 			name = OnWheels;
+			packageProductDependencies = (
+				7F0E709A29059AEC00476E47 /* PinLayout */,
+			);
 			productName = OnWheels;
 			productReference = ECC991EA29054F3A00BC3FA5 /* OnWheels.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = ECC991E129054F3A00BC3FA5;
+			packageReferences = (
+				7F0E709929059AEC00476E47 /* XCRemoteSwiftPackageReference "PinLayout" */,
+			);
 			productRefGroup = ECC991EB29054F3A00BC3FA5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F0E7098290575D100476E47 /* MainScreen.swift in Sources */,
 				ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */,
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
@@ -358,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7F0E709929059AEC00476E47 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7F0E709A29059AEC00476E47 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F0E709929059AEC00476E47 /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ECC991E229054F3A00BC3FA5 /* Project object */;
 }
