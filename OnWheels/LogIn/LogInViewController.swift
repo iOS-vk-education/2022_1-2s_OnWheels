@@ -32,6 +32,80 @@ final class LogInViewController: UIViewController {
         return l
     }()
 
+    private(set) lazy var loginField: UITextField = {
+        let t: UITextField = .init()
+        t.placeholder = "Введите номер телефона или почту"
+        t.borderStyle = .roundedRect
+        t.backgroundColor = .secondarySystemBackground
+        t.font = .systemFont(ofSize: 13)
+        t.layer.borderColor = UIColor.systemGray3.cgColor
+        t.layer.borderWidth = 1
+        t.layer.cornerRadius = 4
+        return t
+    }()
+
+    private(set) lazy var passField: UITextField = {
+        let t: UITextField = .init()
+        t.placeholder = "Введите пароль"
+        t.borderStyle = .roundedRect
+        t.backgroundColor = .secondarySystemBackground
+        t.font = .systemFont(ofSize: 13)
+        t.layer.borderColor = UIColor.systemGray3.cgColor
+        t.layer.borderWidth = 1
+        t.layer.cornerRadius = 4
+        t.textAlignment = .justified
+        return t
+    }()
+
+    private(set) lazy var forgotPassButton: UIButton = {
+        let b: UIButton = .init()
+        let attrString = NSAttributedString(string: "Забыли пароль?",
+                                            attributes:[
+                                                .underlineStyle: NSUnderlineStyle.single.rawValue,
+                                                .font: UIFont.systemFont(ofSize: 13),
+                                                .foregroundColor: UIColor.systemBlue])
+        b.setAttributedTitle(attrString, for: .normal)
+        return b
+    }()
+
+    private(set) lazy var enterButton: UIButton = {
+        let b: UIButton = .init(configuration: .filled())
+        b.titleLabel?.font = .systemFont(ofSize: 20)
+        b.setTitle("Войти", for: .normal)
+        return b
+    }()
+
+    private(set) lazy var regTextButton: UIButton = {
+        let b: UIButton = .init()
+        var attrString0 = NSMutableAttributedString(string: "Нет аккаунта? ",
+                                            attributes:[
+                                                .font: UIFont.systemFont(ofSize: 15)])
+        let attrString1 = NSAttributedString(string: "Зарегистрироваться",
+                                            attributes:[
+                                                .font: UIFont.systemFont(ofSize: 15),
+                                                .foregroundColor: UIColor.systemBlue])
+        attrString0.append(attrString1)
+        b.setAttributedTitle(attrString0, for: .normal)
+        return b
+    }()
+
+    private(set) lazy var skipLoginButton: UIButton = {
+        let b: UIButton = .init()
+        var attrString0 = NSMutableAttributedString(string: "или",
+                                            attributes:[
+                                                .font: UIFont.systemFont(ofSize: 15)])
+        let attrString1 = NSAttributedString(string: "\n Войти без аккаунта",
+                                            attributes:[
+                                                .font: UIFont.systemFont(ofSize: 15),
+                                                .foregroundColor: UIColor.systemBlue])
+        attrString0.append(attrString1)
+        b.setAttributedTitle(attrString0, for: .normal)
+        b.titleLabel?.textAlignment = .center
+        b.titleLabel?.numberOfLines = 0
+        return b
+    }()
+
+
     init(output: LogInViewOutput) {
         self.output = output
 
@@ -48,13 +122,18 @@ final class LogInViewController: UIViewController {
         view.backgroundColor = .systemBackground
 
         view.addSubview(scrollView)
-        scrollView.addSubview(bikeImage)
-        scrollView.addSubview(welcomeLabel)
+        [bikeImage, welcomeLabel, loginField,
+         passField, forgotPassButton, enterButton,
+         regTextButton, skipLoginButton].forEach { sub in
+            scrollView.addSubview(sub)
+        }
 	}
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.pin.all(view.pin.safeArea)
+
+        scrollView.pin
+            .all(view.pin.safeArea)
 
         bikeImage.pin
             .top()
@@ -67,6 +146,44 @@ final class LogInViewController: UIViewController {
             .hCenter()
             .sizeToFit()
 
+        loginField.pin
+            .below(of: welcomeLabel)
+            .left()
+            .right()
+            .margin(21, 43, 0)
+            .height(42)
+
+        passField.pin
+            .below(of: loginField)
+            .left()
+            .right()
+            .margin(21, 43, 0)
+            .height(of: loginField)
+
+        forgotPassButton.pin
+            .below(of: passField)
+            .marginTop(21)
+            .right(43)
+            .width(105)
+
+        enterButton.pin
+            .below(of: forgotPassButton)
+            .left()
+            .right()
+            .margin(21, 43, 0)
+            .height(of: loginField)
+
+        regTextButton.pin
+            .below(of: enterButton)
+            .marginTop(16)
+            .hCenter()
+            .height(18)
+
+        skipLoginButton.pin
+            .below(of: regTextButton)
+            .marginTop(0)
+            .hCenter()
+            .height(36)
     }
 }
 
