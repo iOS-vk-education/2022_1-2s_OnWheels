@@ -16,7 +16,7 @@ final class ProfileInfoCell: UITableViewCell {
         stackView.spacing = 2
         return stackView
     }()
-    private let mainLabel: UILabel = {
+    lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Main"
@@ -24,7 +24,7 @@ final class ProfileInfoCell: UITableViewCell {
         label.textColor = .systemBlue
         return label
     }()
-    private let infoLabel: UILabel = {
+    lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Main"
