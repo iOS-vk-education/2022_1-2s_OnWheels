@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import PinLayout
 
 final class ProfileInfoCell: UITableViewCell {
     private let cellInfoStackView: UIStackView = {
@@ -18,17 +19,13 @@ final class ProfileInfoCell: UITableViewCell {
     }()
     lazy var mainLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Main"
-        label.font = .systemFont(ofSize: 12, weight: .light)
+        label.font = .systemFont(ofSize: 14, weight: .light)
         label.textColor = .systemBlue
         return label
     }()
     lazy var infoLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Main"
-        label.font = .systemFont(ofSize: 12, weight: .light)
+        label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .black
         return label
     }()
@@ -51,11 +48,25 @@ final class ProfileInfoCell: UITableViewCell {
     }
     
     private func setupConstraints(){
-        NSLayoutConstraint.activate([
-            cellInfoStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
-            cellInfoStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11),
-            mainLabel.topAnchor.constraint(equalTo: cellInfoStackView.topAnchor),
-            infoLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor)
-        ])
+        cellInfoStackView.pin
+            .top(3)
+            .left(11)
+            .right(11)
+            .bottom(3)
+        mainLabel.pin
+            .top(to: cellInfoStackView.edge.top)
+            .left(to: cellInfoStackView.edge.left)
+            .right(to: cellInfoStackView.edge.right)
+//            .sizeToFit(.width)
+//            .height(14)
+        mainLabel.pin
+            .top(to: mainLabel.edge.bottom)
+            .left(to: cellInfoStackView.edge.left)
+            .right(to: cellInfoStackView.edge.right)
+            .bottom(to: cellInfoStackView.edge.bottom)
+    }
+    func configure(mainText: String, infoText: String){
+        mainLabel.text = mainText
+        infoLabel.text = infoText
     }
 }

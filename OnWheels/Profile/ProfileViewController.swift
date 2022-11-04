@@ -18,21 +18,21 @@ final class ProfileViewController: UIViewController {
         return image
     }()
     
-    let profileInfo: UIStackView = {
+    private let profileInfo: UIStackView = {
         let info = UIStackView()
         info.alignment = .leading
         info.axis = .vertical
         info.spacing = 5
         return info
     }()
-    let personName: UILabel = {
+    private let personName: UILabel = {
         let name = UILabel()
         name.text = "Name Surname"
         name.font = .systemFont(ofSize: 20, weight: .regular)
         name.textColor = UIColor(named: "profileText")
         return name
     }()
-    let personCity: UILabel = {
+    private let personCity: UILabel = {
         let city = UILabel()
         city.text = "City"
         city.textColor = UIColor(named: "profileText")
@@ -41,10 +41,10 @@ final class ProfileViewController: UIViewController {
     }()
     
     private let personTableView = UITableView(frame: .zero, style: .insetGrouped)
-
-    let headerTitles = ["О себе", "Мои соцсети"]
-    let mainLabels = ["Телефон", "Почта", "Дата рождения", "Телефон", "О себе","Телеграмм", "ВК", "Ютуб"]
-//    let infoLabels = []
+    
+    private let headerTitles = ["О себе", "Мои соцсети"]
+    //    let mainLabels = ["Телефон", "Почта", "Дата рождения", "Пол", "О себе","Телеграмм", "ВК", "Ютуб"]
+    //    let infoLabels = ["+79000000000", "name@ya.ru", "01.01.2001", "man", "", "t.me", "vk.com", "youtube.com"]
     init(output: ProfileViewOutput) {
         self.output = output
         
@@ -77,14 +77,27 @@ extension ProfileViewController: ProfileViewInput {
         
         profileInfo.pin
             .top(to: profileImage.edge.top).marginTop(80%)
-            .bottom(to: profileImage.edge.bottom).marginBottom(7%)
+            .bottom(to: profileImage.edge.bottom).marginBottom(5%)
             .left(to: profileImage.edge.left).marginLeft(31)
             .right()
+        
+        personName.pin
+            .top(to: profileInfo.edge.top)
+            .left(to: profileInfo.edge.left)
+            .right()
+            .height(20)
+        
+        personCity.pin
+            .top(to: personName.edge.top)
+            .left(to: profileInfo.edge.left)
+            .right()
+            .height(16)
+        
         personTableView.pin
             .below(of: profileImage)
-            .top(to: profileImage.edge.bottom).marginTop(10)
-            .left(31)
-            .right(31)
+            .top(to: profileImage.edge.bottom).marginTop(20)
+            .left()
+            .right()
             .bottom(to: view.edge.bottom)
     }
     private func setupUI(){
@@ -106,6 +119,7 @@ extension ProfileViewController: ProfileViewInput {
         personTableView.delegate = self
         personTableView.dataSource = self
         personTableView.register(ProfileInfoCell.self, forCellReuseIdentifier: "profile")
+        personTableView.allowsSelection = false
     }
 }
 
@@ -120,21 +134,62 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "profile", for: indexPath) as! ProfileInfoCell
-        cell.mainLabel.text = mainLabels[indexPath.row]
         
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 0:
+                cell.configure(mainText: "Телефон", infoText: "+79000000000")
+            case 1:
+                cell.configure(mainText: "Почта", infoText: "name@ya.ru")
+            case 2:
+                cell.configure(mainText: "Дата рождения", infoText: "01.01.2001")
+            case 3:
+                cell.configure(mainText: "Пол", infoText: "муж")
+            case 4:
+                cell.configure(mainText: "О себе", infoText: "Нет информации")
+            default:
+                break
+            }
+        } else {
+            switch indexPath.row {
+            case 0:
+                cell.configure(mainText: "Телеграмм", infoText: "t.me")
+            case 1:
+                cell.configure(mainText: "Ютуб", infoText: "youtube.com")
+            case 2:
+                cell.configure(mainText: "Вк", infoText: "vk.com")
+            default:
+                break
+            }
+            
+        }
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 42
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section < headerTitles.count {
-            return headerTitles[section]
-        }
-
-        return nil
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 32
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 32))
+        
+        let label = UILabel()
+        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-7)
+        label.text = headerTitles[section]
+        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        label.textColor = .systemBlue
+        
+        headerView.addSubview(label)
+        
+        return headerView
+    }
+    
     
 }
