@@ -58,21 +58,30 @@ final class ProfileInfoCell: UITableViewCell {
     /// выстраивание отступов для вьюшек
     private func setupLayout(){
         cellInfoStackView.pin
-            .top(3)
-            .left(11)
-            .right(11)
-            .bottom(3)
-        mainLabel.pin
-            .top(to: cellInfoStackView.edge.top)
-            .left(to: cellInfoStackView.edge.left)
-            .right(to: cellInfoStackView.edge.right)
+            .top(Constants.CellInfoStackView.top)
+            .left(Constants.CellInfoStackView.left)
+            .right(Constants.CellInfoStackView.right)
+            .bottom(Constants.CellInfoStackView.bottom)
+//        mainLabel.pin
+//            .top(to: cellInfoStackView.edge.top)
+//            .left(to: cellInfoStackView.edge.left)
+//            .right(to: cellInfoStackView.edge.right)
 //            .sizeToFit(.width)
 //            .height(14)
-        mainLabel.pin
-            .top(to: mainLabel.edge.bottom)
-            .left(to: cellInfoStackView.edge.left)
-            .right(to: cellInfoStackView.edge.right)
-            .bottom(to: cellInfoStackView.edge.bottom)
+//        mainLabel.pin
+//            .top(to: mainLabel.edge.bottom)
+//            .left(to: cellInfoStackView.edge.left)
+//            .right(to: cellInfoStackView.edge.right)
+//            .bottom(to: cellInfoStackView.edge.bottom)
+    }
+    
+    struct Constants {
+        struct CellInfoStackView {
+            static let top: CGFloat = 3
+            static let left: CGFloat = 11
+            static let right: CGFloat = 11
+            static let bottom: CGFloat = 3
+        }
     }
     
     /// заполнение ячейки данными

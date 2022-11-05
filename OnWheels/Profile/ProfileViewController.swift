@@ -29,6 +29,7 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
+    
     // Стэк информации о пользователе, имя фамилия и город
     private let profileInfo: UIStackView = {
         let info = UIStackView()
@@ -107,36 +108,36 @@ extension ProfileViewController {
             .top()
             .right()
             .left()
-            .width(100%)
-            .height(40%)
+            .width(Constants.ProfileImage.widthPercent)
+            .height(Constants.ProfileImage.heightPercent)
         
         changeProfileButton.pin
-            .top(to: profileImage.edge.top).marginTop(10%)
-            .right(to: profileImage.edge.right).marginRight(5%)
-            .width(50)
+            .top(to: profileImage.edge.top).marginTop(Constants.ChangeProfileButton.marginTopPercent)
+            .right(to: profileImage.edge.right).marginRight(Constants.ChangeProfileButton.marginRightPercent)
+            .width(Constants.ChangeProfileButton.width)
             .sizeToFit(.width)
         
         profileInfo.pin
-            .top(to: profileImage.edge.top).marginTop(80%)
-            .bottom(to: profileImage.edge.bottom).marginBottom(5%)
-            .left(to: profileImage.edge.left).marginLeft(31)
+            .top(to: profileImage.edge.top).marginTop(Constants.ProfileInfo.marginTopPercent)
+            .bottom(to: profileImage.edge.bottom).marginBottom(Constants.ProfileInfo.marginBottomPercent)
+            .left(to: profileImage.edge.left).marginLeft(Constants.ProfileInfo.marginLeft)
             .right()
         
-        personName.pin
-            .top(to: profileInfo.edge.top)
-            .left(to: profileInfo.edge.left)
-            .right()
-            .height(20)
-        
-        personCity.pin
-            .top(to: personName.edge.top)
-            .left(to: profileInfo.edge.left)
-            .right()
-            .height(16)
+//        personName.pin
+//            .top(to: profileInfo.edge.top)
+//            .left(to: profileInfo.edge.left)
+//            .right()
+//            .height(20)
+//        
+//        personCity.pin
+//            .top(to: personName.edge.top)
+//            .left(to: profileInfo.edge.left)
+//            .right()
+//            .height(16)
         
         personTableView.pin
             .below(of: profileImage)
-            .top(to: profileImage.edge.bottom).marginTop(20)
+            .top(to: profileImage.edge.bottom).marginTop(Constants.PersonTableView.marginTop)
             .left()
             .right()
             .bottom(to: view.edge.bottom)
@@ -153,7 +154,7 @@ extension ProfileViewController {
         profileInfo.addArrangedSubview(personCity)
         view.addSubview(personTableView)
         setupTableView()
-        changeProfileButton.addTarget(self, action: #selector(changeProfileButtonTapped), for: .touchUpInside)
+        setupNavBar()
     }
     
     /// настройка внешнего вида таблицы
@@ -167,6 +168,32 @@ extension ProfileViewController {
         personTableView.dataSource = self
         personTableView.register(ProfileInfoCell.self, forCellReuseIdentifier: "profile")
         personTableView.allowsSelection = false
+    }
+    
+    func setupNavBar (){
+        changeProfileButton.addTarget(self, action: #selector(changeProfileButtonTapped), for: .touchUpInside)
+        let rightNavBarItem = UIBarButtonItem(customView: changeProfileButton)
+        self.navigationItem.setRightBarButton(rightNavBarItem, animated: true)
+    }
+    
+    struct Constants {
+        struct ProfileImage {
+            static let widthPercent: Percent = 100%
+            static let heightPercent: Percent = 40%
+        }
+        struct ChangeProfileButton {
+            static let marginTopPercent: Percent = 10%
+            static let marginRightPercent: Percent = 5%
+            static let width: CGFloat = 50
+        }
+        struct ProfileInfo {
+            static let marginTopPercent: Percent = 80%
+            static let marginBottomPercent: Percent = 5%
+            static let marginLeft: CGFloat = 31
+        }
+        struct PersonTableView {
+            static let marginTop: CGFloat = 20
+        }
     }
     
 }
