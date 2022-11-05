@@ -44,7 +44,7 @@ final class RegistrationViewController: UIViewController {
     private(set) lazy var stackView: UIStackView = {
         let s: UIStackView = .init()
         s.axis = .vertical
-        s.spacing = 21
+        s.spacing = Constants.vStackView.spacing
         s.distribution = .fillEqually
         return s
     }()
@@ -64,7 +64,7 @@ final class RegistrationViewController: UIViewController {
     private(set) lazy var dateGenderStackView: UIStackView = {
         let s: UIStackView = .init()
         s.axis = .horizontal
-        s.spacing = 14
+        s.spacing = Constants.hStackView.spacing
         s.distribution = .fillProportionally
         return s
     }()
@@ -165,11 +165,7 @@ final class RegistrationViewController: UIViewController {
 
         view.addSubview(scrollView)
 
-        scrollView.addSubviews(bikeImage, createLabel, hintLabel, stackView)
-        stackView.addArrangedSubviews(nameField, surnameField)
-        dateGenderStackView.addArrangedSubviews(birthdateField, genderField)
-        stackView.addArrangedSubviews(dateGenderStackView, cityField, emailField,
-                                      passField, passConfField, rulesButton, regButton)
+        addViews()
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 
@@ -179,6 +175,14 @@ final class RegistrationViewController: UIViewController {
         view.addGestureRecognizer(tapToHide)
         
 	}
+
+    private func addViews() {
+        scrollView.addSubviews(bikeImage, createLabel, hintLabel, stackView)
+        stackView.addArrangedSubviews(nameField, surnameField)
+        dateGenderStackView.addArrangedSubviews(birthdateField, genderField)
+        stackView.addArrangedSubviews(dateGenderStackView, cityField, emailField,
+                                      passField, passConfField, rulesButton, regButton)
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -193,27 +197,46 @@ final class RegistrationViewController: UIViewController {
 
         createLabel.pin
             .below(of: bikeImage)
-            .marginTop(0)
             .hCenter()
             .sizeToFit()
 
         hintLabel.pin
             .below(of: createLabel)
             .left()
-            .marginTop(7)
-            .marginLeft(43)
+            .marginTop(Constants.hintLabel.marginTop)
+            .marginLeft(Constants.hintLabel.marginLeft)
             .sizeToFit()
 
         stackView.pin
             .below(of: hintLabel)
             .left()
             .right()
-            .marginTop(13)
-            .marginHorizontal(43)
-            .height(CGFloat(stackView.arrangedSubviews.count)*(42+21) - 21)
+            .marginTop(Constants.vStackView.marginTop)
+            .marginHorizontal(Constants.vStackView.marginHorizontal)
+            .height(
+                CGFloat(stackView.arrangedSubviews.count) *
+                (Constants.textField.height + Constants.vStackView.spacing) - Constants.vStackView.spacing)
 
     }
 }
 
 extension RegistrationViewController: RegistrationViewInput {
+}
+
+private struct Constants {
+    struct textField {
+        static let height: CGFloat = 42
+    }
+    struct hintLabel {
+        static let marginTop: CGFloat = 7
+        static let marginLeft: CGFloat = 43
+    }
+    struct vStackView {
+        static let spacing: CGFloat = 21
+        static let marginTop: CGFloat = 13
+        static let marginHorizontal: CGFloat = 43
+    }
+    struct hStackView {
+        static let spacing: CGFloat = 14
+    }
 }

@@ -171,7 +171,7 @@ final class LogInViewController: UIViewController {
 
         welcomeLabel.pin
             .below(of: bikeImage)
-            .marginTop(-40)
+            .marginTop(Constants.welcomeLabel.marginTop)
             .hCenter()
             .sizeToFit()
 
@@ -179,42 +179,76 @@ final class LogInViewController: UIViewController {
             .below(of: welcomeLabel)
             .left()
             .right()
-            .margin(21, 43, 0)
-            .height(42)
+            .margin(Constants.loginField.marginTop,
+                    Constants.loginField.marginHorizontal,
+                    Constants.loginField.marginBottom)
+            .height(Constants.loginField.height)
 
         passField.pin
             .below(of: loginField)
             .left()
             .right()
-            .margin(21, 43, 0)
+            .margin(Constants.loginField.marginTop,
+                    Constants.loginField.marginHorizontal,
+                    Constants.loginField.marginBottom)
             .height(of: loginField)
 
         forgotPassButton.pin
             .below(of: passField)
-            .marginTop(21)
-            .right(43)
-            .width(105)
+            .marginTop(Constants.forgotPassButton.marginTop)
+            .right(Constants.forgotPassButton.marginRight)
+            .width(Constants.forgotPassButton.width)
 
         enterButton.pin
             .below(of: forgotPassButton)
             .left()
             .right()
-            .margin(21, 43, 0)
+            .margin(Constants.loginField.marginTop,
+                    Constants.loginField.marginHorizontal,
+                    Constants.loginField.marginBottom)
             .height(of: loginField)
 
         regTextButton.pin
             .below(of: enterButton)
-            .marginTop(16)
+            .marginTop(Constants.regTextButton.marginTop)
             .hCenter()
-            .height(18)
+            .height(Constants.regTextButton.height)
 
         skipLoginButton.pin
             .below(of: regTextButton)
-            .marginTop(0)
             .hCenter()
-            .height(36)
+            .height(Constants.skipLoginButton.height)
     }
 }
 
 extension LogInViewController: LogInViewInput {
+}
+
+private struct Constants {
+
+    struct welcomeLabel {
+        static let marginTop: CGFloat = -40
+    }
+
+    struct loginField {
+        static let marginTop: CGFloat = 21
+        static let marginHorizontal: CGFloat = 43
+        static let marginBottom: CGFloat = 0
+        static let height: CGFloat = 42
+    }
+    
+    struct forgotPassButton {
+        static let marginTop: CGFloat = 21
+        static let marginRight: CGFloat = 43
+        static let width: CGFloat = 105
+    }
+
+    struct regTextButton {
+        static let marginTop: CGFloat = 16
+        static let height: CGFloat = 18
+    }
+
+    struct skipLoginButton {
+        static let height: CGFloat = 36
+    }
 }
