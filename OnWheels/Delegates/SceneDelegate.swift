@@ -22,7 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
 
         let loginContainer = LogInContainer.assemble(with: LogInContext())
-        let navigationController = UINavigationController(rootViewController: loginContainer.viewController)
+        let registrationContainer = RegistrationContainer.assemble(with: RegistrationContext())
+
+        let navigationController = UINavigationController(rootViewController: registrationContainer.viewController)
 
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

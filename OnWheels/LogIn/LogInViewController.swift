@@ -9,6 +9,22 @@
 import UIKit
 import PinLayout
 
+class customTextField: UITextField {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.borderStyle = .roundedRect
+        self.backgroundColor = .secondarySystemBackground
+        self.font = .systemFont(ofSize: 13)
+        self.layer.borderColor = UIColor.systemGray3.cgColor
+        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 4
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 final class LogInViewController: UIViewController {
 	private let output: LogInViewOutput
 
@@ -20,6 +36,8 @@ final class LogInViewController: UIViewController {
 
     private(set) lazy var scrollView: UIScrollView = {
         let s: UIScrollView = .init()
+        s.contentSize = .init(width: view.frame.size.width, height: view.frame.size.height)
+        s.isScrollEnabled = false
         return s
     }()
 
@@ -32,28 +50,15 @@ final class LogInViewController: UIViewController {
         return l
     }()
 
-    private(set) lazy var loginField: UITextField = {
-        let t: UITextField = .init()
-        t.placeholder = "Введите номер телефона или почту"
-        t.borderStyle = .roundedRect
-        t.backgroundColor = .secondarySystemBackground
-        t.font = .systemFont(ofSize: 13)
-        t.layer.borderColor = UIColor.systemGray3.cgColor
-        t.layer.borderWidth = 1
-        t.layer.cornerRadius = 4
+    private(set) lazy var loginField: customTextField = {
+        let t: customTextField = .init()
+        t.placeholder = "Введите email"
         return t
     }()
 
-    private(set) lazy var passField: UITextField = {
-        let t: UITextField = .init()
+    private(set) lazy var passField: customTextField = {
+        let t: customTextField = .init()
         t.placeholder = "Введите пароль"
-        t.borderStyle = .roundedRect
-        t.backgroundColor = .secondarySystemBackground
-        t.font = .systemFont(ofSize: 13)
-        t.layer.borderColor = UIColor.systemGray3.cgColor
-        t.layer.borderWidth = 1
-        t.layer.cornerRadius = 4
-        t.textAlignment = .justified
         return t
     }()
 
@@ -117,16 +122,40 @@ final class LogInViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    @objc
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                               as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            scrollView.contentOffset.y = keyboardHeight
+        }
+    }
+
+    @objc
+    func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentOffset.y = .zero
+    }
+
+    @objc
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
         view.addSubview(scrollView)
-        [bikeImage, welcomeLabel, loginField,
-         passField, forgotPassButton, enterButton,
-         regTextButton, skipLoginButton].forEach { sub in
-            scrollView.addSubview(sub)
-        }
+        scrollView.addSubviews(bikeImage, welcomeLabel, loginField,
+                               passField, forgotPassButton, enterButton,
+                               regTextButton, skipLoginButton)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+        let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapToHide)
+
 	}
 
     override func viewDidLayoutSubviews() {
