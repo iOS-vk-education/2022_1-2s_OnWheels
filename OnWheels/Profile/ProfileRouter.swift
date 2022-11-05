@@ -12,4 +12,8 @@ final class ProfileRouter {
 }
 
 extension ProfileRouter: ProfileRouterInput {
+    func changeProfileInfoButtonTapped(){
+        //здесь может появиться еще один экран
+        print("change info")
+    }
 }

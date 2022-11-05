@@ -12,20 +12,22 @@ protocol ProfileModuleInput {
 	var moduleOutput: ProfileModuleOutput? { get }
 }
 
-protocol ProfileModuleOutput: class {
+protocol ProfileModuleOutput: AnyObject {
 }
 
-protocol ProfileViewInput: class {
+protocol ProfileViewInput: AnyObject {
 }
 
-protocol ProfileViewOutput: class {
+protocol ProfileViewOutput: AnyObject {
+    func openChangeProfileScreen()
 }
 
-protocol ProfileInteractorInput: class {
+protocol ProfileInteractorInput: AnyObject {
 }
 
-protocol ProfileInteractorOutput: class {
+protocol ProfileInteractorOutput: AnyObject {
 }
 
-protocol ProfileRouterInput: class {
+protocol ProfileRouterInput: AnyObject {
+    func changeProfileInfoButtonTapped()
 }

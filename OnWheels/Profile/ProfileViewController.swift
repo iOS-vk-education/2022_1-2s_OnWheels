@@ -11,6 +11,8 @@ import PinLayout
 
 final class ProfileViewController: UIViewController {
     private let output: ProfileViewOutput
+    
+    // Картинка пользователя
     private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -18,6 +20,16 @@ final class ProfileViewController: UIViewController {
         return image
     }()
     
+    //кнопка изменения профиля
+    private let changeProfileButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Изм.", for: .normal)
+        button.setTitleColor(UIColor(named: "profileText"), for: .normal)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
+    
+    // Стэк информации о пользователе, имя фамилия и город
     private let profileInfo: UIStackView = {
         let info = UIStackView()
         info.alignment = .leading
@@ -25,6 +37,8 @@ final class ProfileViewController: UIViewController {
         info.spacing = 5
         return info
     }()
+    
+    // лейбл с именем и фамилией пользователя
     private let personName: UILabel = {
         let name = UILabel()
         name.text = "Name Surname"
@@ -32,6 +46,8 @@ final class ProfileViewController: UIViewController {
         name.textColor = UIColor(named: "profileText")
         return name
     }()
+    
+    // город пользователя
     private let personCity: UILabel = {
         let city = UILabel()
         city.text = "City"
@@ -40,11 +56,11 @@ final class ProfileViewController: UIViewController {
         return city
     }()
     
+    // объявление таблицы
     private let personTableView = UITableView(frame: .zero, style: .insetGrouped)
     
+    // хэдеры для секций таблицы
     private let headerTitles = ["О себе", "Мои соцсети"]
-    //    let mainLabels = ["Телефон", "Почта", "Дата рождения", "Пол", "О себе","Телеграмм", "ВК", "Ютуб"]
-    //    let infoLabels = ["+79000000000", "name@ya.ru", "01.01.2001", "man", "", "t.me", "vk.com", "youtube.com"]
     init(output: ProfileViewOutput) {
         self.output = output
         
@@ -61,19 +77,44 @@ final class ProfileViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupConstraints()
+        setupLayout()
+    }
+    
+    
+    @objc
+    func changeProfileButtonTapped(){
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.changeProfileButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.openChangeProfileScreen()
+                self?.changeProfileButton.alpha = 1
+            }
+        }
     }
     
 }
 
 extension ProfileViewController: ProfileViewInput {
-    private func setupConstraints(){
+    
+}
+
+extension ProfileViewController {
+    
+    /// Настройка отступов для вью
+    private func setupLayout(){
         profileImage.pin
             .top()
             .right()
             .left()
             .width(100%)
             .height(40%)
+        
+        changeProfileButton.pin
+            .top(to: profileImage.edge.top).marginTop(10%)
+            .right(to: profileImage.edge.right).marginRight(5%)
+            .width(50)
+            .sizeToFit(.width)
         
         profileInfo.pin
             .top(to: profileImage.edge.top).marginTop(80%)
@@ -100,16 +141,22 @@ extension ProfileViewController: ProfileViewInput {
             .right()
             .bottom(to: view.edge.bottom)
     }
+    
+    /// Добавление вью
     private func setupUI(){
         view.backgroundColor = UIColor(named: "profileBackground")
         view.addSubview(profileImage)
+        profileImage.addSubview(changeProfileButton)
+        changeProfileButton.bringSubviewToFront(profileImage)
         profileImage.addSubview(profileInfo)
         profileInfo.addArrangedSubview(personName)
         profileInfo.addArrangedSubview(personCity)
         view.addSubview(personTableView)
         setupTableView()
+        changeProfileButton.addTarget(self, action: #selector(changeProfileButtonTapped), for: .touchUpInside)
     }
     
+    /// настройка внешнего вида таблицы
     private func setupTableView(){
         personTableView.separatorStyle = .singleLine
         personTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
@@ -121,6 +168,7 @@ extension ProfileViewController: ProfileViewInput {
         personTableView.register(ProfileInfoCell.self, forCellReuseIdentifier: "profile")
         personTableView.allowsSelection = false
     }
+    
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -193,3 +241,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+

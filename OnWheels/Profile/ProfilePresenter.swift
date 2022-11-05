@@ -25,6 +25,9 @@ extension ProfilePresenter: ProfileModuleInput {
 }
 
 extension ProfilePresenter: ProfileViewOutput {
+    func openChangeProfileScreen(){
+        router.changeProfileInfoButtonTapped()
+    }
 }
 
 extension ProfilePresenter: ProfileInteractorOutput {

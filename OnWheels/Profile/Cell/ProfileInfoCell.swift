@@ -10,6 +10,8 @@ import UIKit
 import PinLayout
 
 final class ProfileInfoCell: UITableViewCell {
+    
+    // StackView для ячеек профиля с информацией о пользователе
     private let cellInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.alignment = .leading
@@ -17,12 +19,16 @@ final class ProfileInfoCell: UITableViewCell {
         stackView.spacing = 2
         return stackView
     }()
+    
+    // Верхний лейбл ячеек, название полей
     lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .light)
         label.textColor = .systemBlue
         return label
     }()
+    
+    // Информация пользователя
     lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -40,14 +46,17 @@ final class ProfileInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Добавление вью на ячейку
     private func setupCell(){
         self.addSubview(cellInfoStackView)
         cellInfoStackView.addArrangedSubview(mainLabel)
         cellInfoStackView.addArrangedSubview(infoLabel)
-        setupConstraints()
+        setupLayout()
     }
     
-    private func setupConstraints(){
+    
+    /// выстраивание отступов для вьюшек
+    private func setupLayout(){
         cellInfoStackView.pin
             .top(3)
             .left(11)
@@ -65,6 +74,8 @@ final class ProfileInfoCell: UITableViewCell {
             .right(to: cellInfoStackView.edge.right)
             .bottom(to: cellInfoStackView.edge.bottom)
     }
+    
+    /// заполнение ячейки данными
     func configure(mainText: String, infoText: String){
         mainLabel.text = mainText
         infoLabel.text = infoText
