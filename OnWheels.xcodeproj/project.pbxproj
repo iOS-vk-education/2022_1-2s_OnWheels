@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1FA50D29155AE200BF4945 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1FA50729155AE200BF4945 /* RegistrationPresenter.swift */; };
+		EC1FA50E29155AE200BF4945 /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1FA50829155AE200BF4945 /* RegistrationRouter.swift */; };
+		EC1FA50F29155AE200BF4945 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1FA50929155AE200BF4945 /* RegistrationViewController.swift */; };
+		EC1FA51029155AE200BF4945 /* RegistrationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1FA50A29155AE200BF4945 /* RegistrationProtocols.swift */; };
+		EC1FA51129155AE200BF4945 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1FA50B29155AE200BF4945 /* RegistrationInteractor.swift */; };
+		EC1FA51229155AE200BF4945 /* RegistrationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1FA50C29155AE200BF4945 /* RegistrationContainer.swift */; };
+		EC1FA5152916D06700BF4945 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1FA5142916D06700BF4945 /* UIView+Extensions.swift */; };
+		EC1FA5182916D29800BF4945 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1FA5172916D29800BF4945 /* UIStackView+Extensions.swift */; };
 		EC3FE5F2290877E900514059 /* LogInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5EC290877E900514059 /* LogInPresenter.swift */; };
 		EC3FE5F3290877E900514059 /* LogInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5ED290877E900514059 /* LogInRouter.swift */; };
 		EC3FE5F4290877E900514059 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FE5EE290877E900514059 /* LogInViewController.swift */; };
@@ -23,6 +31,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC1FA50729155AE200BF4945 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		EC1FA50829155AE200BF4945 /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
+		EC1FA50929155AE200BF4945 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		EC1FA50A29155AE200BF4945 /* RegistrationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationProtocols.swift; sourceTree = "<group>"; };
+		EC1FA50B29155AE200BF4945 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
+		EC1FA50C29155AE200BF4945 /* RegistrationContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationContainer.swift; sourceTree = "<group>"; };
+		EC1FA5142916D06700BF4945 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		EC1FA5172916D29800BF4945 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		EC3FE5EC290877E900514059 /* LogInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInPresenter.swift; sourceTree = "<group>"; };
 		EC3FE5ED290877E900514059 /* LogInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInRouter.swift; sourceTree = "<group>"; };
 		EC3FE5EE290877E900514059 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +67,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC1FA51329155AF200BF4945 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				EC1FA50729155AE200BF4945 /* RegistrationPresenter.swift */,
+				EC1FA50829155AE200BF4945 /* RegistrationRouter.swift */,
+				EC1FA50929155AE200BF4945 /* RegistrationViewController.swift */,
+				EC1FA50A29155AE200BF4945 /* RegistrationProtocols.swift */,
+				EC1FA50B29155AE200BF4945 /* RegistrationInteractor.swift */,
+				EC1FA50C29155AE200BF4945 /* RegistrationContainer.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		EC1FA5162916D06B00BF4945 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC1FA5142916D06700BF4945 /* UIView+Extensions.swift */,
+				EC1FA5172916D29800BF4945 /* UIStackView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		EC3FE5F8290877F400514059 /* LogIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +129,8 @@
 				ECC991F829054F3B00BC3FA5 /* LaunchScreen.storyboard */,
 				ECC991FB29054F3B00BC3FA5 /* Info.plist */,
 				EC3FE5F8290877F400514059 /* LogIn */,
+				EC1FA51329155AF200BF4945 /* Registration */,
+				EC1FA5162916D06B00BF4945 /* Extensions */,
 			);
 			path = OnWheels;
 			sourceTree = "<group>";
@@ -173,12 +213,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC3FE5F7290877E900514059 /* LogInContainer.swift in Sources */,
+				EC1FA50D29155AE200BF4945 /* RegistrationPresenter.swift in Sources */,
 				EC3FE5F2290877E900514059 /* LogInPresenter.swift in Sources */,
 				ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */,
+				EC1FA51229155AE200BF4945 /* RegistrationContainer.swift in Sources */,
+				EC1FA51029155AE200BF4945 /* RegistrationProtocols.swift in Sources */,
+				EC1FA5152916D06700BF4945 /* UIView+Extensions.swift in Sources */,
+				EC1FA5182916D29800BF4945 /* UIStackView+Extensions.swift in Sources */,
 				EC3FE5F5290877E900514059 /* LogInProtocols.swift in Sources */,
 				EC3FE5F4290877E900514059 /* LogInViewController.swift in Sources */,
+				EC1FA50F29155AE200BF4945 /* RegistrationViewController.swift in Sources */,
+				EC1FA50E29155AE200BF4945 /* RegistrationRouter.swift in Sources */,
 				EC3FE5F6290877E900514059 /* LogInInteractor.swift in Sources */,
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
+				EC1FA51129155AE200BF4945 /* RegistrationInteractor.swift in Sources */,
 				EC3FE5F3290877E900514059 /* LogInRouter.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
 			);
