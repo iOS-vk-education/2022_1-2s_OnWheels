@@ -12,7 +12,6 @@ import PinLayout
 final class ProfileViewController: UIViewController {
     private let output: ProfileViewOutput
     
-    // Картинка пользователя
     private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -20,7 +19,6 @@ final class ProfileViewController: UIViewController {
         return image
     }()
     
-    //кнопка изменения профиля
     private let changeProfileButton: UIButton = {
         let button = UIButton()
         button.setTitle("Изм.", for: .normal)
@@ -30,7 +28,6 @@ final class ProfileViewController: UIViewController {
     }()
     
     
-    // Стэк информации о пользователе, имя фамилия и город
     private let profileInfo: UIStackView = {
         let info = UIStackView()
         info.alignment = .leading
@@ -39,7 +36,6 @@ final class ProfileViewController: UIViewController {
         return info
     }()
     
-    // лейбл с именем и фамилией пользователя
     private let personName: UILabel = {
         let name = UILabel()
         name.text = "Name Surname"
@@ -48,7 +44,6 @@ final class ProfileViewController: UIViewController {
         return name
     }()
     
-    // город пользователя
     private let personCity: UILabel = {
         let city = UILabel()
         city.text = "City"
@@ -57,10 +52,8 @@ final class ProfileViewController: UIViewController {
         return city
     }()
     
-    // объявление таблицы
     private let personTableView = UITableView(frame: .zero, style: .insetGrouped)
     
-    // хэдеры для секций таблицы
     private let headerTitles = ["О себе", "Мои соцсети"]
     init(output: ProfileViewOutput) {
         self.output = output
@@ -102,7 +95,6 @@ extension ProfileViewController: ProfileViewInput {
 
 extension ProfileViewController {
     
-    /// Настройка отступов для вью
     private func setupLayout(){
         profileImage.pin
             .top()
@@ -123,18 +115,6 @@ extension ProfileViewController {
             .left(to: profileImage.edge.left).marginLeft(Constants.ProfileInfo.marginLeft)
             .right()
         
-//        personName.pin
-//            .top(to: profileInfo.edge.top)
-//            .left(to: profileInfo.edge.left)
-//            .right()
-//            .height(20)
-//        
-//        personCity.pin
-//            .top(to: personName.edge.top)
-//            .left(to: profileInfo.edge.left)
-//            .right()
-//            .height(16)
-        
         personTableView.pin
             .below(of: profileImage)
             .top(to: profileImage.edge.bottom).marginTop(Constants.PersonTableView.marginTop)
@@ -143,7 +123,6 @@ extension ProfileViewController {
             .bottom(to: view.edge.bottom)
     }
     
-    /// Добавление вью
     private func setupUI(){
         view.backgroundColor = UIColor(named: "profileBackground")
         view.addSubview(profileImage)
@@ -157,7 +136,6 @@ extension ProfileViewController {
         setupNavBar()
     }
     
-    /// настройка внешнего вида таблицы
     private func setupTableView(){
         personTableView.separatorStyle = .singleLine
         personTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
@@ -265,7 +243,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
         return headerView
     }
-    
     
 }
 
