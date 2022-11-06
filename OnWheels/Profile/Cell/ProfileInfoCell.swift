@@ -21,7 +21,7 @@ final class ProfileInfoCell: UITableViewCell {
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .light)
-        label.textColor = .systemBlue
+        label.textColor = .mainBlueColor
         return label
     }()
     

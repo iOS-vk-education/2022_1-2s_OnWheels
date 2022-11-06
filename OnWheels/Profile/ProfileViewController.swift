@@ -22,7 +22,7 @@ final class ProfileViewController: UIViewController {
     private let changeProfileButton: UIButton = {
         let button = UIButton()
         button.setTitle("Изм.", for: .normal)
-        button.setTitleColor(UIColor(named: "profileText"), for: .normal)
+        button.setTitleColor(.whiteTextColor, for: .normal)
         button.isUserInteractionEnabled = true
         return button
     }()
@@ -40,14 +40,14 @@ final class ProfileViewController: UIViewController {
         let name = UILabel()
         name.text = "Name Surname"
         name.font = .systemFont(ofSize: 20, weight: .regular)
-        name.textColor = UIColor(named: "profileText")
+        name.textColor = .whiteTextColor
         return name
     }()
     
     private let personCity: UILabel = {
         let city = UILabel()
         city.text = "City"
-        city.textColor = UIColor(named: "profileText")
+        city.textColor = .whiteTextColor
         city.font = .systemFont(ofSize: 16, weight: .light)
         return city
     }()
@@ -124,7 +124,7 @@ extension ProfileViewController {
     }
     
     private func setupUI(){
-        view.backgroundColor = UIColor(named: "profileBackground")
+        view.backgroundColor = .backgroundColor
         view.addSubview(profileImage)
         profileImage.addSubview(changeProfileButton)
         changeProfileButton.bringSubviewToFront(profileImage)
@@ -140,7 +140,7 @@ extension ProfileViewController {
         personTableView.separatorStyle = .singleLine
         personTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
         personTableView.showsVerticalScrollIndicator = false
-        personTableView.backgroundColor = UIColor(named: "profileBackground")
+        personTableView.backgroundColor = .backgroundColor
         personTableView.separatorColor = .gray
         personTableView.delegate = self
         personTableView.dataSource = self
@@ -237,7 +237,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-7)
         label.text = headerTitles[section]
         label.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        label.textColor = .systemBlue
+        label.textColor = .mainBlueColor
         
         headerView.addSubview(label)
         
