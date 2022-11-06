@@ -144,7 +144,7 @@ extension ProfileViewController {
         personTableView.separatorColor = .gray
         personTableView.delegate = self
         personTableView.dataSource = self
-        personTableView.register(ProfileInfoCell.self, forCellReuseIdentifier: "profile")
+        personTableView.register(ProfileInfoCell.self)
         personTableView.allowsSelection = false
     }
     
@@ -186,7 +186,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "profile", for: indexPath) as! ProfileInfoCell
+        
+        let cell = tableView.dequeueCell(cellType: ProfileInfoCell.self, for: indexPath)
         
         if indexPath.section == 0 {
             switch indexPath.row {

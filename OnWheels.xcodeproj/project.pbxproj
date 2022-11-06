@@ -16,6 +16,7 @@
 		949A48A9290D37DA0011DF11 /* ProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48A3290D37DA0011DF11 /* ProfileContainer.swift */; };
 		949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
+		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */; };
 		ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */; };
 		ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991F129054F3A00BC3FA5 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 		949A48A3290D37DA0011DF11 /* ProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainer.swift; sourceTree = "<group>"; };
 		949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		ECC991EA29054F3A00BC3FA5 /* OnWheels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnWheels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				94E574942917C82F00EF9585 /* ColorExtension.swift */,
+				94E574972917CA0600EF9585 /* ReuseIdentifier.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
 				949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */,
 				949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */,
+				94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */,
 				949A48A7290D37DA0011DF11 /* ProfileProtocols.swift in Sources */,
 				949A48A9290D37DA0011DF11 /* ProfileContainer.swift in Sources */,
 				94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */,
