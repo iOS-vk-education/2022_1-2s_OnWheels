@@ -219,7 +219,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 42
+        return 48
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -236,7 +236,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let label = UILabel()
         label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-7)
         label.text = headerTitles[section]
-        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .light)
         label.textColor = .mainBlueColor
         
         headerView.addSubview(label)

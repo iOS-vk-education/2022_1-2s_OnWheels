@@ -20,14 +20,14 @@ final class ProfileInfoCell: UITableViewCell {
     
     private let mainLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .light)
         label.textColor = .mainBlueColor
         return label
     }()
     
     private let infoLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
         return label
     }()
@@ -51,7 +51,7 @@ final class ProfileInfoCell: UITableViewCell {
     
     
     private func setupLayout(){
-        let cellInsets = UIEdgeInsets(top: 3, left: 11, bottom: 3, right: 11)
+        let cellInsets = UIEdgeInsets(top: 5, left: 11, bottom: 0, right: 11)
         cellInfoStackView.pin
             .top(cellInsets.top)
             .left(cellInsets.left)
