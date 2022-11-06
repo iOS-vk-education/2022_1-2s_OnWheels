@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A775967E19DDD5DE936302D /* Pods_OnWheels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616597B9727DA18C48FD0F58 /* Pods_OnWheels.framework */; };
+		949A48A4290D37DA0011DF11 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A489E290D37DA0011DF11 /* ProfilePresenter.swift */; };
+		949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A489F290D37DA0011DF11 /* ProfileRouter.swift */; };
+		949A48A6290D37DA0011DF11 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48A0290D37DA0011DF11 /* ProfileViewController.swift */; };
+		949A48A7290D37DA0011DF11 /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48A1290D37DA0011DF11 /* ProfileProtocols.swift */; };
+		949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48A2290D37DA0011DF11 /* ProfileInteractor.swift */; };
+		949A48A9290D37DA0011DF11 /* ProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48A3290D37DA0011DF11 /* ProfileContainer.swift */; };
+		949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */; };
+		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
+		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */; };
 		ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */; };
 		ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991F129054F3A00BC3FA5 /* ViewController.swift */; };
@@ -16,6 +26,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2142AF808CD3DA626813E268 /* Pods-OnWheels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnWheels.debug.xcconfig"; path = "Target Support Files/Pods-OnWheels/Pods-OnWheels.debug.xcconfig"; sourceTree = "<group>"; };
+		616597B9727DA18C48FD0F58 /* Pods_OnWheels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnWheels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63B237E1B8CFB558E69342B8 /* Pods-OnWheels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnWheels.release.xcconfig"; path = "Target Support Files/Pods-OnWheels/Pods-OnWheels.release.xcconfig"; sourceTree = "<group>"; };
+		949A489E290D37DA0011DF11 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		949A489F290D37DA0011DF11 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		949A48A0290D37DA0011DF11 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		949A48A1290D37DA0011DF11 /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
+		949A48A2290D37DA0011DF11 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		949A48A3290D37DA0011DF11 /* ProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainer.swift; sourceTree = "<group>"; };
+		949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
+		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		ECC991EA29054F3A00BC3FA5 /* OnWheels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnWheels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +53,68 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A775967E19DDD5DE936302D /* Pods_OnWheels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66B9F82D5EE906A7663E77A8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2142AF808CD3DA626813E268 /* Pods-OnWheels.debug.xcconfig */,
+				63B237E1B8CFB558E69342B8 /* Pods-OnWheels.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7E163C7DAB5B102670C48ED4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				616597B9727DA18C48FD0F58 /* Pods_OnWheels.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		949A489D290D37BD0011DF11 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				949A48AF290DBAC90011DF11 /* Cell */,
+				949A489E290D37DA0011DF11 /* ProfilePresenter.swift */,
+				949A489F290D37DA0011DF11 /* ProfileRouter.swift */,
+				949A48A0290D37DA0011DF11 /* ProfileViewController.swift */,
+				949A48A1290D37DA0011DF11 /* ProfileProtocols.swift */,
+				949A48A2290D37DA0011DF11 /* ProfileInteractor.swift */,
+				949A48A3290D37DA0011DF11 /* ProfileContainer.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		949A48AF290DBAC90011DF11 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		94E574932917C82100EF9585 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				94E574942917C82F00EF9585 /* ColorExtension.swift */,
+				94E574972917CA0600EF9585 /* ReuseIdentifier.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		ECC991E129054F3A00BC3FA5 = {
 			isa = PBXGroup;
 			children = (
 				ECC991EC29054F3A00BC3FA5 /* OnWheels */,
 				ECC991EB29054F3A00BC3FA5 /* Products */,
+				66B9F82D5EE906A7663E77A8 /* Pods */,
+				7E163C7DAB5B102670C48ED4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +129,8 @@
 		ECC991EC29054F3A00BC3FA5 /* OnWheels */ = {
 			isa = PBXGroup;
 			children = (
+				94E574932917C82100EF9585 /* Helpers */,
+				949A489D290D37BD0011DF11 /* Profile */,
 				ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */,
 				ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */,
 				ECC991F129054F3A00BC3FA5 /* ViewController.swift */,
@@ -74,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ECC991FE29054F3B00BC3FA5 /* Build configuration list for PBXNativeTarget "OnWheels" */;
 			buildPhases = (
+				AA4FD6CC83C86AC7E08C63E6 /* [CP] Check Pods Manifest.lock */,
 				ECC991E629054F3A00BC3FA5 /* Sources */,
 				ECC991E729054F3A00BC3FA5 /* Frameworks */,
 				ECC991E829054F3A00BC3FA5 /* Resources */,
+				B919FEA07F1E59ADAF1B0C24 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,14 +210,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AA4FD6CC83C86AC7E08C63E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnWheels-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B919FEA07F1E59ADAF1B0C24 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnWheels/Pods-OnWheels-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnWheels/Pods-OnWheels-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnWheels/Pods-OnWheels-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ECC991E629054F3A00BC3FA5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				949A48A6290D37DA0011DF11 /* ProfileViewController.swift in Sources */,
 				ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */,
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
+				949A48A4290D37DA0011DF11 /* ProfilePresenter.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
+				949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */,
+				949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */,
+				94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */,
+				949A48A7290D37DA0011DF11 /* ProfileProtocols.swift in Sources */,
+				949A48A9290D37DA0011DF11 /* ProfileContainer.swift in Sources */,
+				94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */,
+				949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,12 +410,13 @@
 		};
 		ECC991FF29054F3B00BC3FA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2142AF808CD3DA626813E268 /* Pods-OnWheels.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PS289ZBK4N;
+				DEVELOPMENT_TEAM = 8658YBX4V7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OnWheels/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -311,12 +440,13 @@
 		};
 		ECC9920029054F3B00BC3FA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63B237E1B8CFB558E69342B8 /* Pods-OnWheels.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PS289ZBK4N;
+				DEVELOPMENT_TEAM = 8658YBX4V7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OnWheels/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
