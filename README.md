@@ -25,8 +25,9 @@
 <h2> Дизайн приложения &#128397 </h2>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/70639339/201046260-9be0d601-01ed-416b-953e-21fc01422ad8.svg">
+  <img src="https://user-images.githubusercontent.com/70639339/201049421-ccbb811e-71ac-4515-90bf-a518d5731b32.svg">
 </p>
+
 
 <h2> Команда &#128104;&#8205;&#128104;&#8205;&#128103;</h2>
 
