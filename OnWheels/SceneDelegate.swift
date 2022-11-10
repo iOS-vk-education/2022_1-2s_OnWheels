@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
-        let bool = false
+        let bool = true
         if bool {
             coordinator = AppCoordinator(window: window, instructor: .authorization)
         } else {

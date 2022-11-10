@@ -20,7 +20,7 @@ final class AppCoordinator: CoordinatorProtocol{
         switch instructor {
         case .authorization:
             print("auth")
-//            performAuthorizationFlow()
+            performAuthorizationFlow()
         case .main:
             performMainFlow()
         }
@@ -31,10 +31,10 @@ final class AppCoordinator: CoordinatorProtocol{
 }
 extension AppCoordinator{
 
-//    private func performAuthorizationFlow(){
-//        let coordinator = AuthCoordinator(window: window)
-//        coordinator.start()
-//    }
+    private func performAuthorizationFlow(){
+        let coordinator = AuthCoordinator(window: window)
+        coordinator.start()
+    }
     private func performMainFlow(){
         let coordinator = MainFlowCoordinator(window: window)
         coordinator.start()

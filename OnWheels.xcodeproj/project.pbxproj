@@ -18,6 +18,12 @@
 		94187A36291CFD8C00A8163B /* EventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A30291CFD8C00A8163B /* EventsProtocols.swift */; };
 		94187A37291CFD8C00A8163B /* EventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A31291CFD8C00A8163B /* EventsInteractor.swift */; };
 		94187A38291CFD8C00A8163B /* EventsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A32291CFD8C00A8163B /* EventsContainer.swift */; };
+		94187A41291D191B00A8163B /* EnterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A3B291D191B00A8163B /* EnterPresenter.swift */; };
+		94187A42291D191B00A8163B /* EnterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A3C291D191B00A8163B /* EnterRouter.swift */; };
+		94187A43291D191B00A8163B /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A3D291D191B00A8163B /* EnterViewController.swift */; };
+		94187A44291D191B00A8163B /* EnterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A3E291D191B00A8163B /* EnterProtocols.swift */; };
+		94187A45291D191B00A8163B /* EnterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A3F291D191B00A8163B /* EnterInteractor.swift */; };
+		94187A46291D191B00A8163B /* EnterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A40291D191B00A8163B /* EnterContainer.swift */; };
 		949A48A4290D37DA0011DF11 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A489E290D37DA0011DF11 /* ProfilePresenter.swift */; };
 		949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A489F290D37DA0011DF11 /* ProfileRouter.swift */; };
 		949A48A6290D37DA0011DF11 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48A0290D37DA0011DF11 /* ProfileViewController.swift */; };
@@ -49,6 +55,12 @@
 		94187A30291CFD8C00A8163B /* EventsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProtocols.swift; sourceTree = "<group>"; };
 		94187A31291CFD8C00A8163B /* EventsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsInteractor.swift; sourceTree = "<group>"; };
 		94187A32291CFD8C00A8163B /* EventsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsContainer.swift; sourceTree = "<group>"; };
+		94187A3B291D191B00A8163B /* EnterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPresenter.swift; sourceTree = "<group>"; };
+		94187A3C291D191B00A8163B /* EnterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRouter.swift; sourceTree = "<group>"; };
+		94187A3D291D191B00A8163B /* EnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
+		94187A3E291D191B00A8163B /* EnterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterProtocols.swift; sourceTree = "<group>"; };
+		94187A3F291D191B00A8163B /* EnterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInteractor.swift; sourceTree = "<group>"; };
+		94187A40291D191B00A8163B /* EnterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterContainer.swift; sourceTree = "<group>"; };
 		949A489E290D37DA0011DF11 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		949A489F290D37DA0011DF11 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		949A48A0290D37DA0011DF11 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +133,19 @@
 			path = Events;
 			sourceTree = "<group>";
 		};
+		94187A3A291D190600A8163B /* Enter */ = {
+			isa = PBXGroup;
+			children = (
+				94187A3B291D191B00A8163B /* EnterPresenter.swift */,
+				94187A3C291D191B00A8163B /* EnterRouter.swift */,
+				94187A3D291D191B00A8163B /* EnterViewController.swift */,
+				94187A3E291D191B00A8163B /* EnterProtocols.swift */,
+				94187A3F291D191B00A8163B /* EnterInteractor.swift */,
+				94187A40291D191B00A8163B /* EnterContainer.swift */,
+			);
+			path = Enter;
+			sourceTree = "<group>";
+		};
 		949A489D290D37BD0011DF11 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +198,7 @@
 		ECC991EC29054F3A00BC3FA5 /* OnWheels */ = {
 			isa = PBXGroup;
 			children = (
+				94187A3A291D190600A8163B /* Enter */,
 				94187A2C291CFD7900A8163B /* Events */,
 				94187A22291CF95B00A8163B /* Coordinator */,
 				94E574932917C82100EF9585 /* Helpers */,
@@ -303,19 +329,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94187A43291D191B00A8163B /* EnterViewController.swift in Sources */,
 				949A48A6290D37DA0011DF11 /* ProfileViewController.swift in Sources */,
 				94187A35291CFD8C00A8163B /* EventsViewController.swift in Sources */,
 				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
+				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
+				94187A42291D191B00A8163B /* EnterRouter.swift in Sources */,
+				94187A45291D191B00A8163B /* EnterInteractor.swift in Sources */,
 				ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */,
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
 				949A48A4290D37DA0011DF11 /* ProfilePresenter.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
+				94187A41291D191B00A8163B /* EnterPresenter.swift in Sources */,
 				94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */,
 				94187A37291CFD8C00A8163B /* EventsInteractor.swift in Sources */,
 				949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */,
 				94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */,
 				94187A36291CFD8C00A8163B /* EventsProtocols.swift in Sources */,
 				949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */,
+				94187A44291D191B00A8163B /* EnterProtocols.swift in Sources */,
 				94187A33291CFD8C00A8163B /* EventsPresenter.swift in Sources */,
 				94187A2A291CFBAA00A8163B /* CoordinatorProtocol.swift in Sources */,
 				94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */,

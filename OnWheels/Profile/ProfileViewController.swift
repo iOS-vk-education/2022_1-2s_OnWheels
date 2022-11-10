@@ -157,7 +157,7 @@ extension ProfileViewController {
     struct Constants {
         struct ProfileImage {
             static let widthPercent: Percent = 100%
-            static let heightPercent: Percent = 40%
+            static let heightPercent: Percent = 35%
         }
         struct ChangeProfileButton {
             static let marginTopPercent: Percent = 10%
@@ -170,7 +170,7 @@ extension ProfileViewController {
             static let marginLeft: CGFloat = 31
         }
         struct PersonTableView {
-            static let marginTop: CGFloat = 20
+            static let marginTop: CGFloat = 0
         }
     }
     
