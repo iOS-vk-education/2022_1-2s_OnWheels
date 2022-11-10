@@ -9,8 +9,8 @@
 import UIKit
 
 final class EventsViewController: UIViewController {
-	private let output: EventsViewOutput
-
+    private let output: EventsViewOutput
+    
     init(output: EventsViewOutput) {
         self.output = output
         
@@ -21,10 +21,10 @@ final class EventsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .blue
-	}
+    }
 }
 
 extension EventsViewController: EventsViewInput {

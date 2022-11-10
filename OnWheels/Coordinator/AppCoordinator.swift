@@ -30,7 +30,7 @@ final class AppCoordinator: CoordinatorProtocol{
     }
 }
 extension AppCoordinator{
-
+    
     private func performAuthorizationFlow(){
         let coordinator = AuthCoordinator(window: window)
         coordinator.start()
@@ -39,5 +39,5 @@ extension AppCoordinator{
         let coordinator = MainFlowCoordinator(window: window)
         coordinator.start()
     }
-
+    
 }

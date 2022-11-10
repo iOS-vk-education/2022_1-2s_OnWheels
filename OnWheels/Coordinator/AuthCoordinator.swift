@@ -13,7 +13,7 @@ final class AuthCoordinator: CoordinatorProtocol {
     init(window: UIWindow) {
         self.window = window
     }
-        
+    
     func start() {
         setupEnter()
         
@@ -24,7 +24,7 @@ final class AuthCoordinator: CoordinatorProtocol {
         
         window.rootViewController = navControllers[0]
         window.makeKeyAndVisible()
-        }
+    }
 }
 
 extension AuthCoordinator {

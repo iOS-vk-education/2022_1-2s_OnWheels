@@ -9,7 +9,7 @@
 import Foundation
 
 final class EventsInteractor {
-	weak var output: EventsInteractorOutput?
+    weak var output: EventsInteractorOutput?
 }
 
 extension EventsInteractor: EventsInteractorInput {

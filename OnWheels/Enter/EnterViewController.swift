@@ -50,7 +50,7 @@ final class EnterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupProgressView()
-
+        
     }
     
     override func viewDidLayoutSubviews() {

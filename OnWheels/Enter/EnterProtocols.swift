@@ -9,7 +9,7 @@
 import Foundation
 
 protocol EnterModuleInput {
-	var moduleOutput: EnterModuleOutput? { get }
+    var moduleOutput: EnterModuleOutput? { get }
 }
 
 protocol EnterModuleOutput: AnyObject {

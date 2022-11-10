@@ -9,23 +9,23 @@
 import Foundation
 
 protocol EventsModuleInput {
-	var moduleOutput: EventsModuleOutput? { get }
+    var moduleOutput: EventsModuleOutput? { get }
 }
 
-protocol EventsModuleOutput: class {
+protocol EventsModuleOutput: AnyObject {
 }
 
-protocol EventsViewInput: class {
+protocol EventsViewInput: AnyObject {
 }
 
-protocol EventsViewOutput: class {
+protocol EventsViewOutput: AnyObject {
 }
 
-protocol EventsInteractorInput: class {
+protocol EventsInteractorInput: AnyObject {
 }
 
-protocol EventsInteractorOutput: class {
+protocol EventsInteractorOutput: AnyObject {
 }
 
-protocol EventsRouterInput: class {
+protocol EventsRouterInput: AnyObject {
 }

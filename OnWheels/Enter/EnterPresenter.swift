@@ -9,11 +9,11 @@
 import Foundation
 
 final class EnterPresenter {
-	weak var view: EnterViewInput?
+    weak var view: EnterViewInput?
     weak var moduleOutput: EnterModuleOutput?
     
-	private let router: EnterRouterInput
-	private let interactor: EnterInteractorInput
+    private let router: EnterRouterInput
+    private let interactor: EnterInteractorInput
     
     init(router: EnterRouterInput, interactor: EnterInteractorInput) {
         self.router = router
