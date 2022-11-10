@@ -16,5 +16,8 @@ extension UIColor {
     
     // white text
     static let whiteTextColor = UIColor(named: "profileText")
+    
+    // Main orange
+    static let mainOrangeColor = UIColor(named: "MainOrange")
 }
 

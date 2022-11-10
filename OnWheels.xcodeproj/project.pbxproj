@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		2A775967E19DDD5DE936302D /* Pods_OnWheels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616597B9727DA18C48FD0F58 /* Pods_OnWheels.framework */; };
+		94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A23291CFB8400A8163B /* AuthCoordinator.swift */; };
+		94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A25291CFB9100A8163B /* AppCoordinator.swift */; };
+		94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */; };
+		94187A2A291CFBAA00A8163B /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A29291CFBAA00A8163B /* CoordinatorProtocol.swift */; };
+		94187A33291CFD8C00A8163B /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A2D291CFD8C00A8163B /* EventsPresenter.swift */; };
+		94187A34291CFD8C00A8163B /* EventsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A2E291CFD8C00A8163B /* EventsRouter.swift */; };
+		94187A35291CFD8C00A8163B /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A2F291CFD8C00A8163B /* EventsViewController.swift */; };
+		94187A36291CFD8C00A8163B /* EventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A30291CFD8C00A8163B /* EventsProtocols.swift */; };
+		94187A37291CFD8C00A8163B /* EventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A31291CFD8C00A8163B /* EventsInteractor.swift */; };
+		94187A38291CFD8C00A8163B /* EventsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A32291CFD8C00A8163B /* EventsContainer.swift */; };
 		949A48A4290D37DA0011DF11 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A489E290D37DA0011DF11 /* ProfilePresenter.swift */; };
 		949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A489F290D37DA0011DF11 /* ProfileRouter.swift */; };
 		949A48A6290D37DA0011DF11 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48A0290D37DA0011DF11 /* ProfileViewController.swift */; };
@@ -29,6 +39,16 @@
 		2142AF808CD3DA626813E268 /* Pods-OnWheels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnWheels.debug.xcconfig"; path = "Target Support Files/Pods-OnWheels/Pods-OnWheels.debug.xcconfig"; sourceTree = "<group>"; };
 		616597B9727DA18C48FD0F58 /* Pods_OnWheels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnWheels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63B237E1B8CFB558E69342B8 /* Pods-OnWheels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnWheels.release.xcconfig"; path = "Target Support Files/Pods-OnWheels/Pods-OnWheels.release.xcconfig"; sourceTree = "<group>"; };
+		94187A23291CFB8400A8163B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		94187A25291CFB9100A8163B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
+		94187A29291CFBAA00A8163B /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		94187A2D291CFD8C00A8163B /* EventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
+		94187A2E291CFD8C00A8163B /* EventsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRouter.swift; sourceTree = "<group>"; };
+		94187A2F291CFD8C00A8163B /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		94187A30291CFD8C00A8163B /* EventsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProtocols.swift; sourceTree = "<group>"; };
+		94187A31291CFD8C00A8163B /* EventsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsInteractor.swift; sourceTree = "<group>"; };
+		94187A32291CFD8C00A8163B /* EventsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsContainer.swift; sourceTree = "<group>"; };
 		949A489E290D37DA0011DF11 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		949A489F290D37DA0011DF11 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		949A48A0290D37DA0011DF11 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +95,30 @@
 				616597B9727DA18C48FD0F58 /* Pods_OnWheels.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94187A22291CF95B00A8163B /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				94187A23291CFB8400A8163B /* AuthCoordinator.swift */,
+				94187A25291CFB9100A8163B /* AppCoordinator.swift */,
+				94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */,
+				94187A29291CFBAA00A8163B /* CoordinatorProtocol.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		94187A2C291CFD7900A8163B /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				94187A2D291CFD8C00A8163B /* EventsPresenter.swift */,
+				94187A2E291CFD8C00A8163B /* EventsRouter.swift */,
+				94187A2F291CFD8C00A8163B /* EventsViewController.swift */,
+				94187A30291CFD8C00A8163B /* EventsProtocols.swift */,
+				94187A31291CFD8C00A8163B /* EventsInteractor.swift */,
+				94187A32291CFD8C00A8163B /* EventsContainer.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		949A489D290D37BD0011DF11 /* Profile */ = {
@@ -129,6 +173,8 @@
 		ECC991EC29054F3A00BC3FA5 /* OnWheels */ = {
 			isa = PBXGroup;
 			children = (
+				94187A2C291CFD7900A8163B /* Events */,
+				94187A22291CF95B00A8163B /* Coordinator */,
 				94E574932917C82100EF9585 /* Helpers */,
 				949A489D290D37BD0011DF11 /* Profile */,
 				ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */,
@@ -258,16 +304,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				949A48A6290D37DA0011DF11 /* ProfileViewController.swift in Sources */,
+				94187A35291CFD8C00A8163B /* EventsViewController.swift in Sources */,
+				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
 				ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */,
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
 				949A48A4290D37DA0011DF11 /* ProfilePresenter.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
+				94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */,
+				94187A37291CFD8C00A8163B /* EventsInteractor.swift in Sources */,
 				949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */,
+				94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */,
+				94187A36291CFD8C00A8163B /* EventsProtocols.swift in Sources */,
 				949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */,
+				94187A33291CFD8C00A8163B /* EventsPresenter.swift in Sources */,
+				94187A2A291CFBAA00A8163B /* CoordinatorProtocol.swift in Sources */,
 				94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */,
 				949A48A7290D37DA0011DF11 /* ProfileProtocols.swift in Sources */,
 				949A48A9290D37DA0011DF11 /* ProfileContainer.swift in Sources */,
+				94187A34291CFD8C00A8163B /* EventsRouter.swift in Sources */,
 				94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */,
+				94187A38291CFD8C00A8163B /* EventsContainer.swift in Sources */,
 				949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

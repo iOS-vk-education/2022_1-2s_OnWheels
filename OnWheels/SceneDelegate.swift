@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    var coordinator: CoordinatorProtocol?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -18,11 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window: UIWindow = UIWindow(windowScene: windowScene)
         self.window = window
         
-        let profileContainer = ProfileContainer.assemble(with: ProfileContext())
-        let navigationController = UINavigationController(rootViewController: profileContainer.viewController)
+        let eventsContainer = EventsContainer.assemble(with: EventsContext())
+        let navigationController = UINavigationController(rootViewController: eventsContainer.viewController)
         
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        let bool = false
+        if bool {
+            coordinator = AppCoordinator(window: window, instructor: .authorization)
+        } else {
+            coordinator = AppCoordinator(window: window, instructor: .main)
+        }
+        coordinator?.start()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
