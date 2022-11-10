@@ -25,9 +25,10 @@ final class EnterViewController: UIViewController {
         let progress = UIProgressView(progressViewStyle: .bar)
         progress.progressTintColor = .mainOrangeColor
         progress.trackTintColor = .backgroundColor
-        progress.layer.cornerRadius = 2
+        progress.layer.cornerRadius = 6
         progress.clipsToBounds = true
         progress.progress = 0
+        progress.heightAnchor.constraint(equalToConstant: 7)
         return progress
     }()
     

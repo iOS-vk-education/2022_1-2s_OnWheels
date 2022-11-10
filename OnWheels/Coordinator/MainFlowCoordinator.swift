@@ -69,7 +69,7 @@ extension MainFlowCoordinator{
             UITabBar.appearance().unselectedItemTintColor = .mainBlueColor
             UITabBar.appearance().tintColor = .mainOrangeColor
             
-            navigationController.isNavigationBarHidden = true
+            navigationController.isNavigationBarHidden = false
         }
         return result
     }
