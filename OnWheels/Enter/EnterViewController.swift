@@ -45,7 +45,10 @@ final class EnterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(nextView), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: timeInterval,
+                                     target: self,
+                                     selector: #selector(nextView),
+                                     userInfo: nil, repeats: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,8 +76,8 @@ extension EnterViewController {
         view.addSubview(lauchImage)
         lauchImage.pin
             .center()
-            .height(Constants.LauchImage.height)
-            .width(Constants.LauchImage.width)
+            .height(Constants.LauchImage.heightPercent)
+            .width(Constants.LauchImage.widthPercent)
         
         view.addSubview(progressView)
         progressView.pin
@@ -93,9 +96,10 @@ extension EnterViewController {
     
     struct Constants {
         struct LauchImage {
-            static let width: CGFloat = 250
-            static let height: CGFloat = 350
+            static let widthPercent: Percent = 65%
+            static let heightPercent: Percent = 45%
         }
+        
         struct ProgressView {
             static let marginTop: CGFloat = 50
             static let height: CGFloat = 10

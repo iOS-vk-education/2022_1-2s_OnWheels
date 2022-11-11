@@ -5,7 +5,6 @@
 //  Created by Veronika on 10.11.2022.
 //
 
-import Foundation
 import UIKit
 
 
@@ -16,6 +15,7 @@ final class AppCoordinator: CoordinatorProtocol{
         self.window = window
         self.instructor = instructor
     }
+    
     func start() {
         switch instructor {
         case .authorization:
@@ -25,19 +25,19 @@ final class AppCoordinator: CoordinatorProtocol{
             performMainFlow()
         }
     }
+    
     enum LaunchInstructor {
         case authorization, main
     }
 }
 extension AppCoordinator{
-    
     private func performAuthorizationFlow(){
         let coordinator = AuthCoordinator(window: window)
         coordinator.start()
     }
+    
     private func performMainFlow(){
         let coordinator = MainFlowCoordinator(window: window)
         coordinator.start()
     }
-    
 }

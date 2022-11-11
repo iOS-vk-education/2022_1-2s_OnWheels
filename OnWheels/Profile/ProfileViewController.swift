@@ -111,9 +111,9 @@ extension ProfileViewController {
         
         profileInfo.pin
             .top(to: profileImage.edge.top).marginTop(Constants.ProfileInfo.marginTopPercent)
-            .bottom(to: profileImage.edge.bottom).marginBottom(Constants.ProfileInfo.marginBottomPercent)
             .left(to: profileImage.edge.left).marginLeft(Constants.ProfileInfo.marginLeft)
             .right()
+            .height(profileImage.bounds.height * Constants.ProfileInfo.heightPercent)
         
         personTableView.pin
             .below(of: profileImage)
@@ -166,8 +166,8 @@ extension ProfileViewController {
         }
         struct ProfileInfo {
             static let marginTopPercent: Percent = 80%
-            static let marginBottomPercent: Percent = 5%
             static let marginLeft: CGFloat = 31
+            static let heightPercent: CGFloat = 0.18
         }
         struct PersonTableView {
             static let marginTop: CGFloat = 0

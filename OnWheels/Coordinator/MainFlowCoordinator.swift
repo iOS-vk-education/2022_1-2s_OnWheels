@@ -5,7 +5,6 @@
 //  Created by Veronika on 10.11.2022.
 //
 
-import Foundation
 import UIKit
 
 final class MainFlowCoordinator: CoordinatorProtocol{
@@ -87,7 +86,6 @@ fileprivate enum NavControllerType: Int, CaseIterable {
             return "Мои мероприятия"
         case .profile:
             return "Профиль"
-            
         }
     }
     
