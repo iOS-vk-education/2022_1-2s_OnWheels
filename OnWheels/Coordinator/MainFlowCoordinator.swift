@@ -81,22 +81,22 @@ fileprivate enum NavControllerType: Int, CaseIterable {
     var title: String {
         switch self {
         case .events:
-            return "Мероприятия"
+            return R.string.localizable.events()
         case .myEvents:
-            return "Мои мероприятия"
+            return R.string.localizable.myEvents()
         case .profile:
-            return "Профиль"
+            return R.string.localizable.profile()
         }
     }
     
     var image: UIImage? {
         switch self {
         case .events:
-            return UIImage(named: "Events")
+            return R.image.events()
         case .myEvents:
-            return UIImage(named: "MyEvents")
+            return R.image.myEvents()
         case .profile:
-            return UIImage(named: "Profile")
+            return R.image.profile()
         }
     }
 }

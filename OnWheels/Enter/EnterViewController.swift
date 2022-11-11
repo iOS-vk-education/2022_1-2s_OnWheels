@@ -17,7 +17,7 @@ final class EnterViewController: UIViewController {
     
     let lauchImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "LaunchImage")
+        image.image = R.image.launchImage()
         return image
     }()
     

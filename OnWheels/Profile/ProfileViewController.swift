@@ -15,13 +15,13 @@ final class ProfileViewController: UIViewController {
     private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.image = UIImage(named: "ProfileImage")
+        image.image = R.image.profileImage()
         return image
     }()
     
     private let changeProfileButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Изм.", for: .normal)
+        button.setTitle(R.string.localizable.change(), for: .normal)
         button.setTitleColor(.whiteTextColor, for: .normal)
         button.isUserInteractionEnabled = true
         return button
@@ -54,7 +54,8 @@ final class ProfileViewController: UIViewController {
     
     private let personTableView = UITableView(frame: .zero, style: .insetGrouped)
     
-    private let headerTitles = ["О себе", "Мои соцсети"]
+    private let headerTitles = [R.string.localizable.aboutMe(),
+                                R.string.localizable.mySocialNetworks()]
     init(output: ProfileViewOutput) {
         self.output = output
         
@@ -192,26 +193,34 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
-                cell.configure(mainText: "Телефон", infoText: "+79000000000")
+                cell.configure(mainText: R.string.localizable.phoneNumber(),
+                               infoText: "+79000000000")
             case 1:
-                cell.configure(mainText: "Почта", infoText: "name@ya.ru")
+                cell.configure(mainText: R.string.localizable.emailAdress(),
+                               infoText: "name@ya.ru")
             case 2:
-                cell.configure(mainText: "Дата рождения", infoText: "01.01.2001")
+                cell.configure(mainText: R.string.localizable.dateOfBirth(),
+                               infoText: "01.01.2001")
             case 3:
-                cell.configure(mainText: "Пол", infoText: "муж")
+                cell.configure(mainText: R.string.localizable.sex(),
+                               infoText: "муж")
             case 4:
-                cell.configure(mainText: "О себе", infoText: "Нет информации")
+                cell.configure(mainText: R.string.localizable.aboutMe(),
+                               infoText: "Нет информации")
             default:
                 break
             }
         } else {
             switch indexPath.row {
             case 0:
-                cell.configure(mainText: "Телеграмм", infoText: "t.me")
+                cell.configure(mainText: R.string.localizable.telegram(),
+                               infoText: "t.me")
             case 1:
-                cell.configure(mainText: "Ютуб", infoText: "youtube.com")
+                cell.configure(mainText: R.string.localizable.youtube(),
+                               infoText: "youtube.com")
             case 2:
-                cell.configure(mainText: "Вк", infoText: "vk.com")
+                cell.configure(mainText: R.string.localizable.vk(),
+                               infoText: "vk.com")
             default:
                 break
             }
