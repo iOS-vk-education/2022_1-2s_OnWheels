@@ -59,18 +59,12 @@ final class ProfileViewController: UIViewController {
         return city
     }()
     
-    private let deleteAccountButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(R.string.localizable.deleteAccount(), for: .normal)
-        button.setTitleColor(.red, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        return button
-    }()
-    
     private let personTableView = UITableView(frame: .zero, style: .insetGrouped)
     
     private let headerTitles = [R.string.localizable.aboutMe(),
                                 R.string.localizable.mySocialNetworks()]
+    
+    
     init(output: ProfileViewOutput) {
         self.output = output
         
@@ -141,15 +135,7 @@ extension ProfileViewController {
             .top(to: profileImage.edge.bottom).marginTop(Constants.PersonTableView.marginTop)
             .left()
             .right()
-//            .height(personTableView.contentSize.height)
-        
-        deleteAccountButton.pin
-            .top(to: personTableView.edge.bottom).marginTop(10)
-            .hCenter(to: view.edge.hCenter)
-            .height(22)
-            .sizeToFit(.height)
-            .left()
-            .right()
+            .bottom()
     }
     
     private func setupUI(){
@@ -162,7 +148,6 @@ extension ProfileViewController {
         profileInfo.addArrangedSubview(personName)
         profileInfo.addArrangedSubview(personCity)
         view.addSubview(personTableView)
-        view.addSubview(deleteAccountButton)
         setupTableView()
         setupNavBar()
     }
@@ -176,7 +161,8 @@ extension ProfileViewController {
         personTableView.delegate = self
         personTableView.dataSource = self
         personTableView.register(ProfileInfoCell.self)
-        personTableView.allowsSelection = false
+        personTableView.register(ProfileFooterCell.self)
+        personTableView.allowsSelection = true
     }
     
     func setupNavBar (){
@@ -220,65 +206,91 @@ extension ProfileViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 5
-        } else {
-            return 3
+        var numberOfRows = 0
+        switch section {
+        case 0:
+            numberOfRows = 5
+        case 1:
+            numberOfRows = 3
+        case 2:
+            numberOfRows = 1
+        default:
+            break
         }
+        return numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueCell(cellType: ProfileInfoCell.self, for: indexPath)
-        
-        if indexPath.section == 0 {
-            switch indexPath.row {
-            case 0:
-                cell.configure(mainText: R.string.localizable.phoneNumber(),
-                               infoText: "+79000000000")
-            case 1:
-                cell.configure(mainText: R.string.localizable.emailAdress(),
-                               infoText: "name@ya.ru")
-            case 2:
-                cell.configure(mainText: R.string.localizable.dateOfBirth(),
-                               infoText: "01.01.2001")
-            case 3:
-                cell.configure(mainText: R.string.localizable.sex(),
-                               infoText: "муж")
-            case 4:
-                cell.configure(mainText: R.string.localizable.aboutMe(),
-                               infoText: "Нет информации")
-            default:
-                break
+        if indexPath.section == 0 || indexPath.section == 1 {
+            let cell = tableView.dequeueCell(cellType: ProfileInfoCell.self, for: indexPath)
+            cell.selectionStyle = .none
+            if indexPath.section == 0 {
+                switch indexPath.row {
+                case 0:
+                    cell.configure(mainText: R.string.localizable.phoneNumber(),
+                                   infoText: "+79000000000")
+                case 1:
+                    cell.configure(mainText: R.string.localizable.emailAdress(),
+                                   infoText: "name@ya.ru")
+                case 2:
+                    cell.configure(mainText: R.string.localizable.dateOfBirth(),
+                                   infoText: "01.01.2001")
+                case 3:
+                    cell.configure(mainText: R.string.localizable.sex(),
+                                   infoText: "муж")
+                case 4:
+                    cell.configure(mainText: R.string.localizable.aboutMe(),
+                                   infoText: "Нет информации")
+                default:
+                    break
+                }
+            } else {
+                switch indexPath.row {
+                case 0:
+                    cell.configure(mainText: R.string.localizable.telegram(),
+                                   infoText: "t.me")
+                case 1:
+                    cell.configure(mainText: R.string.localizable.youtube(),
+                                   infoText: "youtube.com")
+                case 2:
+                    cell.configure(mainText: R.string.localizable.vk(),
+                                   infoText: "vk.com")
+                default:
+                    break
+                }
+                
             }
+            return cell
         } else {
-            switch indexPath.row {
-            case 0:
-                cell.configure(mainText: R.string.localizable.telegram(),
-                               infoText: "t.me")
-            case 1:
-                cell.configure(mainText: R.string.localizable.youtube(),
-                               infoText: "youtube.com")
-            case 2:
-                cell.configure(mainText: R.string.localizable.vk(),
-                               infoText: "vk.com")
-            default:
-                break
-            }
-            
+            let cell = tableView.dequeueCell(cellType: ProfileFooterCell.self, for: indexPath)
+            return cell
         }
-        return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            self.output.deleteAccountButtonTapped()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48
+        if indexPath.section == 2 {
+            return 30
+        } else {
+            return 48
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 32
+        if section == 2 {
+            return 0
+        } else {
+            return 32
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

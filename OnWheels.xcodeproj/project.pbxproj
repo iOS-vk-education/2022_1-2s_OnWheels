@@ -33,6 +33,7 @@
 		949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */; };
 		94B2BF99291E52BA00F864B9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2BF98291E52BA00F864B9 /* R.generated.swift */; };
 		94B2BF9D291E557800F864B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94B2BF9F291E557800F864B9 /* Localizable.strings */; };
+		94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2BFA129211DF500F864B9 /* ProfileFooterCell.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
 		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 		94B2BF98291E52BA00F864B9 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		94B2BF9E291E557800F864B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94B2BFA0291E55A300F864B9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		94B2BFA129211DF500F864B9 /* ProfileFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooterCell.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		D6908DD2E42FBDBAAFCECDCB /* Pods-OnWheels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnWheels.release.xcconfig"; path = "Target Support Files/Pods-OnWheels/Pods-OnWheels.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */,
+				94B2BFA129211DF500F864B9 /* ProfileFooterCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -173,9 +176,19 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		94B2BFA329211F3900F864B9 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */,
+				ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		94E574932917C82100EF9585 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				94187A22291CF95B00A8163B /* Coordinator */,
 				94E574942917C82F00EF9585 /* ColorExtension.swift */,
 				94E574972917CA0600EF9585 /* ReuseIdentifier.swift */,
 			);
@@ -212,14 +225,12 @@
 		ECC991EC29054F3A00BC3FA5 /* OnWheels */ = {
 			isa = PBXGroup;
 			children = (
+				94B2BFA329211F3900F864B9 /* Delegates */,
 				94B2BF98291E52BA00F864B9 /* R.generated.swift */,
 				94187A3A291D190600A8163B /* Enter */,
 				94187A2C291CFD7900A8163B /* Events */,
-				94187A22291CF95B00A8163B /* Coordinator */,
 				94E574932917C82100EF9585 /* Helpers */,
 				949A489D290D37BD0011DF11 /* Profile */,
-				ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */,
-				ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */,
 				ECC991F129054F3A00BC3FA5 /* ViewController.swift */,
 				ECC991F329054F3A00BC3FA5 /* Main.storyboard */,
 				ECC991F629054F3B00BC3FA5 /* Assets.xcassets */,
@@ -382,6 +393,7 @@
 				94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */,
 				94187A37291CFD8C00A8163B /* EventsInteractor.swift in Sources */,
 				949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */,
+				94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */,
 				94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */,
 				94187A36291CFD8C00A8163B /* EventsProtocols.swift in Sources */,
 				949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */,
