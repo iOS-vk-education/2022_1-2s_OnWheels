@@ -16,4 +16,8 @@ extension ProfileRouter: ProfileRouterInput {
         //здесь может появиться еще один экран
         print("change info")
     }
+    
+    func logoutButtonPressed(){
+        print("logout")
+    }
 }

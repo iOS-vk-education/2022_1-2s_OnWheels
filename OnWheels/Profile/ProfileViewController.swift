@@ -23,10 +23,17 @@ final class ProfileViewController: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.localizable.change(), for: .normal)
         button.setTitleColor(.whiteTextColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.isUserInteractionEnabled = true
         return button
     }()
     
+    private let logoutButton: UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.logoutButton(), for: .normal)
+        button.isUserInteractionEnabled = true
+        return button
+    }()
     
     private let profileInfo: UIStackView = {
         let info = UIStackView()
@@ -50,6 +57,14 @@ final class ProfileViewController: UIViewController {
         city.textColor = .whiteTextColor
         city.font = .systemFont(ofSize: 16, weight: .light)
         return city
+    }()
+    
+    private let deleteAccountButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(R.string.localizable.deleteAccount(), for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        return button
     }()
     
     private let personTableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -88,6 +103,18 @@ final class ProfileViewController: UIViewController {
         }
     }
     
+    @objc
+    func logoutButtonAction(){
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.changeProfileButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.logoutButtonTapped()
+                self?.changeProfileButton.alpha = 1
+            }
+        }
+    }
+    
 }
 
 extension ProfileViewController: ProfileViewInput {
@@ -104,12 +131,6 @@ extension ProfileViewController {
             .width(Constants.ProfileImage.widthPercent)
             .height(Constants.ProfileImage.heightPercent)
         
-        changeProfileButton.pin
-            .top(to: profileImage.edge.top).marginTop(Constants.ChangeProfileButton.marginTopPercent)
-            .right(to: profileImage.edge.right).marginRight(Constants.ChangeProfileButton.marginRightPercent)
-            .width(Constants.ChangeProfileButton.width)
-            .sizeToFit(.width)
-        
         profileInfo.pin
             .top(to: profileImage.edge.top).marginTop(Constants.ProfileInfo.marginTopPercent)
             .left(to: profileImage.edge.left).marginLeft(Constants.ProfileInfo.marginLeft)
@@ -117,22 +138,31 @@ extension ProfileViewController {
             .height(profileImage.bounds.height * Constants.ProfileInfo.heightPercent)
         
         personTableView.pin
-            .below(of: profileImage)
             .top(to: profileImage.edge.bottom).marginTop(Constants.PersonTableView.marginTop)
             .left()
             .right()
-            .bottom(to: view.edge.bottom)
+//            .height(personTableView.contentSize.height)
+        
+        deleteAccountButton.pin
+            .top(to: personTableView.edge.bottom).marginTop(10)
+            .hCenter(to: view.edge.hCenter)
+            .height(22)
+            .sizeToFit(.height)
+            .left()
+            .right()
     }
     
     private func setupUI(){
         view.backgroundColor = .backgroundColor
         view.addSubview(profileImage)
         profileImage.addSubview(changeProfileButton)
+        profileImage.addSubview(logoutButton)
         changeProfileButton.bringSubviewToFront(profileImage)
         profileImage.addSubview(profileInfo)
         profileInfo.addArrangedSubview(personName)
         profileInfo.addArrangedSubview(personCity)
         view.addSubview(personTableView)
+        view.addSubview(deleteAccountButton)
         setupTableView()
         setupNavBar()
     }
@@ -151,7 +181,10 @@ extension ProfileViewController {
     
     func setupNavBar (){
         changeProfileButton.addTarget(self, action: #selector(changeProfileButtonTapped), for: .touchUpInside)
-        let rightNavBarItem = UIBarButtonItem(customView: changeProfileButton)
+        let leftNavBarItem = UIBarButtonItem(customView: changeProfileButton)
+        self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
+        logoutButton.addTarget(self, action: #selector(logoutButtonAction), for: .touchUpInside)
+        let rightNavBarItem = UIBarButtonItem(customView: logoutButton)
         self.navigationItem.setRightBarButton(rightNavBarItem, animated: true)
     }
     
@@ -160,11 +193,19 @@ extension ProfileViewController {
             static let widthPercent: Percent = 100%
             static let heightPercent: Percent = 35%
         }
+        
         struct ChangeProfileButton {
+            static let marginTopPercent: Percent = 10%
+            static let marginLeftPercent: Percent = 5%
+            static let width: CGFloat = 50
+        }
+        
+        struct LogoutButton {
             static let marginTopPercent: Percent = 10%
             static let marginRightPercent: Percent = 5%
             static let width: CGFloat = 50
         }
+        
         struct ProfileInfo {
             static let marginTopPercent: Percent = 80%
             static let marginLeft: CGFloat = 31
