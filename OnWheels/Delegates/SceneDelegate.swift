@@ -23,6 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        
+        //MARK: в переменную будем передавать значения из userDefaults, чтобы понимать, зашел уже человек или еще нет
         let bool = true
         if bool {
             coordinator = AppCoordinator(window: window, instructor: .authorization)

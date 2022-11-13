@@ -29,6 +29,7 @@ final class ProfileFooterCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         setupLayout()
     }
 }

@@ -31,7 +31,8 @@ final class MainFlowCoordinator: CoordinatorProtocol{
 extension MainFlowCoordinator{
     private func setupEvents() {
         guard let navController = navigationControllers[.events] else {
-            fatalError("No navController")
+            print("No navController")
+            return
         }
         let eventsContext = EventsContext(moduleOutput: nil)
         let eventsContainer = EventsContainer.assemble(with: eventsContext)
@@ -48,7 +49,8 @@ extension MainFlowCoordinator{
     
     private func setupProfile() {
         guard let navController = navigationControllers[.profile] else {
-            fatalError("No navController")
+            print("No navController")
+            return
         }
         let profileContext = ProfileContext(moduleOutput: nil)
         let profileContainer = ProfileContainer.assemble(with: profileContext)
