@@ -7,5 +7,6 @@ target 'OnWheels' do
 
   # Pods for OnWheels
 pod 'PinLayout'
+pod 'R.swift'
 
 end

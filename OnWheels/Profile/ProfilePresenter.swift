@@ -25,8 +25,15 @@ extension ProfilePresenter: ProfileModuleInput {
 }
 
 extension ProfilePresenter: ProfileViewOutput {
+    func deleteAccountButtonTapped() {
+        router.deleteAccountButtonPressed()
+    }
+    
     func openChangeProfileScreen(){
         router.changeProfileInfoButtonTapped()
+    }
+    func logoutButtonTapped(){
+        router.logoutButtonPressed()
     }
 }
 
