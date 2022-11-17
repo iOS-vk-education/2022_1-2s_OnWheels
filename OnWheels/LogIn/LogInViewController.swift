@@ -31,6 +31,7 @@ final class LogInViewController: UIViewController {
     private(set) lazy var bikeImage: UIImageView = {
         let image: UIImage = UIImage(named: "loginPic") ?? .init()
         let i: UIImageView = .init(image: image)
+        i.contentMode = .scaleAspectFit
         return i
     }()
 
@@ -164,19 +165,20 @@ final class LogInViewController: UIViewController {
         scrollView.pin
             .all(view.pin.safeArea)
 
-        bikeImage.pin
-            .top()
-            .left()
-            .right()
-
-        welcomeLabel.pin
-            .below(of: bikeImage)
-            .marginTop(Constants.welcomeLabel.marginTop)
+        skipLoginButton.pin
+            .bottom()
+            .marginBottom(8)
             .hCenter()
-            .sizeToFit()
+            .height(Constants.skipLoginButton.height)
 
-        loginField.pin
-            .below(of: welcomeLabel)
+        regTextButton.pin
+            .above(of: skipLoginButton)
+            .marginTop(Constants.regTextButton.marginTop)
+            .hCenter()
+            .height(Constants.regTextButton.height)
+
+        enterButton.pin
+            .above(of: regTextButton)
             .left()
             .right()
             .margin(Constants.loginField.marginTop,
@@ -184,40 +186,41 @@ final class LogInViewController: UIViewController {
                     Constants.loginField.marginBottom)
             .height(Constants.loginField.height)
 
-        passField.pin
-            .below(of: loginField)
-            .left()
-            .right()
-            .margin(Constants.loginField.marginTop,
-                    Constants.loginField.marginHorizontal,
-                    Constants.loginField.marginBottom)
-            .height(of: loginField)
-
         forgotPassButton.pin
-            .below(of: passField)
-            .marginTop(Constants.forgotPassButton.marginTop)
+            .above(of: enterButton)
+            .marginBottom(Constants.forgotPassButton.marginTop)
             .right(Constants.forgotPassButton.marginRight)
             .width(Constants.forgotPassButton.width)
 
-        enterButton.pin
-            .below(of: forgotPassButton)
+        passField.pin
+            .above(of: forgotPassButton)
             .left()
             .right()
             .margin(Constants.loginField.marginTop,
                     Constants.loginField.marginHorizontal,
                     Constants.loginField.marginBottom)
-            .height(of: loginField)
+            .height(Constants.loginField.height)
 
-        regTextButton.pin
-            .below(of: enterButton)
-            .marginTop(Constants.regTextButton.marginTop)
-            .hCenter()
-            .height(Constants.regTextButton.height)
+        loginField.pin
+            .above(of: passField)
+            .left()
+            .right()
+            .margin(Constants.loginField.marginTop,
+                    Constants.loginField.marginHorizontal,
+                    Constants.loginField.marginBottom)
+            .height(Constants.loginField.height)
 
-        skipLoginButton.pin
-            .below(of: regTextButton)
+        welcomeLabel.pin
+            .above(of: loginField)
+            .marginBottom(Constants.welcomeLabel.marginTop)
             .hCenter()
-            .height(Constants.skipLoginButton.height)
+            .sizeToFit()
+
+        bikeImage.pin
+            .top()
+            .above(of: welcomeLabel)
+            .hCenter()
+
     }
 }
 
@@ -227,13 +230,13 @@ extension LogInViewController: LogInViewInput {
 private struct Constants {
 
     struct welcomeLabel {
-        static let marginTop: CGFloat = -40
+        static let marginTop: CGFloat = 21
     }
 
     struct loginField {
         static let marginTop: CGFloat = 21
         static let marginHorizontal: CGFloat = 43
-        static let marginBottom: CGFloat = 0
+        static let marginBottom: CGFloat = 21
         static let height: CGFloat = 42
     }
     
