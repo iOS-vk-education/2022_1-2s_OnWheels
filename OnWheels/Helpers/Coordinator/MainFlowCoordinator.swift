@@ -38,14 +38,14 @@ extension MainFlowCoordinator{
         let eventsContainer = EventsContainer.assemble(with: eventsContext)
         navController.setViewControllers([eventsContainer.viewController], animated: true)
     }
-    //    private func setupMyEvents() {
-    //        guard let navController = navigationControllers[.diet] else {
-    //            fatalError("No navController")
-    //        }
-    //        let myEventsContext = MyEventsContext(moduleOutput: nil)
-    //        let myEventsContainer = myEventsContainer.assemble(with: myEventsContext)
-    //        navController.setViewControllers([myEventsContainer.viewController], animated: true)
-    //    }
+//        private func setupMyEvents() {
+//            guard let navController = navigationControllers[.diet] else {
+//                fatalError("No navController")
+//            }
+//            let myEventsContext = MyEventsContext(moduleOutput: nil)
+//            let myEventsContainer = myEventsContainer.assemble(with: myEventsContext)
+//            navController.setViewControllers([myEventsContainer.viewController], animated: true)
+//        }
     
     private func setupProfile() {
         guard let navController = navigationControllers[.profile] else {

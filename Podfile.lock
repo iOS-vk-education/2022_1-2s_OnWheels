@@ -1,5 +1,5 @@
 PODS:
-  - PinLayout (1.10.2)
+  - PinLayout (1.10.3)
   - R.swift (6.1.0):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
@@ -15,10 +15,10 @@ SPEC REPOS:
     - R.swift.Library
 
 SPEC CHECKSUMS:
-  PinLayout: d6b1960e4b182b4da1481b9aa6728f621e20708d
+  PinLayout: 0090ccbf29ae69af6ae5a15eaeaf27ed7b2c4d83
   R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
 
-PODFILE CHECKSUM: 7ecf5cefdd57e605f1a9a5d66493399c19fefc70
+PODFILE CHECKSUM: 090ed91dad935ebc78a702ebda9816e75e33a6bf
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.9.1
