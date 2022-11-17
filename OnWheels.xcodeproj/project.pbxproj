@@ -15,6 +15,12 @@
 		7F02BD992926A6B400DDA504 /* EventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD932926A6B300DDA504 /* EventsProtocols.swift */; };
 		7F02BD9A2926A6B400DDA504 /* EventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD942926A6B400DDA504 /* EventsInteractor.swift */; };
 		7F02BD9D2926A6BD00DDA504 /* EventsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */; };
+		7F02BDA52926AC5900DDA504 /* MyEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD9F2926AC5900DDA504 /* MyEventsPresenter.swift */; };
+		7F02BDA62926AC5900DDA504 /* MyEventsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA02926AC5900DDA504 /* MyEventsRouter.swift */; };
+		7F02BDA72926AC5900DDA504 /* MyEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA12926AC5900DDA504 /* MyEventsViewController.swift */; };
+		7F02BDA82926AC5900DDA504 /* MyEventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA22926AC5900DDA504 /* MyEventsProtocols.swift */; };
+		7F02BDA92926AC5900DDA504 /* MyEventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA32926AC5900DDA504 /* MyEventsInteractor.swift */; };
+		7F02BDAA2926AC5900DDA504 /* MyEventsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA42926AC5900DDA504 /* MyEventsContainer.swift */; };
 		94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A23291CFB8400A8163B /* AuthCoordinator.swift */; };
 		94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A25291CFB9100A8163B /* AppCoordinator.swift */; };
 		94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */; };
@@ -55,6 +61,12 @@
 		7F02BD932926A6B300DDA504 /* EventsProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProtocols.swift; sourceTree = "<group>"; };
 		7F02BD942926A6B400DDA504 /* EventsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInteractor.swift; sourceTree = "<group>"; };
 		7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInfoCell.swift; sourceTree = "<group>"; };
+		7F02BD9F2926AC5900DDA504 /* MyEventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsPresenter.swift; sourceTree = "<group>"; };
+		7F02BDA02926AC5900DDA504 /* MyEventsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsRouter.swift; sourceTree = "<group>"; };
+		7F02BDA12926AC5900DDA504 /* MyEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsViewController.swift; sourceTree = "<group>"; };
+		7F02BDA22926AC5900DDA504 /* MyEventsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsProtocols.swift; sourceTree = "<group>"; };
+		7F02BDA32926AC5900DDA504 /* MyEventsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsInteractor.swift; sourceTree = "<group>"; };
+		7F02BDA42926AC5900DDA504 /* MyEventsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsContainer.swift; sourceTree = "<group>"; };
 		94187A23291CFB8400A8163B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		94187A25291CFB9100A8163B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -116,6 +128,19 @@
 				7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		7F02BD9E2926ABEB00DDA504 /* MyEvents */ = {
+			isa = PBXGroup;
+			children = (
+				7F02BD9F2926AC5900DDA504 /* MyEventsPresenter.swift */,
+				7F02BDA02926AC5900DDA504 /* MyEventsRouter.swift */,
+				7F02BDA12926AC5900DDA504 /* MyEventsViewController.swift */,
+				7F02BDA22926AC5900DDA504 /* MyEventsProtocols.swift */,
+				7F02BDA32926AC5900DDA504 /* MyEventsInteractor.swift */,
+				7F02BDA42926AC5900DDA504 /* MyEventsContainer.swift */,
+			);
+			path = MyEvents;
 			sourceTree = "<group>";
 		};
 		94187A22291CF95B00A8163B /* Coordinator */ = {
@@ -236,6 +261,7 @@
 		ECC991EC29054F3A00BC3FA5 /* OnWheels */ = {
 			isa = PBXGroup;
 			children = (
+				7F02BD9E2926ABEB00DDA504 /* MyEvents */,
 				94B2BFA329211F3900F864B9 /* Delegates */,
 				94B2BF98291E52BA00F864B9 /* R.generated.swift */,
 				94187A3A291D190600A8163B /* Enter */,
@@ -392,7 +418,9 @@
 				94187A43291D191B00A8163B /* EnterViewController.swift in Sources */,
 				949A48A6290D37DA0011DF11 /* ProfileViewController.swift in Sources */,
 				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
+				7F02BDA82926AC5900DDA504 /* MyEventsProtocols.swift in Sources */,
 				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
+				7F02BDA52926AC5900DDA504 /* MyEventsPresenter.swift in Sources */,
 				94187A42291D191B00A8163B /* EnterRouter.swift in Sources */,
 				94187A45291D191B00A8163B /* EnterInteractor.swift in Sources */,
 				7F02BD972926A6B400DDA504 /* EventsRouter.swift in Sources */,
@@ -402,6 +430,8 @@
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
 				949A48A4290D37DA0011DF11 /* ProfilePresenter.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
+				7F02BDA72926AC5900DDA504 /* MyEventsViewController.swift in Sources */,
+				7F02BDA92926AC5900DDA504 /* MyEventsInteractor.swift in Sources */,
 				94B2BF99291E52BA00F864B9 /* R.generated.swift in Sources */,
 				7F02BD992926A6B400DDA504 /* EventsProtocols.swift in Sources */,
 				94187A41291D191B00A8163B /* EnterPresenter.swift in Sources */,
@@ -409,6 +439,7 @@
 				94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */,
 				949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */,
 				94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */,
+				7F02BDA62926AC5900DDA504 /* MyEventsRouter.swift in Sources */,
 				94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */,
 				949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */,
 				94187A44291D191B00A8163B /* EnterProtocols.swift in Sources */,
@@ -417,6 +448,7 @@
 				949A48A7290D37DA0011DF11 /* ProfileProtocols.swift in Sources */,
 				7F02BD9D2926A6BD00DDA504 /* EventsInfoCell.swift in Sources */,
 				949A48A9290D37DA0011DF11 /* ProfileContainer.swift in Sources */,
+				7F02BDAA2926AC5900DDA504 /* MyEventsContainer.swift in Sources */,
 				94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */,
 				949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */,
 			);
