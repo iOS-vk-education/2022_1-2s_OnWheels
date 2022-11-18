@@ -181,10 +181,10 @@ final class LogInViewController: UIViewController {
             .above(of: regTextButton)
             .left()
             .right()
-            .margin(Constants.loginField.marginTop,
-                    Constants.loginField.marginHorizontal,
-                    Constants.loginField.marginBottom)
-            .height(Constants.loginField.height)
+            .margin(Constants.block.marginTop,
+                    Constants.block.marginHorizontal,
+                    Constants.block.marginBottom)
+            .height(Constants.block.height)
 
         forgotPassButton.pin
             .above(of: enterButton)
@@ -196,19 +196,19 @@ final class LogInViewController: UIViewController {
             .above(of: forgotPassButton)
             .left()
             .right()
-            .margin(Constants.loginField.marginTop,
-                    Constants.loginField.marginHorizontal,
-                    Constants.loginField.marginBottom)
-            .height(Constants.loginField.height)
+            .margin(Constants.block.marginTop,
+                    Constants.block.marginHorizontal,
+                    Constants.block.marginBottom)
+            .height(Constants.block.height)
 
         loginField.pin
             .above(of: passField)
             .left()
             .right()
-            .margin(Constants.loginField.marginTop,
-                    Constants.loginField.marginHorizontal,
-                    Constants.loginField.marginBottom)
-            .height(Constants.loginField.height)
+            .margin(Constants.block.marginTop,
+                    Constants.block.marginHorizontal,
+                    Constants.block.marginBottom)
+            .height(Constants.block.height)
 
         welcomeLabel.pin
             .above(of: loginField)
@@ -233,7 +233,7 @@ private struct Constants {
         static let marginTop: CGFloat = 21
     }
 
-    struct loginField {
+    struct block {
         static let marginTop: CGFloat = 21
         static let marginHorizontal: CGFloat = 43
         static let marginBottom: CGFloat = 21
