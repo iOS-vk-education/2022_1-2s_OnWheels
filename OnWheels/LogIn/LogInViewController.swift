@@ -37,7 +37,6 @@ final class LogInViewController: UIViewController {
 
     private(set) lazy var scrollView: UIScrollView = {
         let s: UIScrollView = .init()
-        s.contentSize = .init(width: view.frame.size.width, height: view.frame.size.height)
         s.isScrollEnabled = false
         return s
     }()
@@ -81,7 +80,7 @@ final class LogInViewController: UIViewController {
         return b
     }()
 
-    private(set) lazy var regTextButton: UIButton = {
+    private(set) lazy var regButton: UIButton = {
         let b: UIButton = .init()
         var attrString0 = NSMutableAttributedString(string: "Нет аккаунта? ",
                                             attributes:[
@@ -149,15 +148,38 @@ final class LogInViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubviews(bikeImage, welcomeLabel, loginField,
                                passField, forgotPassButton, enterButton,
-                               regTextButton, skipLoginButton)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+                               regButton, skipLoginButton)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        setupBinding()
+	}
 
+    private func setupBinding() {
         let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapToHide)
 
-	}
+        enterButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+        skipLoginButton.addTarget(self, action: #selector(didTapSkipLoginButton), for: .touchUpInside)
+    }
+
+    @objc
+    private func didTapSkipLoginButton() {
+        output.didTapNoAccountButton()
+    }
+
+    @objc
+    private func didTapLoginButton() {
+        output.didTapLoginButton()
+    }
+
+    @objc
+    private func didTapRegButton() {
+        output.didTapRegButton()
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -171,14 +193,14 @@ final class LogInViewController: UIViewController {
             .hCenter()
             .height(Constants.skipLoginButton.height)
 
-        regTextButton.pin
+        regButton.pin
             .above(of: skipLoginButton)
             .marginTop(Constants.regTextButton.marginTop)
             .hCenter()
             .height(Constants.regTextButton.height)
-
+            .sizeToFit(.height)
         enterButton.pin
-            .above(of: regTextButton)
+            .above(of: regButton)
             .left()
             .right()
             .margin(Constants.block.marginTop,
