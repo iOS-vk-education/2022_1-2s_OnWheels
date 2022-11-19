@@ -14,12 +14,12 @@ final class RegistrationViewController: UIViewController {
     private(set) lazy var bikeImage: UIImageView = {
         let image: UIImage = UIImage(named: "RegPic") ?? .init()
         let i: UIImageView = .init(image: image)
+        i.contentMode = .scaleAspectFit
         return i
     }()
 
     private(set) lazy var scrollView: UIScrollView = {
         let s: UIScrollView = .init()
-        s.contentSize = .init(width: view.frame.size.width, height: view.frame.size.height * 1.2)
         return s
     }()
 
@@ -144,13 +144,17 @@ final class RegistrationViewController: UIViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                                as? NSValue)?.cgRectValue {
             let keyboardHeight = keyboardSize.height
-            scrollView.contentOffset.y = keyboardHeight
+            scrollView.contentOffset.y += keyboardHeight
         }
     }
 
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentOffset.y = .zero
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                               as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            scrollView.contentOffset.y -= keyboardHeight
+        }
     }
 
     @objc
@@ -194,6 +198,7 @@ final class RegistrationViewController: UIViewController {
             .top()
             .left()
             .right()
+            .height(view.frame.height / 2)
 
         createLabel.pin
             .below(of: bikeImage)
@@ -216,6 +221,10 @@ final class RegistrationViewController: UIViewController {
             .height(
                 CGFloat(stackView.arrangedSubviews.count) *
                 (Constants.textField.height + Constants.vStackView.spacing) - Constants.vStackView.spacing)
+
+        scrollView.contentSize = .init(width: view.frame.size.width,
+                                       height: stackView.frame.height + bikeImage.frame.height + 100)
+
 
     }
 }
