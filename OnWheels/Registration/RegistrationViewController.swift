@@ -177,8 +177,37 @@ final class RegistrationViewController: UIViewController {
 
         let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapToHide)
-        
-	}
+
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        datePicker.frame = .init(x: 0, y: 0, width: 300, height: 300)
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.maximumDate = Date()
+        datePicker.center = view.center
+        birthdateField.inputView = datePicker
+        birthdateField.text = formatDate(date: Date()) // todays Date
+    }
+
+    @objc
+    func dateChange(datePicker: UIDatePicker){
+        birthdateField.text = formatDate(date: datePicker.date)
+    }
+
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        return formatter.string(from: date)
+    }
+
+    private func setupBinding() {
+        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+    }
+
+    @objc
+    private func didTapRegButton() {
+        output.didTapRegButton()
+    }
 
     private func addViews() {
         scrollView.addSubviews(bikeImage, createLabel, hintLabel, stackView)

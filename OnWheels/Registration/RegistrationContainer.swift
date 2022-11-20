@@ -19,6 +19,8 @@ final class RegistrationContainer {
         let presenter = RegistrationPresenter(router: router, interactor: interactor)
 		let viewController = RegistrationViewController(output: presenter)
 
+        router.viewController = viewController
+
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
 

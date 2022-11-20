@@ -25,6 +25,10 @@ extension RegistrationPresenter: RegistrationModuleInput {
 }
 
 extension RegistrationPresenter: RegistrationViewOutput {
+    func didTapRegButton() {
+        router.openApp()
+    }
+
 }
 
 extension RegistrationPresenter: RegistrationInteractorOutput {
