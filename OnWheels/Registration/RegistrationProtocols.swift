@@ -19,6 +19,7 @@ protocol RegistrationViewInput: AnyObject {
 }
 
 protocol RegistrationViewOutput: AnyObject {
+    func didTapRegButton()
 }
 
 protocol RegistrationInteractorInput: AnyObject {
@@ -28,4 +29,5 @@ protocol RegistrationInteractorOutput: AnyObject {
 }
 
 protocol RegistrationRouterInput: AnyObject {
+    func openApp()
 }
