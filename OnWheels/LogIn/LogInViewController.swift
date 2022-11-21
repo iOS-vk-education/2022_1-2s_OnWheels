@@ -28,9 +28,31 @@ class customTextField: UITextField {
 final class LogInViewController: UIViewController {
 	private let output: LogInViewOutput
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        let image: UIImage = UIImage(named: R.image.loginPic.name) ?? .init()
+        let startImage = CIImage(image: image)
+        if traitCollection.userInterfaceStyle == .dark {
+            if let filter = CIFilter(name: "CIColorInvert") {
+                filter.setValue(startImage, forKey: kCIInputImageKey)
+                let newImage = UIImage(ciImage: filter.outputImage ?? .empty())
+                bikeImage.image = newImage
+            }
+        } else {
+            bikeImage.image = image
+        }
+    }
+    
     private(set) lazy var bikeImage: UIImageView = {
         let image: UIImage = UIImage(named: R.image.loginPic.name) ?? .init()
         let i: UIImageView = .init(image: image)
+        if traitCollection.userInterfaceStyle == .dark {
+            let startImage = CIImage(image: image)
+            if let filter = CIFilter(name: "CIColorInvert") {
+                filter.setValue(startImage, forKey: kCIInputImageKey)
+                let newImage = UIImage(ciImage: filter.outputImage!)
+                i.image = newImage
+            }
+        }
         i.contentMode = .scaleAspectFit
         return i
     }()
