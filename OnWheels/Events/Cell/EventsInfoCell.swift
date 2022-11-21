@@ -140,13 +140,13 @@ final class EventsInfoCell: UITableViewCell {
     }
     
     
-    private func setupLayout() {
+    func setupLayout() {
         
         cellView.pin
             .top(10)
-            .height(UIScreen.main.bounds.height / 2 - 20)
+            .height(self.bounds.height - 20)
             .left(10)
-            .width(UIScreen.main.bounds.width - 20)
+            .width(self.bounds.width - 20)
         mainLabel.pin
             .top(16)
             .left(24)

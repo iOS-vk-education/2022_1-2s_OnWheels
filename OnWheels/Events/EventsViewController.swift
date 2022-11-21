@@ -92,6 +92,8 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
         
+        cell.setupLayout()
+        
         switch indexPath.row {
             case 1:
             cell.configure(mainText: "Чемпионат России", dateText: "7 янв. - 10 янв.", placeText: "Респ. Башкортостан, Уфа", imageName: "durtbike", likeText: "20", sharedText: "20", watchedText: "20")
@@ -107,7 +109,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height / 2.5
+        return tableView.frame.height / 2
     }
     
     

@@ -20,7 +20,12 @@ final class MyEventsViewController: UIViewController {
         return navBar
     }()
     
-    private let myEventsTableView = UITableView(frame: .zero, style: .plain)
+    private let myEventsTableView: UITableView = {
+        let table = UITableView(frame: .zero, style: .plain)
+        table.isUserInteractionEnabled = true
+        return table
+    }()
+    
     
 
     init(output: MyEventsViewOutput) {
@@ -96,6 +101,8 @@ extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
         
+        cell.setupLayout()
+        
         switch indexPath.row {
             case 0:
             cell.configure(mainText: "Чемпионат России", dateText: "7 янв. - 10 янв.", placeText: "Респ. Башкортостан, Уфа", imageName: "durtbike", likeText: "20", sharedText: "20", watchedText: "20")
@@ -111,6 +118,15 @@ extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height / 2.5
+        return tableView.frame.height / 2
     }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        print("Нажата ячейка с индексом {indexPath}")
+        return indexPath
+    }
+}
+
+func toEvent(sender: UIButton!) {
+    print("Cell touched")
 }
