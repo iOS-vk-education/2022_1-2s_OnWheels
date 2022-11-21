@@ -116,8 +116,6 @@ final class EventsInfoCell: UITableViewCell {
         setupLayout()
     }
     
-
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -229,7 +227,13 @@ final class EventsInfoCell: UITableViewCell {
     ///   - sharedText: Количество поделившихся
     ///   - watchedText: Количество просмторевших
     ///   - imahe: Название картинки
-    func configure(mainText: String, dateText: String, placeText: String, imageName: String, likeText: String, sharedText: String, watchedText: String) {
+    func configure(mainText: String,
+                   dateText: String,
+                   placeText: String,
+                   imageName: String,
+                   likeText: String,
+                   sharedText: String,
+                   watchedText: String) {
         let image = UIImage(named: imageName)
         
         mainLabel.text = mainText

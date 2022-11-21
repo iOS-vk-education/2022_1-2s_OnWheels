@@ -111,8 +111,6 @@ extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.height / 2
+        return tableView.frame.height / 2.5
     }
-    
-    
 }
