@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var coordinator: CoordinatorProtocol?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -20,15 +20,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window: UIWindow = UIWindow(windowScene: windowScene)
         self.window = window
-
-        let loginContainer = LogInContainer.assemble(with: LogInContext())
-        let registrationContainer = RegistrationContainer.assemble(with: RegistrationContext())
-
-        let navigationController = UINavigationController(rootViewController: loginContainer.viewController)
-        let navigationController2 = UINavigationController(rootViewController: registrationContainer.viewController)
-
+        
+        let enterContainer = EnterContainer.assemble(with: EnterContext(window: window))
+        let navigationController = UINavigationController(rootViewController: enterContainer.viewController)
+        
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        
+        //MARK: в переменную будем передавать значения из userDefaults, чтобы понимать, зашел уже человек или еще нет
+//        let bool = true
+//        if bool {
+//            coordinator = AppCoordinator(window: window, instructor: .authorization)
+//        } else {
+//            coordinator = AppCoordinator(window: window, instructor: .main)
+//        }
+//        coordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

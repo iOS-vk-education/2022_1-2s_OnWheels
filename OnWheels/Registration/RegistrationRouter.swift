@@ -10,11 +10,17 @@ import UIKit
 
 final class RegistrationRouter {
     var viewController: UIViewController?
+    var appCoordinator: AppCoordinator?
+    var window: UIWindow?
 }
 
 extension RegistrationRouter: RegistrationRouterInput {
     func openApp() {
-        //gotoapp
+        guard let window = window else {
+            return
+        }
+        let coordinator = AppCoordinator(window: window, instructor: .main)
+        coordinator.start()
     }
 
 }

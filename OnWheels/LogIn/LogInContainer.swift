@@ -20,7 +20,7 @@ final class LogInContainer {
 		let viewController = LogInViewController(output: presenter)
 
         router.viewController = viewController
-
+        router.window = context.window
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
 
@@ -38,4 +38,5 @@ final class LogInContainer {
 
 struct LogInContext {
 	weak var moduleOutput: LogInModuleOutput?
+    let window: UIWindow
 }

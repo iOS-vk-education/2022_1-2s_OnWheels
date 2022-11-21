@@ -192,6 +192,7 @@ final class LogInViewController: UIViewController {
             .marginBottom(8)
             .hCenter()
             .height(Constants.skipLoginButton.height)
+            .sizeToFit(.height)
 
         regButton.pin
             .above(of: skipLoginButton)

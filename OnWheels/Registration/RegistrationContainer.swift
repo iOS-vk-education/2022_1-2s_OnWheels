@@ -20,7 +20,7 @@ final class RegistrationContainer {
 		let viewController = RegistrationViewController(output: presenter)
 
         router.viewController = viewController
-
+        router.window = context.window
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
 
@@ -38,4 +38,5 @@ final class RegistrationContainer {
 
 struct RegistrationContext {
 	weak var moduleOutput: RegistrationModuleOutput?
+    let window: UIWindow
 }

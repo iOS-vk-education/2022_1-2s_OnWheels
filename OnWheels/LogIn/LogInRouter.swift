@@ -10,18 +10,27 @@ import UIKit
 
 final class LogInRouter {
     var viewController: UIViewController?
+    var appCoordinator: AppCoordinator?
+    var window: UIWindow?
 }
 
 extension LogInRouter: LogInRouterInput {
 
     func openRegScreen() {
-        let registrationContainer = RegistrationContainer.assemble(with: RegistrationContext())
-
+        guard let window = window else {
+            return
+        }
+        let registrationContext = RegistrationContext(window: window)
+        let registrationContainer = RegistrationContainer.assemble(with: registrationContext)
         viewController?.navigationController?.pushViewController(registrationContainer.viewController, animated: true)
     }
 
     func openApp() {
-        //TODO: go to app
+        guard let window = window else {
+            return
+        }
+        let coordinator = AppCoordinator(window: window, instructor: .main)
+        coordinator.start()
     }
 
 }

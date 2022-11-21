@@ -170,14 +170,21 @@ final class RegistrationViewController: UIViewController {
         view.addSubview(scrollView)
 
         addViews()
-
+        setupBindings()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+    }
+    
+    private func setupBindings() {
+        
         let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapToHide)
-
+        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+    }
+    
+    private func setupDatePicker() {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
@@ -199,11 +206,7 @@ final class RegistrationViewController: UIViewController {
         formatter.dateFormat = "MMMM dd yyyy"
         return formatter.string(from: date)
     }
-
-    private func setupBinding() {
-        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
-    }
-
+    
     @objc
     private func didTapRegButton() {
         output.didTapRegButton()
