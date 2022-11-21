@@ -28,13 +28,13 @@ final class ProfileInfoCell: UITableViewCell {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .black
+        label.textColor = R.color.profileCellTextColor()
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .white
+        backgroundColor = R.color.cellColor()
         setupCell()
     }
     

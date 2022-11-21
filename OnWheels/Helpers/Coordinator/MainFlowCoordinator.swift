@@ -66,7 +66,7 @@ extension MainFlowCoordinator{
                                           tag: navControllerKey.rawValue)
             navigationController.tabBarItem = tabBarItem
             result[navControllerKey] = navigationController
-            UITabBar.appearance().backgroundColor = .white
+            UITabBar.appearance().backgroundColor = R.color.tabBarColor()
             UITabBar.appearance().unselectedItemTintColor = .mainBlueColor
             UITabBar.appearance().tintColor = .mainOrangeColor
             
