@@ -12,20 +12,20 @@ protocol MyEventsModuleInput {
 	var moduleOutput: MyEventsModuleOutput? { get }
 }
 
-protocol MyEventsModuleOutput: class {
+protocol MyEventsModuleOutput: AnyObject {
 }
 
-protocol MyEventsViewInput: class {
+protocol MyEventsViewInput: AnyObject {
 }
 
-protocol MyEventsViewOutput: class {
+protocol MyEventsViewOutput: AnyObject {
 }
 
-protocol MyEventsInteractorInput: class {
+protocol MyEventsInteractorInput: AnyObject {
 }
 
-protocol MyEventsInteractorOutput: class {
+protocol MyEventsInteractorOutput: AnyObject {
 }
 
-protocol MyEventsRouterInput: class {
+protocol MyEventsRouterInput: AnyObject {
 }

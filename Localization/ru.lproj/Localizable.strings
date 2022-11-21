@@ -12,3 +12,5 @@
 "myEvents" = "Мои мероприятия";
 "profile" = "Профиль";
 "deleteAccount" = "Удалить аккаунт";
+"eventsViewTitle" = "Мероприятия";
+"myEventsViewTitle" = "Мои мероприятия";

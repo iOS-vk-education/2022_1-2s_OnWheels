@@ -41,12 +41,8 @@ final class EventsInfoCell: UITableViewCell {
     
     private let placeIconImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = R.image.location()
         return imageView
-    }()
-    
-    private let placeIconImage: UIImage = {
-        let image = UIImage(named: "location")
-        return image!
     }()
     
     private let placeLabel: UILabel = {
@@ -58,16 +54,12 @@ final class EventsInfoCell: UITableViewCell {
     
 //    Главная картинка
     
-    private var eventImage: UIImage = {
-        let image = UIImage(named: "eventImageBase")
-        return image!
-    }()
-    
     private let eventImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.image = R.image.eventImageBase()
         return imageView
     }()
     
@@ -75,12 +67,8 @@ final class EventsInfoCell: UITableViewCell {
     
     private let likeImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = R.image.likes()
         return imageView
-    }()
-    
-    private var likeImage: UIImage = {
-        let image = UIImage(named: "likes")
-        return image!
     }()
     
     private var likeLabel: UILabel = {
@@ -94,12 +82,8 @@ final class EventsInfoCell: UITableViewCell {
     
     private let sharedImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = R.image.people()
         return imageView
-    }()
-    
-    private var sharedImage: UIImage = {
-        let image = UIImage(named: "people")
-        return image!
     }()
     
     private var sharedLabel: UILabel = {
@@ -113,12 +97,8 @@ final class EventsInfoCell: UITableViewCell {
     
     private let watchedImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = R.image.eye()
         return imageView
-    }()
-    
-    private var watchedImage: UIImage = {
-        let image = UIImage(named: "eye")
-        return image!
     }()
     
     private var watchedLabel: UILabel = {
@@ -147,22 +127,17 @@ final class EventsInfoCell: UITableViewCell {
         cellView.addSubview(mainLabel)
         cellView.addSubview(dateLabel)
         cellView.addSubview(placeIconImageView)
-        placeIconImageView.image = placeIconImage
         
         cellView.addSubview(placeLabel)
         cellView.addSubview(eventImageView)
-        eventImageView.image = eventImage
         
         cellView.addSubview(likeImageView)
-        likeImageView.image = likeImage
         cellView.addSubview(likeLabel)
         
         cellView.addSubview(sharedImageView)
-        sharedImageView.image = sharedImage
         cellView.addSubview(sharedLabel)
         
         cellView.addSubview(watchedImageView)
-        watchedImageView.image = watchedImage
         cellView.addSubview(watchedLabel)
     }
     

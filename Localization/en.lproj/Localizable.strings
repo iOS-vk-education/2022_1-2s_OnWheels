@@ -12,3 +12,5 @@
 "myEvents" = "My events";
 "profile" = "Profile";
 "deleteAccount" = "Delete account";
+"eventsViewTitle" = "Events";
+"myEventsViewTitle" = "My events";
