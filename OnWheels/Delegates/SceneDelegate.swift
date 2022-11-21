@@ -17,21 +17,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window: UIWindow = UIWindow(windowScene: windowScene)
         self.window = window
-        
-        let eventsContainer = EventsContainer.assemble(with: EventsContext())
-        let navigationController = UINavigationController(rootViewController: eventsContainer.viewController)
-        
+        let oneEventContainer = OneEventContainer.assemble(with: OneEventContext())
+        let navigationController = UINavigationController(rootViewController: oneEventContainer.viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
-        
-        //MARK: в переменную будем передавать значения из userDefaults, чтобы понимать, зашел уже человек или еще нет
-        let bool = true
-        if bool {
-            coordinator = AppCoordinator(window: window, instructor: .authorization)
-        } else {
-            coordinator = AppCoordinator(window: window, instructor: .main)
-        }
-        coordinator?.start()
+//        let eventsContainer = EventsContainer.assemble(with: EventsContext())
+//        let navigationController = UINavigationController(rootViewController: eventsContainer.viewController)
+//
+//        window.rootViewController = navigationController
+//        window.makeKeyAndVisible()
+//
+//        //MARK: в переменную будем передавать значения из userDefaults, чтобы понимать, зашел уже человек или еще нет
+//        let bool = true
+//        if bool {
+//            coordinator = AppCoordinator(window: window, instructor: .authorization)
+//        } else {
+//            coordinator = AppCoordinator(window: window, instructor: .main)
+//        }
+//        coordinator?.start()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

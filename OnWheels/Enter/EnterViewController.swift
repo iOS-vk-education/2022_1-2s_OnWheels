@@ -44,7 +44,7 @@ final class EnterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = R.color.background()
+        view.backgroundColor = R.color.launchScreenColor()
         timer = Timer.scheduledTimer(timeInterval: timeInterval,
                                      target: self,
                                      selector: #selector(nextView),
