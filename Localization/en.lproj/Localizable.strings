@@ -12,3 +12,26 @@
 "myEvents" = "My events";
 "profile" = "Profile";
 "deleteAccount" = "Delete account";
+
+//login
+"welcomeText" = "Welcome to \n MotoCom";
+"enterEmail" = "Enter email";
+"enterPassword" = "Enter password";
+"forgotPassword" = "Forgot your password?";
+"enter" = "Enter";
+"noAccount" = "Don't have an account? ";
+"register" = "Register";
+"or" = "or";
+"loginWithoutAccount"= "\n Login without an account";
+
+//registration
+"createAccount" = "Create an account";
+"fillFields" = "Please fill in all fields";
+"enterName" = "Enter a name";
+"enterSurname" = "Enter a surname";
+"birthdate" = "Birthdate";
+"enterCity" = "Enter city of residence";
+"createPassword" = "Create password";
+"confirmPassword" = "Confirm your password";
+"acceptRules" = "By registering, I agree with";
+"acceptRules2" = "\n user agreement";

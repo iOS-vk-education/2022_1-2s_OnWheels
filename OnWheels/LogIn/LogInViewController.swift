@@ -29,7 +29,7 @@ final class LogInViewController: UIViewController {
 	private let output: LogInViewOutput
 
     private(set) lazy var bikeImage: UIImageView = {
-        let image: UIImage = UIImage(named: "loginPic") ?? .init()
+        let image: UIImage = UIImage(named: R.image.loginPic.name) ?? .init()
         let i: UIImageView = .init(image: image)
         i.contentMode = .scaleAspectFit
         return i
@@ -43,7 +43,7 @@ final class LogInViewController: UIViewController {
 
     private(set) lazy var welcomeLabel: UILabel = {
         let l: UILabel = .init()
-        l.text = "Добро пожаловать в \n MotoCom"
+        l.text = R.string.localizable.welcomeText()
         l.numberOfLines = 0
         l.font = .systemFont(ofSize: 24, weight: .medium)
         l.textAlignment = .center
@@ -52,19 +52,19 @@ final class LogInViewController: UIViewController {
 
     private(set) lazy var loginField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Введите email"
+        t.placeholder = R.string.localizable.enterEmail()
         return t
     }()
 
     private(set) lazy var passField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Введите пароль"
+        t.placeholder = R.string.localizable.enterPassword()
         return t
     }()
 
     private(set) lazy var forgotPassButton: UIButton = {
         let b: UIButton = .init()
-        let attrString = NSAttributedString(string: "Забыли пароль?",
+        let attrString = NSAttributedString(string: R.string.localizable.forgotPassword(),
                                             attributes:[
                                                 .underlineStyle: NSUnderlineStyle.single.rawValue,
                                                 .font: UIFont.systemFont(ofSize: 13),
@@ -76,16 +76,16 @@ final class LogInViewController: UIViewController {
     private(set) lazy var enterButton: UIButton = {
         let b: UIButton = .init(configuration: .filled())
         b.titleLabel?.font = .systemFont(ofSize: 20)
-        b.setTitle("Войти", for: .normal)
+        b.setTitle(R.string.localizable.enter(), for: .normal)
         return b
     }()
 
     private(set) lazy var regButton: UIButton = {
         let b: UIButton = .init()
-        var attrString0 = NSMutableAttributedString(string: "Нет аккаунта? ",
+        var attrString0 = NSMutableAttributedString(string: R.string.localizable.noAccount(),
                                             attributes:[
                                                 .font: UIFont.systemFont(ofSize: 15)])
-        let attrString1 = NSAttributedString(string: "Зарегистрироваться",
+        let attrString1 = NSAttributedString(string: R.string.localizable.register(),
                                             attributes:[
                                                 .font: UIFont.systemFont(ofSize: 15),
                                                 .foregroundColor: UIColor.systemBlue])
@@ -96,10 +96,10 @@ final class LogInViewController: UIViewController {
 
     private(set) lazy var skipLoginButton: UIButton = {
         let b: UIButton = .init()
-        var attrString0 = NSMutableAttributedString(string: "или",
+        var attrString0 = NSMutableAttributedString(string: R.string.localizable.or(),
                                             attributes:[
                                                 .font: UIFont.systemFont(ofSize: 15)])
-        let attrString1 = NSAttributedString(string: "\n Войти без аккаунта",
+        let attrString1 = NSAttributedString(string: R.string.localizable.loginWithoutAccount(),
                                             attributes:[
                                                 .font: UIFont.systemFont(ofSize: 15),
                                                 .foregroundColor: UIColor.systemBlue])
@@ -213,7 +213,8 @@ final class LogInViewController: UIViewController {
             .above(of: enterButton)
             .marginBottom(Constants.forgotPassButton.marginTop)
             .right(Constants.forgotPassButton.marginRight)
-            .width(Constants.forgotPassButton.width)
+//            .width(Constants.forgotPassButton.width)
+            .sizeToFit(.height)
 
         passField.pin
             .above(of: forgotPassButton)

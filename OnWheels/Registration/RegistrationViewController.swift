@@ -12,7 +12,7 @@ final class RegistrationViewController: UIViewController {
 	private let output: RegistrationViewOutput
 
     private(set) lazy var bikeImage: UIImageView = {
-        let image: UIImage = UIImage(named: "RegPic") ?? .init()
+        let image: UIImage = UIImage(named: R.image.regPic.name) ?? .init()
         let i: UIImageView = .init(image: image)
         i.contentMode = .scaleAspectFit
         return i
@@ -25,7 +25,7 @@ final class RegistrationViewController: UIViewController {
 
     private(set) lazy var createLabel: UILabel = {
         let l: UILabel = .init()
-        l.text = "Создайте аккаунт"
+        l.text = R.string.localizable.createAccount()
         l.numberOfLines = 0
         l.font = .systemFont(ofSize: 24, weight: .medium)
         l.textAlignment = .center
@@ -34,7 +34,7 @@ final class RegistrationViewController: UIViewController {
 
     private(set) lazy var hintLabel: UILabel = {
         let l: UILabel = .init()
-        l.text = "Пожалуйста, заполните все поля"
+        l.text = R.string.localizable.fillFields()
         l.numberOfLines = 0
         l.font = .systemFont(ofSize: 14, weight: .light)
         l.textAlignment = .center
@@ -51,13 +51,13 @@ final class RegistrationViewController: UIViewController {
 
     private(set) lazy var nameField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Введите имя"
+        t.placeholder = R.string.localizable.enterName()
         return t
     }()
 
     private(set) lazy var surnameField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Введите фамилию"
+        t.placeholder = R.string.localizable.enterSurname()
         return t
     }()
 
@@ -71,46 +71,46 @@ final class RegistrationViewController: UIViewController {
 
     private(set) lazy var birthdateField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Дата рождения"
+        t.placeholder = R.string.localizable.birthdate()
         return t
     }()
 
     private(set) lazy var genderField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Пол"
+        t.placeholder = R.string.localizable.sex()
         return t
     }()
 
     private(set) lazy var cityField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Введите город проживания"
+        t.placeholder = R.string.localizable.enterCity()
         return t
     }()
 
     private(set) lazy var emailField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Введите свой e-mail"
+        t.placeholder = R.string.localizable.enterEmail()
         return t
     }()
 
     private(set) lazy var passField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Создайте пароль"
+        t.placeholder = R.string.localizable.createPassword()
         return t
     }()
 
     private(set) lazy var passConfField: customTextField = {
         let t: customTextField = .init()
-        t.placeholder = "Подтвердите пароль"
+        t.placeholder = R.string.localizable.confirmPassword()
         return t
     }()
 
     private(set) lazy var rulesButton: UIButton = {
         let b: UIButton = .init()
-        var attrString0 = NSMutableAttributedString(string: "Регистрируясь, я соглашаюсь с",
+        var attrString0 = NSMutableAttributedString(string: R.string.localizable.acceptRules(),
                                             attributes:[
                                                 .font: UIFont.systemFont(ofSize: 15)])
-        let attrString1 = NSAttributedString(string: "\n пользовательским соглашением",
+        let attrString1 = NSAttributedString(string: R.string.localizable.acceptRules2(),
                                             attributes:[
                                                 .font: UIFont.systemFont(ofSize: 15),
                                                 .foregroundColor: UIColor.systemBlue])
@@ -124,7 +124,7 @@ final class RegistrationViewController: UIViewController {
     private(set) lazy var regButton: UIButton = {
         let b: UIButton = .init(configuration: .filled())
         b.titleLabel?.font = .systemFont(ofSize: 20)
-        b.setTitle("Зарегистрироваться", for: .normal)
+        b.setTitle(R.string.localizable.register(), for: .normal)
         return b
     }()
 
