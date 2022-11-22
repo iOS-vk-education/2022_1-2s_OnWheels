@@ -9,7 +9,7 @@
 import Foundation
 
 final class LogInInteractor {
-	weak var output: LogInInteractorOutput?
+    weak var output: LogInInteractorOutput?
 }
 
 extension LogInInteractor: LogInInteractorInput {

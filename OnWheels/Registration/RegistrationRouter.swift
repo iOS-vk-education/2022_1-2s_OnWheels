@@ -22,5 +22,5 @@ extension RegistrationRouter: RegistrationRouterInput {
         let coordinator = AppCoordinator(window: window, instructor: .main)
         coordinator.start()
     }
-
+    
 }

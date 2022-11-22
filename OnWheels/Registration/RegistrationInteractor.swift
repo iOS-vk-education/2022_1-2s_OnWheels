@@ -9,7 +9,7 @@
 import Foundation
 
 final class RegistrationInteractor {
-	weak var output: RegistrationInteractorOutput?
+    weak var output: RegistrationInteractorOutput?
 }
 
 extension RegistrationInteractor: RegistrationInteractorInput {

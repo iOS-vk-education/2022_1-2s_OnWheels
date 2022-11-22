@@ -18,7 +18,7 @@
 "enterEmail" = "Введите email";
 "enterPassword" = "Введите пароль";
 "forgotPassword" = "Забыли пароль?";
-"enter" = "Enter";
+"enter" = "Войти";
 "noAccount" = "Нет аккаунта? ";
 "register" = "Зарегистрироваться";
 "or" = "или";
@@ -33,6 +33,6 @@
 "enterCity" = "Введите город проживания";
 "createPassword" = "Создайте пароль";
 "confirmPassword" = "Подтвердите пароль";
-"acceptRules" = "Регистрируясь, я соглашаюсь с";
+"acceptRules" = "Регистрируясь, я соглашаюсь с ";
 "acceptRules2" = "\n пользовательским соглашением";
 

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol RegistrationModuleInput {
-	var moduleOutput: RegistrationModuleOutput? { get }
+    var moduleOutput: RegistrationModuleOutput? { get }
 }
 
 protocol RegistrationModuleOutput: AnyObject {
@@ -19,6 +19,7 @@ protocol RegistrationViewInput: AnyObject {
 }
 
 protocol RegistrationViewOutput: AnyObject {
+    /// Обработка нажатия на кнопку зарегистрироваться
     func didTapRegButton()
 }
 
@@ -29,5 +30,6 @@ protocol RegistrationInteractorOutput: AnyObject {
 }
 
 protocol RegistrationRouterInput: AnyObject {
+    /// Открывает приложение.
     func openApp()
 }
