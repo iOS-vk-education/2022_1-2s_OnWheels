@@ -33,6 +33,7 @@ final class OneEventViewController: UIViewController {
     private let backButton: UIButton = {
         let back = UIButton()
         back.setImage(R.image.backButton(), for: .normal)
+        back.tintColor = R.color.mainBlue()
         return back
     }()
     
@@ -148,7 +149,7 @@ final class OneEventViewController: UIViewController {
     
     @objc
     func backButtonTapped(){
-        print("back")
+        output.backButtonTapped()
     }
 }
 

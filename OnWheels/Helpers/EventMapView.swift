@@ -73,6 +73,19 @@ final class EventMapView: UIView {
             .left()
             .right()
             .bottom(to: self.edge.bottom)
+        
+        setupMap()
+    }
+    
+    func setupMap(){
+        let point = MKPointAnnotation()
+        point.title = R.string.localizable.eventPlace()
+        point.coordinate = CLLocationCoordinate2D(latitude: 54.7430, longitude: 55.96779)
+        let center = point.coordinate
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let region = MKCoordinateRegion(center: center, span: span)
+        mapView.addAnnotation(point)
+        mapView.region = region
     }
     
     struct Constants {

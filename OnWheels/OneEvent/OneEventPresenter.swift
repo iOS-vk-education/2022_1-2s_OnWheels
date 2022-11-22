@@ -25,6 +25,9 @@ extension OneEventPresenter: OneEventModuleInput {
 }
 
 extension OneEventPresenter: OneEventViewOutput {
+    func backButtonTapped(){
+        router.backButtonPressed()
+    }
 }
 
 extension OneEventPresenter: OneEventInteractorOutput {

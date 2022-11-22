@@ -19,6 +19,7 @@ protocol OneEventViewInput: AnyObject {
 }
 
 protocol OneEventViewOutput: AnyObject {
+    func backButtonTapped()
 }
 
 protocol OneEventInteractorInput: AnyObject {
@@ -28,4 +29,5 @@ protocol OneEventInteractorOutput: AnyObject {
 }
 
 protocol OneEventRouterInput: AnyObject {
+    func backButtonPressed()
 }
