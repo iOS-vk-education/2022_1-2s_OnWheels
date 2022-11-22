@@ -184,9 +184,9 @@ final class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+
         view.backgroundColor = .systemBackground
-        
         view.addSubview(scrollView)
         
         addViews()

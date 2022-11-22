@@ -160,6 +160,10 @@ final class LogInViewController: UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,6 +179,7 @@ final class LogInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
         setupBinding()
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func setupBinding() {
