@@ -35,8 +35,8 @@ final class EventTagView: UIView {
     private func setupLayout(){
         self.addSubview(eventTagLabel)
         self.pin
-            .width(100)
             .height(20)
+            .sizeToFit(.height)
         eventTagLabel.pin
             .left()
             .top()

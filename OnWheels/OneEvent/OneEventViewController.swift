@@ -10,9 +10,17 @@ import UIKit
 import PinLayout
 
 final class OneEventViewController: UIViewController {
-	private let output: OneEventViewOutput
+    private let output: OneEventViewOutput
     
-    let tags: [String] = ["first", "second", "third"]
+    private let eventScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
+    private let eventContentView = UIView()
+    
+    let tags: [String] = [R.string.localizable.firstTag(), R.string.localizable.secondTag()]
     var isTagsAlreadyDone = false
     
     private let eventImage: UIImageView = {
@@ -20,6 +28,12 @@ final class OneEventViewController: UIViewController {
         image.contentMode = .scaleAspectFill
         image.image = R.image.oneEventImage()
         return image
+    }()
+    
+    private let backButton: UIButton = {
+        let back = UIButton()
+        back.setImage(R.image.backButton(), for: .normal)
+        return back
     }()
     
     let tagsStackVeiw: UIStackView = {
@@ -81,6 +95,13 @@ final class OneEventViewController: UIViewController {
         return eventDescription
     }()
     
+    let mapView: EventMapView = {
+        let map = EventMapView()
+        map.layer.cornerRadius = 16
+        map.clipsToBounds = true
+        return map
+    }()
+    
     init(output: OneEventViewOutput) {
         self.output = output
         
@@ -91,10 +112,10 @@ final class OneEventViewController: UIViewController {
         return nil
     }
     
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = R.color.background()
-	}
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -103,6 +124,10 @@ final class OneEventViewController: UIViewController {
             addTags(with: tags)
             isTagsAlreadyDone = true
         }
+        
+        let heightFrame = eventContentView.frame.height
+        let widthFrame = eventContentView.frame.width
+        eventScrollView.contentSize = CGSize(width: widthFrame, height: heightFrame)
     }
     
     func addTags(with tags: [String]) {
@@ -120,6 +145,11 @@ final class OneEventViewController: UIViewController {
             tagsStackVeiw.setCustomSpacing(24 + tag.frame.width , after: tag)
         }
     }
+    
+    @objc
+    func backButtonTapped(){
+        print("back")
+    }
 }
 
 extension OneEventViewController: OneEventViewInput {
@@ -131,29 +161,41 @@ extension OneEventViewController: OneEventViewInput {
             .left()
             .right()
         
-        view.addSubview(tagsStackVeiw)
-        tagsStackVeiw.pin
+        view.addSubview(eventScrollView)
+        eventScrollView.pin
             .top(to: eventImage.edge.bottom)
-            .marginTop(Constants.TagsStackVeiw.marginTop)
-            .left(Constants.TagsStackVeiw.marginLeft)
-            .right(Constants.TagsStackVeiw.marginRight)
+            .left()
+            .right()
+            .bottom()
+        
+        eventScrollView.addSubview(eventContentView)
+        eventContentView.pin
+            .top(Constants.EventContentView.marginTop)
+            .left(Constants.EventContentView.marginLeft)
+            .right(Constants.EventContentView.marginRight)
+            .bottom(to: eventScrollView.edge.bottom)
+            .height(view.frame.height * 0.7)
+        
+        eventContentView.addSubview(tagsStackVeiw)
+        tagsStackVeiw.pin
+            .top(to: eventContentView.edge.top)
+            .left()
+            .right()
             .height(Constants.TagsStackVeiw.height)
         
-        view.addSubview(eventNameLabel)
+        eventContentView.addSubview(eventNameLabel)
         eventNameLabel.pin
             .top(to: tagsStackVeiw.edge.bottom)
             .marginTop(Constants.EventNameLabel.marginTop)
             .left()
-            .marginLeft(Constants.EventNameLabel.marginLeft)
             .right()
-            .marginRight(Constants.EventNameLabel.marginRight)
             .sizeToFit(.width)
         
-        view.addSubview(placeDateInfoStackVeiw)
+        eventContentView.addSubview(placeDateInfoStackVeiw)
         placeDateInfoStackVeiw.pin
             .top(to: eventNameLabel.edge.bottom)
             .marginTop(Constants.PlaceDateInfoStackView.marginTop)
-            .left(Constants.PlaceDateInfoStackView.marginLeft)
+            .left()
             .height(Constants.PlaceDateInfoStackView.height)
             .width(Constants.PlaceDateInfoStackView.width)
         
@@ -161,40 +203,63 @@ extension OneEventViewController: OneEventViewInput {
         placeDateInfoStackVeiw.addArrangedSubview(spacingLabel)
         placeDateInfoStackVeiw.addArrangedSubview(dateLabel)
         
-        view.addSubview(eventDescriptionLabel)
+        eventContentView.addSubview(eventDescriptionLabel)
         eventDescriptionLabel.pin
             .top(to: placeDateInfoStackVeiw.edge.bottom)
             .marginTop(Constants.EventDescriptionLabel.marginTop)
-            .left(Constants.EventDescriptionLabel.marginLeft)
-            .right(Constants.EventDescriptionLabel.marginRight)
+            .left()
+            .right()
             .sizeToFit(.width)
+        
+        eventContentView.addSubview(mapView)
+        mapView.pin
+            .top(to: eventDescriptionLabel.edge.bottom)
+            .marginTop(Constants.MapView.marginTop)
+            .left()
+            .right()
+            .height(Constants.MapView.height)
+        
+        setupNavBar()
+    }
+    
+    func setupNavBar (){
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        let leftNavBarItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
     }
     
     struct Constants {
+        
         struct EventImage {
             static let height: Percent = 35%
         }
+        struct EventContentView {
+            static let marginTop: CGFloat = 16
+            static let marginLeft: CGFloat = 20
+            static let marginRight: CGFloat = 20
+        }
+        
         struct TagsStackVeiw {
             static let height: CGFloat = 20
-            static let marginTop: CGFloat = 16
-            static let marginLeft: CGFloat = 20
-            static let marginRight: CGFloat = 20
         }
+        
         struct EventNameLabel {
             static let marginTop: CGFloat = 16
-            static let marginLeft: CGFloat = 20
-            static let marginRight: CGFloat = 20
         }
+        
         struct PlaceDateInfoStackView {
             static let marginTop: CGFloat = 12
-            static let marginLeft: CGFloat = 20
             static let height: CGFloat = 20
-            static let width: Percent = 75%
+            static let width: Percent = 80%
         }
+        
         struct EventDescriptionLabel {
-            static let marginLeft: CGFloat = 20
-            static let marginRight: CGFloat = 20
             static let marginTop: CGFloat = 12
+        }
+        
+        struct MapView {
+            static let marginTop: CGFloat = 20
+            static let height: CGFloat = 240
         }
     }
 }

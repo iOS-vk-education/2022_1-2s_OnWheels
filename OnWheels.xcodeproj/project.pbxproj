@@ -43,6 +43,7 @@
 		94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2BFA129211DF500F864B9 /* ProfileFooterCell.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
 		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
+		94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB88CE292CDA2C00A567C6 /* EventMapView.swift */; };
 		ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */; };
 		ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991EF29054F3A00BC3FA5 /* SceneDelegate.swift */; };
 		ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC991F129054F3A00BC3FA5 /* ViewController.swift */; };
@@ -90,6 +91,7 @@
 		94B2BFA129211DF500F864B9 /* ProfileFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooterCell.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
+		94FB88CE292CDA2C00A567C6 /* EventMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapView.swift; sourceTree = "<group>"; };
 		D6908DD2E42FBDBAAFCECDCB /* Pods-OnWheels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnWheels.release.xcconfig"; path = "Target Support Files/Pods-OnWheels/Pods-OnWheels.release.xcconfig"; sourceTree = "<group>"; };
 		ECC991EA29054F3A00BC3FA5 /* OnWheels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnWheels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC991ED29054F3A00BC3FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				94E574942917C82F00EF9585 /* ColorExtension.swift */,
 				94E574972917CA0600EF9585 /* ReuseIdentifier.swift */,
 				947DFC32292C063600045932 /* EventTagView.swift */,
+				94FB88CE292CDA2C00A567C6 /* EventMapView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				947DFC30292C032600045932 /* OneEventInteractor.swift in Sources */,
 				94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */,
 				94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */,
+				94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */,
 				947DFC31292C032600045932 /* OneEventContainer.swift in Sources */,
 				94187A36291CFD8C00A8163B /* EventsProtocols.swift in Sources */,
 				947DFC2D292C032600045932 /* OneEventRouter.swift in Sources */,
