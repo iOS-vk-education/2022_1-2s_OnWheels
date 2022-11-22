@@ -15,7 +15,7 @@ final class LogInRouter {
 }
 
 extension LogInRouter: LogInRouterInput {
-
+    
     func openRegScreen() {
         guard let window = window else {
             return
@@ -24,7 +24,7 @@ extension LogInRouter: LogInRouterInput {
         let registrationContainer = RegistrationContainer.assemble(with: registrationContext)
         viewController?.navigationController?.pushViewController(registrationContainer.viewController, animated: true)
     }
-
+    
     func openApp() {
         guard let window = window else {
             return
@@ -32,5 +32,5 @@ extension LogInRouter: LogInRouterInput {
         let coordinator = AppCoordinator(window: window, instructor: .main)
         coordinator.start()
     }
-
+    
 }
