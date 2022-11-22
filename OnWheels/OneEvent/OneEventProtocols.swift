@@ -12,20 +12,20 @@ protocol OneEventModuleInput {
 	var moduleOutput: OneEventModuleOutput? { get }
 }
 
-protocol OneEventModuleOutput: class {
+protocol OneEventModuleOutput: AnyObject {
 }
 
-protocol OneEventViewInput: class {
+protocol OneEventViewInput: AnyObject {
 }
 
-protocol OneEventViewOutput: class {
+protocol OneEventViewOutput: AnyObject {
 }
 
-protocol OneEventInteractorInput: class {
+protocol OneEventInteractorInput: AnyObject {
 }
 
-protocol OneEventInteractorOutput: class {
+protocol OneEventInteractorOutput: AnyObject {
 }
 
-protocol OneEventRouterInput: class {
+protocol OneEventRouterInput: AnyObject {
 }
