@@ -14,7 +14,7 @@ final class ProfileFooterCell: UITableViewCell {
     private let deleteAccountButton: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.localizable.deleteAccount(), for: .normal)
-        button.setTitleColor(.red, for: .normal)
+        button.setTitleColor(R.color.redColor(), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .light)
         return button
     }()

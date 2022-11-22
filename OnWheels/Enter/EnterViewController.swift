@@ -24,7 +24,7 @@ final class EnterViewController: UIViewController {
     let progressView: UIProgressView = {
         let progress = UIProgressView(progressViewStyle: .bar)
         progress.progressTintColor = .mainOrangeColor
-        progress.trackTintColor = .secondarySystemBackground
+        progress.trackTintColor = R.color.cellColor()
         progress.layer.cornerRadius = 6
         progress.clipsToBounds = true
         progress.progress = 0
@@ -44,7 +44,7 @@ final class EnterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = R.color.launchScreenColor()
         timer = Timer.scheduledTimer(timeInterval: timeInterval,
                                      target: self,
                                      selector: #selector(nextView),

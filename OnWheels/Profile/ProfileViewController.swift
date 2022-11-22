@@ -263,6 +263,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueCell(cellType: ProfileFooterCell.self, for: indexPath)
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
             return cell
         }
     }

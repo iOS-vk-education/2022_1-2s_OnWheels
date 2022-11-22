@@ -1,18 +1,3 @@
-"change" = "Change";
-"aboutMe" = "About me";
-"phoneNumber" = "Phone Number";
-"emailAdress" = "Email adress";
-"dateOfBirth" = "Date of birth";
-"sex" = "Sex";
-"mySocialNetworks" = "My social networks";
-"telegram" = "Telegram";
-"youtube" = "Youtube";
-"vk" = "VK";
-"events" = "Events";
-"myEvents" = "My events";
-"profile" = "Profile";
-"deleteAccount" = "Delete account";
-
 //login
 "welcomeText" = "Welcome to \n MotoCom";
 "enterEmail" = "Enter email";
@@ -35,3 +20,25 @@
 "confirmPassword" = "Confirm your password";
 "acceptRules" = "By registering, I agree with";
 "acceptRules2" = "\n user agreement";
+
+"change" = "Change";
+"aboutMe" = "About me";
+"phoneNumber" = "Phone Number";
+"emailAdress" = "Email adress";
+"dateOfBirth" = "Date of birth";
+"sex" = "Sex";
+"mySocialNetworks" = "My social networks";
+"telegram" = "Telegram";
+"youtube" = "Youtube";
+"vk" = "VK";
+"events" = "Events";
+"myEvents" = "My events";
+"profile" = "Profile";
+"deleteAccount" = "Delete account";
+"eventName" = "Championship of Russia. Racing on Ice - Class 500. Semifinal - Stage 1";
+"eventPlace" = "Resp. Bashkortostan, Ufa";
+"eventDate" = "7 Jan. - Jan. 10.";
+"eventDescription" = "Prologue in the dark: one-hour (enduro stadium + small track for two classes Pro and B3. The presence of a headlamp, flashlights - in front, rear marker or reflective elements in red color - MUST. First off-road racing day of Profi (Pro) classes (track complexity - heavy) and Base 3 (B3) (track complexity - medium).";
+"firstTag" = "enduro on motorcycles";
+"secondTag" = "amateurs";
+"mapEventPlace" = "Location";
