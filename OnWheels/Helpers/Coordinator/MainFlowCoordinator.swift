@@ -40,11 +40,10 @@ extension MainFlowCoordinator{
     }
     private func setupMyEvents() {
         guard let navController = navigationControllers[.myEvents] else {
-            print("No navController")
-            return
+            fatalError("No navController")
         }
-        let myEventsContext = OneEventContext(moduleOutput: nil)
-        let myEventsContainer = OneEventContainer.assemble(with: myEventsContext)
+        let myEventsContext = MyEventsContext(moduleOutput: nil)
+        let myEventsContainer = MyEventsContainer.assemble(with: myEventsContext)
         navController.setViewControllers([myEventsContainer.viewController], animated: true)
     }
     

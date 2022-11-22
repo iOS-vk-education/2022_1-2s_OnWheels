@@ -5,7 +5,7 @@ target 'OnWheels' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for OnWheels
+ # Pods for OnWheels
 pod 'PinLayout'
 pod 'R.swift'
 
