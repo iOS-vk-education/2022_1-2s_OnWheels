@@ -13,6 +13,7 @@ final class OneEventViewController: UIViewController {
 	private let output: OneEventViewOutput
     
     let tags: [String] = ["first", "second", "third"]
+    var isTagsAlreadyDone = false
     
     private let eventImage: UIImageView = {
         let image = UIImageView()
@@ -23,9 +24,8 @@ final class OneEventViewController: UIViewController {
     
     let tagsStackVeiw: UIStackView = {
         let tags = UIStackView()
-        tags.spacing = 120
-        tags.alignment = .center
         tags.axis = .horizontal
+        tags.distribution = .fillProportionally
         return tags
     }()
     
@@ -88,18 +88,21 @@ final class OneEventViewController: UIViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
         view.backgroundColor = R.color.background()
-        addTags(with: tags)
 	}
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupLayout()
+        if !isTagsAlreadyDone {
+            addTags(with: tags)
+            isTagsAlreadyDone = true
+        }
     }
     
     func addTags(with tags: [String]) {
@@ -108,13 +111,13 @@ final class OneEventViewController: UIViewController {
             tag.configureTag(with: text)
             
             tag.layer.cornerRadius = 8
-            tag.clipsToBounds = true
             
             tagsStackVeiw.addArrangedSubview(tag)
             tag.pin
-                .top()
-                .left()
-                .bottom()
+                .top(to: tagsStackVeiw.edge.top)
+                .bottom(to: tagsStackVeiw.edge.bottom)
+            
+            tagsStackVeiw.setCustomSpacing(24 + tag.frame.width , after: tag)
         }
     }
 }
@@ -127,13 +130,15 @@ extension OneEventViewController: OneEventViewInput {
             .height(Constants.EventImage.height)
             .left()
             .right()
+        
         view.addSubview(tagsStackVeiw)
         tagsStackVeiw.pin
             .top(to: eventImage.edge.bottom)
             .marginTop(Constants.TagsStackVeiw.marginTop)
             .left(Constants.TagsStackVeiw.marginLeft)
-            .right()
+            .right(Constants.TagsStackVeiw.marginRight)
             .height(Constants.TagsStackVeiw.height)
+        
         view.addSubview(eventNameLabel)
         eventNameLabel.pin
             .top(to: tagsStackVeiw.edge.bottom)
@@ -143,6 +148,7 @@ extension OneEventViewController: OneEventViewInput {
             .right()
             .marginRight(Constants.EventNameLabel.marginRight)
             .sizeToFit(.width)
+        
         view.addSubview(placeDateInfoStackVeiw)
         placeDateInfoStackVeiw.pin
             .top(to: eventNameLabel.edge.bottom)
@@ -150,9 +156,11 @@ extension OneEventViewController: OneEventViewInput {
             .left(Constants.PlaceDateInfoStackView.marginLeft)
             .height(Constants.PlaceDateInfoStackView.height)
             .width(Constants.PlaceDateInfoStackView.width)
+        
         placeDateInfoStackVeiw.addArrangedSubview(placeLabel)
         placeDateInfoStackVeiw.addArrangedSubview(spacingLabel)
         placeDateInfoStackVeiw.addArrangedSubview(dateLabel)
+        
         view.addSubview(eventDescriptionLabel)
         eventDescriptionLabel.pin
             .top(to: placeDateInfoStackVeiw.edge.bottom)
@@ -168,16 +176,17 @@ extension OneEventViewController: OneEventViewInput {
         }
         struct TagsStackVeiw {
             static let height: CGFloat = 20
-            static let marginTop: CGFloat = 10
+            static let marginTop: CGFloat = 16
             static let marginLeft: CGFloat = 20
+            static let marginRight: CGFloat = 20
         }
         struct EventNameLabel {
-            static let marginTop: CGFloat = 20
+            static let marginTop: CGFloat = 16
             static let marginLeft: CGFloat = 20
             static let marginRight: CGFloat = 20
         }
         struct PlaceDateInfoStackView {
-            static let marginTop: CGFloat = 10
+            static let marginTop: CGFloat = 12
             static let marginLeft: CGFloat = 20
             static let height: CGFloat = 20
             static let width: Percent = 75%
@@ -185,7 +194,7 @@ extension OneEventViewController: OneEventViewInput {
         struct EventDescriptionLabel {
             static let marginLeft: CGFloat = 20
             static let marginRight: CGFloat = 20
-            static let marginTop: CGFloat = 10
+            static let marginTop: CGFloat = 12
         }
     }
 }
