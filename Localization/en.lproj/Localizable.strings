@@ -19,3 +19,26 @@
 "firstTag" = "enduro on motorcycles";
 "secondTag" = "amateurs";
 "mapEventPlace" = "Location";
+
+//login
+"welcomeText" = "Welcome to \n MotoCom";
+"enterEmail" = "Enter email";
+"enterPassword" = "Enter password";
+"forgotPassword" = "Forgot your password?";
+"enter" = "Enter";
+"noAccount" = "Don't have an account? ";
+"register" = "Register";
+"or" = "or";
+"loginWithoutAccount"= "\n Login without an account";
+
+//registration
+"createAccount" = "Create an account";
+"fillFields" = "Please fill in all fields";
+"enterName" = "Enter a name";
+"enterSurname" = "Enter a surname";
+"birthdate" = "Date of birth";
+"enterCity" = "Enter city of residence";
+"createPassword" = "Create password";
+"confirmPassword" = "Confirm your password";
+"acceptRules" = "By registering, I agree with";
+"acceptRules2" = "\n user agreement";

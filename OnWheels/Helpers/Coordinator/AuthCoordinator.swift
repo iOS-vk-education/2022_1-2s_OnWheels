@@ -15,27 +15,31 @@ final class AuthCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        setupEnter()
+        setupLogin()
         
         let navControllers = NavControllerType.allCases.compactMap {
             self.navigationControllers[$0]
         }
-        
-        
+
         window.rootViewController = navControllers[0]
         window.makeKeyAndVisible()
+    }
+    
+    enum LaunchInstructor {
+        case login, registration
     }
 }
 
 extension AuthCoordinator {
-    private func setupEnter() {
-        guard let navController = navigationControllers[.enterScreen] else {
-            fatalError("No navController")
+    
+    private func setupLogin() {
+        guard let navController = navigationControllers[.auth] else {
+            print("No navController")
+            return
         }
-        let enterContext = EnterContext(moduleOutput: nil, window: window)
-        let enterContainer = EnterContainer.assemble(with: enterContext)
-        navController.setViewControllers([enterContainer.viewController], animated: true)
-        navController.navigationBar.isHidden = true
+        let LogInContext = LogInContext(window: window)
+        let loginContainer = LogInContainer.assemble(with: LogInContext)
+        navController.setViewControllers([loginContainer.viewController], animated: true)
     }
     
     fileprivate static func makeNavigationControllers() -> [NavControllerType: UINavigationController] {
@@ -52,5 +56,5 @@ extension AuthCoordinator {
 }
 
 fileprivate enum NavControllerType: Int, CaseIterable {
-    case enterScreen
+    case auth
 }
