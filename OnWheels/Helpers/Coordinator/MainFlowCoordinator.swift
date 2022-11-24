@@ -53,7 +53,7 @@ extension MainFlowCoordinator{
             print("No navController")
             return
         }
-        let profileContext = ProfileContext(moduleOutput: nil)
+        let profileContext = ProfileContext(window: window)
         let profileContainer = ProfileContainer.assemble(with: profileContext)
         navController.setViewControllers([profileContainer.viewController], animated: true)
     }
