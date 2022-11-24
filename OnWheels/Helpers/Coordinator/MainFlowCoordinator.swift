@@ -17,7 +17,7 @@ final class MainFlowCoordinator: CoordinatorProtocol{
     
     func start() {
         setupEvents()
-        //        setupMyEvents()
+        setupMyEvents()
         setupProfile()
         let navigationControllers = NavControllerType.allCases.compactMap {
             self.navigationControllers[$0]
@@ -38,21 +38,22 @@ extension MainFlowCoordinator{
         let eventsContainer = EventsContainer.assemble(with: eventsContext)
         navController.setViewControllers([eventsContainer.viewController], animated: true)
     }
-    //    private func setupMyEvents() {
-    //        guard let navController = navigationControllers[.diet] else {
-    //            fatalError("No navController")
-    //        }
-    //        let myEventsContext = MyEventsContext(moduleOutput: nil)
-    //        let myEventsContainer = myEventsContainer.assemble(with: myEventsContext)
-    //        navController.setViewControllers([myEventsContainer.viewController], animated: true)
-    //    }
+    private func setupMyEvents() {
+        guard let navController = navigationControllers[.myEvents] else {
+            print("No navController")
+            return
+        }
+        let myEventsContext = OneEventContext(moduleOutput: nil)
+        let myEventsContainer = OneEventContainer.assemble(with: myEventsContext)
+        navController.setViewControllers([myEventsContainer.viewController], animated: true)
+    }
     
     private func setupProfile() {
         guard let navController = navigationControllers[.profile] else {
             print("No navController")
             return
         }
-        let profileContext = ProfileContext(moduleOutput: nil)
+        let profileContext = ProfileContext(window: window)
         let profileContainer = ProfileContainer.assemble(with: profileContext)
         navController.setViewControllers([profileContainer.viewController], animated: true)
     }
@@ -66,7 +67,7 @@ extension MainFlowCoordinator{
                                           tag: navControllerKey.rawValue)
             navigationController.tabBarItem = tabBarItem
             result[navControllerKey] = navigationController
-            UITabBar.appearance().backgroundColor = .white
+            UITabBar.appearance().backgroundColor = R.color.tabBarColor()
             UITabBar.appearance().unselectedItemTintColor = .mainBlueColor
             UITabBar.appearance().tintColor = .mainOrangeColor
             

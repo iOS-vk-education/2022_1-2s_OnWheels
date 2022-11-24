@@ -23,10 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let enterContainer = EnterContainer.assemble(with: EnterContext(window: window))
         let navigationController = UINavigationController(rootViewController: enterContainer.viewController)
-        
+
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
-        
+
         //MARK: в переменную будем передавать значения из userDefaults, чтобы понимать, зашел уже человек или еще нет
 //        let bool = true
 //        if bool {

@@ -9,6 +9,7 @@
 import UIKit
 
 final class ProfileRouter {
+    var window: UIWindow?
 }
 
 extension ProfileRouter: ProfileRouterInput {
@@ -22,6 +23,10 @@ extension ProfileRouter: ProfileRouterInput {
     }
     
     func logoutButtonPressed(){
-        print("logout")
+        guard let window = window else {
+            return
+        }
+        let coordinator = AppCoordinator(window: window, instructor: .authorization)
+        coordinator.start()
     }
 }

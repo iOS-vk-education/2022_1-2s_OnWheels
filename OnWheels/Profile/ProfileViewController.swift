@@ -99,7 +99,7 @@ final class ProfileViewController: UIViewController {
     
     @objc
     func logoutButtonAction(){
-        UIView.animate(withDuration: 0.2) { [weak self] in
+        UIView.animate(withDuration: 0.3) { [weak self] in
             self?.changeProfileButton.alpha = 0.7
         } completion: { [weak self] finished in
             if finished {
@@ -263,6 +263,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueCell(cellType: ProfileFooterCell.self, for: indexPath)
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
             return cell
         }
     }

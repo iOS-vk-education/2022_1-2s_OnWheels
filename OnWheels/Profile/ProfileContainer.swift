@@ -20,6 +20,7 @@ final class ProfileContainer {
         let viewController = ProfileViewController(output: presenter)
         
         presenter.view = viewController
+        router.window = context.window
         presenter.moduleOutput = context.moduleOutput
         
         interactor.output = presenter
@@ -36,4 +37,5 @@ final class ProfileContainer {
 
 struct ProfileContext {
     weak var moduleOutput: ProfileModuleOutput?
+    let window: UIWindow
 }
