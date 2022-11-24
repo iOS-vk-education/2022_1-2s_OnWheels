@@ -12,27 +12,3 @@
 "myEvents" = "Мои мероприятия";
 "profile" = "Профиль";
 "deleteAccount" = "Удалить аккаунт";
-
-//login
-"welcomeText" = "Добро пожаловать в \n MotoCom";
-"enterEmail" = "Введите email";
-"enterPassword" = "Введите пароль";
-"forgotPassword" = "Забыли пароль?";
-"enter" = "Войти";
-"noAccount" = "Нет аккаунта? ";
-"register" = "Зарегистрироваться";
-"or" = "или";
-"loginWithoutAccount"= "\n Войти без аккаунта";
-
-//registration
-"createAccount" = "Создайте аккаунт";
-"fillFields" = "Пожалуйста, заполните все поля";
-"enterName" = "Введите имя";
-"enterSurname" = "Введите фамилию";
-"birthdate" = "Дата рождения";
-"enterCity" = "Введите город проживания";
-"createPassword" = "Создайте пароль";
-"confirmPassword" = "Подтвердите пароль";
-"acceptRules" = "Регистрируясь, я соглашаюсь с ";
-"acceptRules2" = "\n пользовательским соглашением";
-
