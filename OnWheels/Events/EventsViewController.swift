@@ -14,7 +14,7 @@ final class EventsViewController: UIViewController {
     
     private let navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
-        navBar.backgroundColor = .backgroundColor
+        navBar.backgroundColor = R.color.background()
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mainBlueColor as Any]
         return navBar
     }()
@@ -35,7 +35,7 @@ final class EventsViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        self.title = R.string.localizable.eventsViewTitle()
+        self.title = R.string.localizable.events()
         setupUI()
 	}
     
@@ -51,7 +51,6 @@ extension EventsViewController: EventsViewInput {
 
 extension EventsViewController {
     private func setupLayout(){
-        
         navigationBar.pin
             .top()
             .right()
@@ -59,57 +58,55 @@ extension EventsViewController {
         
         eventsTableView.pin
             .top(to: navigationBar.edge.bottom)
-            .left()
-            .right()
+            .marginTop(20)
+            .left(12)
+            .right(12)
             .bottom()
     }
     
     private func setupUI(){
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = R.color.background()
         view.addSubview(eventsTableView)
         view.addSubview(navigationBar)
     }
     
     private func setupEventsTableView() {
-        eventsTableView.separatorStyle = .none
-        eventsTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
         eventsTableView.showsVerticalScrollIndicator = false
-        eventsTableView.backgroundColor = .backgroundColor
+        eventsTableView.separatorStyle = .none
+        eventsTableView.backgroundColor = R.color.background()
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
         eventsTableView.register(EventsInfoCell.self)
-        eventsTableView.allowsSelection = false
+        eventsTableView.allowsSelection = true
     }
 }
 
 extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 10
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
-        
+        cell.selectionStyle = .none
+//        cell.layer.cornerRadius = 16
+//        cell.clipsToBounds = true
         cell.setupLayout()
-        
-        switch indexPath.row {
-            case 1:
-            cell.configure(mainText: "Чемпионат России", dateText: "7 янв. - 10 янв.", placeText: "Респ. Башкортостан, Уфа", imageName: "durtbike", likeText: "20", sharedText: "20", watchedText: "20")
-            case 0:
-                cell.configure(mainText: "Чемпионат Башкирии", dateText: "8 янв. - 11 янв.", placeText: "Респ. Башкортостан, Уфа", imageName: "bikes2", likeText: "19", sharedText: "0", watchedText: "5")
-                
-            default:
-                cell.configure(mainText: "Base", dateText: "Base", placeText: "Base", imageName: "eventImageBase", likeText: "0", sharedText: "0", watchedText: "0")
-        }
-        
-        cell.backgroundColor = UIColor(white: 1, alpha: 0)
+        cell.configure(mainText: R.string.localizable.eventName(),
+                       dateText: R.string.localizable.eventDate(),
+                       placeText: R.string.localizable.eventPlace(),
+                       imageName: R.image.bikes2.name,
+                       likeText: "20",
+                       sharedText: "20",
+                       watchedText: "20")
+//        cell.backgroundColor = UIColor(white: 1, alpha: 0)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height / 2
+        return 400
     }
     
     

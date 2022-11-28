@@ -41,7 +41,7 @@ final class MyEventsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = R.string.localizable.myEventsViewTitle()
+        self.title = R.string.localizable.myEvents()
         setupUI()
     }
     
