@@ -1,16 +1,17 @@
 //
-//  EventsViewController.swift
+//  MyEventsViewController.swift
 //  OnWheels
 //
-//  Created by Андрей Стрельченко on 10.11.2022.
+//  Created by Андрей Стрельченко on 17.11.2022.
 //  
 //
+
 
 import UIKit
 import PinLayout
 
-final class EventsViewController: UIViewController {
-	private let output: EventsViewOutput
+final class MyEventsViewController: UIViewController {
+    private let output: MyEventsViewOutput
     
     private let navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
@@ -19,10 +20,15 @@ final class EventsViewController: UIViewController {
         return navBar
     }()
     
-    private let eventsTableView = UITableView(frame: .zero, style: .plain)
+    private let myEventsTableView: UITableView = {
+        let table = UITableView(frame: .zero, style: .plain)
+        table.isUserInteractionEnabled = true
+        return table
+    }()
+    
     
 
-    init(output: EventsViewOutput) {
+    init(output: MyEventsViewOutput) {
         self.output = output
 
         super.init(nibName: nil, bundle: nil)
@@ -33,23 +39,26 @@ final class EventsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-        self.title = R.string.localizable.eventsViewTitle()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = R.string.localizable.myEventsViewTitle()
         setupUI()
-	}
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupLayout()
-        setupEventsTableView()
+        setupMyEventsTableView()
     }
 }
 
-extension EventsViewController: EventsViewInput {
+extension MyEventsViewController: MyEventsViewInput {
 }
 
-extension EventsViewController {
+extension MyEventsViewController: EventsViewInput {
+}
+
+extension MyEventsViewController {
     private func setupLayout(){
         
         navigationBar.pin
@@ -57,7 +66,7 @@ extension EventsViewController {
             .right()
             .left()
         
-        eventsTableView.pin
+        myEventsTableView.pin
             .top(to: navigationBar.edge.bottom)
             .left()
             .right()
@@ -66,23 +75,23 @@ extension EventsViewController {
     
     private func setupUI(){
         view.backgroundColor = .backgroundColor
-        view.addSubview(eventsTableView)
+        view.addSubview(myEventsTableView)
         view.addSubview(navigationBar)
     }
     
-    private func setupEventsTableView() {
-        eventsTableView.separatorStyle = .none
-        eventsTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
-        eventsTableView.showsVerticalScrollIndicator = false
-        eventsTableView.backgroundColor = .backgroundColor
-        eventsTableView.delegate = self
-        eventsTableView.dataSource = self
-        eventsTableView.register(EventsInfoCell.self)
-        eventsTableView.allowsSelection = false
+    private func setupMyEventsTableView() {
+        myEventsTableView.separatorStyle = .none
+        myEventsTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
+        myEventsTableView.showsVerticalScrollIndicator = false
+        myEventsTableView.backgroundColor = .backgroundColor
+        myEventsTableView.delegate = self
+        myEventsTableView.dataSource = self
+        myEventsTableView.register(EventsInfoCell.self)
+        myEventsTableView.allowsSelection = false
     }
 }
 
-extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
+extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -95,9 +104,9 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setupLayout()
         
         switch indexPath.row {
-            case 1:
-            cell.configure(mainText: "Чемпионат России", dateText: "7 янв. - 10 янв.", placeText: "Респ. Башкортостан, Уфа", imageName: "durtbike", likeText: "20", sharedText: "20", watchedText: "20")
             case 0:
+            cell.configure(mainText: "Чемпионат России", dateText: "7 янв. - 10 янв.", placeText: "Респ. Башкортостан, Уфа", imageName: "durtbike", likeText: "20", sharedText: "20", watchedText: "20")
+            case 1:
                 cell.configure(mainText: "Чемпионат Башкирии", dateText: "8 янв. - 11 янв.", placeText: "Респ. Башкортостан, Уфа", imageName: "bikes2", likeText: "19", sharedText: "0", watchedText: "5")
                 
             default:
@@ -112,5 +121,12 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         return tableView.frame.height / 2
     }
     
-    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        print("Нажата ячейка с индексом {indexPath}")
+        return indexPath
+    }
+}
+
+func toEvent(sender: UIButton!) {
+    print("Cell touched")
 }
