@@ -25,6 +25,9 @@ extension EventsPresenter: EventsModuleInput {
 }
 
 extension EventsPresenter: EventsViewOutput {
+    func rowDidSelect(){
+        router.selectedRowTapped()
+    }
 }
 
 extension EventsPresenter: EventsInteractorOutput {

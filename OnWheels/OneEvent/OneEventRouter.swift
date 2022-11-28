@@ -9,10 +9,12 @@
 import UIKit
 
 final class OneEventRouter {
+    var window: UIWindow?
+    var viewController: UIViewController?
 }
 
 extension OneEventRouter: OneEventRouterInput {
     func backButtonPressed(){
-        print("back")
+        self.viewController?.navigationController?.popViewController(animated: true)
     }
 }

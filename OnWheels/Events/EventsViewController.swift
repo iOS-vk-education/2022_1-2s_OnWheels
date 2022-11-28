@@ -91,8 +91,6 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
         cell.selectionStyle = .none
-//        cell.layer.cornerRadius = 16
-//        cell.clipsToBounds = true
         cell.setupLayout()
         cell.configure(mainText: R.string.localizable.eventName(),
                        dateText: R.string.localizable.eventDate(),
@@ -101,12 +99,15 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
                        likeText: "20",
                        sharedText: "20",
                        watchedText: "20")
-//        cell.backgroundColor = UIColor(white: 1, alpha: 0)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return 390
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output.rowDidSelect()
     }
     
     
