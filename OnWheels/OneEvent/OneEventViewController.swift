@@ -26,6 +26,7 @@ final class OneEventViewController: UIViewController {
     private let eventImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.layer.masksToBounds = true
         image.image = R.image.oneEventImage()
         return image
     }()
@@ -159,8 +160,8 @@ extension OneEventViewController: OneEventViewInput {
         eventImage.pin
             .top()
             .height(Constants.EventImage.height)
-            .left()
-            .right()
+            .left(to: view.edge.left)
+            .right(to: view.edge.right)
         
         view.addSubview(eventScrollView)
         eventScrollView.pin

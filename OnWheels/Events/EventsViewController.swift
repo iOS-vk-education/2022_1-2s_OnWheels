@@ -10,7 +10,7 @@ import UIKit
 import PinLayout
 
 final class EventsViewController: UIViewController {
-	private let output: EventsViewOutput
+    private let output: EventsViewOutput
     
     private let navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
@@ -21,23 +21,23 @@ final class EventsViewController: UIViewController {
     
     private let eventsTableView = UITableView(frame: .zero, style: .plain)
     
-
+    
     init(output: EventsViewOutput) {
         self.output = output
-
+        
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.title = R.string.localizable.events()
         setupUI()
-	}
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -103,12 +103,10 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 390
+        return 410
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         output.rowDidSelect()
     }
-    
-    
 }

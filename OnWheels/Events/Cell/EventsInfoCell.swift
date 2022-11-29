@@ -10,7 +10,7 @@ import PinLayout
 
 final class EventsInfoCell: UITableViewCell {
     
-//    Вью летющей ячейки
+    //    Вью летющей ячейки
     private let cellView: UIView = {
         let cell = UIView()
         cell.backgroundColor = R.color.cellColor()
@@ -19,7 +19,7 @@ final class EventsInfoCell: UITableViewCell {
         return cell
     }()
     
-//    Заглавная надпись
+    //    Заглавная надпись
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .regular)
@@ -28,7 +28,7 @@ final class EventsInfoCell: UITableViewCell {
         return label
     }()
     
-//    Надпись времени события
+    //    Надпись времени события
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -36,21 +36,11 @@ final class EventsInfoCell: UITableViewCell {
         return label
     }()
     
-//    Местополжение события
-    private let placeIconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = R.image.location()
-        return imageView
-    }()
+    private let placeInfoStackVeiw = EventInfoStackView()
+    let likeInfoStackVeiw = EventInfoStackView()
+    private let sharedInfoStackView = EventInfoStackView()
+    private let watchedInfoStackView = EventInfoStackView()
     
-    private let placeLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .mainBlueColor
-        return label
-    }()
-    
-//    Главная картинка
     private let eventImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 8
@@ -58,48 +48,6 @@ final class EventsInfoCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.image = R.image.eventImageBase()
         return imageView
-    }()
-    
-//    Кнопка лайка
-    private let likeImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = R.image.likes()
-        return imageView
-    }()
-    
-    private var likeLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .mainBlueColor
-        return label
-    }()
-    
-//    Кнопка поделившихся
-    private let sharedImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = R.image.people()
-        return imageView
-    }()
-    
-    private var sharedLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .mainBlueColor
-        return label
-    }()
-    
-//    Кнопка просмотров
-    private let watchedImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = R.image.eye()
-        return imageView
-    }()
-    
-    private var watchedLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .mainBlueColor
-        return label
     }()
     
     let tags: [String] = [R.string.localizable.firstTag(), R.string.localizable.secondTag()]
@@ -128,34 +76,31 @@ final class EventsInfoCell: UITableViewCell {
     
     private func setupCell(){
         addSubview(cellView)
+        
         cellView.addSubview(mainLabel)
+        
         cellView.addSubview(dateLabel)
         
-        cellView.addSubview(placeIconImageView)
-        cellView.addSubview(placeLabel)
+        cellView.addSubview(placeInfoStackVeiw)
         
         cellView.addSubview(tagsStackVeiw)
         
         cellView.addSubview(eventImageView)
         
-        cellView.addSubview(likeImageView)
-        cellView.addSubview(likeLabel)
+        cellView.addSubview(likeInfoStackVeiw)
+        cellView.addSubview(sharedInfoStackView)
+        cellView.addSubview(watchedInfoStackView)
         
-        cellView.addSubview(sharedImageView)
-        cellView.addSubview(sharedLabel)
-        
-        cellView.addSubview(watchedImageView)
-        cellView.addSubview(watchedLabel)
         setupLayout()
+        setupLikeStackView()
     }
-    
     
     func setupLayout() {
         cellView.pin
             .top(10)
             .left()
             .right()
-            .height(370)
+            .height(390)
             .bottom(10)
         
         mainLabel.pin
@@ -171,77 +116,66 @@ final class EventsInfoCell: UITableViewCell {
             .right(24)
             .height(14)
         
-        placeIconImageView.pin
+        placeInfoStackVeiw.pin
             .top(to: dateLabel.edge.bottom)
-            .marginTop(5)
+            .marginTop(8)
             .left(24)
-            .width(24)
-            .height(24)
-        
-        placeLabel.pin
-            .bottom(to: placeIconImageView.edge.bottom)
-            .left(to: placeIconImageView.edge.right)
-            .marginLeft(12)
-            .marginBottom(4)
-            .height(16)
-            .right(24)
+            .height(30)
+            .width(200)
         
         tagsStackVeiw.pin
-            .top(to: placeLabel.edge.bottom)
+            .top(to: placeInfoStackVeiw.edge.bottom)
             .marginTop(10)
             .left(24)
             .right(24)
             .height(20)
         
-        likeImageView.pin
-            .bottom(10)
-            .left(24)
-            .width(24)
-            .height(24)
-        
-        likeLabel.pin
-            .bottom(10)
-            .left(to: likeImageView.edge.right)
-            .marginLeft(6)
-            .width(32)
-            .height(18)
-        
-        sharedImageView.pin
-            .bottom(10)
-            .left(to: likeLabel.edge.right)
-            .width(24)
-            .height(24)
-            .marginLeft(40)
-        
-        sharedLabel.pin
-            .bottom(10)
-            .left(to: sharedImageView.edge.right)
-            .width(32)
-            .height(18)
-            .marginLeft(6)
-        
-        watchedImageView.pin
-            .bottom(10)
-            .left(to: sharedLabel.edge.right)
-            .width(24)
-            .height(24)
-            .marginLeft(40)
-        
-        watchedLabel.pin
-            .bottom(10)
-            .left(to: watchedImageView.edge.right)
-            .width(32)
-            .height(18)
-            .marginLeft(6)
-        
         eventImageView.pin
             .top(to: tagsStackVeiw.edge.bottom)
-            .marginTop(11)
-            .bottom(to: likeImageView.edge.top)
+            .marginTop(12)
             .height(180)
             .left(12)
             .right(12)
+        
+        likeInfoStackVeiw.pin
+            .top(to: eventImageView.edge.bottom)
+            .marginTop(10)
+            .left(24)
+            .width(50)
+            .height(24)
+        
+        sharedInfoStackView.pin
+            .top(to: eventImageView.edge.bottom)
+            .marginTop(10)
+            .left(to: likeInfoStackVeiw.edge.right)
+            .marginLeft(24)
+            .width(50)
+            .height(24)
+        
+        watchedInfoStackView.pin
+            .top(to: eventImageView.edge.bottom)
+            .marginTop(10)
+            .left(to: sharedInfoStackView.edge.right)
+            .marginLeft(24)
+            .width(50)
+            .height(24)
+    }
+    
+    func setupLikeStackView(){
+        likeInfoStackVeiw.isUserInteractionEnabled = true
+        likeInfoStackVeiw.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setState)))
+        likeInfoStackVeiw.resignFirstResponder()
+    }
+    
+    @objc
+    func setState(at state: Bool) {
+        if state {
+            likeInfoStackVeiw.infoImageView.image = R.image.likes()
+            print("like")
+        } else {
+            likeInfoStackVeiw.infoImageView.image = R.image.likes()
         }
+    }
     
     func addTags(with tags: [String]) {
         tags.forEach { text in
@@ -279,10 +213,14 @@ final class EventsInfoCell: UITableViewCell {
         
         mainLabel.text = mainText
         dateLabel.text = dateText
-        placeLabel.text = placeText
-        likeLabel.text = likeText
-        sharedLabel.text = sharedText
-        watchedLabel.text = watchedText
+        placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
+                                              text: placeText)
+        likeInfoStackVeiw.configureStackVeiw(image: R.image.likes.name,
+                                             text: likeText)
+        sharedInfoStackView.configureStackVeiw(image: R.image.people.name,
+                                               text: sharedText)
+        watchedInfoStackView.configureStackVeiw(image: R.image.eye.name,
+                                                text: watchedText)
         eventImageView.image = image
     }
 }
