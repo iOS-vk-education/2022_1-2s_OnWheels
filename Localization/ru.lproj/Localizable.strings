@@ -1,3 +1,4 @@
+//profile
 "change" = "Изм.";
 "aboutMe" = "О себе";
 "phoneNumber" = "Номер телефона";
@@ -13,6 +14,7 @@
 "profile" = "Профиль";
 "deleteAccount" = "Удалить аккаунт";
 
+//events
 "eventName" = "Чемпионат России. Гонки на льду - класс 500. Полуфинал - 1 этап";
 "eventPlace" = "респ. Башкортостан, Уфа";
 "eventDate" = "7 янв. — 10 янв.";
@@ -20,6 +22,10 @@
 "firstTag" = "эндуро на мотоциклах";
 "secondTag" = "любители";
 "mapEventPlace" = "Место проведения";
+
+//myEvents
+"participate" = "Участвую";
+"organize" = "Организую";
 
 //login
 "welcomeText" = "Добро пожаловать в \n MotoCom";

@@ -1,3 +1,4 @@
+//profile
 "change" = "Change";
 "aboutMe" = "About me";
 "phoneNumber" = "Phone Number";
@@ -12,6 +13,8 @@
 "myEvents" = "My events";
 "profile" = "Profile";
 "deleteAccount" = "Delete account";
+
+//events
 "eventName" = "Championship of Russia. Racing on Ice - Class 500. Semifinal - Stage 1";
 "eventPlace" = "Resp. Bashkortostan, Ufa";
 "eventDate" = "7 Jan. - Jan. 10.";
@@ -19,6 +22,10 @@
 "firstTag" = "enduro on motorcycles";
 "secondTag" = "amateurs";
 "mapEventPlace" = "Location";
+
+//myEvents
+"participate" = "Participate";
+"organize" = "Organize";
 
 //login
 "welcomeText" = "Welcome to \n MotoCom";

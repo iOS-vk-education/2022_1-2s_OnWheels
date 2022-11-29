@@ -26,7 +26,18 @@ final class MyEventsViewController: UIViewController {
         return table
     }()
     
-    
+    private let competeOrOrganizeSegmentedControl: UISegmentedControl = {
+        let competeOrOrganize = UISegmentedControl(items: ["1",
+                                                           "2"])
+        competeOrOrganize.tintColor = R.color.mainBlue()
+        competeOrOrganize.selectedSegmentTintColor = R.color.mainOrange()
+        competeOrOrganize.backgroundColor = R.color.cellColor()
+        competeOrOrganize.selectedSegmentIndex = 1
+        competeOrOrganize.addTarget(MyEventsViewController.self,
+                                    action: #selector(segmentedValueChanged(_:)),
+                                    for: .valueChanged)
+        return competeOrOrganize
+    }()
     
     init(output: MyEventsViewOutput) {
         self.output = output
@@ -50,6 +61,11 @@ final class MyEventsViewController: UIViewController {
         setupLayout()
         setupMyEventsTableView()
     }
+    
+    @objc
+    func segmentedValueChanged(_ sender:UISegmentedControl){
+        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
+    }
 }
 
 extension MyEventsViewController: MyEventsViewInput {
@@ -65,8 +81,15 @@ extension MyEventsViewController {
             .right()
             .left()
         
-        myEventsTableView.pin
+        competeOrOrganizeSegmentedControl.pin
             .top(to: navigationBar.edge.bottom)
+            .marginTop(104)
+            .left(24)
+            .right(24)
+            .height(36)
+        
+        myEventsTableView.pin
+            .top(to: competeOrOrganizeSegmentedControl.edge.bottom)
             .marginTop(20)
             .left(12)
             .right(12)
@@ -77,6 +100,7 @@ extension MyEventsViewController {
         view.backgroundColor = .backgroundColor
         view.addSubview(myEventsTableView)
         view.addSubview(navigationBar)
+        view.addSubview(competeOrOrganizeSegmentedControl)
     }
     
     private func setupMyEventsTableView() {
