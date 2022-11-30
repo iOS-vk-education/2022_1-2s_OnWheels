@@ -29,6 +29,9 @@ extension RegistrationPresenter: RegistrationViewOutput {
         router.openApp()
     }
     
+    func backButtonAction(){
+        router.backButtonTapped()
+    }
 }
 
 extension RegistrationPresenter: RegistrationInteractorOutput {

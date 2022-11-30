@@ -23,4 +23,8 @@ extension RegistrationRouter: RegistrationRouterInput {
         coordinator.start()
     }
     
+    func backButtonTapped(){
+        self.viewController?.navigationController?.popViewController(animated: true)
+    }
+    
 }

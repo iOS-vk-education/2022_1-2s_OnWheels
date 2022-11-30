@@ -17,7 +17,7 @@ final class MyEventsHeader: UITableViewHeaderFooterView {
                                                            R.string.localizable.participate()])
         competeOrOrganize.tintColor = R.color.mainBlue()
         competeOrOrganize.selectedSegmentTintColor = R.color.mainOrange()
-        competeOrOrganize.backgroundColor = R.color.cellColor()
+        competeOrOrganize.tintColor = R.color.cellColor()
         competeOrOrganize.selectedSegmentIndex = 0
         return competeOrOrganize
     }()

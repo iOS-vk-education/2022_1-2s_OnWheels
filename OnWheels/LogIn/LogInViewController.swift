@@ -163,7 +163,7 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .systemBackground
         
         view.addSubview(scrollView)
