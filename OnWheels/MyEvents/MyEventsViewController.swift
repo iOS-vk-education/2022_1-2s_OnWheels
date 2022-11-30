@@ -36,7 +36,7 @@ final class MyEventsViewController: UIViewController {
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     override func viewDidLoad() {
@@ -50,11 +50,6 @@ final class MyEventsViewController: UIViewController {
         setupLayout()
         setupMyEventsTableView()
     }
-    
-//    @objc
-//    func segmentedValueChanged(_ sender:UISegmentedControl){
-//        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
-//    }
 }
 
 extension MyEventsViewController: MyEventsViewInput {
@@ -72,9 +67,9 @@ private extension MyEventsViewController {
         
         myEventsTableView.pin
             .top(to: navigationBar.edge.bottom)
-            .marginTop(32)
-            .left(12)
-            .right(12)
+            .marginTop(Constants.MyEventsTableView.marginTop)
+            .left(Constants.MyEventsTableView.left)
+            .right(Constants.MyEventsTableView.right)
             .bottom()
     }
     
@@ -104,6 +99,14 @@ private extension MyEventsViewController {
             print("Selected Segment Index is : \(sender)")
         }
     }
+    
+    struct Constants {
+        struct MyEventsTableView {
+            static let marginTop: CGFloat = 32
+            static let left: CGFloat = 12
+            static let right: CGFloat = 12
+        }
+    }
 }
 
 extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -121,9 +124,10 @@ extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
                        dateText: R.string.localizable.eventDate(),
                        placeText: R.string.localizable.eventPlace(),
                        imageName: R.image.durtbike.name,
-                       likeText: "20",
-                       sharedText: "20",
-                       watchedText: "20")
+                       likeText: 18,
+                       sharedText: 12,
+                       watchedText: 23,
+                       isLiked: true)
         return cell
     }
     

@@ -9,7 +9,6 @@ import UIKit
 import PinLayout
 
 final class EventsInfoCell: UITableViewCell {
-    
     //    Вью летющей ячейки
     private let cellView: UIView = {
         let cell = UIView()
@@ -52,6 +51,7 @@ final class EventsInfoCell: UITableViewCell {
     
     let tags: [String] = [R.string.localizable.firstTag(), R.string.localizable.secondTag()]
     var isTagsAlreadyDone = false
+    var isEventLiked = false
     
     let tagsStackVeiw: UIStackView = {
         let tags = UIStackView()
@@ -71,11 +71,11 @@ final class EventsInfoCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     private func setupCell(){
-        addSubview(cellView)
+        self.contentView.addSubview(cellView)
         
         cellView.addSubview(mainLabel)
         
@@ -97,83 +97,137 @@ final class EventsInfoCell: UITableViewCell {
     
     func setupLayout() {
         cellView.pin
-            .top(10)
+            .top(Constants.CellView.top)
             .left()
             .right()
-            .height(390)
-            .bottom(10)
+            .height(Constants.CellView.height)
+            .bottom(Constants.CellView.bottom)
         
         mainLabel.pin
-            .top(16)
-            .left(24)
-            .right(24)
-            .height(50)
+            .top(Constants.MainLabel.top)
+            .left(Constants.MainLabel.left)
+            .right(Constants.MainLabel.right)
+            .height(Constants.MainLabel.height)
         
         dateLabel.pin
             .top(to: mainLabel.edge.bottom)
-            .marginTop(5)
-            .left(24)
-            .right(24)
-            .height(14)
+            .marginTop(Constants.DateLabel.top)
+            .left(Constants.DateLabel.left)
+            .right(Constants.DateLabel.right)
+            .height(Constants.DateLabel.height)
         
         placeInfoStackVeiw.pin
             .top(to: dateLabel.edge.bottom)
-            .marginTop(8)
-            .left(24)
-            .height(30)
-            .width(200)
+            .marginTop(Constants.PlaceInfoStackView.top)
+            .left(Constants.PlaceInfoStackView.left)
+            .height(Constants.PlaceInfoStackView.height)
+            .width(Constants.PlaceInfoStackView.width)
         
         tagsStackVeiw.pin
             .top(to: placeInfoStackVeiw.edge.bottom)
-            .marginTop(10)
-            .left(24)
-            .right(24)
-            .height(20)
+            .marginTop(Constants.TagsStackView.top)
+            .left(Constants.TagsStackView.left)
+            .right(Constants.TagsStackView.right)
+            .height(Constants.TagsStackView.height)
         
         eventImageView.pin
             .top(to: tagsStackVeiw.edge.bottom)
-            .marginTop(12)
-            .height(180)
-            .left(12)
-            .right(12)
+            .marginTop(Constants.EventImageView.top)
+            .height(Constants.EventImageView.height)
+            .left(Constants.EventImageView.left)
+            .right(Constants.EventImageView.right)
         
         likeInfoStackVeiw.pin
             .top(to: eventImageView.edge.bottom)
-            .marginTop(10)
-            .left(24)
-            .width(50)
-            .height(24)
+            .marginTop(Constants.InfoStackVeiws.top)
+            .left(Constants.InfoStackVeiws.left)
+            .width(Constants.InfoStackVeiws.width)
+            .height(Constants.InfoStackVeiws.height)
         
         sharedInfoStackView.pin
             .top(to: eventImageView.edge.bottom)
-            .marginTop(10)
+            .marginTop(Constants.InfoStackVeiws.top)
             .left(to: likeInfoStackVeiw.edge.right)
-            .marginLeft(24)
-            .width(50)
-            .height(24)
+            .marginLeft(Constants.InfoStackVeiws.left)
+            .width(Constants.InfoStackVeiws.width)
+            .height(Constants.InfoStackVeiws.height)
         
         watchedInfoStackView.pin
             .top(to: eventImageView.edge.bottom)
-            .marginTop(10)
+            .marginTop(Constants.InfoStackVeiws.top)
             .left(to: sharedInfoStackView.edge.right)
-            .marginLeft(24)
-            .width(50)
-            .height(24)
+            .marginLeft(Constants.InfoStackVeiws.left)
+            .width(Constants.InfoStackVeiws.width)
+            .height(Constants.InfoStackVeiws.height)
+    }
+    
+    struct Constants {
+        struct CellView {
+            static let top: CGFloat = 10
+            static let bottom: CGFloat = 10
+            static let height: CGFloat = 390
+        }
+        
+        struct MainLabel {
+            static let top: CGFloat = 16
+            static let left: CGFloat = 24
+            static let right: CGFloat = 24
+            static let height: CGFloat = 50
+        }
+        
+        struct DateLabel {
+            static let top: CGFloat = 5
+            static let left: CGFloat = 24
+            static let right: CGFloat = 24
+            static let height: CGFloat = 14
+        }
+        
+        struct PlaceInfoStackView {
+            static let top: CGFloat = 8
+            static let left: CGFloat = 24
+            static let width: CGFloat = 200
+            static let height: CGFloat = 30
+        }
+        
+        struct TagsStackView {
+            static let top: CGFloat = 10
+            static let left: CGFloat = 24
+            static let right: CGFloat = 24
+            static let height: CGFloat = 20
+        }
+        
+        struct EventImageView {
+            static let top: CGFloat = 12
+            static let left: CGFloat = 12
+            static let right: CGFloat = 12
+            static let height: CGFloat = 180
+        }
+        
+        struct InfoStackVeiws {
+            static let top: CGFloat = 10
+            static let left: CGFloat = 24
+            static let width: CGFloat = 50
+            static let height: CGFloat = 24
+        }
     }
     
     func setupLikeStackView(){
         likeInfoStackVeiw.isUserInteractionEnabled = true
-        likeInfoStackVeiw.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setState)))
-        likeInfoStackVeiw.resignFirstResponder()
+        likeInfoStackVeiw.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                      action: #selector(setState)))
+//        likeInfoStackVeiw.resignFirstResponder()
     }
     
     @objc
-    func setState(at state: Bool) {
-        if state {
-            likeInfoStackVeiw.infoImageView.image = R.image.likes()
-            print("like")
+    func setState() {
+        if isEventLiked == false {
+            likeInfoStackVeiw.infoImageView.image = R.image.likeTapped()
+            isEventLiked = !isEventLiked
+            print("+1")
         } else {
             likeInfoStackVeiw.infoImageView.image = R.image.likes()
+            isEventLiked = !isEventLiked
+            print("-1")
         }
     }
     
@@ -206,21 +260,28 @@ final class EventsInfoCell: UITableViewCell {
                    dateText: String,
                    placeText: String,
                    imageName: String,
-                   likeText: String,
-                   sharedText: String,
-                   watchedText: String) {
+                   likeText: Int,
+                   sharedText: Int,
+                   watchedText: Int,
+                   isLiked: Bool) {
         let image = UIImage(named: imageName)
         
         mainLabel.text = mainText
         dateLabel.text = dateText
         placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
                                               text: placeText)
-        likeInfoStackVeiw.configureStackVeiw(image: R.image.likes.name,
-                                             text: likeText)
+        if isLiked == true {
+            likeInfoStackVeiw.configureStackVeiw(image: R.image.likeTapped.name,
+                                                 text: "\(likeText)")
+        } else {
+            likeInfoStackVeiw.configureStackVeiw(image: R.image.likes.name,
+                                                 text: "\(likeText)")
+        }
         sharedInfoStackView.configureStackVeiw(image: R.image.people.name,
-                                               text: sharedText)
+                                               text: "\(sharedText)")
         watchedInfoStackView.configureStackVeiw(image: R.image.eye.name,
-                                                text: watchedText)
+                                                text: "\(watchedText)")
         eventImageView.image = image
+        isEventLiked = isLiked
     }
 }

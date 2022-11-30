@@ -30,7 +30,7 @@ final class EventsViewController: UIViewController {
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     override func viewDidLoad() {
@@ -96,9 +96,10 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
                        dateText: R.string.localizable.eventDate(),
                        placeText: R.string.localizable.eventPlace(),
                        imageName: R.image.bikes2.name,
-                       likeText: "20",
-                       sharedText: "20",
-                       watchedText: "20")
+                       likeText: 20,
+                       sharedText: 15,
+                       watchedText: 30,
+                       isLiked: false)
         return cell
     }
     
