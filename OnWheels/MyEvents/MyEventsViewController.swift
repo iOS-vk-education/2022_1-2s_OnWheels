@@ -26,18 +26,7 @@ final class MyEventsViewController: UIViewController {
         return table
     }()
     
-    private let competeOrOrganizeSegmentedControl: UISegmentedControl = {
-        let competeOrOrganize = UISegmentedControl(items: ["1",
-                                                           "2"])
-        competeOrOrganize.tintColor = R.color.mainBlue()
-        competeOrOrganize.selectedSegmentTintColor = R.color.mainOrange()
-        competeOrOrganize.backgroundColor = R.color.cellColor()
-        competeOrOrganize.selectedSegmentIndex = 1
-        competeOrOrganize.addTarget(MyEventsViewController.self,
-                                    action: #selector(segmentedValueChanged(_:)),
-                                    for: .valueChanged)
-        return competeOrOrganize
-    }()
+    private let myEventsHeaderView = MyEventsHeader()
     
     init(output: MyEventsViewOutput) {
         self.output = output
@@ -62,10 +51,10 @@ final class MyEventsViewController: UIViewController {
         setupMyEventsTableView()
     }
     
-    @objc
-    func segmentedValueChanged(_ sender:UISegmentedControl){
-        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
-    }
+//    @objc
+//    func segmentedValueChanged(_ sender:UISegmentedControl){
+//        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
+//    }
 }
 
 extension MyEventsViewController: MyEventsViewInput {
@@ -74,36 +63,28 @@ extension MyEventsViewController: MyEventsViewInput {
 extension MyEventsViewController: EventsViewInput {
 }
 
-extension MyEventsViewController {
-    private func setupLayout(){
+private extension MyEventsViewController {
+    func setupLayout(){
         navigationBar.pin
             .top()
             .right()
             .left()
         
-        competeOrOrganizeSegmentedControl.pin
-            .top(to: navigationBar.edge.bottom)
-            .marginTop(104)
-            .left(24)
-            .right(24)
-            .height(36)
-        
         myEventsTableView.pin
-            .top(to: competeOrOrganizeSegmentedControl.edge.bottom)
-            .marginTop(20)
+            .top(to: navigationBar.edge.bottom)
+            .marginTop(32)
             .left(12)
             .right(12)
             .bottom()
     }
     
-    private func setupUI(){
+    func setupUI(){
         view.backgroundColor = .backgroundColor
         view.addSubview(myEventsTableView)
         view.addSubview(navigationBar)
-        view.addSubview(competeOrOrganizeSegmentedControl)
     }
     
-    private func setupMyEventsTableView() {
+    func setupMyEventsTableView() {
         myEventsTableView.separatorStyle = .none
         myEventsTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
         myEventsTableView.showsVerticalScrollIndicator = false
@@ -112,6 +93,16 @@ extension MyEventsViewController {
         myEventsTableView.dataSource = self
         myEventsTableView.register(EventsInfoCell.self)
         myEventsTableView.allowsSelection = true
+        myEventsTableView.tableHeaderView = myEventsHeaderView
+        myEventsTableView.tableHeaderView?.frame.size = CGSize(width: myEventsTableView.frame.width,
+                                                               height: 36)
+        setupHeaderAction()
+    }
+    
+    func setupHeaderAction(){
+        myEventsHeaderView.setAction { sender in
+            print("Selected Segment Index is : \(sender)")
+        }
     }
 }
 
@@ -120,7 +111,7 @@ extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-    
+
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)

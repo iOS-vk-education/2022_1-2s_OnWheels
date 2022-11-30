@@ -60,6 +60,7 @@
 		949A48A9290D37DA0011DF11 /* ProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48A3290D37DA0011DF11 /* ProfileContainer.swift */; };
 		949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */; };
 		94AEFDC92936312000DD3786 /* EventInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEFDC82936312000DD3786 /* EventInfoStackView.swift */; };
+		94AEFDCC2937547000DD3786 /* MyEventsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEFDCB2937547000DD3786 /* MyEventsHeader.swift */; };
 		94B2BF99291E52BA00F864B9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2BF98291E52BA00F864B9 /* R.generated.swift */; };
 		94B2BF9D291E557800F864B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94B2BF9F291E557800F864B9 /* Localizable.strings */; };
 		94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2BFA129211DF500F864B9 /* ProfileFooterCell.swift */; };
@@ -129,6 +130,7 @@
 		949A48A3290D37DA0011DF11 /* ProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainer.swift; sourceTree = "<group>"; };
 		949A48B0290DBADB0011DF11 /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
 		94AEFDC82936312000DD3786 /* EventInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoStackView.swift; sourceTree = "<group>"; };
+		94AEFDCB2937547000DD3786 /* MyEventsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsHeader.swift; sourceTree = "<group>"; };
 		94B2BF98291E52BA00F864B9 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		94B2BF9E291E557800F864B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94B2BFA0291E55A300F864B9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		7F02BD9E2926ABEB00DDA504 /* MyEvents */ = {
 			isa = PBXGroup;
 			children = (
+				94AEFDCA2937545800DD3786 /* Cells */,
 				7F02BD9F2926AC5900DDA504 /* MyEventsPresenter.swift */,
 				7F02BDA02926AC5900DDA504 /* MyEventsRouter.swift */,
 				7F02BDA12926AC5900DDA504 /* MyEventsViewController.swift */,
@@ -296,6 +299,14 @@
 				94B2BFA129211DF500F864B9 /* ProfileFooterCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		94AEFDCA2937545800DD3786 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				94AEFDCB2937547000DD3786 /* MyEventsHeader.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		94B2BF9A291E553D00F864B9 /* Localization */ = {
@@ -563,6 +574,7 @@
 				947DFC31292C032600045932 /* OneEventContainer.swift in Sources */,
 				947DFC2D292C032600045932 /* OneEventRouter.swift in Sources */,
 				5455F98D292B893B00E63E72 /* RegistrationContainer.swift in Sources */,
+				94AEFDCC2937547000DD3786 /* MyEventsHeader.swift in Sources */,
 				949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */,
 				94187A44291D191B00A8163B /* EnterProtocols.swift in Sources */,
 				94187A2A291CFBAA00A8163B /* CoordinatorProtocol.swift in Sources */,
