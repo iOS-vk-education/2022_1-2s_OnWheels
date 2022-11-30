@@ -117,6 +117,7 @@ final class OneEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.background()
+        setupGestureRecognizer()
     }
     
     override func viewDidLayoutSubviews() {
@@ -152,10 +153,15 @@ final class OneEventViewController: UIViewController {
     func backButtonTapped(){
         output.backButtonTapped()
     }
+    
+    @objc
+    func swipeAction(swipe: UISwipeGestureRecognizer) {
+        output.backButtonTapped()
+    }
 }
 
 extension OneEventViewController: OneEventViewInput {
-    func setupLayout(){
+    private func setupLayout(){
         view.addSubview(eventImage)
         eventImage.pin
             .top()
@@ -224,10 +230,16 @@ extension OneEventViewController: OneEventViewInput {
         setupNavBar()
     }
     
-    func setupNavBar (){
+    private func setupNavBar (){
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         let leftNavBarItem = UIBarButtonItem(customView: backButton)
         self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
+    }
+    
+    private func setupGestureRecognizer(){
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        leftSwipe.direction = .right
+        view.addGestureRecognizer(leftSwipe)
     }
     
     struct Constants {

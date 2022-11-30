@@ -12,13 +12,6 @@ import PinLayout
 final class EventsViewController: UIViewController {
     private let output: EventsViewOutput
     
-    private let navigationBar: UINavigationBar = {
-        let navBar = UINavigationBar()
-        navBar.backgroundColor = R.color.background()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mainBlueColor as Any]
-        return navBar
-    }()
-    
     private let eventsTableView = UITableView(frame: .zero, style: .plain)
     
     
@@ -35,7 +28,6 @@ final class EventsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = R.string.localizable.events()
         setupUI()
     }
     
@@ -43,6 +35,7 @@ final class EventsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         setupLayout()
         setupEventsTableView()
+        setupNavigationBar()
     }
 }
 
@@ -51,13 +44,8 @@ extension EventsViewController: EventsViewInput {
 
 extension EventsViewController {
     private func setupLayout(){
-        navigationBar.pin
-            .top()
-            .right()
-            .left()
-        
         eventsTableView.pin
-            .top(to: navigationBar.edge.bottom)
+            .top()
             .marginTop(20)
             .left(12)
             .right(12)
@@ -67,7 +55,13 @@ extension EventsViewController {
     private func setupUI(){
         view.backgroundColor = R.color.background()
         view.addSubview(eventsTableView)
-        view.addSubview(navigationBar)
+    }
+    
+    private func setupNavigationBar(){
+        self.navigationController?.navigationBar.titleTextAttributes =
+        [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold),
+         NSAttributedString.Key.foregroundColor: R.color.mainBlue() ?? .black]
+        self.title = R.string.localizable.events()
     }
     
     private func setupEventsTableView() {

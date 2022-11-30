@@ -13,13 +13,6 @@ import PinLayout
 final class MyEventsViewController: UIViewController {
     private let output: MyEventsViewOutput
     
-    private let navigationBar: UINavigationBar = {
-        let navBar = UINavigationBar()
-        navBar.backgroundColor = .backgroundColor
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mainBlueColor as Any]
-        return navBar
-    }()
-    
     private let myEventsTableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.isUserInteractionEnabled = true
@@ -49,24 +42,18 @@ final class MyEventsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         setupLayout()
         setupMyEventsTableView()
+        setupNavigationBar()
     }
 }
 
 extension MyEventsViewController: MyEventsViewInput {
 }
 
-extension MyEventsViewController: EventsViewInput {
-}
-
 private extension MyEventsViewController {
+    
     func setupLayout(){
-        navigationBar.pin
-            .top()
-            .right()
-            .left()
-        
         myEventsTableView.pin
-            .top(to: navigationBar.edge.bottom)
+            .top()
             .marginTop(Constants.MyEventsTableView.marginTop)
             .left(Constants.MyEventsTableView.left)
             .right(Constants.MyEventsTableView.right)
@@ -76,7 +63,13 @@ private extension MyEventsViewController {
     func setupUI(){
         view.backgroundColor = .backgroundColor
         view.addSubview(myEventsTableView)
-        view.addSubview(navigationBar)
+    }
+    
+    private func setupNavigationBar(){
+        self.navigationController?.navigationBar.titleTextAttributes =
+        [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .bold),
+         NSAttributedString.Key.foregroundColor: R.color.mainBlue() ?? .black]
+        self.title = R.string.localizable.myEvents()
     }
     
     func setupMyEventsTableView() {
