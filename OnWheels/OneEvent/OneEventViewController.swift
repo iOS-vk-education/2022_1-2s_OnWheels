@@ -9,7 +9,7 @@
 import UIKit
 import PinLayout
 
-final class OneEventViewController: UIViewController {
+final class OneEventViewController: UIViewController, UIGestureRecognizerDelegate {
     private let output: OneEventViewOutput
     
     private let eventScrollView: UIScrollView = {
@@ -237,9 +237,8 @@ extension OneEventViewController: OneEventViewInput {
     }
     
     private func setupGestureRecognizer(){
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
-        leftSwipe.direction = .right
-        view.addGestureRecognizer(leftSwipe)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     struct Constants {
