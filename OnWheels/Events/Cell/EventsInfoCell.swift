@@ -36,7 +36,7 @@ final class EventsInfoCell: UITableViewCell {
     }()
     
     private let placeInfoStackVeiw = EventInfoStackView()
-    let likeInfoStackVeiw = EventInfoStackView()
+    private let likeInfoStackVeiw = EventInfoStackView()
     private let sharedInfoStackView = EventInfoStackView()
     private let watchedInfoStackView = EventInfoStackView()
     
@@ -68,6 +68,16 @@ final class EventsInfoCell: UITableViewCell {
             addTags(with: tags)
             isTagsAlreadyDone = true
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        mainLabel.text = ""
+        dateLabel.text = ""
+        placeInfoStackVeiw.infoLabel.text = ""
+        sharedInfoStackView.infoLabel.text = ""
+        watchedInfoStackView.infoLabel.text = ""
+        likeInfoStackVeiw.infoLabel.text = ""
     }
     
     required init?(coder: NSCoder) {
@@ -212,22 +222,18 @@ final class EventsInfoCell: UITableViewCell {
     }
     
     func setupLikeStackView(){
-        likeInfoStackVeiw.isUserInteractionEnabled = true
         likeInfoStackVeiw.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                       action: #selector(setState)))
-//        likeInfoStackVeiw.resignFirstResponder()
     }
     
     @objc
     func setState() {
-        if isEventLiked == false {
+        if !isEventLiked {
             likeInfoStackVeiw.infoImageView.image = R.image.likeTapped()
             isEventLiked = !isEventLiked
-            print("+1")
         } else {
             likeInfoStackVeiw.infoImageView.image = R.image.likes()
             isEventLiked = !isEventLiked
-            print("-1")
         }
     }
     
@@ -256,6 +262,7 @@ final class EventsInfoCell: UITableViewCell {
     ///   - sharedText: Количество поделившихся
     ///   - watchedText: Количество просмторевших
     ///   - imageName: Название картинки
+    ///   - isLiked: Проверка на лайк
     func configure(mainText: String,
                    dateText: String,
                    placeText: String,
@@ -270,7 +277,7 @@ final class EventsInfoCell: UITableViewCell {
         dateLabel.text = dateText
         placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
                                               text: placeText)
-        if isLiked == true {
+        if isLiked {
             likeInfoStackVeiw.configureStackVeiw(image: R.image.likeTapped.name,
                                                  text: "\(likeText)")
         } else {

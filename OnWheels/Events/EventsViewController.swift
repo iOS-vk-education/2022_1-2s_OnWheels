@@ -81,7 +81,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         return 10
     }
     
-    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
         cell.selectionStyle = .none
