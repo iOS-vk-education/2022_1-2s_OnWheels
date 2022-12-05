@@ -2,7 +2,7 @@
 //  EventsContainer.swift
 //  OnWheels
 //
-//  Created by Veronika on 10.11.2022.
+//  Created by Андрей Стрельченко on 10.11.2022.
 //  
 //
 
@@ -13,14 +13,17 @@ final class EventsContainer {
     let viewController: UIViewController
     private(set) weak var router: EventsRouterInput!
     
-    static func assemble(with context: EventsContext) -> EventsContainer {
+    class func assemble(with context: EventsContext) -> EventsContainer {
         let router = EventsRouter()
         let interactor = EventsInteractor()
         let presenter = EventsPresenter(router: router, interactor: interactor)
         let viewController = EventsViewController(output: presenter)
         
         presenter.view = viewController
+        router.window = context.window
+        router.viewController = viewController
         presenter.moduleOutput = context.moduleOutput
+        presenter.view = viewController
         
         interactor.output = presenter
         
@@ -36,4 +39,5 @@ final class EventsContainer {
 
 struct EventsContext {
     weak var moduleOutput: EventsModuleOutput?
+    let window: UIWindow
 }

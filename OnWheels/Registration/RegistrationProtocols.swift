@@ -21,6 +21,7 @@ protocol RegistrationViewInput: AnyObject {
 protocol RegistrationViewOutput: AnyObject {
     /// Обработка нажатия на кнопку зарегистрироваться
     func didTapRegButton()
+    func backButtonAction()
 }
 
 protocol RegistrationInteractorInput: AnyObject {
@@ -32,4 +33,5 @@ protocol RegistrationInteractorOutput: AnyObject {
 protocol RegistrationRouterInput: AnyObject {
     /// Открывает приложение.
     func openApp()
+    func backButtonTapped()
 }
