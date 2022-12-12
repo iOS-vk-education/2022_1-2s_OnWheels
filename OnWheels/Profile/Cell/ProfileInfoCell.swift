@@ -39,7 +39,7 @@ final class ProfileInfoCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     private func setupCell(){

@@ -24,6 +24,13 @@ final class RegistrationViewController: UIViewController {
         }
     }
     
+    private let backButton: UIButton = {
+        let back = UIButton()
+        back.setImage(R.image.backButton(), for: .normal)
+        back.tintColor = R.color.mainBlue()
+        return back
+    }()
+    
     private(set) lazy var bikeImage: UIImageView = {
         let image: UIImage = UIImage(named: R.image.regPic.name) ?? .init()
         var i: UIImageView = .init(image: image)
@@ -156,7 +163,7 @@ final class RegistrationViewController: UIViewController {
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     @objc
@@ -182,8 +189,21 @@ final class RegistrationViewController: UIViewController {
         view.endEditing(true)
     }
     
+    @objc
+    func backButtonTapped(){
+        UIView.animate(withDuration: 0.2){ [weak self] in
+            self?.backButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.backButtonAction()
+                self?.backButton.alpha = 1
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
         
         view.backgroundColor = .systemBackground
         
@@ -192,6 +212,7 @@ final class RegistrationViewController: UIViewController {
         addViews()
         setupBindings()
         setupDatePicker()
+        setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -199,10 +220,15 @@ final class RegistrationViewController: UIViewController {
     }
     
     private func setupBindings() {
-        
         let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapToHide)
         regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+    }
+    
+    func setupNavBar (){
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        let leftNavBarItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
     }
     
     private func setupDatePicker() {
@@ -229,7 +255,14 @@ final class RegistrationViewController: UIViewController {
     
     @objc
     private func didTapRegButton() {
-        output.didTapRegButton()
+        UIView.animate(withDuration: 0.2){ [weak self] in
+            self?.regButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.didTapRegButton()
+                self?.regButton.alpha = 1
+            }
+        }
     }
     
     private func addViews() {
@@ -244,7 +277,7 @@ final class RegistrationViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         scrollView.pin
-            .all(view.pin.safeArea)
+            .all()
         
         bikeImage.pin
             .top()

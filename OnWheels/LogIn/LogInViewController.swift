@@ -21,7 +21,7 @@ class СustomTextField: UITextField {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
 }
 
@@ -139,7 +139,7 @@ final class LogInViewController: UIViewController {
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     @objc
@@ -163,6 +163,7 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .systemBackground
         
         view.addSubview(scrollView)
@@ -171,9 +172,11 @@ final class LogInViewController: UIViewController {
                                regButton, skipLoginButton)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
         setupBinding()
     }
     
@@ -188,17 +191,38 @@ final class LogInViewController: UIViewController {
     
     @objc
     private func didTapSkipLoginButton() {
-        output.didTapNoAccountButton()
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.skipLoginButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.didTapNoAccountButton()
+                self?.skipLoginButton.alpha = 1
+            }
+        }
     }
     
     @objc
     private func didTapLoginButton() {
-        output.didTapLoginButton()
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.enterButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.didTapLoginButton()
+                self?.enterButton.alpha = 1
+            }
+        }
     }
     
     @objc
     private func didTapRegButton() {
-        output.didTapRegButton()
+        UIView.animate(withDuration: 0.2){ [weak self] in
+            self?.regButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.didTapRegButton()
+                self?.regButton.alpha = 1
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {

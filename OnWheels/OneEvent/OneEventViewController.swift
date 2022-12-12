@@ -9,7 +9,7 @@
 import UIKit
 import PinLayout
 
-final class OneEventViewController: UIViewController {
+final class OneEventViewController: UIViewController, UIGestureRecognizerDelegate {
     private let output: OneEventViewOutput
     
     private let eventScrollView: UIScrollView = {
@@ -26,6 +26,7 @@ final class OneEventViewController: UIViewController {
     private let eventImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.layer.masksToBounds = true
         image.image = R.image.oneEventImage()
         return image
     }()
@@ -116,6 +117,7 @@ final class OneEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.background()
+        setupGestureRecognizer()
     }
     
     override func viewDidLayoutSubviews() {
@@ -151,16 +153,21 @@ final class OneEventViewController: UIViewController {
     func backButtonTapped(){
         output.backButtonTapped()
     }
+    
+    @objc
+    func swipeAction(swipe: UISwipeGestureRecognizer) {
+        output.backButtonTapped()
+    }
 }
 
 extension OneEventViewController: OneEventViewInput {
-    func setupLayout(){
+    private func setupLayout(){
         view.addSubview(eventImage)
         eventImage.pin
             .top()
             .height(Constants.EventImage.height)
-            .left()
-            .right()
+            .left(to: view.edge.left)
+            .right(to: view.edge.right)
         
         view.addSubview(eventScrollView)
         eventScrollView.pin
@@ -223,10 +230,15 @@ extension OneEventViewController: OneEventViewInput {
         setupNavBar()
     }
     
-    func setupNavBar (){
+    private func setupNavBar (){
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         let leftNavBarItem = UIBarButtonItem(customView: backButton)
         self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
+    }
+    
+    private func setupGestureRecognizer(){
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     struct Constants {
