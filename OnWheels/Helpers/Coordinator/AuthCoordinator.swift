@@ -47,7 +47,7 @@ extension AuthCoordinator {
         NavControllerType.allCases.forEach { navControllerKey in
             let navigationController = UINavigationController()
             let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithDefaultBackground()
+            navBarAppearance.configureWithOpaqueBackground()
             navigationController.navigationBar.scrollEdgeAppearance = navBarAppearance
             result[navControllerKey] = navigationController
         }

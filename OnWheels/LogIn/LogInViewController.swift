@@ -229,23 +229,33 @@ final class LogInViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         scrollView.pin
-            .all(view.pin.safeArea)
+            .top()
+            .left()
+            .right()
+            .bottom(view.pin.safeArea)
         
-        skipLoginButton.pin
-            .bottom()
-            .marginBottom(8)
+        bikeImage.pin
+            .top()
             .hCenter()
-            .height(Constants.skipLoginButton.height)
-            .sizeToFit(.height)
+            .height(50%)
         
-        regButton.pin
-            .above(of: skipLoginButton)
-            .marginTop(Constants.regTextButton.marginTop)
+        welcomeLabel.pin
+            .top(to: bikeImage.edge.bottom)
+            .marginTop(10)
             .hCenter()
-            .height(Constants.regTextButton.height)
-            .sizeToFit(.height)
-        enterButton.pin
-            .above(of: regButton)
+            .sizeToFit()
+        
+        loginField.pin
+            .top(to: welcomeLabel.edge.bottom)
+            .left()
+            .right()
+            .margin(Constants.block.marginTop,
+                    Constants.block.marginHorizontal,
+                    Constants.block.marginBottom)
+            .height(Constants.block.height)
+        
+        passField.pin
+            .top(to: loginField.edge.bottom)
             .left()
             .right()
             .margin(Constants.block.marginTop,
@@ -254,13 +264,13 @@ final class LogInViewController: UIViewController {
             .height(Constants.block.height)
         
         forgotPassButton.pin
-            .above(of: enterButton)
-            .marginBottom(Constants.forgotPassButton.marginTop)
+            .top(to: passField.edge.bottom)
+            .marginTop(Constants.forgotPassButton.marginTop)
             .right(Constants.forgotPassButton.marginRight)
             .sizeToFit(.height)
         
-        passField.pin
-            .above(of: forgotPassButton)
+        enterButton.pin
+            .top(to: forgotPassButton.edge.bottom)
             .left()
             .right()
             .margin(Constants.block.marginTop,
@@ -268,26 +278,19 @@ final class LogInViewController: UIViewController {
                     Constants.block.marginBottom)
             .height(Constants.block.height)
         
-        loginField.pin
-            .above(of: passField)
-            .left()
-            .right()
-            .margin(Constants.block.marginTop,
-                    Constants.block.marginHorizontal,
-                    Constants.block.marginBottom)
-            .height(Constants.block.height)
-        
-        welcomeLabel.pin
-            .above(of: loginField)
-            .marginBottom(Constants.welcomeLabel.marginTop)
+        regButton.pin
+            .top(to: enterButton.edge.bottom)
+            .marginTop(Constants.regTextButton.marginTop)
             .hCenter()
-            .sizeToFit()
+            .height(Constants.regTextButton.height)
+            .sizeToFit(.height)
         
-        bikeImage.pin
-            .top()
-            .above(of: welcomeLabel)
+        skipLoginButton.pin
+            .top(to: regButton.edge.bottom)
+            .marginTop(Constants.skipLoginButton.marginTop)
             .hCenter()
-        
+            .height(Constants.skipLoginButton.height)
+            .sizeToFit(.height)
     }
 }
 
@@ -320,5 +323,6 @@ private struct Constants {
     
     struct skipLoginButton {
         static let height: CGFloat = 36
+        static let marginTop: CGFloat = 8
     }
 }

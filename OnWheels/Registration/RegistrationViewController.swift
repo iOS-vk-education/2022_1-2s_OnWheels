@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController, UIGestureRecognizerDelegate {
     private let output: RegistrationViewOutput
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -27,7 +27,9 @@ final class RegistrationViewController: UIViewController {
     private let backButton: UIButton = {
         let back = UIButton()
         back.setImage(R.image.backButton(), for: .normal)
+        back.clipsToBounds = true
         back.tintColor = R.color.mainBlue()
+        back.isEnabled = true
         return back
     }()
     
@@ -155,6 +157,8 @@ final class RegistrationViewController: UIViewController {
         return b
     }()
     
+    private let regContentView = UIView()
+    
     init(output: RegistrationViewOutput) {
         self.output = output
         
@@ -203,7 +207,7 @@ final class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
         
         view.backgroundColor = .systemBackground
         
@@ -212,45 +216,18 @@ final class RegistrationViewController: UIViewController {
         addViews()
         setupBindings()
         setupDatePicker()
-        setupNavBar()
+        setupBackButton()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        setupGestureRecognizer()
         
     }
-    
-    private func setupBindings() {
-        let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapToHide)
-        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
-    }
-    
-    func setupNavBar (){
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        let leftNavBarItem = UIBarButtonItem(customView: backButton)
-        self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
-    }
-    
-    private func setupDatePicker() {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame = .init(x: 0, y: 0, width: 300, height: 300)
-        datePicker.preferredDatePickerStyle = .inline
-        datePicker.maximumDate = Date()
-        datePicker.center = view.center
-        birthdateField.inputView = datePicker
-    }
-    
+        
     @objc
     func dateChange(datePicker: UIDatePicker){
         birthdateField.text = formatDate(date: datePicker.date)
-    }
-    
-    func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yy"
-        return formatter.string(from: date)
     }
     
     @objc
@@ -265,26 +242,61 @@ final class RegistrationViewController: UIViewController {
         }
     }
     
-    private func addViews() {
-        scrollView.addSubviews(bikeImage, createLabel, hintLabel, stackView)
-        stackView.addArrangedSubviews(nameField, surnameField)
-        dateGenderStackView.addArrangedSubviews(birthdateField, genderField)
-        stackView.addArrangedSubviews(dateGenderStackView, cityField, emailField,
-                                      passField, passConfField, rulesButton, regButton)
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        setupLayout()
+        
+        let heightFrame = regContentView.frame.height
+        let widthFrame = regContentView.frame.width
+        scrollView.contentSize = CGSize(width: widthFrame,
+                                        height: heightFrame + 150)
+    }
+    
+    private struct Constants {
+        struct textField {
+            static let height: CGFloat = 42
+        }
+        struct hintLabel {
+            static let marginTop: CGFloat = 7
+            static let marginLeft: CGFloat = 43
+        }
+        struct vStackView {
+            static let spacing: CGFloat = 21
+            static let marginTop: CGFloat = 13
+            static let marginHorizontal: CGFloat = 43
+        }
+        struct hStackView {
+            static let spacing: CGFloat = 14
+        }
+    }
+}
+
+private extension RegistrationViewController {
+    func setupLayout() {
         scrollView.pin
             .all()
+        
+        regContentView.pin
+            .top()
+            .left()
+            .right()
+            .bottom()
         
         bikeImage.pin
             .top()
             .left()
             .right()
             .height(view.frame.height / 2)
-        
+            
+        backButton.pin
+            .top(10)
+            .left(20)
+            .width(50)
+            .height(50)
+            .right()
+            .bottom()
+
         createLabel.pin
             .below(of: bikeImage)
             .hCenter()
@@ -307,28 +319,48 @@ final class RegistrationViewController: UIViewController {
                 CGFloat(stackView.arrangedSubviews.count) *
                 (Constants.textField.height + Constants.vStackView.spacing) - Constants.vStackView.spacing)
         
-        scrollView.contentSize = .init(width: view.frame.size.width,
-                                       height: stackView.frame.height + bikeImage.frame.height + 100)
-        
-        
     }
     
-    private struct Constants {
-        struct textField {
-            static let height: CGFloat = 42
-        }
-        struct hintLabel {
-            static let marginTop: CGFloat = 7
-            static let marginLeft: CGFloat = 43
-        }
-        struct vStackView {
-            static let spacing: CGFloat = 21
-            static let marginTop: CGFloat = 13
-            static let marginHorizontal: CGFloat = 43
-        }
-        struct hStackView {
-            static let spacing: CGFloat = 14
-        }
+    func setupBindings() {
+        let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapToHide)
+        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+    }
+    
+    func setupBackButton() {
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
+    
+    func setupGestureRecognizer(){
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    func setupDatePicker() {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        datePicker.frame = .init(x: 0, y: 0, width: 300, height: 300)
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.maximumDate = Date()
+        datePicker.center = view.center
+        birthdateField.inputView = datePicker
+    }
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yy"
+        return formatter.string(from: date)
+    }
+    
+    func addViews() {
+        scrollView.addSubview(regContentView)
+        regContentView.addSubviews(bikeImage, createLabel, hintLabel, stackView)
+        stackView.addArrangedSubviews(nameField, surnameField)
+        dateGenderStackView.addArrangedSubviews(birthdateField, genderField)
+        stackView.addArrangedSubviews(dateGenderStackView, cityField, emailField,
+                                      passField, passConfField, rulesButton, regButton)
+        scrollView.addSubview(backButton)
     }
 }
 
