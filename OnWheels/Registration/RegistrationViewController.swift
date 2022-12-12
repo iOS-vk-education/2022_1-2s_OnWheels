@@ -191,6 +191,7 @@ final class RegistrationViewController: UIViewController {
         
         addViews()
         setupBindings()
+        setupDatePicker()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -213,7 +214,6 @@ final class RegistrationViewController: UIViewController {
         datePicker.maximumDate = Date()
         datePicker.center = view.center
         birthdateField.inputView = datePicker
-        birthdateField.text = formatDate(date: Date()) // todays Date
     }
     
     @objc
@@ -223,7 +223,7 @@ final class RegistrationViewController: UIViewController {
     
     func formatDate(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
+        formatter.dateFormat = "dd.MM.yy"
         return formatter.string(from: date)
     }
     
