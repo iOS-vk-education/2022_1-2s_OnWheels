@@ -119,12 +119,14 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
     private(set) lazy var emailField: СustomTextField = {
         let t: СustomTextField = .init()
         t.placeholder = R.string.localizable.enterEmail()
+        t.keyboardType = .emailAddress
         return t
     }()
     
     private(set) lazy var passField: СustomTextField = {
         let t: СustomTextField = .init()
         t.placeholder = R.string.localizable.createPassword()
+        t.isSecureTextEntry = true
         return t
     }()
     
@@ -159,6 +161,8 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
     
     private let regContentView = UIView()
     
+    let genderData = ["man", "woman"]
+    
     init(output: RegistrationViewOutput) {
         self.output = output
         
@@ -172,21 +176,22 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
     
     @objc
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-                               as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardSize.height
-            scrollView.contentOffset.y += keyboardHeight
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardHeight = keyboardSize.cgRectValue.height
+        if scrollView.frame.origin.y == 0 {
+            UIView.animate(withDuration: 0.3){ [weak self] in
+                self?.scrollView.frame.origin.y -= keyboardHeight
+                self?.view.layoutIfNeeded()
+            }
         }
     }
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-                               as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardSize.height
-            scrollView.contentOffset.y -= keyboardHeight
-        }
+        scrollView.frame.origin.y = 0
     }
+    
     
     @objc
     func dismissKeyboard() {
@@ -217,14 +222,17 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
         setupBindings()
         setupDatePicker()
         setupBackButton()
+        setupGenderField()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        setupObserversForKeyboard()
         setupGestureRecognizer()
-        
     }
-        
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeObserversForKeyboard()
+    }
+    
     @objc
     func dateChange(datePicker: UIDatePicker){
         birthdateField.text = formatDate(date: datePicker.date)
@@ -232,6 +240,7 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
     
     @objc
     private func didTapRegButton() {
+        
         UIView.animate(withDuration: 0.2){ [weak self] in
             self?.regButton.alpha = 0.7
         } completion: { [weak self] finished in
@@ -250,7 +259,7 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
         let heightFrame = regContentView.frame.height
         let widthFrame = regContentView.frame.width
         scrollView.contentSize = CGSize(width: widthFrame,
-                                        height: heightFrame + 150)
+                                        height: heightFrame + 200)
     }
     
     private struct Constants {
@@ -269,8 +278,16 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
         struct hStackView {
             static let spacing: CGFloat = 14
         }
+        
+        struct BackButton {
+            static let marginTop: CGFloat = 10
+            static let marginLeft: CGFloat = 20
+            static let width: CGFloat = 50
+            static let height: CGFloat = 50
+        }
     }
 }
+
 
 private extension RegistrationViewController {
     func setupLayout() {
@@ -288,15 +305,13 @@ private extension RegistrationViewController {
             .left()
             .right()
             .height(view.frame.height / 2)
-            
+        
         backButton.pin
-            .top(10)
-            .left(20)
-            .width(50)
-            .height(50)
-            .right()
-            .bottom()
-
+            .top(Constants.BackButton.marginTop)
+            .left(Constants.BackButton.marginLeft)
+            .width(Constants.BackButton.width)
+            .height(Constants.BackButton.height)
+        
         createLabel.pin
             .below(of: bikeImage)
             .hCenter()
@@ -353,6 +368,14 @@ private extension RegistrationViewController {
         return formatter.string(from: date)
     }
     
+    func setupGenderField() {
+        let genderPicker = UIPickerView()
+        genderPicker.delegate = self
+        genderPicker.dataSource = self
+        genderPicker.frame = .init(x: 0, y: 0, width: 300, height: 300)
+        genderField.inputView = genderPicker
+    }
+    
     func addViews() {
         scrollView.addSubview(regContentView)
         regContentView.addSubviews(bikeImage, createLabel, hintLabel, stackView)
@@ -362,7 +385,44 @@ private extension RegistrationViewController {
                                       passField, passConfField, rulesButton, regButton)
         scrollView.addSubview(backButton)
     }
+    
+    func setupObserversForKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    func removeObserversForKeyboard(){
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: self.view.window)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: self.view.window)
+    }
 }
+
+
+extension RegistrationViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genderData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let row = genderData[row]
+        genderField.text = row
+        return row
+    }
+}
+
+
 
 extension RegistrationViewController: RegistrationViewInput {
 }
