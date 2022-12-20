@@ -10,9 +10,10 @@ import UIKit
 
 final class RegistrationViewController: UIViewController, UIGestureRecognizerDelegate {
     private let output: RegistrationViewOutput
-
+    
     private let backButton: UIButton = {
         let back = UIButton()
+        back.translatesAutoresizingMaskIntoConstraints = false
         back.setImage(R.image.backButton(), for: .normal)
         back.clipsToBounds = true
         back.tintColor = R.color.mainBlue()
@@ -20,14 +21,17 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
         return back
     }()
     
-    private(set) lazy var scrollView: UIScrollView = {
-        let s: UIScrollView = .init()
-        return s
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
     }()
+    
+    private let contentView = UIView()
     
     private let regContentView = RegistrationContentView()
     
-    private let genderData = [ R.string.localizable.man(), R.string.localizable.woman()]
+    private var registrationScrollViewConstraint: NSLayoutConstraint?
     
     init(output: RegistrationViewOutput) {
         self.output = output
@@ -40,24 +44,63 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
         return nil
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
+        
+        view.backgroundColor = .systemBackground
+        addViews()
+        setupLayout()
+        setupBindings()
+        setupBackButton()
+        setupObserversForKeyboard()
+        setupGestureRecognizer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeObserversForKeyboard()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let widthFrame = scrollView.frame.width
+        let height = regContentView.frame.height
+        scrollView.contentSize = CGSize(width: widthFrame,
+                                        height: height)
+    }
+    
+    @objc
+    private func didTapRegButton() {
+        UIView.animate(withDuration: 0.2){ [weak self] in
+            self?.regContentView.registrationButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.didTapRegButton()
+                self?.regContentView.registrationButton.alpha = 1
+            }
+        }
+    }
     @objc
     func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
-        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardHeight = keyboardSize.cgRectValue.height
-        if scrollView.frame.origin.y == 0 {
-            UIView.animate(withDuration: 0.3){ [weak self] in
-                self?.scrollView.frame.origin.y -= keyboardHeight
-                self?.view.layoutIfNeeded()
-            }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        UIView.animate(withDuration: 0.3) {
+            self.scrollView.contentInset = contentInset
         }
     }
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        scrollView.frame.origin.y = 0
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        UIView.animate(withDuration: 0.3) {
+            self.scrollView.contentInset = contentInset
+        }
     }
-    
     
     @objc
     func dismissKeyboard() {
@@ -75,65 +118,33 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
             }
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
-        
-        view.backgroundColor = .systemBackground
-        
-        view.addSubview(scrollView)
-        
-        addViews()
-        setupBindings()
-        setupBackButton()
-        setupObserversForKeyboard()
-        setupGestureRecognizer()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeObserversForKeyboard()
-    }
-    
-    @objc
-    private func didTapRegButton() {
-        UIView.animate(withDuration: 0.2){ [weak self] in
-            self?.regContentView.registrationButton.alpha = 0.7
-        } completion: { [weak self] finished in
-            if finished {
-                self?.output.didTapRegButton()
-                self?.regContentView.registrationButton.alpha = 1
-            }
-        }
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        setupLayout()
-        
-        let widthFrame = regContentView.frame.width
-        let height = regContentView.frame.height
-        scrollView.contentSize = CGSize(width: widthFrame,
-                                        height: height + 100)
-    }
 }
 
 
 private extension RegistrationViewController {
     func setupLayout() {
-        scrollView.pin
-            .all()
+        regContentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            regContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            regContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            regContentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            regContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            regContentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            regContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 70),
+            
+            backButton.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            backButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            backButton.heightAnchor.constraint(equalToConstant: 35),
+            backButton.widthAnchor.constraint(equalToConstant: 35)
+        ])
         
-        regContentView.pin
-            .all()
-        
-        backButton.pin
-            .top()
-            .left(20)
-            .height(35)
-            .width(35)
+        registrationScrollViewConstraint = scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        //        registrationScrollViewConstraint?.isActive = true
     }
     
     func setupBindings() {
@@ -152,6 +163,7 @@ private extension RegistrationViewController {
     }
     
     func addViews() {
+        view.addSubview(scrollView)
         scrollView.addSubview(regContentView)
         scrollView.addSubview(backButton)
     }

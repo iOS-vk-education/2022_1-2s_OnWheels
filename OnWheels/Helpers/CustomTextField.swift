@@ -15,6 +15,7 @@ class СustomTextField: UITextField {
         self.layer.borderColor = UIColor.systemGray3.cgColor
         self.layer.borderWidth = 1
         self.layer.cornerRadius = 4
+        self.spellCheckingType = .no
     }
     
     required init?(coder: NSCoder) {

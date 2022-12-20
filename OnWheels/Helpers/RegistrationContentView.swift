@@ -9,13 +9,13 @@ import UIKit
 final class RegistrationContentView: UIView {
     
     private let placeholders: [String] = [R.string.localizable.enterName(),
-                                  R.string.localizable.enterSurname(),
-                                  R.string.localizable.birthdate(),
-                                  R.string.localizable.sex(),
-                                  R.string.localizable.enterCity(),
-                                  R.string.localizable.enterEmail(),
-                                  R.string.localizable.enterPassword(),
-                                  R.string.localizable.confirmPassword()]
+                                          R.string.localizable.enterSurname(),
+                                          R.string.localizable.birthdate(),
+                                          R.string.localizable.sex(),
+                                          R.string.localizable.enterCity(),
+                                          R.string.localizable.enterEmail(),
+                                          R.string.localizable.enterPassword(),
+                                          R.string.localizable.confirmPassword()]
     private let genderData = [ R.string.localizable.man(), R.string.localizable.woman()]
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -35,13 +35,13 @@ final class RegistrationContentView: UIView {
         let bike = UIImageView()
         bike.translatesAutoresizingMaskIntoConstraints = false
         bike.image = R.image.regPic()
-//        if traitCollection.userInterfaceStyle == .dark {
-//            let startImage = CIImage(image: bike)
-//            let filter = CIFilter(name: "CIColorInvert")
-//            filter?.setValue(startImage, forKey: kCIInputImageKey)
-//            let newImage = UIImage(ciImage: filter?.outputImage ?? .empty())
-//            bike.image = newImage
-//        }
+        //        if traitCollection.userInterfaceStyle == .dark {
+        //            let startImage = CIImage(image: bike)
+        //            let filter = CIFilter(name: "CIColorInvert")
+        //            filter?.setValue(startImage, forKey: kCIInputImageKey)
+        //            let newImage = UIImage(ciImage: filter?.outputImage ?? .empty())
+        //            bike.image = newImage
+        //        }
         bike.contentMode = .scaleAspectFit
         return bike
     }()
@@ -65,15 +65,15 @@ final class RegistrationContentView: UIView {
     }()
     
     private(set) lazy var textFields: [СustomTextField] = {
-            var textFields = [СustomTextField]()
-            for value in 0..<8 {
-                let text = СustomTextField()
-                text.translatesAutoresizingMaskIntoConstraints = false
-                text.tag = value + 1
-                text.autocorrectionType = .no
-                textFields.append(text)
-            }
-            return textFields
+        var textFields = [СustomTextField]()
+        for value in 0..<8 {
+            let text = СustomTextField()
+            text.translatesAutoresizingMaskIntoConstraints = false
+            text.tag = value + 1
+            text.autocorrectionType = .no
+            textFields.append(text)
+        }
+        return textFields
     }()
     
     private let birthdayGenderStackView: UIStackView = {
@@ -111,7 +111,7 @@ final class RegistrationContentView: UIView {
         registration.tintColor = R.color.mainBlue()
         return registration
     }()
-        
+    
     override init(frame: CGRect){
         super.init(frame: frame)
         setupConstraints()
@@ -121,9 +121,8 @@ final class RegistrationContentView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        return nil
     }
-
 }
 
 extension RegistrationContentView {
@@ -159,7 +158,7 @@ extension RegistrationContentView {
                         birthdayGenderStackView.topAnchor.constraint(equalTo: textFields[1].bottomAnchor, constant: 11),
                         birthdayGenderStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 43),
                         birthdayGenderStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor,
-                                                                         constant: -43),
+                                                                          constant: -43),
                         birthdayGenderStackView.heightAnchor.constraint(equalToConstant: 42)
                     ])
                 } else {
@@ -212,8 +211,9 @@ extension RegistrationContentView {
     func setupDatePicker() {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame = .init(x: 0, y: 0, width: 300, height: 300)
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)),
+                             for: UIControl.Event.valueChanged)
+        datePicker.frame = .init(x: 0, y: 0, width: 300, height: 342)
         datePicker.preferredDatePickerStyle = .inline
         datePicker.maximumDate = Date()
         datePicker.center = self.center
