@@ -49,4 +49,6 @@
 "confirmPassword" = "Confirm your password";
 "acceptRules" = "By registering, I agree with";
 "acceptRules2" = "\n user agreement";
+"man" = "man";
+"woman" = "woman";
 

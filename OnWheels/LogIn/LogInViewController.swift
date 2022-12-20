@@ -9,22 +9,6 @@
 import UIKit
 import PinLayout
 
-class СustomTextField: UITextField {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.borderStyle = .roundedRect
-        self.backgroundColor = .secondarySystemBackground
-        self.font = .systemFont(ofSize: 13)
-        self.layer.borderColor = UIColor.systemGray3.cgColor
-        self.layer.borderWidth = 1
-        self.layer.cornerRadius = 4
-    }
-    
-    required init?(coder: NSCoder) {
-        return nil
-    }
-}
-
 final class LogInViewController: UIViewController {
     private let output: LogInViewOutput
     
@@ -262,10 +246,11 @@ private extension LogInViewController {
             .top()
             .left()
             .right()
-            .bottom(view.pin.safeArea)
+            .bottom()
         
         bikeImage.pin
-            .top()
+            .top(to: scrollView.edge.top)
+            .marginTop(-20)
             .hCenter()
             .height(Constants.BikeImage.height)
         
@@ -330,7 +315,7 @@ extension LogInViewController: LogInViewInput {
 private struct Constants {
     
     struct WelcomeLabel {
-        static let marginTop: CGFloat = 10
+        static let marginTop: CGFloat = 0
     }
     
     struct BikeImage {
