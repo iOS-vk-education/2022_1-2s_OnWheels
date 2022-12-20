@@ -9,21 +9,6 @@
 import UIKit
 import PinLayout
 
-class СustomTextField: UITextField {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.borderStyle = .roundedRect
-        self.backgroundColor = .secondarySystemBackground
-        self.font = .systemFont(ofSize: 13)
-        self.layer.borderColor = UIColor.systemGray3.cgColor
-        self.layer.borderWidth = 1
-        self.layer.cornerRadius = 4
-    }
-    
-    required init?(coder: NSCoder) {
-        return nil
-    }
-}
 
 final class LogInViewController: UIViewController {
     private let output: LogInViewOutput
@@ -79,6 +64,7 @@ final class LogInViewController: UIViewController {
     private(set) lazy var passField: СustomTextField = {
         let t: СustomTextField = .init()
         t.placeholder = R.string.localizable.enterPassword()
+        t.isSecureTextEntry = true
         return t
     }()
     
@@ -144,16 +130,20 @@ final class LogInViewController: UIViewController {
     
     @objc
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-                               as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardSize.height
-            scrollView.contentOffset.y = keyboardHeight
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardHeight = keyboardSize.cgRectValue.height
+        if scrollView.frame.origin.y == 0 {
+            UIView.animate(withDuration: 0.3){ [weak self] in
+                self?.scrollView.frame.origin.y -= keyboardHeight
+                self?.view.layoutIfNeeded()
+            }
         }
     }
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentOffset.y = .zero
+        scrollView.frame.origin.y = 0
     }
     
     @objc
@@ -170,27 +160,13 @@ final class LogInViewController: UIViewController {
         scrollView.addSubviews(bikeImage, welcomeLabel, loginField,
                                passField, forgotPassButton, enterButton,
                                regButton, skipLoginButton)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        setupObserversForKeyboard()
         setupBinding()
-    }
-    
-    private func setupBinding() {
-        let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapToHide)
-        
-        enterButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
-        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
-        skipLoginButton.addTarget(self, action: #selector(didTapSkipLoginButton), for: .touchUpInside)
     }
     
     @objc
     private func didTapSkipLoginButton() {
+        view.endEditing(true)
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.skipLoginButton.alpha = 0.7
         } completion: { [weak self] finished in
@@ -203,6 +179,7 @@ final class LogInViewController: UIViewController {
     
     @objc
     private func didTapLoginButton() {
+        view.endEditing(true)
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.enterButton.alpha = 0.7
         } completion: { [weak self] finished in
@@ -215,6 +192,7 @@ final class LogInViewController: UIViewController {
     
     @objc
     private func didTapRegButton() {
+        view.endEditing(true)
         UIView.animate(withDuration: 0.2){ [weak self] in
             self?.regButton.alpha = 0.7
         } completion: { [weak self] finished in
@@ -227,67 +205,108 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        setupLayout()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeObserversForKeyboard()
+    }
+}
+
+private extension LogInViewController {
+    func setupObserversForKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    func removeObserversForKeyboard(){
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: self.view.window)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: self.view.window)
+    }
+    
+    func setupBinding() {
+        let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapToHide)
         
+        enterButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+        skipLoginButton.addTarget(self, action: #selector(didTapSkipLoginButton), for: .touchUpInside)
+    }
+    
+    func setupLayout() {
         scrollView.pin
-            .all(view.pin.safeArea)
-        
-        skipLoginButton.pin
+            .top()
+            .left()
+            .right()
             .bottom()
-            .marginBottom(8)
+        
+        bikeImage.pin
+            .top(to: scrollView.edge.top)
+            .marginTop(-20)
             .hCenter()
-            .height(Constants.skipLoginButton.height)
-            .sizeToFit(.height)
-        
-        regButton.pin
-            .above(of: skipLoginButton)
-            .marginTop(Constants.regTextButton.marginTop)
-            .hCenter()
-            .height(Constants.regTextButton.height)
-            .sizeToFit(.height)
-        enterButton.pin
-            .above(of: regButton)
-            .left()
-            .right()
-            .margin(Constants.block.marginTop,
-                    Constants.block.marginHorizontal,
-                    Constants.block.marginBottom)
-            .height(Constants.block.height)
-        
-        forgotPassButton.pin
-            .above(of: enterButton)
-            .marginBottom(Constants.forgotPassButton.marginTop)
-            .right(Constants.forgotPassButton.marginRight)
-            .sizeToFit(.height)
-        
-        passField.pin
-            .above(of: forgotPassButton)
-            .left()
-            .right()
-            .margin(Constants.block.marginTop,
-                    Constants.block.marginHorizontal,
-                    Constants.block.marginBottom)
-            .height(Constants.block.height)
-        
-        loginField.pin
-            .above(of: passField)
-            .left()
-            .right()
-            .margin(Constants.block.marginTop,
-                    Constants.block.marginHorizontal,
-                    Constants.block.marginBottom)
-            .height(Constants.block.height)
+            .height(Constants.BikeImage.height)
         
         welcomeLabel.pin
-            .above(of: loginField)
-            .marginBottom(Constants.welcomeLabel.marginTop)
+            .top(to: bikeImage.edge.bottom)
+            .marginTop(Constants.WelcomeLabel.marginTop)
             .hCenter()
             .sizeToFit()
         
-        bikeImage.pin
-            .top()
-            .above(of: welcomeLabel)
-            .hCenter()
+        loginField.pin
+            .top(to: welcomeLabel.edge.bottom)
+            .left()
+            .right()
+            .margin(Constants.Block.marginTop,
+                    Constants.Block.marginHorizontal,
+                    Constants.Block.marginBottom)
+            .height(Constants.Block.height)
         
+        passField.pin
+            .top(to: loginField.edge.bottom)
+            .left()
+            .right()
+            .margin(Constants.Block.marginTop,
+                    Constants.Block.marginHorizontal,
+                    Constants.Block.marginBottom)
+            .height(Constants.Block.height)
+        
+        forgotPassButton.pin
+            .top(to: passField.edge.bottom)
+            .marginTop(Constants.ForgotPassButton.marginTop)
+            .right(Constants.ForgotPassButton.marginRight)
+            .sizeToFit(.height)
+        
+        enterButton.pin
+            .top(to: forgotPassButton.edge.bottom)
+            .left()
+            .right()
+            .margin(Constants.Block.marginTop,
+                    Constants.Block.marginHorizontal,
+                    Constants.Block.marginBottom)
+            .height(Constants.Block.height)
+        
+        regButton.pin
+            .top(to: enterButton.edge.bottom)
+            .marginTop(Constants.RegTextButton.marginTop)
+            .hCenter()
+            .height(Constants.RegTextButton.height)
+            .sizeToFit(.height)
+        
+        skipLoginButton.pin
+            .top(to: regButton.edge.bottom)
+            .marginTop(Constants.SkipLoginButton.marginTop)
+            .hCenter()
+            .height(Constants.SkipLoginButton.height)
+            .sizeToFit(.height)
     }
 }
 
@@ -296,29 +315,34 @@ extension LogInViewController: LogInViewInput {
 
 private struct Constants {
     
-    struct welcomeLabel {
-        static let marginTop: CGFloat = 21
+    struct WelcomeLabel {
+        static let marginTop: CGFloat = 0
     }
     
-    struct block {
+    struct BikeImage {
+        static let height: Percent = 50%
+    }
+    
+    struct Block {
         static let marginTop: CGFloat = 21
         static let marginHorizontal: CGFloat = 43
         static let marginBottom: CGFloat = 21
         static let height: CGFloat = 42
     }
     
-    struct forgotPassButton {
+    struct ForgotPassButton {
         static let marginTop: CGFloat = 21
         static let marginRight: CGFloat = 43
         static let width: CGFloat = 105
     }
     
-    struct regTextButton {
+    struct RegTextButton {
         static let marginTop: CGFloat = 16
         static let height: CGFloat = 18
     }
     
-    struct skipLoginButton {
+    struct SkipLoginButton {
         static let height: CGFloat = 36
+        static let marginTop: CGFloat = 8
     }
 }

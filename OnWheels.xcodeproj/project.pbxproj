@@ -45,6 +45,8 @@
 		94187A44291D191B00A8163B /* EnterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A3E291D191B00A8163B /* EnterProtocols.swift */; };
 		94187A45291D191B00A8163B /* EnterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A3F291D191B00A8163B /* EnterInteractor.swift */; };
 		94187A46291D191B00A8163B /* EnterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A40291D191B00A8163B /* EnterContainer.swift */; };
+		942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */; };
+		942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCF12950DE4F00A13511 /* CustomTextField.swift */; };
 		947DFC2C292C032600045932 /* OneEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC26292C032600045932 /* OneEventPresenter.swift */; };
 		947DFC2D292C032600045932 /* OneEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC27292C032600045932 /* OneEventRouter.swift */; };
 		947DFC2E292C032600045932 /* OneEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC28292C032600045932 /* OneEventViewController.swift */; };
@@ -115,6 +117,8 @@
 		94187A3E291D191B00A8163B /* EnterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterProtocols.swift; sourceTree = "<group>"; };
 		94187A3F291D191B00A8163B /* EnterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInteractor.swift; sourceTree = "<group>"; };
 		94187A40291D191B00A8163B /* EnterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterContainer.swift; sourceTree = "<group>"; };
+		942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationContentView.swift; sourceTree = "<group>"; };
+		942FBCF12950DE4F00A13511 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		947DFC26292C032600045932 /* OneEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventPresenter.swift; sourceTree = "<group>"; };
 		947DFC27292C032600045932 /* OneEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventRouter.swift; sourceTree = "<group>"; };
 		947DFC28292C032600045932 /* OneEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventViewController.swift; sourceTree = "<group>"; };
@@ -332,9 +336,11 @@
 				94187A22291CF95B00A8163B /* Coordinator */,
 				94E574942917C82F00EF9585 /* ColorExtension.swift */,
 				94E574972917CA0600EF9585 /* ReuseIdentifier.swift */,
+				942FBCF12950DE4F00A13511 /* CustomTextField.swift */,
 				947DFC32292C063600045932 /* EventTagView.swift */,
 				94FB88CE292CDA2C00A567C6 /* EventMapView.swift */,
 				94AEFDC82936312000DD3786 /* EventInfoStackView.swift */,
+				942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -565,8 +571,10 @@
 				947DFC2C292C032600045932 /* OneEventPresenter.swift in Sources */,
 				5455F994292B8A2600E63E72 /* UIView+Extensions.swift in Sources */,
 				5455F982292B893300E63E72 /* LogInPresenter.swift in Sources */,
+				942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */,
 				949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */,
 				947DFC30292C032600045932 /* OneEventInteractor.swift in Sources */,
+				942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */,
 				94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */,
 				7F02BDA62926AC5900DDA504 /* MyEventsRouter.swift in Sources */,
 				94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */,

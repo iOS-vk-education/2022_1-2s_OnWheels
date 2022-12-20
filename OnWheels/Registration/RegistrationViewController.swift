@@ -8,152 +8,30 @@
 
 import UIKit
 
-final class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController, UIGestureRecognizerDelegate {
     private let output: RegistrationViewOutput
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        let image: UIImage = UIImage(named: R.image.regPic.name) ?? .init()
-        let startImage = CIImage(image: image)
-        if traitCollection.userInterfaceStyle == .dark {
-            let filter = CIFilter(name: "CIColorInvert")
-            filter?.setValue(startImage, forKey: kCIInputImageKey)
-            let newImage = UIImage(ciImage: filter?.outputImage ?? .empty())
-            bikeImage.image = newImage
-        } else {
-            bikeImage.image = image
-        }
-    }
     
     private let backButton: UIButton = {
         let back = UIButton()
+        back.translatesAutoresizingMaskIntoConstraints = false
         back.setImage(R.image.backButton(), for: .normal)
+        back.clipsToBounds = true
         back.tintColor = R.color.mainBlue()
+        back.isEnabled = true
         return back
     }()
     
-    private(set) lazy var bikeImage: UIImageView = {
-        let image: UIImage = UIImage(named: R.image.regPic.name) ?? .init()
-        var i: UIImageView = .init(image: image)
-        if traitCollection.userInterfaceStyle == .dark {
-            let startImage = CIImage(image: image)
-            let filter = CIFilter(name: "CIColorInvert")
-            filter?.setValue(startImage, forKey: kCIInputImageKey)
-            let newImage = UIImage(ciImage: filter?.outputImage ?? .empty())
-            i.image = newImage
-        }
-        i.contentMode = .scaleAspectFit
-        return i
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
     }()
     
-    private(set) lazy var scrollView: UIScrollView = {
-        let s: UIScrollView = .init()
-        return s
-    }()
+    private let contentView = UIView()
     
-    private(set) lazy var createLabel: UILabel = {
-        let l: UILabel = .init()
-        l.text = R.string.localizable.createAccount()
-        l.numberOfLines = 0
-        l.font = .systemFont(ofSize: 24, weight: .medium)
-        l.textAlignment = .center
-        return l
-    }()
+    private let regContentView = RegistrationContentView()
     
-    private(set) lazy var hintLabel: UILabel = {
-        let l: UILabel = .init()
-        l.text = R.string.localizable.fillFields()
-        l.numberOfLines = 0
-        l.font = .systemFont(ofSize: 14, weight: .light)
-        l.textAlignment = .center
-        return l
-    }()
-    
-    private(set) lazy var stackView: UIStackView = {
-        let s: UIStackView = .init()
-        s.axis = .vertical
-        s.spacing = Constants.vStackView.spacing
-        s.distribution = .fillEqually
-        return s
-    }()
-    
-    private(set) lazy var nameField: СustomTextField = {
-        let t: СustomTextField = .init()
-        t.placeholder = R.string.localizable.enterName()
-        return t
-    }()
-    
-    private(set) lazy var surnameField: СustomTextField = {
-        let t: СustomTextField = .init()
-        t.placeholder = R.string.localizable.enterSurname()
-        return t
-    }()
-    
-    private(set) lazy var dateGenderStackView: UIStackView = {
-        let s: UIStackView = .init()
-        s.axis = .horizontal
-        s.spacing = Constants.hStackView.spacing
-        s.distribution = .fillProportionally
-        return s
-    }()
-    
-    private(set) lazy var birthdateField: СustomTextField = {
-        let t: СustomTextField = .init()
-        t.placeholder = R.string.localizable.birthdate()
-        return t
-    }()
-    
-    private(set) lazy var genderField: СustomTextField = {
-        let t: СustomTextField = .init()
-        t.placeholder = R.string.localizable.sex()
-        return t
-    }()
-    
-    private(set) lazy var cityField: СustomTextField = {
-        let t: СustomTextField = .init()
-        t.placeholder = R.string.localizable.enterCity()
-        return t
-    }()
-    
-    private(set) lazy var emailField: СustomTextField = {
-        let t: СustomTextField = .init()
-        t.placeholder = R.string.localizable.enterEmail()
-        return t
-    }()
-    
-    private(set) lazy var passField: СustomTextField = {
-        let t: СustomTextField = .init()
-        t.placeholder = R.string.localizable.createPassword()
-        return t
-    }()
-    
-    private(set) lazy var passConfField: СustomTextField = {
-        let t: СustomTextField = .init()
-        t.placeholder = R.string.localizable.confirmPassword()
-        return t
-    }()
-    
-    private(set) lazy var rulesButton: UIButton = {
-        let b: UIButton = .init()
-        var attrString0 = NSMutableAttributedString(string: R.string.localizable.acceptRules(),
-                                                    attributes:[
-                                                        .font: UIFont.systemFont(ofSize: 15)])
-        let attrString1 = NSAttributedString(string: R.string.localizable.acceptRules2(),
-                                             attributes:[
-                                                .font: UIFont.systemFont(ofSize: 15),
-                                                .foregroundColor: UIColor.systemBlue])
-        attrString0.append(attrString1)
-        b.setAttributedTitle(attrString0, for: .normal)
-        b.titleLabel?.numberOfLines = 0
-        b.titleLabel?.textAlignment = .center
-        return b
-    }()
-    
-    private(set) lazy var regButton: UIButton = {
-        let b: UIButton = .init(configuration: .filled())
-        b.titleLabel?.font = .systemFont(ofSize: 20)
-        b.setTitle(R.string.localizable.register(), for: .normal)
-        return b
-    }()
+    private var registrationScrollViewConstraint: NSLayoutConstraint?
     
     init(output: RegistrationViewOutput) {
         self.output = output
@@ -166,21 +44,61 @@ final class RegistrationViewController: UIViewController {
         return nil
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
+        
+        view.backgroundColor = .systemBackground
+        addViews()
+        setupLayout()
+        setupBindings()
+        setupBackButton()
+        setupObserversForKeyboard()
+        setupGestureRecognizer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeObserversForKeyboard()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let widthFrame = scrollView.frame.width
+        let height = regContentView.frame.height
+        scrollView.contentSize = CGSize(width: widthFrame,
+                                        height: height)
+    }
+    
+    @objc
+    private func didTapRegButton() {
+        UIView.animate(withDuration: 0.2){ [weak self] in
+            self?.regContentView.registrationButton.alpha = 0.7
+        } completion: { [weak self] finished in
+            if finished {
+                self?.output.didTapRegButton()
+                self?.regContentView.registrationButton.alpha = 1
+            }
+        }
+    }
     @objc
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-                               as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardSize.height
-            scrollView.contentOffset.y += keyboardHeight
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        UIView.animate(withDuration: 0.3) {
+            self.scrollView.contentInset = contentInset
         }
     }
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
-                               as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardSize.height
-            scrollView.contentOffset.y -= keyboardHeight
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        UIView.animate(withDuration: 0.3) {
+            self.scrollView.contentInset = contentInset
         }
     }
     
@@ -200,135 +118,72 @@ final class RegistrationViewController: UIViewController {
             }
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
+}
+
+
+private extension RegistrationViewController {
+    func setupLayout() {
+        regContentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            regContentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            regContentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            regContentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            regContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            regContentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            regContentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 70),
+            
+            backButton.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            backButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            backButton.heightAnchor.constraint(equalToConstant: 35),
+            backButton.widthAnchor.constraint(equalToConstant: 35)
+        ])
         
-        view.backgroundColor = .systemBackground
-        
-        view.addSubview(scrollView)
-        
-        addViews()
-        setupBindings()
-        setupNavBar()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
+        registrationScrollViewConstraint = scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        //        registrationScrollViewConstraint?.isActive = true
     }
     
-    private func setupBindings() {
+    func setupBindings() {
         let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapToHide)
-        regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+        regContentView.registrationButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
     }
     
-    func setupNavBar (){
+    func setupBackButton() {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        let leftNavBarItem = UIBarButtonItem(customView: backButton)
-        self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
     }
     
-    private func setupDatePicker() {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame = .init(x: 0, y: 0, width: 300, height: 300)
-        datePicker.preferredDatePickerStyle = .inline
-        datePicker.maximumDate = Date()
-        datePicker.center = view.center
-        birthdateField.inputView = datePicker
-        birthdateField.text = formatDate(date: Date()) // todays Date
+    func setupGestureRecognizer(){
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
-    @objc
-    func dateChange(datePicker: UIDatePicker){
-        birthdateField.text = formatDate(date: datePicker.date)
+    func addViews() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(regContentView)
+        scrollView.addSubview(backButton)
     }
     
-    func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        return formatter.string(from: date)
+    func setupObserversForKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
-    @objc
-    private func didTapRegButton() {
-        UIView.animate(withDuration: 0.2){ [weak self] in
-            self?.regButton.alpha = 0.7
-        } completion: { [weak self] finished in
-            if finished {
-                self?.output.didTapRegButton()
-                self?.regButton.alpha = 1
-            }
-        }
-    }
-    
-    private func addViews() {
-        scrollView.addSubviews(bikeImage, createLabel, hintLabel, stackView)
-        stackView.addArrangedSubviews(nameField, surnameField)
-        dateGenderStackView.addArrangedSubviews(birthdateField, genderField)
-        stackView.addArrangedSubviews(dateGenderStackView, cityField, emailField,
-                                      passField, passConfField, rulesButton, regButton)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        scrollView.pin
-            .all(view.pin.safeArea)
-        
-        bikeImage.pin
-            .top()
-            .left()
-            .right()
-            .height(view.frame.height / 2)
-        
-        createLabel.pin
-            .below(of: bikeImage)
-            .hCenter()
-            .sizeToFit()
-        
-        hintLabel.pin
-            .below(of: createLabel)
-            .left()
-            .marginTop(Constants.hintLabel.marginTop)
-            .marginLeft(Constants.hintLabel.marginLeft)
-            .sizeToFit()
-        
-        stackView.pin
-            .below(of: hintLabel)
-            .left()
-            .right()
-            .marginTop(Constants.vStackView.marginTop)
-            .marginHorizontal(Constants.vStackView.marginHorizontal)
-            .height(
-                CGFloat(stackView.arrangedSubviews.count) *
-                (Constants.textField.height + Constants.vStackView.spacing) - Constants.vStackView.spacing)
-        
-        scrollView.contentSize = .init(width: view.frame.size.width,
-                                       height: stackView.frame.height + bikeImage.frame.height + 100)
-        
-        
-    }
-    
-    private struct Constants {
-        struct textField {
-            static let height: CGFloat = 42
-        }
-        struct hintLabel {
-            static let marginTop: CGFloat = 7
-            static let marginLeft: CGFloat = 43
-        }
-        struct vStackView {
-            static let spacing: CGFloat = 21
-            static let marginTop: CGFloat = 13
-            static let marginHorizontal: CGFloat = 43
-        }
-        struct hStackView {
-            static let spacing: CGFloat = 14
-        }
+    func removeObserversForKeyboard(){
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: self.view.window)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: self.view.window)
     }
 }
 
