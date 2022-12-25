@@ -20,7 +20,7 @@ protocol LogInViewInput: AnyObject {
 
 protocol LogInViewOutput: AnyObject {
     /// Обработка нажатия на кнопку войти
-    func didTapLoginButton()
+    func didTapLoginButton(email: String, password: String)
     /// Обработка нажатия на кнопку регистрации
     func didTapRegButton()
     /// Обработка нажатия на кнопку забытия пароля
@@ -30,9 +30,12 @@ protocol LogInViewOutput: AnyObject {
 }
 
 protocol LogInInteractorInput: AnyObject {
+    func enterButtonPressed(email: String, password: String)
 }
 
 protocol LogInInteractorOutput: AnyObject {
+    func authorized()
+    func notAuthorized(withReason reason: String)
 }
 
 protocol LogInRouterInput: AnyObject {

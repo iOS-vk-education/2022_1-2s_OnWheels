@@ -27,9 +27,9 @@ extension LogInPresenter: LogInModuleInput {
 
 extension LogInPresenter: LogInViewOutput {
     
-    func didTapLoginButton() {
+    func didTapLoginButton(email: String, password: String) {
         //логика входа
-        router.openApp()
+        interactor.enterButtonPressed(email: "", password: "")
     }
     
     func didTapForgotPassButton() {
@@ -45,6 +45,12 @@ extension LogInPresenter: LogInViewOutput {
     }
     
 }
-
 extension LogInPresenter: LogInInteractorOutput {
+    func authorized() {
+        router.openApp()
+    }
+    
+    func notAuthorized(withReason reason: String) {
+        print("\(reason)")
+    }
 }

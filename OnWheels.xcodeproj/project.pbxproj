@@ -51,8 +51,13 @@
 		941E987C2955F3C90068F802 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E987B2955F3C90068F802 /* ParameterEncoding.swift */; };
 		941E987E2955F4AE0068F802 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E987D2955F4AE0068F802 /* URLParameterEncoder.swift */; };
 		941E98802955F70E0068F802 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E987F2955F70E0068F802 /* JSONParameterEncoder.swift */; };
-		941E98822955F7DB0068F802 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E98812955F7DB0068F802 /* NetworkManager.swift */; };
+		941E98822955F7DB0068F802 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E98812955F7DB0068F802 /* NetworkRouter.swift */; };
 		941E98842955F8CB0068F802 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E98832955F8CB0068F802 /* Router.swift */; };
+		941E9886295600700068F802 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E9885295600700068F802 /* NetworkManager.swift */; };
+		941E9888295721CE0068F802 /* UserEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E9887295721CE0068F802 /* UserEndPoint.swift */; };
+		941E988A295724470068F802 /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E9889295724470068F802 /* NetworkEnvironment.swift */; };
+		941E988D295729220068F802 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E988C295729220068F802 /* UserModel.swift */; };
+		941E989029573E610068F802 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E988F29573E610068F802 /* UserNetworkManager.swift */; };
 		942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */; };
 		942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCF12950DE4F00A13511 /* CustomTextField.swift */; };
 		947DFC2C292C032600045932 /* OneEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC26292C032600045932 /* OneEventPresenter.swift */; };
@@ -131,8 +136,13 @@
 		941E987B2955F3C90068F802 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		941E987D2955F4AE0068F802 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		941E987F2955F70E0068F802 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
-		941E98812955F7DB0068F802 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		941E98812955F7DB0068F802 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
 		941E98832955F8CB0068F802 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		941E9885295600700068F802 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		941E9887295721CE0068F802 /* UserEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndPoint.swift; sourceTree = "<group>"; };
+		941E9889295724470068F802 /* NetworkEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnvironment.swift; sourceTree = "<group>"; };
+		941E988C295729220068F802 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		941E988F29573E610068F802 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationContentView.swift; sourceTree = "<group>"; };
 		942FBCF12950DE4F00A13511 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		947DFC26292C032600045932 /* OneEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventPresenter.swift; sourceTree = "<group>"; };
@@ -303,8 +313,9 @@
 				941E98752955F2250068F802 /* EndPointType.swift */,
 				941E98772955F29E0068F802 /* HTTPMethod.swift */,
 				941E98792955F3060068F802 /* HTTPTask.swift */,
-				941E98812955F7DB0068F802 /* NetworkManager.swift */,
+				941E98812955F7DB0068F802 /* NetworkRouter.swift */,
 				941E98832955F8CB0068F802 /* Router.swift */,
+				941E9889295724470068F802 /* NetworkEnvironment.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -312,6 +323,7 @@
 		941E98722955F1F20068F802 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
+				941E9887295721CE0068F802 /* UserEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -319,6 +331,7 @@
 		941E98732955F2000068F802 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				941E9885295600700068F802 /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -331,6 +344,22 @@
 				941E987F2955F70E0068F802 /* JSONParameterEncoder.swift */,
 			);
 			path = Encoding;
+			sourceTree = "<group>";
+		};
+		941E988B295728F50068F802 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				941E988C295729220068F802 /* UserModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		941E988E29573E330068F802 /* NetworkManagers */ = {
+			isa = PBXGroup;
+			children = (
+				941E988F29573E610068F802 /* UserNetworkManager.swift */,
+			);
+			path = NetworkManagers;
 			sourceTree = "<group>";
 		};
 		947DFC25292C02F800045932 /* OneEvent */ = {
@@ -439,6 +468,8 @@
 		ECC991EC29054F3A00BC3FA5 /* OnWheels */ = {
 			isa = PBXGroup;
 			children = (
+				941E988E29573E330068F802 /* NetworkManagers */,
+				941E988B295728F50068F802 /* Entities */,
 				941E98702955F1DB0068F802 /* Networking */,
 				947DFC25292C02F800045932 /* OneEvent */,
 				7F02BD9E2926ABEB00DDA504 /* MyEvents */,
@@ -627,18 +658,20 @@
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
 				949A48A4290D37DA0011DF11 /* ProfilePresenter.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
+				941E988A295724470068F802 /* NetworkEnvironment.swift in Sources */,
 				7F02BDA72926AC5900DDA504 /* MyEventsViewController.swift in Sources */,
 				7F02BDA92926AC5900DDA504 /* MyEventsInteractor.swift in Sources */,
 				94B2BF99291E52BA00F864B9 /* R.generated.swift in Sources */,
 				5455F990292B893B00E63E72 /* RegistrationViewController.swift in Sources */,
 				5455F97E292B893300E63E72 /* LogInContainer.swift in Sources */,
 				7F02BD992926A6B400DDA504 /* EventsProtocols.swift in Sources */,
-				941E98822955F7DB0068F802 /* NetworkManager.swift in Sources */,
+				941E98822955F7DB0068F802 /* NetworkRouter.swift in Sources */,
 				94187A41291D191B00A8163B /* EnterPresenter.swift in Sources */,
 				7F02BD9A2926A6B400DDA504 /* EventsInteractor.swift in Sources */,
 				94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */,
 				947DFC2C292C032600045932 /* OneEventPresenter.swift in Sources */,
 				5455F994292B8A2600E63E72 /* UIView+Extensions.swift in Sources */,
+				941E988D295729220068F802 /* UserModel.swift in Sources */,
 				941E98762955F2250068F802 /* EndPointType.swift in Sources */,
 				5455F982292B893300E63E72 /* LogInPresenter.swift in Sources */,
 				942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */,
@@ -652,10 +685,13 @@
 				94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */,
 				947DFC31292C032600045932 /* OneEventContainer.swift in Sources */,
 				947DFC2D292C032600045932 /* OneEventRouter.swift in Sources */,
+				941E989029573E610068F802 /* UserNetworkManager.swift in Sources */,
 				5455F98D292B893B00E63E72 /* RegistrationContainer.swift in Sources */,
+				941E9886295600700068F802 /* NetworkManager.swift in Sources */,
 				94AEFDCC2937547000DD3786 /* MyEventsHeader.swift in Sources */,
 				949A48A8290D37DA0011DF11 /* ProfileInteractor.swift in Sources */,
 				94187A44291D191B00A8163B /* EnterProtocols.swift in Sources */,
+				941E9888295721CE0068F802 /* UserEndPoint.swift in Sources */,
 				941E98782955F29E0068F802 /* HTTPMethod.swift in Sources */,
 				94187A2A291CFBAA00A8163B /* CoordinatorProtocol.swift in Sources */,
 				5455F98C292B893B00E63E72 /* RegistrationRouter.swift in Sources */,

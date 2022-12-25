@@ -180,11 +180,16 @@ final class LogInViewController: UIViewController {
     @objc
     private func didTapLoginButton() {
         view.endEditing(true)
+        guard let email = loginField.text, let password = passField.text else {
+            print("no login or password")
+            return
+        }
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.enterButton.alpha = 0.7
         } completion: { [weak self] finished in
             if finished {
-                self?.output.didTapLoginButton()
+                print("\(email), \(password)")
+                self?.output.didTapLoginButton(email: email, password: password)
                 self?.enterButton.alpha = 1
             }
         }
