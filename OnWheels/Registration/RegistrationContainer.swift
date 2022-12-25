@@ -15,7 +15,9 @@ final class RegistrationContainer {
     
     class func assemble(with context: RegistrationContext) -> RegistrationContainer {
         let router = RegistrationRouter()
-        let interactor = RegistrationInteractor()
+        let networkRouter = Router<UserEndPoint>()
+        let regManager = UserNetworkManagerImpl(router: networkRouter)
+        let interactor = RegistrationInteractor(userManager: regManager)
         let presenter = RegistrationPresenter(router: router, interactor: interactor)
         let viewController = RegistrationViewController(output: presenter)
         

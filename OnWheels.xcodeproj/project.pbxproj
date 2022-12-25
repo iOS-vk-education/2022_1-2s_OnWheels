@@ -58,6 +58,7 @@
 		941E988A295724470068F802 /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E9889295724470068F802 /* NetworkEnvironment.swift */; };
 		941E988D295729220068F802 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E988C295729220068F802 /* UserModel.swift */; };
 		941E989029573E610068F802 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E988F29573E610068F802 /* UserNetworkManager.swift */; };
+		941E98922958731E0068F802 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E98912958731E0068F802 /* ErrorModel.swift */; };
 		942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */; };
 		942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCF12950DE4F00A13511 /* CustomTextField.swift */; };
 		947DFC2C292C032600045932 /* OneEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC26292C032600045932 /* OneEventPresenter.swift */; };
@@ -143,6 +144,7 @@
 		941E9889295724470068F802 /* NetworkEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnvironment.swift; sourceTree = "<group>"; };
 		941E988C295729220068F802 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		941E988F29573E610068F802 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
+		941E98912958731E0068F802 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationContentView.swift; sourceTree = "<group>"; };
 		942FBCF12950DE4F00A13511 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		947DFC26292C032600045932 /* OneEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventPresenter.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				941E988C295729220068F802 /* UserModel.swift */,
+				941E98912958731E0068F802 /* ErrorModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */,
 				949A48A5290D37DA0011DF11 /* ProfileRouter.swift in Sources */,
 				947DFC30292C032600045932 /* OneEventInteractor.swift in Sources */,
+				941E98922958731E0068F802 /* ErrorModel.swift in Sources */,
 				942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */,
 				94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */,
 				7F02BDA62926AC5900DDA504 /* MyEventsRouter.swift in Sources */,

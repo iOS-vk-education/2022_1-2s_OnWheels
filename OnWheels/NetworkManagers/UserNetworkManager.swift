@@ -21,7 +21,7 @@ protocol UserNetworkManager {
                   password: String,
                   city: String,
                   birthday: Date,
-                  sex: Bool, completion: @escaping (AuthStatus) -> ())
+                  sex: Int, completion: @escaping (AuthStatus) -> ())
 }
 
 final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
@@ -37,7 +37,7 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                   password: String,
                   city: String,
                   birthday: Date,
-                  sex: Bool,
+                  sex: Int,
                   completion: @escaping (AuthStatus) -> ()) {
         router.request(.register(surname: surname,
                                  name: name,
@@ -72,9 +72,9 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
-                    return completion(.authorized)
-                case .failure(_):
-                    return completion(.nonAuthorized(error: "\(error?.localizedDescription)"))
+                    completion(.authorized)
+                case let .failure(reason):
+                    completion(.nonAuthorized(error: reason))
                 }
             }
         }

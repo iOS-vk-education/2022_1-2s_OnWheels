@@ -71,17 +71,6 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
     }
     
     @objc
-    private func didTapRegButton() {
-        UIView.animate(withDuration: 0.2){ [weak self] in
-            self?.regContentView.registrationButton.alpha = 0.7
-        } completion: { [weak self] finished in
-            if finished {
-                self?.output.didTapRegButton()
-                self?.regContentView.registrationButton.alpha = 1
-            }
-        }
-    }
-    @objc
     func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
@@ -144,13 +133,18 @@ private extension RegistrationViewController {
         ])
         
         registrationScrollViewConstraint = scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        //        registrationScrollViewConstraint?.isActive = true
     }
     
     func setupBindings() {
         let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapToHide)
-        regContentView.registrationButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+        setupAction()
+    }
+    
+    func setupAction(){
+        regContentView.setRegisterAction { [weak self] info in
+            self?.output.didTapRegButton(regInfo: info)
+        }
     }
     
     func setupBackButton() {

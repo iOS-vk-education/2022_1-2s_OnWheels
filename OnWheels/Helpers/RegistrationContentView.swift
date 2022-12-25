@@ -7,6 +7,9 @@
 
 import UIKit
 final class RegistrationContentView: UIView {
+    typealias RegisterClosure = ([String?]) -> Void
+    
+    private var registerAction: RegisterClosure?
     
     private let placeholders: [String] = [R.string.localizable.enterName(),
                                           R.string.localizable.enterSurname(),
@@ -16,7 +19,7 @@ final class RegistrationContentView: UIView {
                                           R.string.localizable.enterEmail(),
                                           R.string.localizable.enterPassword(),
                                           R.string.localizable.confirmPassword()]
-    private let genderData = [ R.string.localizable.man(), R.string.localizable.woman()]
+    private let genderData = [R.string.localizable.man(), R.string.localizable.woman()]
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         let image = R.image.regPic() ?? .init()
@@ -109,6 +112,7 @@ final class RegistrationContentView: UIView {
         registration.titleLabel?.font = .systemFont(ofSize: 20)
         registration.setTitle(R.string.localizable.register(), for: .normal)
         registration.tintColor = R.color.mainBlue()
+        registration.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         return registration
     }()
     
@@ -231,6 +235,19 @@ extension RegistrationContentView {
         textFields[2].text = formatDate(date: datePicker.date)
     }
     
+    func setRegisterAction(_ action: @escaping RegisterClosure) {
+        self.registerAction = action
+    }
+}
+
+private extension RegistrationContentView {
+    @objc
+    func registerButtonTapped() {
+        let registerInfo = textFields.map { tf in
+            return tf.text
+        }
+        registerAction?(registerInfo)
+    }
 }
 
 extension RegistrationContentView: UIPickerViewDelegate, UIPickerViewDataSource{

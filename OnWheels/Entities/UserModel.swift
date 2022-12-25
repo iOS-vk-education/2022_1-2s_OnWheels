@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Login {
+struct Login: Codable {
     let email: String
     let password: String
 }
@@ -25,14 +25,14 @@ extension Login {
     }
 }
 
-struct Register {
+struct Register: Codable {
     let firstname: String
     let lastname: String
     let email: String
     let password: String
     let city: String
-    let birthday: Date
-    let sex: Bool
+    let birthday: String
+    let sex: Int
 }
 
 extension Register {
@@ -54,22 +54,22 @@ extension Register {
         email = try registerContainer.decode(String.self, forKey: .email)
         password = try registerContainer.decode(String.self, forKey: .password)
         city = try registerContainer.decode(String.self, forKey: .city)
-        birthday = try registerContainer.decode(Date.self, forKey: .birthday)
-        sex = try registerContainer.decode(Bool.self, forKey: .sex)
+        birthday = try registerContainer.decode(String.self, forKey: .birthday)
+        sex = try registerContainer.decode(Int.self, forKey: .sex)
     }
 }
 
-struct UserInfo {
+struct UserInfo: Codable {
     let id: Int
     let firstname: String
     let lastname: String
     let email: String
     let sex: String
     let city: String
-    let birthday: Date
+    let birthday: String
 }
 extension UserInfo {
-    enum RegisterCodingKeys: CodingKey {
+    enum UserCodingKeys: CodingKey {
         case id
         case firstname
         case lastname
@@ -80,15 +80,15 @@ extension UserInfo {
     }
     
     init(from decoder: Decoder) throws {
-        let registerContainer = try decoder.container(keyedBy: RegisterCodingKeys.self)
+        let userContainer = try decoder.container(keyedBy: UserCodingKeys.self)
         
-        id = try registerContainer.decode(Int.self, forKey: .id)
-        firstname = try registerContainer.decode(String.self, forKey: .firstname)
-        lastname = try registerContainer.decode(String.self, forKey: .lastname)
-        email = try registerContainer.decode(String.self, forKey: .email)
-        city = try registerContainer.decode(String.self, forKey: .city)
-        birthday = try registerContainer.decode(Date.self, forKey: .birthday)
-        sex = try registerContainer.decode(String.self, forKey: .sex)
+        id = try userContainer.decode(Int.self, forKey: .id)
+        firstname = try userContainer.decode(String.self, forKey: .firstname)
+        lastname = try userContainer.decode(String.self, forKey: .lastname)
+        email = try userContainer.decode(String.self, forKey: .email)
+        city = try userContainer.decode(String.self, forKey: .city)
+        birthday = try userContainer.decode(String.self, forKey: .birthday)
+        sex = try userContainer.decode(String.self, forKey: .sex)
     }
 }
 

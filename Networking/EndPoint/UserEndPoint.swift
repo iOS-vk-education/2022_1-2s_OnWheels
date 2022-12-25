@@ -15,14 +15,14 @@ enum UserEndPoint {
                   password: String,
                   city: String,
                   birthday: Date,
-                  sex: Bool)
+                  sex: Int)
     case userInfo(id: Int,
                   surname: String,
                   name: String,
                   email: String,
                   city: String,
-                  birthday: Date,
-                  sex: Bool)
+                  birthday: String,
+                  sex: Int)
 }
 
 extension UserEndPoint: EndPointType {

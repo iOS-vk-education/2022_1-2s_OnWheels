@@ -20,11 +20,12 @@ protocol RegistrationViewInput: AnyObject {
 
 protocol RegistrationViewOutput: AnyObject {
     /// Обработка нажатия на кнопку зарегистрироваться
-    func didTapRegButton()
+    func didTapRegButton(regInfo: [String?])
     func backButtonAction()
 }
 
 protocol RegistrationInteractorInput: AnyObject {
+    func registerUser(with info: [String?])
 }
 
 protocol RegistrationInteractorOutput: AnyObject {

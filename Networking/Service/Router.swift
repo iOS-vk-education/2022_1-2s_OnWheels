@@ -15,6 +15,14 @@ final class Router<EndPoint: EndPointType>: NetworkRouter {
         do {
             let request = try self.buildRequest(from: route)
             task = session.dataTask(with: request, completionHandler: { data, response, error in
+                if let data = data {
+                    do {
+                        let info = try JSONSerialization.jsonObject(with: data)
+                        print(info)
+                    } catch {
+                        print(error)
+                    }
+                }
                 completion(data, response, error)
             })
         } catch {
