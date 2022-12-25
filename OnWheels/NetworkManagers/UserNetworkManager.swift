@@ -8,7 +8,7 @@
 import Foundation
 
 enum AuthStatus {
-    case authorized
+    case authorized(accsessToken: String)
     case nonAuthorized(error: String)
 }
 
@@ -54,9 +54,10 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
-                    return completion(.authorized)
+//                    completion(.authorized)
+                    break
                 case .failure(_):
-                    return completion(.nonAuthorized(error: "Something is wrong"))
+                    completion(.nonAuthorized(error: "Something is wrong"))
                 }
             }
         }
@@ -72,7 +73,20 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
-                    completion(.authorized)
+                    guard let responseData = data else {
+                        completion(.nonAuthorized(error: NetworkResponse.noData.rawValue))
+                        return
+                    }
+                    do {
+                        DispatchQueue.main.async {
+                            let apiResponse = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
+                                return cookie.name == ".AspNetCore.Session"
+                            })?.value ?? ""
+                            completion(.authorized(accsessToken: apiResponse))
+                        }
+                    } catch {
+                        completion(.nonAuthorized(error: NetworkResponse.unableToDecode.rawValue))
+                    }
                 case let .failure(reason):
                     completion(.nonAuthorized(error: reason))
                 }

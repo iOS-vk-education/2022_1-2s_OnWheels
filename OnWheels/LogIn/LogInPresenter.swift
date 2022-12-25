@@ -29,7 +29,7 @@ extension LogInPresenter: LogInViewOutput {
     
     func didTapLoginButton(email: String, password: String) {
         //логика входа
-        interactor.enterButtonPressed(email: "", password: "")
+        interactor.enterButtonPressed(email: email, password: password)
     }
     
     func didTapForgotPassButton() {
