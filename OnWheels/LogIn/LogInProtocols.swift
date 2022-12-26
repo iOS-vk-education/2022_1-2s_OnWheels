@@ -16,6 +16,8 @@ protocol LogInModuleOutput: AnyObject {
 }
 
 protocol LogInViewInput: AnyObject {
+    func showEmptyFields(withIndexes indexes: [Int])
+    func showNonAuthorized(with error: String)
 }
 
 protocol LogInViewOutput: AnyObject {

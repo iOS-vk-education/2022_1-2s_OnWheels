@@ -11,6 +11,8 @@ import UIKit
 final class RegistrationViewController: UIViewController, UIGestureRecognizerDelegate {
     private let output: RegistrationViewOutput
     
+    let fields = ["Имя", "Фамилия", "Дата рождения", "Пол", "Город", "Почта", "Пароль", "Подтверждение пароля"]
+    
     private let backButton: UIButton = {
         let back = UIButton()
         back.translatesAutoresizingMaskIntoConstraints = false
@@ -182,4 +184,19 @@ private extension RegistrationViewController {
 }
 
 extension RegistrationViewController: RegistrationViewInput {
+    func showEmptyFields(withIndexes indexes: [Int]){
+        var emptyFields = ""
+        for index in indexes {
+            emptyFields.append("\(fields[index]), ")
+        }
+        let alert = UIAlertController(title: "Ой", message: "Проверьте заполненность полей: \(emptyFields)", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Исправлю", style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func showCheckedPassword(){
+        let alert = UIAlertController(title: "Ой", message: "Пароли не совпаадают", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Исправлю", style: .default))
+        self.present(alert, animated: true)
+    }
 }

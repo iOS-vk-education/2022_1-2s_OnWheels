@@ -20,9 +20,11 @@ protocol EventsViewInput: AnyObject {
 
 protocol EventsViewOutput: AnyObject {
     func rowDidSelect()
+    func didLoadRaces()
 }
 
 protocol EventsInteractorInput: AnyObject {
+    func loadRaces()
 }
 
 protocol EventsInteractorOutput: AnyObject {

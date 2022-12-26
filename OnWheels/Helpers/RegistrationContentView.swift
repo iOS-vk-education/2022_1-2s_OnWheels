@@ -202,6 +202,8 @@ extension RegistrationContentView {
         for value in 0..<8{
             textFields[value].setupTextField(with: placeholders[value])
         }
+        textFields[6].isSecureTextEntry = true
+        textFields[7].isSecureTextEntry = true
     }
     
     func setupGenderField() {

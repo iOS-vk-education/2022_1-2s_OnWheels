@@ -32,7 +32,7 @@ extension RaceEndPoint: EndPointType {
     var path: String {
         switch self {
         case .getAllRaces:
-            return ""
+            return "/filter"
         case .getRace(let raceId):
             return "/\(raceId)"
         }
@@ -41,7 +41,7 @@ extension RaceEndPoint: EndPointType {
     var httpMethod: HTTPMethod {
         switch self {
         case .getAllRaces:
-            return .post
+            return .get
         case .getRace(raceId: _):
             return .get
         }
@@ -50,13 +50,10 @@ extension RaceEndPoint: EndPointType {
     var task: HTTPTask {
         switch self {
         case .getAllRaces:
-            return .requestParametersAndHeaders(bodyParameters: nil,
-                                                urlParameters: nil,
-                                                additionHeaders: defaults.object(forKey: "cookie") as! HTTPHeaders)
+            return .requestParameters(bodyParameters: ["":""],
+                                                urlParameters: nil)
         case .getRace(_):
-            return .requestParametersAndHeaders(bodyParameters: nil,
-                                                urlParameters: nil,
-                                                additionHeaders: defaults.object(forKey: "cookie") as! HTTPHeaders)
+            return .request
         }
     }
     

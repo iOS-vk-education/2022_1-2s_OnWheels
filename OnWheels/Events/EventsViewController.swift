@@ -35,6 +35,7 @@ final class EventsViewController: UIViewController {
         setupLayout()
         setupEventsTableView()
         setupNavigationBar()
+        output.didLoadRaces()
     }
 }
 

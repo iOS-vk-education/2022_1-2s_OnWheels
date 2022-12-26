@@ -16,6 +16,8 @@ protocol RegistrationModuleOutput: AnyObject {
 }
 
 protocol RegistrationViewInput: AnyObject {
+    func showEmptyFields(withIndexes indexes: [Int])
+    func showCheckedPassword()
 }
 
 protocol RegistrationViewOutput: AnyObject {
