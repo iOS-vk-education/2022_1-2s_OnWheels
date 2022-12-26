@@ -35,4 +35,7 @@ extension EventsPresenter: EventsViewOutput {
 }
 
 extension EventsPresenter: EventsInteractorOutput {
+    func setRaces(races: RaceList) {
+        view?.setData(raceData: races)
+    }
 }

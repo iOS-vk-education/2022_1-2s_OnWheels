@@ -12,6 +12,8 @@ import PinLayout
 final class EventsViewController: UIViewController {
     private let output: EventsViewOutput
     
+    var raceDataList: RaceList?
+    
     private let eventsTableView = UITableView(frame: .zero, style: .plain)
         
     init(output: EventsViewOutput) {
@@ -40,6 +42,11 @@ final class EventsViewController: UIViewController {
 }
 
 extension EventsViewController: EventsViewInput {
+    func setData(raceData: RaceList) {
+        print(raceData)
+        raceDataList = raceData
+        eventsTableView.reloadData()
+    }
 }
 
 extension EventsViewController {
@@ -78,7 +85,10 @@ extension EventsViewController {
 extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        guard let number = raceDataList?.count else {
+            return 0
+        }
+        return number
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

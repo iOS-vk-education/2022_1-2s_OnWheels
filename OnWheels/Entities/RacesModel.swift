@@ -9,16 +9,40 @@ import Foundation
 
 struct RaceResponse {
     let races: [Race]
+    let raceList: [RaceListElement]
 }
 extension RaceResponse: Decodable {
     private enum RaceResponseCodingKeys: CodingKey{
         case races
+        case raceList
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RaceResponseCodingKeys.self)
         races = try container.decode([Race].self, forKey: .races)
+        raceList = try container.decode([RaceListElement].self, forKey: .raceList)
     }
 }
+
+typealias RaceList = [RaceListElement]
+
+struct RaceListElement: Codable {
+    let creatorUserID: Int
+    let name: String
+    let location: Location
+    let date: DateClass
+    let raceListDescription: String
+    let images, tags: [String]
+    let members: [Int]
+    let likes, views: Int
+
+    enum CodingKeys: String, CodingKey {
+        case creatorUserID = "creatorUserId"
+        case name, location, date
+        case raceListDescription = "description"
+        case images, tags, members, likes, views
+    }
+}
+
 
 struct Race: Codable {
     let name: String
@@ -87,5 +111,5 @@ struct DateClass: Codable {
 
 // MARK: - Location
 struct Location: Codable {
-    let latitude, longitude: Int
+    let latitude, longitude: Double
 }

@@ -9,6 +9,7 @@ import Foundation
 enum RaceEndPoint {
     case getAllRaces
     case getRace(raceId: Int)
+    case getListOfRaces
 }
 
 extension RaceEndPoint: EndPointType {
@@ -35,6 +36,8 @@ extension RaceEndPoint: EndPointType {
             return "/filter"
         case .getRace(let raceId):
             return "/\(raceId)"
+        case .getListOfRaces:
+            return "/list"
         }
     }
     
@@ -43,6 +46,8 @@ extension RaceEndPoint: EndPointType {
         case .getAllRaces:
             return .get
         case .getRace(raceId: _):
+            return .get
+        case .getListOfRaces:
             return .get
         }
     }
@@ -53,6 +58,8 @@ extension RaceEndPoint: EndPointType {
             return .requestParameters(bodyParameters: ["":""],
                                                 urlParameters: nil)
         case .getRace(_):
+            return .request
+        case .getListOfRaces:
             return .request
         }
     }

@@ -7,7 +7,8 @@
 
 import Foundation
 protocol RacesNetworkManager {
-    func getAllRaces(completion: @escaping(_ races: [Race]?, _ error: String?)->())
+//    func getAllRaces(completion: @escaping(_ races: [Race]?, _ error: String?)->())
+    func getListOfRaces(completion: @escaping(_ races: [RaceListElement]?, _ error: String?)->())
     func getRace(with id: Int, completion: @escaping(_ race: OneRace?, _ error: String?)->())
 }
 
@@ -17,11 +18,11 @@ final class RacesNetworkManagerImpl: NetworkManager, RacesNetworkManager {
     init(router: Router<RaceEndPoint>) {
         self.router = router
     }
-
-    func getAllRaces(completion: @escaping ([Race]?, String?) -> ()) {
-        router.request(.getAllRaces) { data, response, error in
+    
+    func getListOfRaces(completion: @escaping ([RaceListElement]?, String?) -> ()) {
+        router.request(.getListOfRaces) { data, response, error in
             if error != nil {
-                completion(nil, "Please check your network connection.")
+                completion(nil, "Check network connection")
             }
             
             if let response = response as? HTTPURLResponse {
@@ -33,20 +34,18 @@ final class RacesNetworkManagerImpl: NetworkManager, RacesNetworkManager {
                         return
                     }
                     do {
-                        let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                        let apiResponse = try JSONDecoder().decode(RaceResponse.self, from: responseData)
-                        print(apiResponse)
-                        completion(apiResponse.races, nil)
+                        let apiResponse = try? JSONDecoder().decode(RaceList.self, from: responseData)
+                        completion(apiResponse, nil)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
                 case .failure(let failure):
-                    completion(nil, NetworkResponse.failed.rawValue)
+                    completion(nil, failure)
                 }
             }
-            
         }
     }
+    
     
     func getRace(with id: Int, completion: @escaping (OneRace?, String?) -> ()) {
         print("")

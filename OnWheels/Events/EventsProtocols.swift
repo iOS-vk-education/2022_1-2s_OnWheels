@@ -16,6 +16,7 @@ protocol EventsModuleOutput: AnyObject {
 }
 
 protocol EventsViewInput: AnyObject {
+    func setData(raceData: RaceList)
 }
 
 protocol EventsViewOutput: AnyObject {
@@ -28,6 +29,7 @@ protocol EventsInteractorInput: AnyObject {
 }
 
 protocol EventsInteractorOutput: AnyObject {
+    func setRaces(races: RaceList)
 }
 
 protocol EventsRouterInput: AnyObject {

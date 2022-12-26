@@ -19,12 +19,14 @@ final class EventsInteractor {
 
 extension EventsInteractor: EventsInteractorInput {
     func loadRaces(){
-        raceManager.getAllRaces { races, error in
-            if let error = error {
-                print(error)
-            }
-            if let races = races {
-                print(races)
+        raceManager.getListOfRaces { races, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error)
+                }
+                if let races = races {
+                    self.output?.setRaces(races: races)
+                }
             }
         }
     }
