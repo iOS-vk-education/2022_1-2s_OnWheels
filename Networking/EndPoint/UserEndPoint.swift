@@ -16,13 +16,8 @@ enum UserEndPoint {
                   city: String,
                   birthday: String,
                   sex: Int)
-    case userInfo(id: Int,
-                  surname: String,
-                  name: String,
-                  email: String,
-                  city: String,
-                  birthday: String,
-                  sex: Int)
+    case userInfo(id: String)
+    case currentUser
 }
 
 extension UserEndPoint: EndPointType {
@@ -51,6 +46,8 @@ extension UserEndPoint: EndPointType {
             return ""
         case .userInfo(let id):
             return "/\(id)"
+        case .currentUser:
+            return "/current"
         }
     }
     
@@ -61,6 +58,8 @@ extension UserEndPoint: EndPointType {
         case .register:
             return .post
         case .userInfo:
+            return .get
+        case .currentUser:
             return .get
         }
     }
@@ -87,21 +86,11 @@ extension UserEndPoint: EndPointType {
                                                        "sex": sex],
                                       urlParameters: nil)
 
-        case .userInfo(id: let id,
-                       surname: let surname,
-                       name: let name,
-                       email: let email,
-                       city: let city,
-                       birthday: let birthday,
-                       sex: let sex):
-            return .requestParameters(bodyParameters: ["id": id,
-                                                       "firstname": name,
-                                                       "lastname": surname,
-                                                       "email": email,
-                                                       "city": city,
-                                                       "birthday": birthday,
-                                                       "sex": sex],
-                                      urlParameters: nil)
+        case .userInfo(id: let id):
+            return .requestParameters(bodyParameters: nil,
+                                      urlParameters: ["id": id])
+        case .currentUser:
+            return .request
         }
     }
     

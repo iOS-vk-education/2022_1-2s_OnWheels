@@ -92,4 +92,33 @@ extension UserInfo {
     }
 }
 
+struct CurrentUser: Codable {
+    let id: Int
+    let firstname, lastname, email, city: String
+    let birthday: String
+    let sex: String
+}
 
+extension CurrentUser {
+    enum CurrentCodingKeys: CodingKey {
+        case id
+        case firstname
+        case lastname
+        case email
+        case city
+        case birthday
+        case sex
+    }
+    
+    init(from decoder: Decoder) throws {
+        let currentContainer = try decoder.container(keyedBy: CurrentCodingKeys.self)
+        
+        id = try currentContainer.decode(Int.self, forKey: .id)
+        firstname = try currentContainer.decode(String.self, forKey: .firstname)
+        lastname = try currentContainer.decode(String.self, forKey: .lastname)
+        email = try currentContainer.decode(String.self, forKey: .email)
+        city = try currentContainer.decode(String.self, forKey: .city)
+        birthday = try currentContainer.decode(String.self, forKey: .birthday)
+        sex = try currentContainer.decode(String.self, forKey: .sex)
+    }
+}

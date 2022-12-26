@@ -28,6 +28,8 @@ protocol UserNetworkManager {
                   city: String,
                   birthday: String,
                   sex: Int, completion: @escaping (RegisterStatus) -> ())
+    func currentUserInfo(completion: @escaping (_ user: CurrentUser?, _ error: String?) -> ())
+    func getUserInfo(id: String, completion: @escaping (_ user: UserInfo?, _ error: String?) -> ())
 }
 
 final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
@@ -37,6 +39,60 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
         self.router = router
     }
 
+    func currentUserInfo(completion: @escaping (CurrentUser?, String?) -> ()) {
+        router.request(.currentUser) { data, response, error in
+            if error != nil {
+                completion(nil, "Check network connection")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let apiResponse = try JSONDecoder().decode(CurrentUser.self, from: responseData)
+                        completion(apiResponse.self, nil)
+                    } catch {
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                case .failure(let failure):
+                    completion(nil, failure)
+                }
+            }
+        }
+    }
+    
+    func getUserInfo(id: String, completion: @escaping (UserInfo?, String?) -> ()) {
+        router.request(.userInfo(id: id)) { data, response, error in
+            if error != nil {
+                completion(nil, "Check network connection")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let apiResponse = try JSONDecoder().decode(UserInfo.self, from: responseData)
+                        completion(apiResponse.self, nil)
+                    } catch {
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                case .failure(let failure):
+                    completion(nil, failure)
+                }
+            }
+        }
+    }
+    
     func register(surname: String,
                   name: String,
                   email: String,

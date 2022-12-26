@@ -22,9 +22,9 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         let registerInfo = info.compactMap{$0}
         var sex: Int = 0
         if registerInfo[3] == "муж" {
-            sex = 0
-        } else {
             sex = 1
+        } else {
+            sex = 2
         }
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions.insert([.withFractionalSeconds,

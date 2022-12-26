@@ -12,6 +12,13 @@ import PinLayout
 final class ProfileViewController: UIViewController {
     private let output: ProfileViewOutput
     
+    private var user: CurrentUser?
+    
+    var name: String = ""
+    var surename: String = ""
+    var city: String = ""
+    var sex: String = ""
+    
     private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -75,9 +82,10 @@ final class ProfileViewController: UIViewController {
         return nil
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupUI()
+        output.loadInfo()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -112,7 +120,19 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewInput {
-    
+    func getData(userData: CurrentUser) {
+        user = userData
+        personTableView.reloadData()
+        guard let name = user?.firstname,
+              let surname = user?.lastname else {
+            return
+        }
+        
+        let personName = name + " " + surname
+        configureView(name: personName, city: user?.city ?? "")
+        guard let userSex = user?.sex else { return }
+        sex = userSex
+    }
 }
 
 extension ProfileViewController {
@@ -150,6 +170,11 @@ extension ProfileViewController {
         view.addSubview(personTableView)
         setupTableView()
         setupNavBar()
+    }
+    
+    private func configureView(name: String, city: String){
+        personName.text = name
+        personCity.text = city
     }
     
     private func setupTableView(){
@@ -231,13 +256,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                                    infoText: "+79000000000")
                 case 1:
                     cell.configure(mainText: R.string.localizable.emailAdress(),
-                                   infoText: "name@ya.ru")
+                                   infoText: user?.email ?? "No")
                 case 2:
                     cell.configure(mainText: R.string.localizable.dateOfBirth(),
-                                   infoText: "01.01.2001")
+                                   infoText: user?.birthday ?? "No")
                 case 3:
                     cell.configure(mainText: R.string.localizable.sex(),
-                                   infoText: "муж")
+                                   infoText: sex)
                 case 4:
                     cell.configure(mainText: R.string.localizable.aboutMe(),
                                    infoText: "Нет информации")
