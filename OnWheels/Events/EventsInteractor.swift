@@ -10,6 +10,11 @@ import Foundation
 
 final class EventsInteractor {
 	weak var output: EventsInteractorOutput?
+    private let raceManager: RacesNetworkManager
+    
+    init(raceManager: RacesNetworkManager) {
+        self.raceManager = raceManager
+    }
 }
 
 extension EventsInteractor: EventsInteractorInput {

@@ -226,7 +226,7 @@ extension RegistrationContentView {
     
     func formatDate(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yy"
+        formatter.dateFormat = "dd.MM.yyyy"
         return formatter.string(from: date)
     }
     

@@ -52,11 +52,11 @@ extension RaceEndPoint: EndPointType {
         case .getAllRaces:
             return .requestParametersAndHeaders(bodyParameters: nil,
                                                 urlParameters: nil,
-                                                additionHeaders: NetworkManager.additionalHeader)
+                                                additionHeaders: defaults.object(forKey: "cookie") as! HTTPHeaders)
         case .getRace(_):
             return .requestParametersAndHeaders(bodyParameters: nil,
                                                 urlParameters: nil,
-                                                additionHeaders: NetworkManager.additionalHeader)
+                                                additionHeaders: defaults.object(forKey: "cookie") as! HTTPHeaders)
         }
     }
     

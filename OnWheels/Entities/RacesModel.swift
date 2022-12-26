@@ -6,7 +6,21 @@
 //
 
 import Foundation
-struct Races: Codable {
+
+struct RaceResponse {
+    let races: [Race]
+}
+extension RaceResponse: Decodable {
+    private enum RaceResponseCodingKeys: CodingKey{
+        case races
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: RaceResponseCodingKeys.self)
+        races = try container.decode([Race].self, forKey: .races)
+    }
+}
+
+struct Race: Codable {
     let name: String
     let location: Location
     let date: DateClass
@@ -20,7 +34,7 @@ struct Races: Codable {
     }
 }
 
-extension Races {
+extension Race {
     init(from decoder: Decoder) throws {
         let racesContainer = try decoder.container(keyedBy: RacesCodingKeys.self)
         name = try racesContainer.decode(String.self, forKey: .name)

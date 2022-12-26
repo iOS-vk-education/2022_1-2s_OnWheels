@@ -29,6 +29,8 @@ protocol RegistrationInteractorInput: AnyObject {
 }
 
 protocol RegistrationInteractorOutput: AnyObject {
+    func authorized()
+    func notAuthorized(withReason reason: String)
 }
 
 protocol RegistrationRouterInput: AnyObject {

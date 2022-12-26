@@ -36,4 +36,11 @@ extension RegistrationPresenter: RegistrationViewOutput {
 }
 
 extension RegistrationPresenter: RegistrationInteractorOutput {
+    func authorized() {
+        router.openApp()
+    }
+    
+    func notAuthorized(withReason reason: String) {
+        print("\(reason)")
+    }
 }

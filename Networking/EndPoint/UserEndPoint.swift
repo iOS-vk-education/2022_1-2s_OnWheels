@@ -14,7 +14,7 @@ enum UserEndPoint {
                   email: String,
                   password: String,
                   city: String,
-                  birthday: Date,
+                  birthday: String,
                   sex: Int)
     case userInfo(id: Int,
                   surname: String,

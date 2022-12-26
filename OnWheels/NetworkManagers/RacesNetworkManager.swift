@@ -7,7 +7,7 @@
 
 import Foundation
 protocol RacesNetworkManager {
-    func getAllRaces(completion: @escaping(_ races: [Races]?, _ error: String?)->())
+    func getAllRaces(completion: @escaping(_ races: [Race]?, _ error: String?)->())
     func getRace(with id: Int, completion: @escaping(_ race: OneRace?, _ error: String?)->())
 }
 
@@ -18,7 +18,7 @@ final class RacesNetworkManagerImpl: NetworkManager, RacesNetworkManager {
         self.router = router
     }
 
-    func getAllRaces(completion: @escaping ([Races]?, String?) -> ()) {
+    func getAllRaces(completion: @escaping ([Race]?, String?) -> ()) {
         router.request(.getAllRaces) { data, response, error in
             if error != nil {
                 completion(nil, "Please check your network connection.")
@@ -34,10 +34,11 @@ final class RacesNetworkManagerImpl: NetworkManager, RacesNetworkManager {
                     }
                     do {
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                        let apiResponse = try JSONDecoder().decode(Races.self, from: responseData)
-                        completion([apiResponse.self], nil)
+                        let apiResponse = try JSONDecoder().decode(RaceResponse.self, from: responseData)
+                        print(apiResponse)
+                        completion(apiResponse.races, nil)
                     } catch {
-                        
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
                 case .failure(let failure):
                     completion(nil, NetworkResponse.failed.rawValue)

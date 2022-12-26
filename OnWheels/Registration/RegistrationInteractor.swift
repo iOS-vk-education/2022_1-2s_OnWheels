@@ -26,23 +26,27 @@ extension RegistrationInteractor: RegistrationInteractorInput {
         } else {
             sex = 1
         }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy HH:mm:ss Z"
-        guard let date = dateFormatter.date(from: registerInfo[2]) else { return }
-        userManager.register(surname: registerInfo[1],
-                             name: registerInfo[0],
-                             email: registerInfo[5],
-                             password: registerInfo[6],
-                             city: registerInfo[4],
-                             birthday: date,
-                             sex: sex) { status in
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions.insert([.withFractionalSeconds,
+                                        .withInternetDateTime])
+        let dateStr: [String] = registerInfo[2].components(separatedBy: ".")
+        guard let date = formatter.date(from: "\(dateStr[2])-\(dateStr[1])-\(dateStr[0])T03:30:00.000Z") else {
+            return
+        }
+        let string = formatter.string(from: date)
+        self.userManager.register(surname: registerInfo[1],
+                                  name: registerInfo[0],
+                                  email: registerInfo[5],
+                                  password: registerInfo[6],
+                                  city: registerInfo[4],
+                                  birthday: string,
+                                  sex: sex) { status in
             switch status {
-            case .authorized:
-                break
-            case .nonAuthorized(error: let error):
-                break
+            case .authorized(let accsessToken):
+                self.output?.authorized()
+            case .nonAuthorized(let error):
+                self.output?.notAuthorized(withReason: error)
             }
         }
-        
     }
 }

@@ -13,8 +13,7 @@ final class EventsViewController: UIViewController {
     private let output: EventsViewOutput
     
     private let eventsTableView = UITableView(frame: .zero, style: .plain)
-    
-    
+        
     init(output: EventsViewOutput) {
         self.output = output
         

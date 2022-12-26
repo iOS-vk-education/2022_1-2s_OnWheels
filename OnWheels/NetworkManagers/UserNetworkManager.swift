@@ -7,11 +7,17 @@
 
 import Foundation
 
+let defaults = UserDefaults.standard
+
 enum AuthStatus {
     case authorized(accsessToken: String)
     case nonAuthorized(error: String)
 }
 
+enum RegisterStatus {
+    case authorized(accsessToken: String)
+    case nonAuthorized(error: String)
+}
 
 protocol UserNetworkManager {
     func login(email: String, password: String, completion: @escaping (AuthStatus) -> ())
@@ -20,8 +26,8 @@ protocol UserNetworkManager {
                   email: String,
                   password: String,
                   city: String,
-                  birthday: Date,
-                  sex: Int, completion: @escaping (AuthStatus) -> ())
+                  birthday: String,
+                  sex: Int, completion: @escaping (RegisterStatus) -> ())
 }
 
 final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
@@ -36,9 +42,9 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                   email: String,
                   password: String,
                   city: String,
-                  birthday: Date,
+                  birthday: String,
                   sex: Int,
-                  completion: @escaping (AuthStatus) -> ()) {
+                  completion: @escaping (RegisterStatus) -> ()) {
         router.request(.register(surname: surname,
                                  name: name,
                                  email: email,
@@ -54,10 +60,24 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
-//                    completion(.authorized)
+                    guard let responseData = data else {
+                        completion(.nonAuthorized(error: NetworkResponse.noData.rawValue))
+                        return
+                    }
+                    do {
+                        DispatchQueue.main.async {
+                            let cookies = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
+                                return cookie.name == ".AspNetCore.Session"
+                            })?.value ?? ""
+                            completion(.authorized(accsessToken: cookies))
+                            defaults.set(cookies, forKey: "cookie")
+                        }
+                    } catch {
+                        completion(.nonAuthorized(error: NetworkResponse.unableToDecode.rawValue))
+                    }
                     break
-                case .failure(_):
-                    completion(.nonAuthorized(error: "Something is wrong"))
+                case .failure(let reason):
+                    completion(.nonAuthorized(error: reason))
                 }
             }
         }
@@ -79,10 +99,11 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                     }
                     do {
                         DispatchQueue.main.async {
-                            let apiResponse = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
+                            let cookies = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
                                 return cookie.name == ".AspNetCore.Session"
                             })?.value ?? ""
-                            completion(.authorized(accsessToken: apiResponse))
+                            completion(.authorized(accsessToken: cookies))
+                            defaults.set(cookies, forKey: "cookie")
                         }
                     } catch {
                         completion(.nonAuthorized(error: NetworkResponse.unableToDecode.rawValue))
