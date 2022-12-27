@@ -20,6 +20,16 @@ final class LogInPresenter {
         self.interactor = interactor
     }
     
+    func getIndexesOfEmptyFields(email: String, password: String) -> [Int] {
+        var result = [Int]()
+        if email.isEmpty {
+            result.append(0)
+        }
+        if password.isEmpty {
+            result.append(1)
+        }
+        return result
+    }
 }
 
 extension LogInPresenter: LogInModuleInput {
@@ -27,9 +37,13 @@ extension LogInPresenter: LogInModuleInput {
 
 extension LogInPresenter: LogInViewOutput {
     
-    func didTapLoginButton() {
-        //логика входа
-        router.openApp()
+    func didTapLoginButton(email: String, password: String) {
+        let emptyFields = getIndexesOfEmptyFields(email: email, password: password)
+        if emptyFields.isEmpty {
+            interactor.enterButtonPressed(email: email, password: password)
+        } else {
+            view?.showEmptyFields(withIndexes: emptyFields)
+        }
     }
     
     func didTapForgotPassButton() {
@@ -45,6 +59,14 @@ extension LogInPresenter: LogInViewOutput {
     }
     
 }
-
 extension LogInPresenter: LogInInteractorOutput {
+    func authorized() {
+        router.openApp()
+    }
+    
+    func notAuthorized(withReason reason: String) {
+        DispatchQueue.main.sync {
+            view?.showNonAuthorized(with: reason)
+        }
+    }
 }

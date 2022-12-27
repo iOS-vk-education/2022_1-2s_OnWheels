@@ -11,6 +11,8 @@ import UIKit
 final class RegistrationViewController: UIViewController, UIGestureRecognizerDelegate {
     private let output: RegistrationViewOutput
     
+    let fields = ["Имя", "Фамилия", "Дата рождения", "Пол", "Город", "Почта", "Пароль", "Подтверждение пароля"]
+    
     private let backButton: UIButton = {
         let back = UIButton()
         back.translatesAutoresizingMaskIntoConstraints = false
@@ -70,17 +72,6 @@ final class RegistrationViewController: UIViewController, UIGestureRecognizerDel
                                         height: height)
     }
     
-    @objc
-    private func didTapRegButton() {
-        UIView.animate(withDuration: 0.2){ [weak self] in
-            self?.regContentView.registrationButton.alpha = 0.7
-        } completion: { [weak self] finished in
-            if finished {
-                self?.output.didTapRegButton()
-                self?.regContentView.registrationButton.alpha = 1
-            }
-        }
-    }
     @objc
     func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
@@ -144,13 +135,18 @@ private extension RegistrationViewController {
         ])
         
         registrationScrollViewConstraint = scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        //        registrationScrollViewConstraint?.isActive = true
     }
     
     func setupBindings() {
         let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapToHide)
-        regContentView.registrationButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
+        setupAction()
+    }
+    
+    func setupAction(){
+        regContentView.setRegisterAction { [weak self] info in
+            self?.output.didTapRegButton(regInfo: info)
+        }
     }
     
     func setupBackButton() {
@@ -188,4 +184,19 @@ private extension RegistrationViewController {
 }
 
 extension RegistrationViewController: RegistrationViewInput {
+    func showEmptyFields(withIndexes indexes: [Int]){
+        var emptyFields = ""
+        for index in indexes {
+            emptyFields.append("\(fields[index]), ")
+        }
+        let alert = UIAlertController(title: "Ой", message: "Проверьте заполненность полей: \(emptyFields)", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Исправлю", style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func showCheckedPassword(){
+        let alert = UIAlertController(title: "Ой", message: "Пароли не совпаадают", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Исправлю", style: .default))
+        self.present(alert, animated: true)
+    }
 }

@@ -25,6 +25,10 @@ extension ProfilePresenter: ProfileModuleInput {
 }
 
 extension ProfilePresenter: ProfileViewOutput {
+    func loadInfo() {
+        interactor.loadUserInfo()
+    }
+    
     func deleteAccountButtonTapped() {
         router.deleteAccountButtonPressed()
     }
@@ -38,5 +42,7 @@ extension ProfilePresenter: ProfileViewOutput {
 }
 
 extension ProfilePresenter: ProfileInteractorOutput {
-    
+    func setUserData(user: CurrentUser) {
+        view?.getData(userData: user)
+    }
 }

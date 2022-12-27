@@ -15,7 +15,9 @@ final class LogInContainer {
     
     class func assemble(with context: LogInContext) -> LogInContainer {
         let router = LogInRouter()
-        let interactor = LogInInteractor()
+        let networkRouter = Router<UserEndPoint>()
+        let authManager = UserNetworkManagerImpl(router: networkRouter)
+        let interactor = LogInInteractor(userManager: authManager)
         let presenter = LogInPresenter(router: router, interactor: interactor)
         let viewController = LogInViewController(output: presenter)
         

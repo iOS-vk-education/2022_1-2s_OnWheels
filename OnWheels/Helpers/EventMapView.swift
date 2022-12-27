@@ -88,6 +88,23 @@ final class EventMapView: UIView {
         mapView.region = region
     }
     
+    func cofigureMap(latitude: Double, longitude: Double, name: String) {
+        let point = MKPointAnnotation()
+        do {
+            point.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let center = point.coordinate
+            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            let region = MKCoordinateRegion(center: center, span: span)
+            mapView.addAnnotation(point)
+            mapView.region = region
+        } catch {
+            eventPlaceInfoLabel.text = "Уточните у организатора"
+        }
+        
+        eventPlaceInfoLabel.text = name
+
+    }
+    
     struct Constants {
         struct EventPlaceLabel {
             static let topMargin: CGFloat = 16

@@ -13,7 +13,7 @@ final class EnterViewController: UIViewController {
     private let output: EnterViewOutput
     
     var timer = Timer()
-    let timeInterval = 5.0
+    let timeInterval = 5.0 //5.0
     
     let lauchImage: UIImageView = {
         let image = UIImageView()

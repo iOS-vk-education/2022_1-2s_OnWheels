@@ -13,6 +13,8 @@ import PinLayout
 final class LogInViewController: UIViewController {
     private let output: LogInViewOutput
     
+    let fields = ["Почта", "Пароль"]
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         let image: UIImage = UIImage(named: R.image.loginPic.name) ?? .init()
         let startImage = CIImage(image: image)
@@ -180,11 +182,14 @@ final class LogInViewController: UIViewController {
     @objc
     private func didTapLoginButton() {
         view.endEditing(true)
+        guard let email = loginField.text, let password = passField.text else {
+            return
+        }
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.enterButton.alpha = 0.7
         } completion: { [weak self] finished in
             if finished {
-                self?.output.didTapLoginButton()
+                self?.output.didTapLoginButton(email: email, password: password)
                 self?.enterButton.alpha = 1
             }
         }
@@ -311,6 +316,21 @@ private extension LogInViewController {
 }
 
 extension LogInViewController: LogInViewInput {
+    func showEmptyFields(withIndexes indexes: [Int]){
+        var emptyFields = ""
+        for index in indexes {
+            emptyFields.append("\(fields[index]), ")
+        }
+        let alert = UIAlertController(title: "Ой", message: "Проверьте заполненность полей: \(emptyFields)", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Исправлю", style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func showNonAuthorized(with error: String) {
+        let alert = UIAlertController(title: "Ой", message: "\(error)", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Исправлю", style: .default))
+        self.present(alert, animated: true)
+    }
 }
 
 private struct Constants {

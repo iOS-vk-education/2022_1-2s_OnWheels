@@ -9,6 +9,12 @@ import UIKit
 import PinLayout
 
 final class EventsInfoCell: UITableViewCell {
+    
+    typealias LikeClosure = () -> Void
+    
+    private var likeAction: LikeClosure?
+    
+    var id: Int = 0
     //    Вью летющей ячейки
     private let cellView: UIView = {
         let cell = UIView()
@@ -35,7 +41,7 @@ final class EventsInfoCell: UITableViewCell {
         return label
     }()
     
-    private let placeInfoStackVeiw = EventInfoStackView()
+//    private let placeInfoStackVeiw = EventInfoStackView()
     private let likeInfoStackVeiw = EventInfoStackView()
     private let sharedInfoStackView = EventInfoStackView()
     private let watchedInfoStackView = EventInfoStackView()
@@ -74,7 +80,7 @@ final class EventsInfoCell: UITableViewCell {
         super.prepareForReuse()
         mainLabel.text = ""
         dateLabel.text = ""
-        placeInfoStackVeiw.infoLabel.text = ""
+//        placeInfoStackVeiw.infoLabel.text = ""
         sharedInfoStackView.infoLabel.text = ""
         watchedInfoStackView.infoLabel.text = ""
         likeInfoStackVeiw.infoLabel.text = ""
@@ -91,7 +97,7 @@ final class EventsInfoCell: UITableViewCell {
         
         cellView.addSubview(dateLabel)
         
-        cellView.addSubview(placeInfoStackVeiw)
+//        cellView.addSubview(placeInfoStackVeiw)
         
         cellView.addSubview(tagsStackVeiw)
         
@@ -103,6 +109,10 @@ final class EventsInfoCell: UITableViewCell {
         
         setupLayout()
         setupLikeStackView()
+    }
+    
+    func setLikeAction(_ action: @escaping LikeClosure) {
+        self.likeAction = action
     }
     
     func setupLayout() {
@@ -126,15 +136,15 @@ final class EventsInfoCell: UITableViewCell {
             .right(Constants.DateLabel.right)
             .height(Constants.DateLabel.height)
         
-        placeInfoStackVeiw.pin
-            .top(to: dateLabel.edge.bottom)
-            .marginTop(Constants.PlaceInfoStackView.top)
-            .left(Constants.PlaceInfoStackView.left)
-            .height(Constants.PlaceInfoStackView.height)
-            .width(Constants.PlaceInfoStackView.width)
+//        placeInfoStackVeiw.pin
+//            .top(to: dateLabel.edge.bottom)
+//            .marginTop(Constants.PlaceInfoStackView.top)
+//            .left(Constants.PlaceInfoStackView.left)
+//            .height(Constants.PlaceInfoStackView.height)
+//            .width(Constants.PlaceInfoStackView.width)
         
         tagsStackVeiw.pin
-            .top(to: placeInfoStackVeiw.edge.bottom)
+            .top(to: dateLabel.edge.bottom)
             .marginTop(Constants.TagsStackView.top)
             .left(Constants.TagsStackView.left)
             .right(Constants.TagsStackView.right)
@@ -175,14 +185,14 @@ final class EventsInfoCell: UITableViewCell {
         struct CellView {
             static let top: CGFloat = 10
             static let bottom: CGFloat = 10
-            static let height: CGFloat = 390
+            static let height: CGFloat = 316
         }
         
         struct MainLabel {
-            static let top: CGFloat = 16
+            static let top: CGFloat = 8
             static let left: CGFloat = 24
             static let right: CGFloat = 24
-            static let height: CGFloat = 50
+            static let height: CGFloat = 24
         }
         
         struct DateLabel {
@@ -216,7 +226,7 @@ final class EventsInfoCell: UITableViewCell {
         struct InfoStackVeiws {
             static let top: CGFloat = 10
             static let left: CGFloat = 24
-            static let width: CGFloat = 50
+            static let width: CGFloat = 32
             static let height: CGFloat = 24
         }
     }
@@ -224,6 +234,7 @@ final class EventsInfoCell: UITableViewCell {
     func setupLikeStackView(){
         likeInfoStackVeiw.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                       action: #selector(setState)))
+        likeInfoStackVeiw.infoLabel.isHidden = true
     }
     
     @objc
@@ -231,6 +242,7 @@ final class EventsInfoCell: UITableViewCell {
         if !isEventLiked {
             likeInfoStackVeiw.infoImageView.image = R.image.likeTapped()
             isEventLiked = !isEventLiked
+            likeAction?()
         } else {
             likeInfoStackVeiw.infoImageView.image = R.image.likes()
             isEventLiked = !isEventLiked
@@ -263,7 +275,8 @@ final class EventsInfoCell: UITableViewCell {
     ///   - watchedText: Количество просмторевших
     ///   - imageName: Название картинки
     ///   - isLiked: Проверка на лайк
-    func configure(mainText: String,
+    func configure(indexPath: Int,
+                   mainText: String,
                    dateText: String,
                    placeText: String,
                    imageName: String,
@@ -272,11 +285,11 @@ final class EventsInfoCell: UITableViewCell {
                    watchedText: Int,
                    isLiked: Bool) {
         let image = UIImage(named: imageName)
-        
+        id = indexPath
         mainLabel.text = mainText
         dateLabel.text = dateText
-        placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
-                                              text: placeText)
+//        placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
+//                                              text: placeText)
         if isLiked {
             likeInfoStackVeiw.configureStackVeiw(image: R.image.likeTapped.name,
                                                  text: "\(likeText)")

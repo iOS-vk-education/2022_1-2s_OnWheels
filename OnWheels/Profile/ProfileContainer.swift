@@ -15,7 +15,9 @@ final class ProfileContainer {
     
     static func assemble(with context: ProfileContext) -> ProfileContainer {
         let router = ProfileRouter()
-        let interactor = ProfileInteractor()
+        let networkRouter = Router<UserEndPoint>()
+        let userManager = UserNetworkManagerImpl(router: networkRouter)
+        let interactor = ProfileInteractor(userManager: userManager)
         let presenter = ProfilePresenter(router: router, interactor: interactor)
         let viewController = ProfileViewController(output: presenter)
         

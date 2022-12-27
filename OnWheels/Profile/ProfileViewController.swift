@@ -12,6 +12,13 @@ import PinLayout
 final class ProfileViewController: UIViewController {
     private let output: ProfileViewOutput
     
+    private var user: CurrentUser?
+    
+    var name: String = ""
+    var surename: String = ""
+    var city: String = ""
+    var sex: String = ""
+    
     private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -75,9 +82,10 @@ final class ProfileViewController: UIViewController {
         return nil
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupUI()
+        output.loadInfo()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -112,7 +120,26 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewInput {
-    
+    func getData(userData: CurrentUser) {
+        user = userData
+        personTableView.reloadData()
+        guard let name = user?.firstname,
+              let surname = user?.lastname else {
+            return
+        }
+        
+        let personName = name + " " + surname
+        configureView(name: personName, city: user?.city ?? "")
+        guard let userSex = user?.sex else { return }
+        if userSex == "Unknown" {
+            sex = "Не указан"
+        } else {
+            sex = userSex
+        }
+        guard let date = user?.birthday else {
+            return
+        }
+    }
 }
 
 extension ProfileViewController {
@@ -150,6 +177,11 @@ extension ProfileViewController {
         view.addSubview(personTableView)
         setupTableView()
         setupNavBar()
+    }
+    
+    private func configureView(name: String, city: String){
+        personName.text = name
+        personCity.text = city
     }
     
     private func setupTableView(){
@@ -224,6 +256,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 || indexPath.section == 1 {
             let cell = tableView.dequeueCell(cellType: ProfileInfoCell.self, for: indexPath)
             cell.selectionStyle = .none
+            
+            let formatter1 = DateFormatter()
+            formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            formatter1.locale = Locale(identifier: "en_US_POSIX")
+            var dateString = ""
+            if let userBirth = user?.birthday,
+               let date2 = formatter1.date(from: userBirth) {
+                let formatter2 = DateFormatter()
+                formatter2.dateFormat = "EEEE, MMM d, yyyy"
+                formatter2.locale = Locale(identifier: "en_US_POSIX")
+
+                dateString = formatter2.string(from: date2)
+            }
+            
             if indexPath.section == 0 {
                 switch indexPath.row {
                 case 0:
@@ -231,13 +277,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                                    infoText: "+79000000000")
                 case 1:
                     cell.configure(mainText: R.string.localizable.emailAdress(),
-                                   infoText: "name@ya.ru")
+                                   infoText: user?.email ?? "No")
                 case 2:
                     cell.configure(mainText: R.string.localizable.dateOfBirth(),
-                                   infoText: "01.01.2001")
+                                   infoText: dateString)
                 case 3:
                     cell.configure(mainText: R.string.localizable.sex(),
-                                   infoText: "муж")
+                                   infoText: sex)
                 case 4:
                     cell.configure(mainText: R.string.localizable.aboutMe(),
                                    infoText: "Нет информации")
