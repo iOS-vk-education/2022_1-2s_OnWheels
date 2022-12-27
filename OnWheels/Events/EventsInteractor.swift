@@ -51,6 +51,7 @@ extension EventsInteractor: EventsInteractorInput {
                     print(error)
                 } else {
                     print(raceId)
+                    self.output?.setViews(raceId: raceId)
                 }
             }
         }

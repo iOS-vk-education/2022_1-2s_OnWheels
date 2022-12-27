@@ -52,3 +52,5 @@
 "man" = "man";
 "woman" = "woman";
 
+"alertTitle" = "Oh, fuck";
+"alertMessage" = "Check fields comletion";
