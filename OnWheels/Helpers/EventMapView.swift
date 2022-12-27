@@ -88,7 +88,7 @@ final class EventMapView: UIView {
         mapView.region = region
     }
     
-    func cofigureMap(latitude: Double, longitude: Double) {
+    func cofigureMap(latitude: Double, longitude: Double, name: String) {
         let point = MKPointAnnotation()
         do {
             point.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -100,6 +100,8 @@ final class EventMapView: UIView {
         } catch {
             eventPlaceInfoLabel.text = "Уточните у организатора"
         }
+        
+        eventPlaceInfoLabel.text = name
 
     }
     

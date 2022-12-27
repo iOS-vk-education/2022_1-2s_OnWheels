@@ -38,6 +38,7 @@ extension EventsInteractor: EventsInteractorInput {
                     print(error)
                 } else {
                     print(raceId)
+                    self.output?.setLike(raceId: raceId)
                 }
             }
         }

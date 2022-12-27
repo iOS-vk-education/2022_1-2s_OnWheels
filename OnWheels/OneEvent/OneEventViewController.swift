@@ -8,6 +8,7 @@
 
 import UIKit
 import PinLayout
+import CoreLocation
 
 final class OneEventViewController: UIViewController, UIGestureRecognizerDelegate {
     private let output: OneEventViewOutput
@@ -140,7 +141,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
             isTagsAlreadyDone = true
         }
         let widthFrame = eventContentView.frame.width
-        let height = eventContentView.bounds.height
+        let height = eventContentView.bounds.height + 100
         eventScrollView.contentSize = CGSize(width: widthFrame,
                                              height: height)
     }
@@ -259,9 +260,33 @@ extension OneEventViewController {
 extension OneEventViewController: OneEventViewInput {
     func setData(raceData: OneRace){
         print(raceData)
-        configureViewWith(name: raceData.name,
-                          description: raceData.oneRaceDescription,
-                          place: "\(raceData.location.latitude)", date: raceData.date.from)
-        mapView.cofigureMap(latitude: raceData.location.latitude, longitude: raceData.location.longitude)
+        let formatter1 = DateFormatter()
+        formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter1.locale = Locale(identifier: "en_US_POSIX")
+        var dateString = ""
+          
+        if let date2 = formatter1.date(from: raceData.date.from) {
+            let formatter2 = DateFormatter()
+            formatter2.dateFormat = "EEEE, MMM d, yyyy"
+            formatter2.locale = Locale(identifier: "en_US_POSIX")
+
+            dateString = formatter2.string(from: date2)
+        }
+        
+        let location = CLLocation(latitude: raceData.location.latitude, longitude: raceData.location.longitude)
+        
+        var cityLoc = ""
+        var countryLoc = ""
+        
+        location.fetchCityAndCountry { [weak self] city, country, error in
+            guard let city = city, let country = country, error == nil else { return }
+            cityLoc = city // Rio de Janeiro, Brazil
+            DispatchQueue.main.async {
+                self?.configureViewWith(name: raceData.name,
+                                  description: raceData.oneRaceDescription,
+                                  place: cityLoc, date: dateString)
+                self?.mapView.cofigureMap(latitude: raceData.location.latitude, longitude: raceData.location.longitude, name: cityLoc)
+            }
+        }
     }
 }

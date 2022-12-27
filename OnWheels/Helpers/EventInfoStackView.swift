@@ -51,7 +51,7 @@ class EventInfoStackView: UIStackView {
             .vCenter()
         
         self.axis = .horizontal
-        self.setCustomSpacing(10, after: infoImageView)
+        self.setCustomSpacing(4, after: infoImageView)
     }
     
     func configureStackVeiw(image: String, text: String){

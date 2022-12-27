@@ -113,19 +113,20 @@ extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
         cell.selectionStyle = .none
         cell.setupLayout()
-        cell.configure(mainText: R.string.localizable.eventName(),
+        cell.configure(indexPath: indexPath.row,
+                       mainText: R.string.localizable.eventName(),
                        dateText: R.string.localizable.eventDate(),
                        placeText: R.string.localizable.eventPlace(),
                        imageName: R.image.durtbike.name,
                        likeText: 18,
-                       sharedText: 12,
-                       watchedText: 23,
+                       sharedText: 1,
+                       watchedText: 2,
                        isLiked: true)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 410
+        return 330
     }
 }
 

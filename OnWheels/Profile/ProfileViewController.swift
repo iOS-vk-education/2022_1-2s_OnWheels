@@ -131,7 +131,14 @@ extension ProfileViewController: ProfileViewInput {
         let personName = name + " " + surname
         configureView(name: personName, city: user?.city ?? "")
         guard let userSex = user?.sex else { return }
-        sex = userSex
+        if userSex == "Unknown" {
+            sex = "Не указан"
+        } else {
+            sex = userSex
+        }
+        guard let date = user?.birthday else {
+            return
+        }
     }
 }
 
@@ -249,6 +256,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 || indexPath.section == 1 {
             let cell = tableView.dequeueCell(cellType: ProfileInfoCell.self, for: indexPath)
             cell.selectionStyle = .none
+            
+            let formatter1 = DateFormatter()
+            formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            formatter1.locale = Locale(identifier: "en_US_POSIX")
+            var dateString = ""
+            if let userBirth = user?.birthday,
+               let date2 = formatter1.date(from: userBirth) {
+                let formatter2 = DateFormatter()
+                formatter2.dateFormat = "EEEE, MMM d, yyyy"
+                formatter2.locale = Locale(identifier: "en_US_POSIX")
+
+                dateString = formatter2.string(from: date2)
+            }
+            
             if indexPath.section == 0 {
                 switch indexPath.row {
                 case 0:
@@ -259,7 +280,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                                    infoText: user?.email ?? "No")
                 case 2:
                     cell.configure(mainText: R.string.localizable.dateOfBirth(),
-                                   infoText: user?.birthday ?? "No")
+                                   infoText: dateString)
                 case 3:
                     cell.configure(mainText: R.string.localizable.sex(),
                                    infoText: sex)

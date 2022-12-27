@@ -9,9 +9,10 @@
 import UIKit
 import PinLayout
 
+var userLiked = UserDefaults.standard
+
 final class EventsViewController: UIViewController {
     private let output: EventsViewOutput
-    
     var raceDataList: RaceList = []
     
     private let eventsTableView = UITableView(frame: .zero, style: .plain)
@@ -45,6 +46,14 @@ extension EventsViewController: EventsViewInput {
     func setData(raceData: RaceList) {
         print(raceData)
         raceDataList = raceData
+        eventsTableView.reloadData()
+    }
+    
+    func setLikeData(index: Int){
+        eventsTableView.reloadData()
+    }
+    
+    func setViewsData(index: Int){
         eventsTableView.reloadData()
     }
 }
@@ -93,20 +102,36 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
         cell.selectionStyle = .none
         cell.setupLayout()
-        raceDataList[indexPath.row]
-        cell.configure(mainText: raceDataList[indexPath.row].name,
-                       dateText: raceDataList[indexPath.row].date.from,
+        let formatter1 = DateFormatter()
+        formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter1.locale = Locale(identifier: "en_US_POSIX")
+        var dateString = ""
+          
+        if let date2 = formatter1.date(from: raceDataList[indexPath.row].date.from) {
+            let formatter2 = DateFormatter()
+            formatter2.dateFormat = "EEEE, MMM d, yyyy"
+            formatter2.locale = Locale(identifier: "en_US_POSIX")
+
+            dateString = formatter2.string(from: date2)
+        }
+        
+        cell.configure(indexPath: indexPath.row,
+                       mainText: raceDataList[indexPath.row].name,
+                       dateText: dateString,
                        placeText: "\(raceDataList[indexPath.row].location.latitude)",
                        imageName: R.image.bikes2.name,
                        likeText: raceDataList[indexPath.row].likes,
                        sharedText: raceDataList[indexPath.row].views,
                        watchedText: raceDataList[indexPath.row].members.count,
-                       isLiked: false)
+                       isLiked: userLiked.bool(forKey: "\(indexPath.row)"))
+        cell.setLikeAction {[weak self] in
+            self?.output.didSetLike(for: indexPath.row)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 410
+        return 330
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
