@@ -1,0 +1,56 @@
+//profile
+"change" = "Change";
+"aboutMe" = "About me";
+"phoneNumber" = "Phone Number";
+"emailAdress" = "Email adress";
+"dateOfBirth" = "Date of birth";
+"sex" = "Sex";
+"mySocialNetworks" = "My social networks";
+"telegram" = "Telegram";
+"youtube" = "Youtube";
+"vk" = "VK";
+"events" = "Events";
+"myEvents" = "My events";
+"profile" = "Profile";
+"deleteAccount" = "Delete account";
+
+//events
+"eventName" = "Championship of Russia. Racing on Ice - Class 500. Semifinal - Stage 1";
+"eventPlace" = "Resp. Bashkortostan, Ufa";
+"eventDate" = "7 Jan. - Jan. 10.";
+"eventDescription" = "Prologue in the dark: one-hour (enduro stadium + small track for two classes Pro and B3. The presence of a headlamp, flashlights - in front, rear marker or reflective elements in red color - MUST. First off-road racing day of Profi (Pro) classes (track complexity - heavy) and Base 3 (B3) (track complexity - medium).";
+"firstTag" = "enduro on motorcycles";
+"secondTag" = "amateurs";
+"mapEventPlace" = "Location";
+
+//myEvents
+"participate" = "Participate";
+"organize" = "Organize";
+
+//login
+"welcomeText" = "Welcome to \n MotoCom";
+"enterEmail" = "Enter email";
+"enterPassword" = "Enter password";
+"forgotPassword" = "Forgot your password?";
+"enter" = "Enter";
+"noAccount" = "Don't have an account? ";
+"register" = "Register";
+"or" = "or";
+"loginWithoutAccount"= "\n Login without an account";
+
+//registration
+"createAccount" = "Create an account";
+"fillFields" = "Please fill in all fields";
+"enterName" = "Enter a name";
+"enterSurname" = "Enter a surname";
+"birthdate" = "Date of birth";
+"enterCity" = "Enter city of residence";
+"createPassword" = "Create password";
+"confirmPassword" = "Confirm your password";
+"acceptRules" = "By registering, I agree with";
+"acceptRules2" = "\n user agreement";
+"man" = "man";
+"woman" = "woman";
+
+"alertTitle" = "Oh, fuck";
+"alertMessage" = "Check fields comletion";

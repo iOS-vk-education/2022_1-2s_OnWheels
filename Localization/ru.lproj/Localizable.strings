@@ -1,0 +1,56 @@
+//profile
+"change" = "Изм.";
+"aboutMe" = "О себе";
+"phoneNumber" = "Номер телефона";
+"emailAdress" = "Почта";
+"dateOfBirth" = "Дата рождения";
+"sex" = "Пол";
+"mySocialNetworks" = "Мои соцсети";
+"telegram" = "Телеграм";
+"youtube" = "Ютуб";
+"vk" = "ВК";
+"events" = "Мероприятия";
+"myEvents" = "Мои мероприятия";
+"profile" = "Профиль";
+"deleteAccount" = "Удалить аккаунт";
+
+//events
+"eventName" = "Чемпионат России. Гонки на льду - класс 500. Полуфинал - 1 этап";
+"eventPlace" = "респ. Башкортостан, Уфа";
+"eventDate" = "7 янв. — 10 янв.";
+"eventDescription" = "Пролог в темное время: часовой (эндуро-стадион + небольшой трек для двух классов Pro и B3. Наличие фары, фонариков - спереди, заднего габарита либо отражающих элементов красного цвета - ОБЯЗАТЕЛЬНО. Первый внедорожный гоночный день классов Profi (Pro) (сложность трека - heavy) и Base 3 (B3) (сложность трека - medium).";
+"firstTag" = "эндуро на мотоциклах";
+"secondTag" = "любители";
+"mapEventPlace" = "Место проведения";
+
+//myEvents
+"participate" = "Участвую";
+"organize" = "Организую";
+
+//login
+"welcomeText" = "Добро пожаловать в \n MotoCom";
+"enterEmail" = "Введите email";
+"enterPassword" = "Введите пароль";
+"forgotPassword" = "Забыли пароль?";
+"enter" = "Войти";
+"noAccount" = "Нет аккаунта? ";
+"register" = "Зарегистрироваться";
+"or" = "или";
+"loginWithoutAccount"= "\n Войти без аккаунта";
+
+//registration
+"createAccount" = "Создайте аккаунт";
+"fillFields" = "Пожалуйста, заполните все поля";
+"enterName" = "Введите имя";
+"enterSurname" = "Введите фамилию";
+"birthdate" = "Дата рождения";
+"enterCity" = "Введите город проживания";
+"createPassword" = "Создайте пароль";
+"confirmPassword" = "Подтвердите пароль";
+"acceptRules" = "Регистрируясь, я соглашаюсь с ";
+"acceptRules2" = "\n пользовательским соглашением";
+"man" = "муж";
+"woman" = "жен";
+
+"alertTitle" = "Ой";
+"alertMessage" = "Проверьте заполненность полей";

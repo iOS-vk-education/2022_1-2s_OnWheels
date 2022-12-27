@@ -10,13 +10,31 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var coordinator: CoordinatorProtocol?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        let window: UIWindow = UIWindow(windowScene: windowScene)
+        self.window = window
+        
+        let enterContainer = EnterContainer.assemble(with: EnterContext(window: window))
+        let navigationController = UINavigationController(rootViewController: enterContainer.viewController)
+
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+
+        //MARK: в переменную будем передавать значения из userDefaults, чтобы понимать, зашел уже человек или еще нет
+//        let bool = true
+//        if bool {
+//            coordinator = AppCoordinator(window: window, instructor: .authorization)
+//        } else {
+//            coordinator = AppCoordinator(window: window, instructor: .main)
+//        }
+//        coordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
