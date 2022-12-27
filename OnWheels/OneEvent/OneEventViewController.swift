@@ -14,6 +14,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     
     private let eventScrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
@@ -26,6 +27,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     private let eventImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
+        image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.masksToBounds = true
         image.image = R.image.oneEventImage()
         return image
@@ -33,6 +35,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     
     private let backButton: UIButton = {
         let back = UIButton()
+        back.translatesAutoresizingMaskIntoConstraints = false
         back.setImage(R.image.backButton(), for: .normal)
         back.tintColor = R.color.mainBlue()
         return back
@@ -48,6 +51,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     let eventNameLabel: UILabel = {
         let eventName = UILabel()
         eventName.textColor = R.color.mainBlue()
+        eventName.translatesAutoresizingMaskIntoConstraints = false
         eventName.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         eventName.numberOfLines = 0
         eventName.textAlignment = .left
@@ -57,6 +61,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     
     let placeDateInfoStackVeiw: UIStackView = {
         let placeDateInfo = UIStackView()
+        placeDateInfo.translatesAutoresizingMaskIntoConstraints = false
         placeDateInfo.axis = .horizontal
         placeDateInfo.spacing = 10
         return placeDateInfo
@@ -64,6 +69,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     
     let placeLabel: UILabel = {
         let place = UILabel()
+        place.translatesAutoresizingMaskIntoConstraints = false
         place.textAlignment = .left
         place.textColor = R.color.mainOrange()
         place.text = R.string.localizable.eventPlace()
@@ -73,6 +79,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     
     let spacingLabel: UILabel = {
         let spacing = UILabel()
+        spacing.translatesAutoresizingMaskIntoConstraints = false
         spacing.text = "|"
         spacing.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         spacing.textColor = .secondaryLabel
@@ -81,6 +88,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     
     let dateLabel: UILabel = {
         let date = UILabel()
+        date.translatesAutoresizingMaskIntoConstraints = false
         date.text = R.string.localizable.eventDate()
         date.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         date.textColor = .secondaryLabel
@@ -89,6 +97,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     
     let eventDescriptionLabel: UILabel = {
         let eventDescription = UILabel()
+        eventDescription.translatesAutoresizingMaskIntoConstraints = false
         eventDescription.textColor = R.color.profileCellTextColor()
         eventDescription.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         eventDescription.numberOfLines = 0
@@ -99,6 +108,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     
     let mapView: EventMapView = {
         let map = EventMapView()
+        map.translatesAutoresizingMaskIntoConstraints = false
         map.layer.cornerRadius = 16
         map.clipsToBounds = true
         return map
@@ -119,19 +129,27 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
         view.backgroundColor = R.color.background()
         setupGestureRecognizer()
         output.loadInfo()
+        setupLayout()
+
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupLayout()
         if !isTagsAlreadyDone {
             addTags(with: tags)
             isTagsAlreadyDone = true
         }
-        
-        let heightFrame = eventContentView.frame.height
         let widthFrame = eventContentView.frame.width
-        eventScrollView.contentSize = CGSize(width: widthFrame, height: heightFrame)
+        let height = eventContentView.bounds.height
+        eventScrollView.contentSize = CGSize(width: widthFrame,
+                                             height: height)
+    }
+    
+    func configureViewWith(name: String, description: String, place: String, date: String) {
+        eventNameLabel.text = name
+        dateLabel.text = date
+        placeLabel.text = place
+        eventDescriptionLabel.text = description
     }
     
     func addTags(with tags: [String]) {
@@ -164,69 +182,64 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
 extension OneEventViewController {
     private func setupLayout(){
         view.addSubview(eventImage)
-        eventImage.pin
-            .top()
-            .height(Constants.EventImage.height)
-            .left(to: view.edge.left)
-            .right(to: view.edge.right)
+        NSLayoutConstraint.activate([
+            eventImage.topAnchor.constraint(equalTo: view.topAnchor),
+            eventImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            eventImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            eventImage.heightAnchor.constraint(equalToConstant: 300)
+        ])
         
+        eventContentView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(eventScrollView)
-        eventScrollView.pin
-            .top(to: eventImage.edge.bottom)
-            .left()
-            .right()
-            .bottom()
+        NSLayoutConstraint.activate([
+            eventScrollView.topAnchor.constraint(equalTo: eventImage.bottomAnchor),
+            eventScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            eventScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            eventScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         
         eventScrollView.addSubview(eventContentView)
-        eventContentView.pin
-            .top(Constants.EventContentView.marginTop)
-            .left(Constants.EventContentView.marginLeft)
-            .right(Constants.EventContentView.marginRight)
-            .bottom(to: eventScrollView.edge.bottom)
-            .height(view.frame.height * 0.7)
-        
-        eventContentView.addSubview(tagsStackVeiw)
-        tagsStackVeiw.pin
-            .top(to: eventContentView.edge.top)
-            .left()
-            .right()
-            .height(Constants.TagsStackVeiw.height)
+        NSLayoutConstraint.activate([
+            eventContentView.topAnchor.constraint(equalTo: eventScrollView.topAnchor, constant: 16),
+            eventContentView.leadingAnchor.constraint(equalTo: eventScrollView.leadingAnchor, constant: 20),
+            eventScrollView.trailingAnchor.constraint(equalTo: eventScrollView.trailingAnchor, constant: -20),
+            eventContentView.bottomAnchor.constraint(equalTo: eventScrollView.bottomAnchor),
+            eventContentView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+
+        ])
         
         eventContentView.addSubview(eventNameLabel)
-        eventNameLabel.pin
-            .top(to: tagsStackVeiw.edge.bottom)
-            .marginTop(Constants.EventNameLabel.marginTop)
-            .left()
-            .right()
-            .sizeToFit(.width)
-        
+        NSLayoutConstraint.activate([
+            eventNameLabel.topAnchor.constraint(equalTo: eventContentView.topAnchor),
+            eventNameLabel.leadingAnchor.constraint(equalTo: eventContentView.leadingAnchor),
+            eventNameLabel.trailingAnchor.constraint(equalTo: eventContentView.trailingAnchor)
+        ])
+
         eventContentView.addSubview(placeDateInfoStackVeiw)
-        placeDateInfoStackVeiw.pin
-            .top(to: eventNameLabel.edge.bottom)
-            .marginTop(Constants.PlaceDateInfoStackView.marginTop)
-            .left()
-            .height(Constants.PlaceDateInfoStackView.height)
-            .width(Constants.PlaceDateInfoStackView.width)
-        
+        NSLayoutConstraint.activate([
+            placeDateInfoStackVeiw.topAnchor.constraint(equalTo: eventNameLabel.bottomAnchor, constant: 12),
+            placeDateInfoStackVeiw.leadingAnchor.constraint(equalTo: eventContentView.leadingAnchor),
+            placeDateInfoStackVeiw.trailingAnchor.constraint(equalTo: eventContentView.trailingAnchor)
+        ])
+
         placeDateInfoStackVeiw.addArrangedSubview(placeLabel)
         placeDateInfoStackVeiw.addArrangedSubview(spacingLabel)
         placeDateInfoStackVeiw.addArrangedSubview(dateLabel)
         
         eventContentView.addSubview(eventDescriptionLabel)
-        eventDescriptionLabel.pin
-            .top(to: placeDateInfoStackVeiw.edge.bottom)
-            .marginTop(Constants.EventDescriptionLabel.marginTop)
-            .left()
-            .right()
-            .sizeToFit(.width)
+        NSLayoutConstraint.activate([
+            eventDescriptionLabel.topAnchor.constraint(equalTo: placeDateInfoStackVeiw.bottomAnchor, constant: 12),
+            eventDescriptionLabel.leadingAnchor.constraint(equalTo: eventContentView.leadingAnchor),
+            eventDescriptionLabel.trailingAnchor.constraint(equalTo: eventContentView.trailingAnchor)
+        ])
         
         eventContentView.addSubview(mapView)
-        mapView.pin
-            .top(to: eventDescriptionLabel.edge.bottom)
-            .marginTop(Constants.MapView.marginTop)
-            .left()
-            .right()
-            .height(Constants.MapView.height)
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: eventDescriptionLabel.bottomAnchor, constant: 12),
+            mapView.leadingAnchor.constraint(equalTo: eventContentView.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: eventContentView.trailingAnchor),
+            mapView.heightAnchor.constraint(equalToConstant: 240)
+        ])
         
         setupNavBar()
     }
@@ -241,45 +254,14 @@ extension OneEventViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
-    
-    struct Constants {
-        
-        struct EventImage {
-            static let height: Percent = 35%
-        }
-        struct EventContentView {
-            static let marginTop: CGFloat = 16
-            static let marginLeft: CGFloat = 20
-            static let marginRight: CGFloat = 20
-        }
-        
-        struct TagsStackVeiw {
-            static let height: CGFloat = 20
-        }
-        
-        struct EventNameLabel {
-            static let marginTop: CGFloat = 16
-        }
-        
-        struct PlaceDateInfoStackView {
-            static let marginTop: CGFloat = 12
-            static let height: CGFloat = 20
-            static let width: Percent = 80%
-        }
-        
-        struct EventDescriptionLabel {
-            static let marginTop: CGFloat = 12
-        }
-        
-        struct MapView {
-            static let marginTop: CGFloat = 20
-            static let height: CGFloat = 240
-        }
-    }
 }
 
 extension OneEventViewController: OneEventViewInput {
     func setData(raceData: OneRace){
         print(raceData)
+        configureViewWith(name: raceData.name,
+                          description: raceData.oneRaceDescription,
+                          place: "\(raceData.location.latitude)", date: raceData.date.from)
+        mapView.cofigureMap(latitude: raceData.location.latitude, longitude: raceData.location.longitude)
     }
 }
