@@ -10,9 +10,55 @@ protocol RacesNetworkManager {
 //    func getAllRaces(completion: @escaping(_ races: [Race]?, _ error: String?)->())
     func getListOfRaces(completion: @escaping(_ races: [RaceListElement]?, _ error: String?)->())
     func getRace(with id: Int, completion: @escaping(_ race: OneRace?, _ error: String?)->())
+    func postLike(with id: Int, complition: @escaping(_ error: String?)->())
+    func postView(with id: Int, complition: @escaping(_ error: String?)->())
 }
 
 final class RacesNetworkManagerImpl: NetworkManager, RacesNetworkManager {
+    func postLike(with id: Int, complition: @escaping (String?) -> ()) {
+        router.request(.postLike(raceId: id)) { data, response, error in
+            if error != nil {
+                complition("Check netwotk connection")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        complition(NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    complition(nil)
+                case .failure(let failure):
+                    complition(failure)
+                }
+            }
+        }
+    }
+    
+    func postView(with id: Int, complition: @escaping (String?) -> ()) {
+        router.request(.postView(raceId: id)) { data, response, error in
+            if error != nil {
+                complition("Check netwotk connection")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        complition(NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    complition(nil)
+                case .failure(let failure):
+                    complition(failure)
+                }
+            }
+        }
+    }
+    
     private let router: Router<RaceEndPoint>
     
     init(router: Router<RaceEndPoint>) {

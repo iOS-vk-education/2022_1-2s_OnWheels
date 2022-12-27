@@ -111,5 +111,6 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         output.rowDidSelect(at: indexPath.row + 1)
+        eventsTableView.reloadData()
     }
 }

@@ -30,4 +30,28 @@ extension EventsInteractor: EventsInteractorInput {
             }
         }
     }
+    
+    func setLike(for raceId: Int){
+        raceManager.postLike(with: raceId) { error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error)
+                } else {
+                    print(raceId)
+                }
+            }
+        }
+    }
+    
+    func setView(for raceId: Int) {
+        raceManager.postView(with: raceId) { error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error)
+                } else {
+                    print(raceId)
+                }
+            }
+        }
+    }
 }

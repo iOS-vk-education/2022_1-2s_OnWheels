@@ -22,10 +22,13 @@ protocol EventsViewInput: AnyObject {
 protocol EventsViewOutput: AnyObject {
     func rowDidSelect(at index: Int)
     func didLoadRaces()
+    func didSetLike(for raceId: Int)
 }
 
 protocol EventsInteractorInput: AnyObject {
     func loadRaces()
+    func setLike(for raceId: Int)
+    func setView(for raceId: Int)
 }
 
 protocol EventsInteractorOutput: AnyObject {

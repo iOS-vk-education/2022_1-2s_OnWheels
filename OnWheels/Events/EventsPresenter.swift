@@ -25,7 +25,12 @@ extension EventsPresenter: EventsModuleInput {
 }
 
 extension EventsPresenter: EventsViewOutput {
+    func didSetLike(for raceId: Int) {
+        interactor.setLike(for: raceId)
+    }
+    
     func rowDidSelect(at index: Int) {
+        interactor.setView(for: index)
         router.selectedRowTapped(at: index)
     }
     

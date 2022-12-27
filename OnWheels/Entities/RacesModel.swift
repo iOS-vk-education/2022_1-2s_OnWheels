@@ -8,7 +8,6 @@
 import Foundation
 
 struct RaceResponse {
-    let races: [Race]
     let raceList: [RaceListElement]
 }
 extension RaceResponse: Decodable {
@@ -18,7 +17,6 @@ extension RaceResponse: Decodable {
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RaceResponseCodingKeys.self)
-        races = try container.decode([Race].self, forKey: .races)
         raceList = try container.decode([RaceListElement].self, forKey: .raceList)
     }
 }
@@ -40,33 +38,6 @@ struct RaceListElement: Codable {
         case name, location, date
         case raceListDescription = "description"
         case images, tags, members, likes, views
-    }
-}
-
-
-struct Race: Codable {
-    let name: String
-    let location: Location
-    let date: DateClass
-    let racesDescription: String
-    let imageUrls, tags: [String]
-
-    enum RacesCodingKeys: String, CodingKey {
-        case name, location, date
-        case racesDescription = "description"
-        case imageUrls, tags
-    }
-}
-
-extension Race {
-    init(from decoder: Decoder) throws {
-        let racesContainer = try decoder.container(keyedBy: RacesCodingKeys.self)
-        name = try racesContainer.decode(String.self, forKey: .name)
-        location = try racesContainer.decode(Location.self, forKey: .location)
-        date = try racesContainer.decode(DateClass.self, forKey: .date)
-        racesDescription = try racesContainer.decode(String.self, forKey: .racesDescription)
-        imageUrls = try racesContainer.decode([String].self, forKey: .imageUrls)
-        tags = try racesContainer.decode([String].self, forKey: .tags)
     }
 }
 
