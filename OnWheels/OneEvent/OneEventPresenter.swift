@@ -28,7 +28,13 @@ extension OneEventPresenter: OneEventViewOutput {
     func backButtonTapped(){
         router.backButtonPressed()
     }
+    func loadInfo(){
+        interactor.loadRaceInfo()
+    }
 }
 
 extension OneEventPresenter: OneEventInteractorOutput {
+    func setRace(races: OneRace) {
+        view?.setData(raceData: races)
+    }
 }

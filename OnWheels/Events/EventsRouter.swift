@@ -14,11 +14,11 @@ final class EventsRouter {
 }
 
 extension EventsRouter: EventsRouterInput {
-    func selectedRowTapped(){
+    func selectedRowTapped(at index: Int){
         guard let window = window else {
             return
         }
-        let oneEventContext = OneEventContext(window: window)
+        let oneEventContext = OneEventContext(window: window, raceId: index)
         let oneEventContainer = OneEventContainer.assemble(with: oneEventContext)
         viewController?.navigationController?.pushViewController(oneEventContainer.viewController, animated: true)
     }

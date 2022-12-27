@@ -20,7 +20,7 @@ protocol EventsViewInput: AnyObject {
 }
 
 protocol EventsViewOutput: AnyObject {
-    func rowDidSelect()
+    func rowDidSelect(at index: Int)
     func didLoadRaces()
 }
 
@@ -33,5 +33,5 @@ protocol EventsInteractorOutput: AnyObject {
 }
 
 protocol EventsRouterInput: AnyObject {
-    func selectedRowTapped()
+    func selectedRowTapped(at index: Int)
 }

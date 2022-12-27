@@ -12,7 +12,7 @@ import PinLayout
 final class EventsViewController: UIViewController {
     private let output: EventsViewOutput
     
-    var raceDataList: RaceList?
+    var raceDataList: RaceList = []
     
     private let eventsTableView = UITableView(frame: .zero, style: .plain)
         
@@ -85,10 +85,7 @@ extension EventsViewController {
 extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let number = raceDataList?.count else {
-            return 0
-        }
-        return number
+        return raceDataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,13 +93,14 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
         cell.selectionStyle = .none
         cell.setupLayout()
-        cell.configure(mainText: R.string.localizable.eventName(),
-                       dateText: R.string.localizable.eventDate(),
-                       placeText: R.string.localizable.eventPlace(),
+        raceDataList[indexPath.row]
+        cell.configure(mainText: raceDataList[indexPath.row].name,
+                       dateText: raceDataList[indexPath.row].date.from,
+                       placeText: "\(raceDataList[indexPath.row].location.latitude)",
                        imageName: R.image.bikes2.name,
-                       likeText: 20,
-                       sharedText: 15,
-                       watchedText: 30,
+                       likeText: raceDataList[indexPath.row].likes,
+                       sharedText: raceDataList[indexPath.row].views,
+                       watchedText: raceDataList[indexPath.row].members.count,
                        isLiked: false)
         return cell
     }
@@ -112,6 +110,6 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        output.rowDidSelect()
+        output.rowDidSelect(at: indexPath.row + 1)
     }
 }

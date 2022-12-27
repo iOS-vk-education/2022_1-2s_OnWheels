@@ -15,7 +15,10 @@ final class OneEventContainer {
 
 	static func assemble(with context: OneEventContext) -> OneEventContainer {
         let router = OneEventRouter()
-        let interactor = OneEventInteractor()
+        let networkRouter = Router<RaceEndPoint>()
+        let raceManager = RacesNetworkManagerImpl(router: networkRouter)
+        let raceId = context.raceId
+        let interactor = OneEventInteractor(raceManager: raceManager, raceId: raceId)
         let presenter = OneEventPresenter(router: router, interactor: interactor)
 		let viewController = OneEventViewController(output: presenter)
 
@@ -24,6 +27,7 @@ final class OneEventContainer {
         router.window = context.window
         router.viewController = viewController
 		interactor.output = presenter
+        
 
         return OneEventContainer(view: viewController, input: presenter, router: router)
 	}
@@ -38,4 +42,5 @@ final class OneEventContainer {
 struct OneEventContext {
 	weak var moduleOutput: OneEventModuleOutput?
     let window: UIWindow
+    let raceId: Int
 }

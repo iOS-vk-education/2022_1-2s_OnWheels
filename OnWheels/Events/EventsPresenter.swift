@@ -25,9 +25,10 @@ extension EventsPresenter: EventsModuleInput {
 }
 
 extension EventsPresenter: EventsViewOutput {
-    func rowDidSelect(){
-        router.selectedRowTapped()
+    func rowDidSelect(at index: Int) {
+        router.selectedRowTapped(at: index)
     }
+    
     
     func didLoadRaces() {
         interactor.loadRaces()

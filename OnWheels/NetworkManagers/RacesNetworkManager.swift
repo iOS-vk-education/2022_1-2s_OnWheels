@@ -48,6 +48,29 @@ final class RacesNetworkManagerImpl: NetworkManager, RacesNetworkManager {
     
     
     func getRace(with id: Int, completion: @escaping (OneRace?, String?) -> ()) {
-        print("")
+        router.request(.getRace(raceId: id)) { data, response, error in
+            if error != nil {
+                completion(nil, "Check your connection")
+            }
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let apiResponse = try? JSONDecoder().decode(OneRace.self, from: responseData)
+                        completion(apiResponse, nil)
+                    }
+                    catch {
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                case .failure(let failure):
+                    completion(nil, failure)
+                }
+            }
+        }
     }
 }

@@ -118,6 +118,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
         super.viewDidLoad()
         view.backgroundColor = R.color.background()
         setupGestureRecognizer()
+        output.loadInfo()
     }
     
     override func viewDidLayoutSubviews() {
@@ -160,7 +161,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     }
 }
 
-extension OneEventViewController: OneEventViewInput {
+extension OneEventViewController {
     private func setupLayout(){
         view.addSubview(eventImage)
         eventImage.pin
@@ -274,5 +275,11 @@ extension OneEventViewController: OneEventViewInput {
             static let marginTop: CGFloat = 20
             static let height: CGFloat = 240
         }
+    }
+}
+
+extension OneEventViewController: OneEventViewInput {
+    func setData(raceData: OneRace){
+        print(raceData)
     }
 }
