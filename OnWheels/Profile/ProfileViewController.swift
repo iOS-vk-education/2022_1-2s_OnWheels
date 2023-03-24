@@ -15,17 +15,10 @@ final class ProfileViewController: UIViewController {
     private let output: ProfileViewOutput
     private var user: CurrentUser?
 
-    private var name: String = ""
-    private var surname: String = ""
-    private var city: String = ""
-    private var sex: String = ""
-    private var birthday: String = ""
-
     private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.image = R.image.profileImage()
-        image.layer.cornerRadius = 20
         return image
     }()
 
@@ -46,20 +39,18 @@ final class ProfileViewController: UIViewController {
     }()
 
     private let logoutButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(frame: .zero)
         button.setImage(UIImage(systemSymbol: .rectanglePortraitAndArrowRight), for: .normal)
-        button.isUserInteractionEnabled = true
         return button
     }()
 
     private let deleteAccountButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(frame: .zero)
         button.setImage(UIImage(systemSymbol: .trash), for: .normal)
-        button.isUserInteractionEnabled = true
         return button
     }()
 
-    private let userDetailsTable = UITableView(frame: .zero, style: .insetGrouped)
+    private let detailsTable = UITableView(frame: .zero, style: .insetGrouped)
     private let userDetailsTableTitles = [R.string.localizable.aboutMe()]
 
     init(output: ProfileViewOutput) {
@@ -110,42 +101,39 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: ProfileViewInput {
     func setUser(to newUser: CurrentUser) {
         user = newUser
-        userDetailsTable.reloadData()
-
-        // можем использовать "!", т.к. только что записали туда не опционал
-        name = user!.firstname + " " + user!.lastname
-        city = user!.city
+        updateData()
     }
 }
 
 // MARK: - UI
-extension ProfileViewController {
-    private func setupUI() {
+private extension ProfileViewController {
+    func setupUI() {
         view.backgroundColor = .backgroundColor
         // variadic arguments
-        view.addSubviews(profileImage, nameLabel, cityLabel, userDetailsTable, deleteAccountButton, logoutButton)
         setupUserDetailsTable()
+        view.addSubviews(profileImage, nameLabel, cityLabel, detailsTable, deleteAccountButton, logoutButton)
     }
 
-    private func setupUserDetailsTable() {
-        userDetailsTable.separatorStyle = .singleLine
-        userDetailsTable.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
-        userDetailsTable.showsVerticalScrollIndicator = false
-        userDetailsTable.backgroundColor = .backgroundColor
-        userDetailsTable.separatorColor = .gray
-        userDetailsTable.delegate = self
-        userDetailsTable.dataSource = self
-        userDetailsTable.register(ProfileInfoCell.self)
-        userDetailsTable.register(ProfileFooterCell.self)
-        userDetailsTable.allowsSelection = true
+    func setupUserDetailsTable() {
+        detailsTable.separatorStyle = .singleLine
+        detailsTable.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
+        detailsTable.showsVerticalScrollIndicator = false
+        detailsTable.backgroundColor = .backgroundColor
+        detailsTable.separatorColor = .gray
+        detailsTable.delegate = self
+        detailsTable.dataSource = self
+        detailsTable.register(ProfileInfoCell.self)
+        detailsTable.register(ProfileFooterCell.self)
+        detailsTable.allowsSelection = true
     }
 
-    private func setupLayout() {
+    func setupLayout() {
         profileImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.centerX.equalToSuperview()
-            make.size.equalTo(75)
+            make.size.equalTo(150)
         }
+        profileImage.makeRounded()
 
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(profileImage.snp.bottom).offset(10)
@@ -157,33 +145,43 @@ extension ProfileViewController {
             make.centerX.equalToSuperview()
         }
 
-        userDetailsTable.snp.makeConstraints { make in
-            make.top.equalTo(cityLabel.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(250)
-        }
-
-        deleteAccountButton.snp.makeConstraints { make in
-            make.top.equalTo(userDetailsTable.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
+        detailsTable.snp.makeConstraints { make in
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(10)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).inset(10)
+            make.top.equalTo(cityLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(logoutButton.snp.top).inset(20)
         }
 
         logoutButton.snp.makeConstraints { make in
-            make.top.equalTo(deleteAccountButton.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).inset(10)
+            make.left.equalTo(view.snp.centerX).offset(10)
+        }
+
+        deleteAccountButton.snp.makeConstraints { make in
+            make.bottom.equalTo(logoutButton.snp.top).inset(20)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(10)
+            make.right.equalTo(view.snp.centerX).inset(10)
         }
     }
+
+
+    func updateData() {
+        if let user = user {
+            nameLabel.text = user.firstname + " " + user.lastname
+            cityLabel.text = user.city
+        } else {
+            nameLabel.text = "Unknown"
+            cityLabel.text = "Unknown"
+        }
+        detailsTable.reloadData()
+    }
+
 
     struct Constants {
         struct ProfileImage {
             static let widthPercent: Percent = 100%
             static let heightPercent: Percent = 35%
-        }
-
-        struct ChangeProfileButton {
-            static let marginTopPercent: Percent = 10%
-            static let marginLeftPercent: Percent = 5%
-            static let width: CGFloat = 50
         }
 
         struct LogoutButton {
@@ -202,7 +200,6 @@ extension ProfileViewController {
             static let marginTop: CGFloat = 0
         }
     }
-
 }
 
 
@@ -213,16 +210,22 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
-//        if section == 0 {
-//            return 4
-//        } else {
-//            return 0
-//        }
+        if section == 0 {
+            return 3
+        } else {
+            return 0
+        }
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        50
+    }
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(cellType: ProfileInfoCell.self, for: indexPath)
         cell.selectionStyle = .none
 
@@ -242,21 +245,18 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        48
-    }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 32))
-
+        // container for padding
+        let containerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
         let label = UILabel()
-        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width - 10, height: headerView.frame.height - 7)
+        let padding: CGFloat = 5
+        label.frame = CGRect.init(x: padding, y: padding, width: containerView.frame.width - padding * 2, height: containerView.frame.height - padding * 2)
         label.text = userDetailsTableTitles[section]
         label.font = UIFont.systemFont(ofSize: 18, weight: .light)
         label.textColor = .mainBlueColor
-        headerView.addSubview(label)
-
-        return headerView
+        containerView.addSubview(label)
+        return containerView
     }
 
 }

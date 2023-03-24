@@ -18,7 +18,7 @@ final class ProfileInteractor {
 }
 
 extension ProfileInteractor: ProfileInteractorInput {
-    func loadUserInfo(){
+    func loadUserInfo() {
         self.userManager.currentUserInfo { user, error in
             DispatchQueue.main.async {
                 if let error = error {

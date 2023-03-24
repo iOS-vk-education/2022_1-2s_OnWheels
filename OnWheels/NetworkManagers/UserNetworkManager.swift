@@ -10,12 +10,12 @@ import Foundation
 let defaults = UserDefaults.standard
 
 enum AuthStatus {
-    case authorized(accsessToken: String)
+    case authorized(accessToken: String)
     case nonAuthorized(error: String)
 }
 
 enum RegisterStatus {
-    case authorized(accsessToken: String)
+    case authorized(accessToken: String)
     case nonAuthorized(error: String)
 }
 
@@ -44,7 +44,10 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
             if error != nil {
                 completion(nil, "Check network connection")
             }
-            
+            // debug
+            completion(CurrentUser(id: 1, firstname: "Artem", lastname: "Tikhonenko", email: "test@test.com", city: "Москва", birthday: "2003-07-12", sex: "Мужской"), nil)
+            return
+            //
             if let response = response as? HTTPURLResponse {
                 let result = self.handleNetworkResponse(response)
                 switch result {
@@ -125,7 +128,7 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                             let cookies = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
                                 return cookie.name == ".AspNetCore.Session"
                             })?.value ?? ""
-                            completion(.authorized(accsessToken: cookies))
+                            completion(.authorized(accessToken: cookies))
                             defaults.set(cookies, forKey: "cookie")
                         }
                     } catch {
@@ -158,7 +161,7 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                             let cookies = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
                                 return cookie.name == ".AspNetCore.Session"
                             })?.value ?? ""
-                            completion(.authorized(accsessToken: cookies))
+                            completion(.authorized(accessToken: cookies))
                             defaults.set(cookies, forKey: "cookie")
                         }
                     } catch {

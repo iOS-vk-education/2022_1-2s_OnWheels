@@ -35,6 +35,7 @@
 		7F02BDA82926AC5900DDA504 /* MyEventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA22926AC5900DDA504 /* MyEventsProtocols.swift */; };
 		7F02BDA92926AC5900DDA504 /* MyEventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA32926AC5900DDA504 /* MyEventsInteractor.swift */; };
 		7F02BDAA2926AC5900DDA504 /* MyEventsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA42926AC5900DDA504 /* MyEventsContainer.swift */; };
+		85B83773ACD5A09B643182B8 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83CDB2032C8C32DE9FD72 /* UIImageView+Extensions.swift */; };
 		94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A23291CFB8400A8163B /* AuthCoordinator.swift */; };
 		94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A25291CFB9100A8163B /* AppCoordinator.swift */; };
 		94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */; };
@@ -126,6 +127,7 @@
 		7F02BDA22926AC5900DDA504 /* MyEventsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsProtocols.swift; sourceTree = "<group>"; };
 		7F02BDA32926AC5900DDA504 /* MyEventsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsInteractor.swift; sourceTree = "<group>"; };
 		7F02BDA42926AC5900DDA504 /* MyEventsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsContainer.swift; sourceTree = "<group>"; };
+		85B83CDB2032C8C32DE9FD72 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		94187A23291CFB8400A8163B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		94187A25291CFB9100A8163B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				5455F992292B8A2600E63E72 /* UIView+Extensions.swift */,
 				5455F993292B8A2600E63E72 /* UIStackView+Extensions.swift */,
+				85B83CDB2032C8C32DE9FD72 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				947DFC2E292C032600045932 /* OneEventViewController.swift in Sources */,
 				5455F981292B893300E63E72 /* LogInProtocols.swift in Sources */,
 				949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */,
+				85B83773ACD5A09B643182B8 /* UIImageView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
