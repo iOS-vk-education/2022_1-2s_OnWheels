@@ -1,24 +1,28 @@
 PODS:
   - PinLayout (1.10.3)
-  - R.swift (6.1.0):
-    - R.swift.Library (~> 5.3.0)
-  - R.swift.Library (5.3.0)
+  - R.swift (7.2.4)
+  - SFSafeSymbols (4.1.1)
+  - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - PinLayout (= 1.10.3)
   - R.swift
+  - SFSafeSymbols
+  - SnapKit
 
 SPEC REPOS:
   trunk:
     - PinLayout
     - R.swift
-    - R.swift.Library
+    - SFSafeSymbols
+    - SnapKit
 
 SPEC CHECKSUMS:
   PinLayout: 0090ccbf29ae69af6ae5a15eaeaf27ed7b2c4d83
-  R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
-  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  R.swift: 681bb9135f482e7a81d9d27445b837fef5467e11
+  SFSafeSymbols: 902576dbf8ea16b4c6152cef2a26e47b3f55defb
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: cc4813282f983b2fb0ec887b3b53979b4f15707a
+PODFILE CHECKSUM: 637e69968b3ada5ff287ecf3fccb291ac3171767
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

@@ -6,7 +6,9 @@ target 'OnWheels' do
   use_frameworks!
 
  # Pods for OnWheels
-pod 'PinLayout', '1.10.3'
-pod 'R.swift'
+  pod 'PinLayout', '1.10.3'
+  pod 'R.swift'
+  pod 'SnapKit'
+  pod 'SFSafeSymbols'
 
 end

@@ -29,20 +29,20 @@ extension ProfilePresenter: ProfileViewOutput {
         interactor.loadUserInfo()
     }
     
-    func deleteAccountButtonTapped() {
+    func deleteAccount() {
         router.deleteAccountButtonPressed()
     }
     
     func openChangeProfileScreen(){
         router.changeProfileInfoButtonTapped()
     }
-    func logoutButtonTapped(){
+    func logout(){
         router.logoutButtonPressed()
     }
 }
 
 extension ProfilePresenter: ProfileInteractorOutput {
     func setUserData(user: CurrentUser) {
-        view?.getData(userData: user)
+        view?.setUser(to: user)
     }
 }

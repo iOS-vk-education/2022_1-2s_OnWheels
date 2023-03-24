@@ -39,7 +39,7 @@ final class ProfileInfoCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        return nil
+        nil
     }
     
     private func setupCell(){
@@ -61,10 +61,37 @@ final class ProfileInfoCell: UITableViewCell {
     
     /// заполнение ячейки данными
     /// - Parameters:
-    ///   - mainText: Главный текст
-    ///   - infoText: Информация о пользователе
-    func configure(mainText: String, infoText: String){
-        mainLabel.text = mainText
-        infoLabel.text = infoText
+    ///   - cellTitle: Тип данных в ячейке (email, birthday, ...)
+    ///   - cellContent: Информация о пользователе (test@test.com, 1.1.2003, ...)
+    func configure(cellTitle: String, cellContent: String?) {
+        mainLabel.text = cellTitle
+        infoLabel.text = cellContent ?? "Unknown"
+    }
+
+    func configure(cellTitle: String, birthdayStr: String?) {
+        mainLabel.text = cellTitle
+        if let birthdayStr = birthdayStr {
+            let formatter1 = DateFormatter()
+            formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            formatter1.locale = Locale(identifier: "en_US_POSIX")
+            var dateString = ""
+            if let date2 = formatter1.date(from: birthdayStr) {
+                let formatter2 = DateFormatter()
+                formatter2.dateFormat = "EEEE, MMM d, yyyy"
+                formatter2.locale = Locale(identifier: "en_US_POSIX")
+                dateString = formatter2.string(from: date2)
+            } else {
+                dateString = "Error"
+            }
+            infoLabel.text = dateString
+        } else {
+            infoLabel.text = "Unknown"
+        }
+    }
+
+
+    func clean() {
+        mainLabel.text = "Error"
+        infoLabel.text = "Error"
     }
 }

@@ -16,13 +16,13 @@ protocol ProfileModuleOutput: AnyObject {
 }
 
 protocol ProfileViewInput: AnyObject {
-    func getData(userData: CurrentUser)
+    func setUser(to newUser: CurrentUser)
 }
 
 protocol ProfileViewOutput: AnyObject {
     func openChangeProfileScreen()
-    func logoutButtonTapped()
-    func deleteAccountButtonTapped()
+    func logout()
+    func deleteAccount()
     func loadInfo()
 }
 
