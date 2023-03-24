@@ -13,6 +13,7 @@
 "myEvents" = "My events";
 "profile" = "Profile";
 "deleteAccount" = "Delete account";
+"logout" = "logout";
 
 //events
 "eventName" = "Championship of Russia. Racing on Ice - Class 500. Semifinal - Stage 1";
@@ -54,3 +55,4 @@
 
 "alertTitle" = "Oh, fuck";
 "alertMessage" = "Check fields comletion";
+

@@ -30,14 +30,11 @@ extension ProfilePresenter: ProfileViewOutput {
     }
     
     func deleteAccount() {
-        router.deleteAccountButtonPressed()
+        router.deleteAccount()
     }
     
-    func openChangeProfileScreen(){
-        router.changeProfileInfoButtonTapped()
-    }
-    func logout(){
-        router.logoutButtonPressed()
+    func logout() {
+        router.logout()
     }
 }
 

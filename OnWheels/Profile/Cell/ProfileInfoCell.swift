@@ -14,7 +14,7 @@ final class ProfileInfoCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.alignment = .leading
         stackView.axis = .vertical
-        stackView.spacing = 2
+        stackView.spacing = 5
         return stackView
     }()
     
@@ -43,7 +43,7 @@ final class ProfileInfoCell: UITableViewCell {
     }
     
     private func setupCell(){
-        self.addSubview(cellInfoStackView)
+        addSubview(cellInfoStackView)
         cellInfoStackView.addArrangedSubview(mainLabel)
         cellInfoStackView.addArrangedSubview(infoLabel)
         setupLayout()
@@ -68,17 +68,17 @@ final class ProfileInfoCell: UITableViewCell {
         infoLabel.text = cellContent ?? "Unknown"
     }
 
-    func configure(cellTitle: String, birthdayStr: String?) {
+    func configure(cellTitle: String, dateStr: String?) {
         mainLabel.text = cellTitle
-        if let birthdayStr = birthdayStr {
+        if let birthdayStr = dateStr {
             let formatter1 = DateFormatter()
             formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            formatter1.locale = Locale(identifier: "en_US_POSIX")
+//            formatter1.locale = Locale(identifier: "en_US_POSIX")
             var dateString = ""
             if let date2 = formatter1.date(from: birthdayStr) {
                 let formatter2 = DateFormatter()
-                formatter2.dateFormat = "EEEE, MMM d, yyyy"
-                formatter2.locale = Locale(identifier: "en_US_POSIX")
+                formatter2.dateFormat = "d MMMM yyyy"
+//                formatter2.locale = Locale(identifier: "en_US_POSIX")
                 dateString = formatter2.string(from: date2)
             } else {
                 dateString = "Error"

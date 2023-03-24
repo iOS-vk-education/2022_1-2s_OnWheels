@@ -45,7 +45,7 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                 completion(nil, "Check network connection")
             }
             // debug
-            completion(CurrentUser(id: 1, firstname: "Artem", lastname: "Tikhonenko", email: "test@test.com", city: "Москва", birthday: "2003-07-12", sex: "Мужской"), nil)
+            completion(CurrentUser(id: 1, firstname: "Artem", lastname: "Tikhonenko", email: "test@test.com", city: "Москва", birthday: "2013-09-29T18:46:19-0700", sex: "Мужской"), nil)
             return
             //
             if let response = response as? HTTPURLResponse {

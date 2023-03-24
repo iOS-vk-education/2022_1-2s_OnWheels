@@ -20,7 +20,6 @@ protocol ProfileViewInput: AnyObject {
 }
 
 protocol ProfileViewOutput: AnyObject {
-    func openChangeProfileScreen()
     func logout()
     func deleteAccount()
     func loadInfo()
@@ -35,7 +34,6 @@ protocol ProfileInteractorOutput: AnyObject {
 }
 
 protocol ProfileRouterInput: AnyObject {
-    func changeProfileInfoButtonTapped()
-    func logoutButtonPressed()
-    func deleteAccountButtonPressed()
+    func logout()
+    func deleteAccount()
 }

@@ -13,16 +13,19 @@ final class ProfileRouter {
 }
 
 extension ProfileRouter: ProfileRouterInput {
-    func deleteAccountButtonPressed() {
-        print("delete")
+    func deleteAccount() {
+        print("delete account")
+        // call to networking...
+        guard let window = window else {
+            return
+        }
+        let coordinator = AppCoordinator(window: window, instructor: .authorization)
+        coordinator.start()
     }
     
-    func changeProfileInfoButtonTapped(){
-        //здесь может появиться еще один экран
-        print("change info")
-    }
-    
-    func logoutButtonPressed(){
+    func logout() {
+        print("logout")
+        // call to networking...
         guard let window = window else {
             return
         }

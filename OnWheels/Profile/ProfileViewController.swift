@@ -18,14 +18,14 @@ final class ProfileViewController: UIViewController {
     private let profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.image = R.image.profileImage()
+        image.image = UIImage(systemSymbol: .bicycleCircle)
         return image
     }()
 
     private let nameLabel: UILabel = {
         let name = UILabel()
         name.text = "Name Surname"
-        name.font = .systemFont(ofSize: 20, weight: .regular)
+        name.font = .systemFont(ofSize: 25, weight: .semibold)
         name.textColor = .black
         return name
     }()
@@ -41,12 +41,22 @@ final class ProfileViewController: UIViewController {
     private let logoutButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setImage(UIImage(systemSymbol: .rectanglePortraitAndArrowRight), for: .normal)
+        button.setTitle(R.string.localizable.logout(), for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 15
         return button
     }()
 
     private let deleteAccountButton: UIButton = {
         let button = UIButton(frame: .zero)
-        button.setImage(UIImage(systemSymbol: .trash), for: .normal)
+        let image = UIImage(systemSymbol: .trash).withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.imageView?.tintColor = .systemRed
+        button.setTitle(R.string.localizable.deleteAccount(), for: .normal)
+        button.setTitleColor(.systemRed, for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 15
         return button
     }()
 
@@ -112,6 +122,12 @@ private extension ProfileViewController {
         // variadic arguments
         setupUserDetailsTable()
         view.addSubviews(profileImage, nameLabel, cityLabel, detailsTable, deleteAccountButton, logoutButton)
+        setupActions()
+    }
+
+    func setupActions() {
+        deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonTapped), for: .touchUpInside)
+        logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
     }
 
     func setupUserDetailsTable() {
@@ -125,6 +141,7 @@ private extension ProfileViewController {
         detailsTable.register(ProfileInfoCell.self)
         detailsTable.register(ProfileFooterCell.self)
         detailsTable.allowsSelection = true
+        detailsTable.alwaysBounceVertical = false
     }
 
     func setupLayout() {
@@ -146,22 +163,24 @@ private extension ProfileViewController {
         }
 
         detailsTable.snp.makeConstraints { make in
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(10)
-            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).inset(10)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
             make.top.equalTo(cityLabel.snp.bottom).offset(20)
             make.bottom.equalTo(logoutButton.snp.top).inset(20)
         }
 
         logoutButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
-            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).inset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).inset(20)
             make.left.equalTo(view.snp.centerX).offset(10)
+            make.height.equalTo(50)
         }
 
         deleteAccountButton.snp.makeConstraints { make in
-            make.bottom.equalTo(logoutButton.snp.top).inset(20)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
             make.right.equalTo(view.snp.centerX).inset(10)
+            make.height.equalTo(50)
         }
     }
 
@@ -218,7 +237,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 55
     }
 
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -235,7 +254,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                     cellContent: user?.email)
         case 1:
             cell.configure(cellTitle: R.string.localizable.dateOfBirth(),
-                    birthdayStr: user?.birthday)
+                    dateStr: user?.birthday)
         case 2:
             cell.configure(cellTitle: R.string.localizable.sex(),
                     cellContent: user?.sex)
