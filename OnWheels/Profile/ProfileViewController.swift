@@ -253,8 +253,21 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(cellTitle: R.string.localizable.emailAdress(),
                     cellContent: user?.email)
         case 1:
-            cell.configure(cellTitle: R.string.localizable.dateOfBirth(),
-                    dateStr: user?.birthday)
+            var dateString: String = ""
+            if let birthday = user?.birthday {
+                let inputFormatter = DateFormatter()
+                inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                if let date2 = inputFormatter.date(from: birthday) {
+                    let outputFormatter = DateFormatter()
+                    outputFormatter.dateFormat = "d MMMM yyyy"
+                    dateString = outputFormatter.string(from: date2)
+                } else {
+                    dateString = "Error"
+                }
+            } else {
+                dateString = "Unknown"
+            }
+            cell.configure(cellTitle: R.string.localizable.birthdate(), cellContent: dateString)
         case 2:
             cell.configure(cellTitle: R.string.localizable.sex(),
                     cellContent: user?.sex)

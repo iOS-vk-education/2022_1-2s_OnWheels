@@ -39,7 +39,7 @@ final class ProfileInfoCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        nil
+        return nil
     }
     
     private func setupCell(){
@@ -66,27 +66,6 @@ final class ProfileInfoCell: UITableViewCell {
     func configure(cellTitle: String, cellContent: String?) {
         mainLabel.text = cellTitle
         infoLabel.text = cellContent ?? "Unknown"
-    }
-
-    func configure(cellTitle: String, dateStr: String?) {
-        mainLabel.text = cellTitle
-        if let birthdayStr = dateStr {
-            let formatter1 = DateFormatter()
-            formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//            formatter1.locale = Locale(identifier: "en_US_POSIX")
-            var dateString = ""
-            if let date2 = formatter1.date(from: birthdayStr) {
-                let formatter2 = DateFormatter()
-                formatter2.dateFormat = "d MMMM yyyy"
-//                formatter2.locale = Locale(identifier: "en_US_POSIX")
-                dateString = formatter2.string(from: date2)
-            } else {
-                dateString = "Error"
-            }
-            infoLabel.text = dateString
-        } else {
-            infoLabel.text = "Unknown"
-        }
     }
 
 
