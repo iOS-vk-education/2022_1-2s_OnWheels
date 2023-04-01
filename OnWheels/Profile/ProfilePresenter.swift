@@ -30,10 +30,12 @@ extension ProfilePresenter: ProfileViewOutput {
     }
     
     func deleteAccount() {
+        // call to interactor...? interactor.deleteAccount() чтобы бэкэнду сказать об этом
         router.deleteAccount()
     }
     
     func logout() {
+        // call to interactor...?
         router.logout()
     }
 }

@@ -22,6 +22,7 @@
 		5455F990292B893B00E63E72 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455F98A292B893B00E63E72 /* RegistrationViewController.swift */; };
 		5455F994292B8A2600E63E72 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455F992292B8A2600E63E72 /* UIView+Extensions.swift */; };
 		5455F995292B8A2600E63E72 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455F993292B8A2600E63E72 /* UIStackView+Extensions.swift */; };
+		706ED36F29D8E63600B0914D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706ED36E29D8E63600B0914D /* DateExtension.swift */; };
 		7F02BD952926A6B400DDA504 /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD8F2926A6B300DDA504 /* EventsPresenter.swift */; };
 		7F02BD962926A6B400DDA504 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD902926A6B300DDA504 /* EventsViewController.swift */; };
 		7F02BD972926A6B400DDA504 /* EventsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD912926A6B300DDA504 /* EventsRouter.swift */; };
@@ -114,6 +115,7 @@
 		5455F98A292B893B00E63E72 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		5455F992292B8A2600E63E72 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5455F993292B8A2600E63E72 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		706ED36E29D8E63600B0914D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		7F02BD8F2926A6B300DDA504 /* EventsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
 		7F02BD902926A6B300DDA504 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		7F02BD912926A6B300DDA504 /* EventsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsRouter.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				94AEFDC82936312000DD3786 /* EventInfoStackView.swift */,
 				942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */,
 				94AEE7AA295B483100572BEF /* LocationExtension.swift */,
+				706ED36E29D8E63600B0914D /* DateExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				7F02BDAA2926AC5900DDA504 /* MyEventsContainer.swift in Sources */,
 				941E98842955F8CB0068F802 /* Router.swift in Sources */,
 				94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */,
+				706ED36F29D8E63600B0914D /* DateExtension.swift in Sources */,
 				947DFC2E292C032600045932 /* OneEventViewController.swift in Sources */,
 				5455F981292B893300E63E72 /* LogInProtocols.swift in Sources */,
 				949A48B1290DBADB0011DF11 /* ProfileInfoCell.swift in Sources */,
@@ -892,7 +896,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8658YBX4V7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OnWheels/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -922,7 +926,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8658YBX4V7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OnWheels/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

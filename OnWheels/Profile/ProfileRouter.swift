@@ -15,7 +15,6 @@ final class ProfileRouter {
 extension ProfileRouter: ProfileRouterInput {
     func deleteAccount() {
         print("delete account")
-        // call to networking...
         guard let window = window else {
             return
         }
@@ -25,7 +24,6 @@ extension ProfileRouter: ProfileRouterInput {
     
     func logout() {
         print("logout")
-        // call to networking...
         guard let window = window else {
             return
         }
