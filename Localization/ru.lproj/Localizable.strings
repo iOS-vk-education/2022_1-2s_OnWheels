@@ -52,5 +52,15 @@
 "man" = "муж";
 "woman" = "жен";
 
+
+// alerts
 "alertTitle" = "Ой";
 "alertMessage" = "Проверьте заполненность полей";
+
+// addRace
+"addRace" = "Добавить гонку";
+"eventName" = "Название гонки";
+"dateFrom" = "Дата начала";
+"dateTo" = "Дата окончания";
+"eventDescription" = "Описание гонки";
+"placeOfEvent" = "Место проведения";

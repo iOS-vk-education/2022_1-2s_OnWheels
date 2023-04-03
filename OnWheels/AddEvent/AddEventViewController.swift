@@ -13,6 +13,7 @@ import PinLayout
 final class AddEventViewController: UIViewController {
     private let output: AddEventViewOutput
     
+    private let addRaceContentView = AddEventContentView()
     
     init(output: AddEventViewOutput) {
         self.output = output
@@ -26,7 +27,10 @@ final class AddEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func loadView() {
+        view = addRaceContentView
     }
 }
 

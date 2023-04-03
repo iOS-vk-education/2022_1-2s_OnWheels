@@ -35,6 +35,7 @@
 		7F02BDA82926AC5900DDA504 /* AddEventProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA22926AC5900DDA504 /* AddEventProtocols.swift */; };
 		7F02BDA92926AC5900DDA504 /* AddEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA32926AC5900DDA504 /* AddEventInteractor.swift */; };
 		7F02BDAA2926AC5900DDA504 /* AddEventContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA42926AC5900DDA504 /* AddEventContainer.swift */; };
+		9401587229DAD6F1002F42FC /* AddEventContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9401587129DAD6F1002F42FC /* AddEventContentView.swift */; };
 		94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A23291CFB8400A8163B /* AuthCoordinator.swift */; };
 		94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A25291CFB9100A8163B /* AppCoordinator.swift */; };
 		94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */; };
@@ -125,6 +126,7 @@
 		7F02BDA22926AC5900DDA504 /* AddEventProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventProtocols.swift; sourceTree = "<group>"; };
 		7F02BDA32926AC5900DDA504 /* AddEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInteractor.swift; sourceTree = "<group>"; };
 		7F02BDA42926AC5900DDA504 /* AddEventContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventContainer.swift; sourceTree = "<group>"; };
+		9401587129DAD6F1002F42FC /* AddEventContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventContentView.swift; sourceTree = "<group>"; };
 		94187A23291CFB8400A8163B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		94187A25291CFB9100A8163B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 				94AEFDC82936312000DD3786 /* EventInfoStackView.swift */,
 				942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */,
 				94AEE7AA295B483100572BEF /* LocationExtension.swift */,
+				9401587129DAD6F1002F42FC /* AddEventContentView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */,
 				94B2BFA229211DF500F864B9 /* ProfileFooterCell.swift in Sources */,
 				7F02BDA62926AC5900DDA504 /* AddEventRouter.swift in Sources */,
+				9401587229DAD6F1002F42FC /* AddEventContentView.swift in Sources */,
 				941E98962958C15A0068F802 /* RacesModel.swift in Sources */,
 				94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */,
 				941E98802955F70E0068F802 /* JSONParameterEncoder.swift in Sources */,

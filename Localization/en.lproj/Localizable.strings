@@ -52,5 +52,16 @@
 "man" = "man";
 "woman" = "woman";
 
+// alerts
 "alertTitle" = "Oh, fuck";
-"alertMessage" = "Check fields comletion";
+"alertMessage" = "Check fields completion";
+
+
+// addEvent
+"addRace" = "Add race";
+"eventName" = "Race name";
+"dateFrom" = "Date from";
+"dateTo" = "Date to";
+"eventDescription" = "Race description";
+"placeOfEvent" = "Location of a race";
+
