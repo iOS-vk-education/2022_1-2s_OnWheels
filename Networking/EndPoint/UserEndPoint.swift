@@ -24,11 +24,11 @@ extension UserEndPoint: EndPointType {
     var enviromentslBaseUrl: String {
         switch NetworkManager.environment {
         case .qa:
-            return "https://vpn.enula.ru/api/User"
+            return "https://onwheels.enula.ru/api/User"
         case .production:
-            return "https://vpn.enula.ru/api/User"
+            return "https://onwheels.enula.ru/api/User"
         case .debug:
-            return "https://vpn.enula.ru/api/User"
+            return "https://onwheels.enula.ru/api/User"
         }
     }
     var baseURL: URL {

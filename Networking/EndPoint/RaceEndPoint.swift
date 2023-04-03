@@ -18,11 +18,11 @@ extension RaceEndPoint: EndPointType {
     var enviromentslBaseUrl: String {
         switch NetworkManager.environment {
         case .qa:
-            return "https://vpn.enula.ru/api/Race"
+            return "https://onwheels.enula.ru/api/Race"
         case .production:
-            return "https://vpn.enula.ru/api/Race"
+            return "https://onwheels.enula.ru/api/Race"
         case .debug:
-            return "https://vpn.enula.ru/api/Race"
+            return "https://onwheels.enula.ru/api/Race"
         }
     }
     var baseURL: URL {

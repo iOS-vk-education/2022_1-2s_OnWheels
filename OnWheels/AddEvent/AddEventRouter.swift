@@ -8,8 +8,8 @@
 
 import UIKit
 
-final class MyEventsRouter {
+final class AddEventRouter {
 }
 
-extension MyEventsRouter: MyEventsRouterInput {
+extension AddEventRouter: AddEventRouterInput {
 }
