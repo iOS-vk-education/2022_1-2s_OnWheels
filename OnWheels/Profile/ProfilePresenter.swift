@@ -1,47 +1,42 @@
 //
-//  ProfilePresenter.swift
-//  OnWheels
-//
-//  Created by Veronika on 29.10.2022.
-//  
+// Created by Артём on 03.04.2023.
 //
 
 import Foundation
 
-final class ProfilePresenter {
-    weak var view: ProfileViewInput?
-    weak var moduleOutput: ProfileModuleOutput?
-    
-    private let router: ProfileRouterInput
-    private let interactor: ProfileInteractorInput
-    
-    init(router: ProfileRouterInput, interactor: ProfileInteractorInput) {
+
+class ProfilePresenterImpl: ProfilePresenter {
+    private weak var vc: ProfileViewControllerProtocol?
+    private var service: UserNetworkManager?
+    private let router: ProfileRouter
+
+    required init(router: ProfileRouter, service: UserNetworkManager) {
         self.router = router
-        self.interactor = interactor
+        self.service = service
     }
-}
 
-extension ProfilePresenter: ProfileModuleInput {
-}
+    func setVC(vc: ProfileViewControllerProtocol) {
+        self.vc = vc
+    }
 
-extension ProfilePresenter: ProfileViewOutput {
-    func loadInfo() {
-        interactor.loadUserInfo()
+    func update() {
+        // call to viewController to update labels
+        <#code#>
     }
-    
-    func deleteAccount() {
-        // call to interactor...? interactor.deleteAccount() чтобы бэкэнду сказать об этом
-        router.deleteAccount()
-    }
-    
+
     func logout() {
-        // call to interactor...?
-        router.logout()
+        // call to service
+        <#code#>
     }
-}
 
-extension ProfilePresenter: ProfileInteractorOutput {
-    func setUserData(user: CurrentUser) {
-        view?.setUser(to: user)
+    func deleteAccount() {
+        // call to service
+        <#code#>
     }
+
+    // также тут могло бы быть:
+    //func navigateToSettings() {
+    //        router.navigateToSettings()
+    //    }
+
 }

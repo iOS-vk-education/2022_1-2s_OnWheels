@@ -1,39 +1,33 @@
 //
-//  ProfileProtocols.swift
-//  OnWheels
-//
-//  Created by Veronika on 29.10.2022.
-//  
+// Created by Артём on 03.04.2023.
 //
 
-import Foundation
+import UIKit
 
-protocol ProfileModuleInput {
-    var moduleOutput: ProfileModuleOutput? { get }
-}
+protocol ProfilePresenter {
+    init(router: ProfileRouter, service: UserNetworkManager)
+    func update()
+    func setVC(vc: ProfileViewControllerProtocol)
 
-protocol ProfileModuleOutput: AnyObject {
-}
-
-protocol ProfileViewInput: AnyObject {
-    func setUser(to newUser: CurrentUser)
-}
-
-protocol ProfileViewOutput: AnyObject {
+    // MARK: - связка с сервисом, функции для вьюшки
     func logout()
     func deleteAccount()
-    func loadInfo()
 }
 
-protocol ProfileInteractorInput: AnyObject {
-    func loadUserInfo()
+protocol ProfileRouter {
+    init(window: UIWindow, navigationController: UINavigationController)
+    func start()
+    func setVC(vc: UIViewController)
 }
 
-protocol ProfileInteractorOutput: AnyObject {
-    func setUserData(user: CurrentUser)
+protocol ProfileViewControllerProtocol: AnyObject {
+    func setUserInfo(user: CurrentUser)
 }
 
-protocol ProfileRouterInput: AnyObject {
-    func logout()
-    func deleteAccount()
+protocol ProfileBuilder {
+    var presenter: ProfilePresenter { get }
+    var viewController: ProfileViewControllerProtocol { get }
+    var router: ProfileRouter { get }
+    static func assemble(window: UIWindow,
+                         navigationController: UINavigationController) -> ProfileBuilder
 }
