@@ -8,6 +8,12 @@
 import UIKit
 
 final class AddEventContentView: UIView {
+    typealias CloseClosure = () -> Void
+    typealias AddClosure = () -> Void
+    
+    private var closeAction: CloseClosure?
+    
+    private var addAction: AddClosure?
     
     private let mainLabel: UILabel = {
         let main = UILabel()
@@ -84,12 +90,19 @@ final class AddEventContentView: UIView {
         return image
     }()
     
+    private let addButton: CustomButton = {
+        let add = CustomButton()
+        add.translatesAutoresizingMaskIntoConstraints = false
+        return add
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         descriptonTextView.delegate = self
         addVeiws()
         setupConstraints()
         setupPlaceholders()
+        setupTitleForAddButton()
         addTargets()
         setupDatePicker()
         setupActions()
@@ -110,7 +123,7 @@ extension AddEventContentView {
         dateFromToStackView.addArrangedSubview(dateToTextField)
         self.addSubview(placeTextField)
         self.addSubview(descriptonTextView)
-//        self.addSubview(addButton)
+        self.addSubview(addButton)
         self.addSubview(raceImageView)
     }
     
@@ -149,15 +162,12 @@ extension AddEventContentView {
             raceImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
             raceImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
             raceImageView.heightAnchor.constraint(equalToConstant: 180),
+            
+            addButton.topAnchor.constraint(equalTo: raceImageView.bottomAnchor, constant: 12),
+            addButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
+            addButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
+            addButton.heightAnchor.constraint(equalToConstant: 42)
         ])
-
-        
-//        NSLayoutConstraint.activate([
-//            addButton.topAnchor.constraint(equalTo: raceImageView.bottomAnchor, constant: 12)
-//        ])
-//        addButton.leading(24)
-//        addButton.trailing(-24)
-//        addButton.height(42)
     }
     
     func setupDatePicker() {
@@ -206,13 +216,31 @@ extension AddEventContentView {
         descriptonTextView.text = R.string.localizable.eventDescription()
     }
     
+    func setupTitleForAddButton() {
+        addButton.setupTitle(with: R.string.localizable.addRace())
+    }
+    
     func addTargets() {
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+    }
+    
+    func setCloseAction(_ action: @escaping CloseClosure) {
+        self.closeAction = action
+    }
+    
+    func setAddAction(_ action: @escaping AddClosure) {
+        self.addAction = action
     }
     
     @objc
     func closeButtonTapped() {
-        
+        closeAction?()
+    }
+    
+    @objc
+    func addButtonTapped() {
+        addAction?()
     }
     
     func setupActions() {

@@ -12,4 +12,7 @@ final class AddEventRouter {
 }
 
 extension AddEventRouter: AddEventRouterInput {
+    func didTapCloseButton() {
+        print("Здесь будет закрываться вью контроллер")
+    }
 }

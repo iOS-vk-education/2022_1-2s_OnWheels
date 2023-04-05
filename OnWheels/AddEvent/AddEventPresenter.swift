@@ -25,6 +25,9 @@ extension AddEventPresenter: AddEventModuleInput {
 }
 
 extension AddEventPresenter: AddEventViewOutput {
+    func closeButtonWasTapped() {
+        router.didTapCloseButton()
+    }
 }
 
 extension AddEventPresenter: AddEventInteractorOutput {

@@ -27,6 +27,7 @@ final class AddEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButtonActions()
     }
     
     override func loadView() {
@@ -38,6 +39,14 @@ extension AddEventViewController: AddEventViewInput {
 }
 
 private extension AddEventViewController {
-    
+    func setupButtonActions() {
+        addRaceContentView.setAddAction {
+            print("Add button tapped")
+        }
+        
+        addRaceContentView.setCloseAction { [weak self] in
+            self?.output.closeButtonWasTapped()
+        }
+    }
 }
 

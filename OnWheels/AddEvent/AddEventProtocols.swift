@@ -19,6 +19,7 @@ protocol AddEventViewInput: AnyObject {
 }
 
 protocol AddEventViewOutput: AnyObject {
+    func closeButtonWasTapped()
 }
 
 protocol AddEventInteractorInput: AnyObject {
@@ -28,4 +29,5 @@ protocol AddEventInteractorOutput: AnyObject {
 }
 
 protocol AddEventRouterInput: AnyObject {
+    func didTapCloseButton()
 }
