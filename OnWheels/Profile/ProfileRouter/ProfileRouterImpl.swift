@@ -10,7 +10,7 @@ final class ProfileRouterImpl: ProfileRouter {
     var navigationController: UINavigationController
     private weak var viewController: UIViewController?
 
-    required init(window: UIWindow, navigationController: UINavigationController) {
+    init(window: UIWindow, navigationController: UINavigationController) {
         self.window = window
         self.navigationController = navigationController
     }

@@ -10,7 +10,7 @@ final class ProfilePresenterImpl: ProfilePresenter {
     private var userNetworkManager: UserNetworkManager?
     private let router: ProfileRouter
 
-    required init(router: ProfileRouter, userNetworkManager: UserNetworkManager) {
+    init(router: ProfileRouter, userNetworkManager: UserNetworkManager) {
         self.router = router
         self.userNetworkManager = userNetworkManager
     }

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol ProfilePresenter {
-    init(router: ProfileRouter, userNetworkManager: UserNetworkManager)
     func update()
     func setViewController(viewController: ProfileView)
 

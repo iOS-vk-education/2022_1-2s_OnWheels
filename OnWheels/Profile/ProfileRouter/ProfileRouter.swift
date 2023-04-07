@@ -8,7 +8,6 @@
 import UIKit
 
 protocol ProfileRouter {
-    init(window: UIWindow, navigationController: UINavigationController)
     func start()
     func setViewController(viewController: UIViewController)
 }
