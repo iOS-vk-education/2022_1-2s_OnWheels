@@ -1,5 +1,5 @@
 //
-//  ProfilePresenterProtocol.swift
+//  ProfilePresenter.swift
 //  OnWheels
 //
 //  Created by Артём on 07.04.2023.

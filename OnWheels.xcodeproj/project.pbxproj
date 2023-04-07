@@ -23,7 +23,7 @@
 		5455F994292B8A2600E63E72 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455F992292B8A2600E63E72 /* UIView+Extensions.swift */; };
 		5455F995292B8A2600E63E72 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5455F993292B8A2600E63E72 /* UIStackView+Extensions.swift */; };
 		706ED36F29D8E63600B0914D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706ED36E29D8E63600B0914D /* DateExtension.swift */; };
-		706F1CE829E054500064F80E /* ProfilePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F1CE729E054500064F80E /* ProfilePresenterProtocol.swift */; };
+		706F1CE829E054500064F80E /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F1CE729E054500064F80E /* ProfilePresenter.swift */; };
 		706F1CEA29E054BE0064F80E /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F1CE929E054BE0064F80E /* ProfileRouter.swift */; };
 		706F1CED29E0602F0064F80E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F1CEC29E0602F0064F80E /* ProfileView.swift */; };
 		7F02BD952926A6B400DDA504 /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD8F2926A6B300DDA504 /* EventsPresenter.swift */; };
@@ -117,7 +117,7 @@
 		5455F992292B8A2600E63E72 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5455F993292B8A2600E63E72 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
 		706ED36E29D8E63600B0914D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		706F1CE729E054500064F80E /* ProfilePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterProtocol.swift; sourceTree = "<group>"; };
+		706F1CE729E054500064F80E /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		706F1CE929E054BE0064F80E /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		706F1CEC29E0602F0064F80E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		7F02BD8F2926A6B300DDA504 /* EventsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				85B834CD2F87E7468D80ED20 /* ProfilePresenterImpl.swift */,
-				706F1CE729E054500064F80E /* ProfilePresenterProtocol.swift */,
+				706F1CE729E054500064F80E /* ProfilePresenter.swift */,
 			);
 			path = ProfilePresenter;
 			sourceTree = "<group>";
@@ -695,7 +695,7 @@
 				5455F983292B893300E63E72 /* LogInRouter.swift in Sources */,
 				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
 				947DFC2F292C032600045932 /* OneEventProtocols.swift in Sources */,
-				706F1CE829E054500064F80E /* ProfilePresenterProtocol.swift in Sources */,
+				706F1CE829E054500064F80E /* ProfilePresenter.swift in Sources */,
 				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
 				7F02BDA82926AC5900DDA504 /* MyEventsProtocols.swift in Sources */,
 				941E987E2955F4AE0068F802 /* URLParameterEncoder.swift in Sources */,
