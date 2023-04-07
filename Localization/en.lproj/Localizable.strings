@@ -56,3 +56,5 @@
 "alertTitle" = "Oh, fuck";
 "alertMessage" = "Check fields comletion";
 
+"logout_button_text" = "Log out";
+"delete_account_button_text" = "Delete account";

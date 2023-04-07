@@ -16,14 +16,15 @@ class ProfileRouterImpl: ProfileRouter {
     }
 
     func start() {
+        // добавляет вьюконтроллер в стек навигейшн контроллера
         if let viewController = viewController {
             navigationController.pushViewController(viewController, animated: true)
         }
-        self.window.makeKeyAndVisible()
+        window.makeKeyAndVisible()
     }
 
-    func setVC(vc: UIViewController) {
-        self.viewController = vc
+    func setViewController(viewController: UIViewController) {
+        self.viewController = viewController
     }
 
     // что тут еще может быть:

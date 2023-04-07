@@ -6,17 +6,17 @@ import Foundation
 
 
 class ProfilePresenterImpl: ProfilePresenter {
-    private weak var vc: ProfileViewControllerProtocol?
-    private var service: UserNetworkManager?
+    private weak var viewController: ProfileViewController?
+    private var userNetworkManager: UserNetworkManager?
     private let router: ProfileRouter
 
-    required init(router: ProfileRouter, service: UserNetworkManager) {
+    required init(router: ProfileRouter, userNetworkManager: UserNetworkManager) {
         self.router = router
-        self.service = service
+        self.userNetworkManager = userNetworkManager
     }
 
-    func setVC(vc: ProfileViewControllerProtocol) {
-        self.vc = vc
+    func setViewController(viewController: ProfileViewController) {
+        self.viewController = viewController
     }
 
     func update() {

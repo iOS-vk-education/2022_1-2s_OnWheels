@@ -7,10 +7,11 @@ import SnapKit
 import SFSafeSymbols
 import RswiftResources
 
-typealias ProfileLogoutAction = () -> Void
-typealias ProfileDeleteAction = () -> Void
 
-class ProfileView: UIView {
+class ProfileContentView: UIView {
+    typealias ProfileLogoutAction = () -> Void
+    typealias ProfileDeleteAction = () -> Void
+
     private let userAvatar = UIImageView(frame: .zero)
     private let userNameLabel = UILabel(frame: .zero)
     private let userCityLabel = UILabel(frame: .zero)
@@ -31,8 +32,9 @@ class ProfileView: UIView {
     }
 }
 
+
 // MARK: - actions setups
-extension ProfileView {
+extension ProfileContentView {
     func setProfileDetailButtonAction(_ action: @escaping ProfileLogoutAction) {
         self.profileLogoutAction = action
     }
@@ -44,20 +46,35 @@ extension ProfileView {
 
 
 // MARK: - UI
-private extension ProfileView {
+private extension ProfileContentView {
     func setupUI() {
-        self.backgroundColor = .white
-        userAvatar.image = UIImage(systemSymbol: .personCircle)
-        profileDeleteButtonConf()
-        profileLogoutButtonConf()
-        // .. setup stackview
-        [userAvatar, userNameLabel, userCityLabel, profileDetails, deleteAccountButton, logoutButton].forEach {
-            box in
-            self.addSubview(box)
-        }
+        initElements()
+        placeElements()
+        setupConstraints()
         setupConstraints()
     }
 
+    
+    func initElements() {
+        self.backgroundColor = .white
+        userAvatar.image = UIImage(systemSymbol: .personCircle)
+        setupLogoutButton()
+        setupDeleteButton()
+        // .. fill stackview
+        
+    }
+    
+    
+    func placeElements() {
+        let subviews = [userAvatar, userNameLabel, userCityLabel,
+                        profileDetails, deleteAccountButton, logoutButton]
+        subviews.forEach {
+            box in
+            self.addSubview(box)
+        }
+    }
+    
+    
     func setupConstraints() {
         // smth like that:
 //        userLogo.snp.makeConstraints { make in
@@ -67,9 +84,9 @@ private extension ProfileView {
 //        }
     }
 
-    // MARK: - button configs
-    func profileLogoutButtonConf() {
-        var config = largeButtonConf(button: logoutButton)
+    // MARK: - buttons initialization
+    func setupLogoutButton() {
+        var config = logoutButton.largeButtonConf()
         config.title = R.string.localizable.logout_button_text()
         logoutButton.configuration = config
         logoutButton.addTarget(self, action: #selector(logoutButtonTapped),
@@ -77,8 +94,8 @@ private extension ProfileView {
 
     }
 
-    func profileDeleteButtonConf() {
-        var config = largeButtonConf(button: deleteAccountButton)
+    func setupDeleteButton() {
+        var config = deleteAccountButton.largeButtonConf()
         config.title = R.string.localizable.delete_account_button_text()
         deleteAccountButton.configuration = config
         deleteAccountButton.addTarget(self, action: #selector(deleteButtonTapped),
@@ -88,7 +105,7 @@ private extension ProfileView {
 }
 
 // MARK: - UI actions
-private extension ProfileView {
+private extension ProfileContentView {
     @objc func logoutButtonTapped() {
         self.profileLogoutAction?()
     }

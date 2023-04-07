@@ -4,32 +4,40 @@
 
 import UIKit
 
+
+protocol ProfileBuilder {
+    var presenter: ProfilePresenter { get }
+    var view: ProfileView { get }
+    var router: ProfileRouter { get }
+    static func assemble(window: UIWindow,
+                         navigationController: UINavigationController) -> ProfileBuilder
+}
+
+
 final class ProfileBuilderImpl: ProfileBuilder {
     let presenter: ProfilePresenter
-    let viewController: ProfileViewControllerProtocol
+    let view: ProfileView
     let router: ProfileRouter
 
-    private init(viewController: ProfileViewControllerProtocol, presenter: ProfilePresenter,
-                 router: ProfileRouter) {
-        self.viewController = viewController
+    private init(view: ProfileView, presenter: ProfilePresenter, router: ProfileRouter) {
+        self.view = view
         self.presenter = presenter
         self.router = router
     }
 
-    static func assemble(window: UIWindow,
-                         navigationController: UINavigationController) -> ProfileBuilder {
+    static func assemble(window: UIWindow, navigationController: UINavigationController) -> ProfileBuilder {
         let router = ProfileRouterImpl(window: window, navigationController: navigationController)
 
         let networkRouter = Router<UserEndPoint>()
         let userManager = UserNetworkManagerImpl(router: networkRouter)
 
-        let presenter = ProfilePresenterImpl(router: router, service: userManager)
-        let viewController = ProfileViewController(presenter: presenter)
+        let presenter = ProfilePresenterImpl(router: router, userNetworkManager: userManager)
+        let view = ProfileViewController(presenter: presenter)
 
-        presenter.setVC(vc: viewController)
-        router.setVC(vc: viewController)
+        presenter.setViewController(viewController: view)
+        router.setViewController(viewController: view)
 
-        return ProfileBuilderImpl(viewController: viewController, presenter: presenter,
+        return ProfileBuilderImpl(view: view, presenter: presenter,
                 router: router)
     }
 }
