@@ -8,7 +8,7 @@ import SFSafeSymbols
 import RswiftResources
 
 
-class ProfileContentView: UIView {
+final class ProfileContentView: UIView {
     typealias ProfileLogoutAction = () -> Void
     typealias ProfileDeleteAction = () -> Void
 

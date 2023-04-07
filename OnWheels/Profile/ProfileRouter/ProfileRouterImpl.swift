@@ -5,7 +5,7 @@
 import UIKit
 
 
-class ProfileRouterImpl: ProfileRouter {
+final class ProfileRouterImpl: ProfileRouter {
     private let window: UIWindow
     var navigationController: UINavigationController
     private weak var viewController: UIViewController?

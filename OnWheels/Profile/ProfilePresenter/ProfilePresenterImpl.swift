@@ -5,7 +5,7 @@
 import Foundation
 
 
-class ProfilePresenterImpl: ProfilePresenter {
+final class ProfilePresenterImpl: ProfilePresenter {
     private weak var viewController: ProfileViewController?
     private var userNetworkManager: UserNetworkManager?
     private let router: ProfileRouter

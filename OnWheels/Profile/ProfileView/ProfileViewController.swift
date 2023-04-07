@@ -4,7 +4,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     private lazy var profileView = ProfileContentView(frame: .zero)
     private let presenter: ProfilePresenter
     
