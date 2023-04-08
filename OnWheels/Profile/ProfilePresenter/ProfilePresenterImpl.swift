@@ -6,7 +6,7 @@ import Foundation
 
 
 final class ProfilePresenterImpl: ProfilePresenter {
-    private weak var viewController: ProfileViewController?
+    private weak var viewController: ProfileView?
     private var userNetworkManager: UserNetworkManager?
     private let router: ProfileRouter
 
@@ -15,7 +15,7 @@ final class ProfilePresenterImpl: ProfilePresenter {
         self.userNetworkManager = userNetworkManager
     }
 
-    func setViewController(viewController: ProfileViewController) {
+    func setViewController(viewController: ProfileView) {
         self.viewController = viewController
     }
 
