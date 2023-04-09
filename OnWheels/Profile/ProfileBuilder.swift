@@ -9,8 +9,7 @@ protocol ProfileBuilder {
     var presenter: ProfilePresenter { get }
     var view: ProfileView { get }
     var router: ProfileRouter { get }
-    static func assemble(window: UIWindow,
-                         navigationController: UINavigationController) -> ProfileBuilder
+    static func assemble(window: UIWindow) -> ProfileBuilder
 }
 
 
@@ -25,8 +24,8 @@ final class ProfileBuilderImpl: ProfileBuilder {
         self.router = router
     }
 
-    static func assemble(window: UIWindow, navigationController: UINavigationController) -> ProfileBuilder {
-        let router = ProfileRouterImpl(window: window, navigationController: navigationController)
+    static func assemble(window: UIWindow) -> ProfileBuilder {
+        let router = ProfileRouterImpl(window: window)
 
         let networkRouter = Router<UserEndPoint>()
         let userManager = UserNetworkManagerImpl(router: networkRouter)

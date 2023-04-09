@@ -10,9 +10,9 @@ final class ProfileRouterImpl: ProfileRouter {
     var navigationController: UINavigationController
     private weak var viewController: UIViewController?
 
-    init(window: UIWindow, navigationController: UINavigationController) {
+    init(window: UIWindow) {
         self.window = window
-        self.navigationController = navigationController
+        self.navigationController = (window.rootViewController?.navigationController)!
     }
 
     func start() {

@@ -87,7 +87,7 @@ private extension ProfileContentView {
     // MARK: - buttons initialization
     func setupLogoutButton() {
         var config = logoutButton.largeButtonConf()
-        config.title = R.string.localizable.logout_button_text()
+        config.title = R.string.localizable.logoutButtonText()
         logoutButton.configuration = config
         logoutButton.addTarget(self, action: #selector(logoutButtonTapped),
                 for: .touchUpInside)
@@ -96,7 +96,7 @@ private extension ProfileContentView {
 
     func setupDeleteButton() {
         var config = deleteAccountButton.largeButtonConf()
-        config.title = R.string.localizable.delete_account_button_text()
+        config.title = R.string.localizable.deleteAccountButtonText()
         deleteAccountButton.configuration = config
         deleteAccountButton.addTarget(self, action: #selector(deleteButtonTapped),
                 for: .touchUpInside)
