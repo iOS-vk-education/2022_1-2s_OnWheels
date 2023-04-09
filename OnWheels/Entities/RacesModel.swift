@@ -84,3 +84,31 @@ struct DateClass: Codable {
 struct Location: Codable {
     let latitude, longitude: Double
 }
+
+
+struct AddRace: Codable {
+    let name: String
+    let location: Location
+    let date: DateClass
+    let oneRaceDescription: String
+    let images, tags: [String]
+
+    enum AddRaceCodingKeys: String, CodingKey {
+        case name, location, date
+        case oneRaceDescription = "description"
+        case images, tags
+    }
+}
+
+extension AddRace {
+    init(from decoder: Decoder) throws {
+        let addRaceContainer = try decoder.container(keyedBy: AddRaceCodingKeys.self)
+        name = try addRaceContainer.decode(String.self, forKey: .name)
+        location = try addRaceContainer.decode(Location.self, forKey: .location)
+        date = try addRaceContainer.decode(DateClass.self, forKey: .date)
+        oneRaceDescription = try addRaceContainer.decode(String.self, forKey: .oneRaceDescription)
+        images = try addRaceContainer.decode([String].self, forKey: .images)
+        tags = try addRaceContainer.decode([String].self, forKey: .tags)
+    }
+}
+

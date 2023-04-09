@@ -9,7 +9,7 @@ import UIKit
 
 final class AddEventContentView: UIView {
     typealias CloseClosure = () -> Void
-    typealias AddClosure = () -> Void
+    typealias AddClosure = ([String?]) -> Void
     
     private var closeAction: CloseClosure?
     
@@ -240,7 +240,17 @@ extension AddEventContentView {
     
     @objc
     func addButtonTapped() {
-        addAction?()
+        var addRaceInfo: [String?] = []
+        addRaceInfo[0] = eventNameTextField.text
+        addRaceInfo[1] = dateFromTextField.text
+        addRaceInfo[2] = dateToTextField.text
+        if descriptonTextView.text == "" || descriptonTextView.text == R.string.localizable.eventDescription() {
+            addRaceInfo[3] = "Описание отсутствует"
+        } else {
+            addRaceInfo[3] = descriptonTextView.text
+
+        }
+        addAction?(addRaceInfo)
     }
     
     func setupActions() {
