@@ -76,6 +76,7 @@ private extension ProfileContentView {
     
     
     func setupConstraints() {
+        // TODO: сделать
         // smth like that:
 //        deleteAccountButton.snp.makeConstraints { make in
 //            make.centerX.equalToSuperview()
@@ -107,6 +108,7 @@ private extension ProfileContentView {
     }
     
     func setupDeleteButton() {
+        // TODO: сделать красной (хотя уже вроде..?)
         let button = deleteAccountButton
         let image = UIImage(systemSymbol: .trash).withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
@@ -141,6 +143,7 @@ extension ProfileContentView {
     }
     
     private func updateStackview(email: String, birthday: String, sex: String) {
+        // TODO: навести красивости
         let emailLabel = UILabel()
         emailLabel.text = email
         let birthdayLabel = UILabel()
