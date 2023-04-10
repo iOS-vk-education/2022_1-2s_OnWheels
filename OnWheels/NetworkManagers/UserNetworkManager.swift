@@ -21,6 +21,8 @@ enum RegisterStatus {
 
 protocol UserNetworkManager {
     func login(email: String, password: String, completion: @escaping (AuthStatus) -> ())
+    func logout(completion: @escaping () -> ())
+    func deleteUser(completion: @escaping () -> ())
     func register(surname: String,
                   name: String,
                   email: String,
@@ -172,5 +174,13 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                 }
             }
         }
+    }
+
+    func logout(completion: @escaping () -> ()) {
+        completion()
+    }
+
+    func deleteUser(completion: @escaping () -> ()) {
+        completion()
     }
 }

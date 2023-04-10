@@ -10,32 +10,23 @@ final class ProfileRouterImpl: ProfileRouter {
     var navigationController: UINavigationController
     private weak var viewController: UIViewController?
 
-    init(window: UIWindow) {
+    init(window: UIWindow, navigationController: UINavigationController) {
         self.window = window
-        self.navigationController = (window.rootViewController?.navigationController)!
-    }
-
-    func start() {
-        // добавляет вьюконтроллер в стек навигейшн контроллера
-        if let viewController = viewController {
-            navigationController.pushViewController(viewController, animated: true)
-        }
-        window.makeKeyAndVisible()
+        self.navigationController = navigationController
     }
 
     func setViewController(viewController: UIViewController) {
         self.viewController = viewController
     }
 
-    // что тут еще может быть:
-    //// MARK: - flow changer
-    //
-    //    func switchToMainFlow() {
-    //        print("change flow")
-    //        flowAfterFirstAuth?.start()
-    //    }
-    //
-    //// MARK: - navigation
+    // MARK: - flow changer
+    func switchToAuth() {
+        let coordinator = AppCoordinator(window: window, instructor: .authorization)
+        coordinator.start()
+    }
+
+    // тут также могло бы быть:
+    // MARK: - navigation
     //    func navigateToProfileDetails() {
     //        print("navigate")
     //        let placeholder = UIViewController()

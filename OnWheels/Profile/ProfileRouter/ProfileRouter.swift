@@ -8,6 +8,6 @@
 import UIKit
 
 protocol ProfileRouter {
-    func start()
     func setViewController(viewController: UIViewController)
+    func switchToAuth()
 }

@@ -5,8 +5,8 @@
 //  Created by Артём on 07.04.2023.
 //
 
-import Foundation
+import UIKit
 
-protocol ProfileView: AnyObject {
-    func setUserInfo(user: CurrentUser)
+protocol ProfileView: AnyObject, UIViewController {
+    func setUserInfo(user: ProfileUserInfo)
 }

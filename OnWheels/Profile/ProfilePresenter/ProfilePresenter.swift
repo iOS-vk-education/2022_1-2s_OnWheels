@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct ProfileUserInfo {
+    let name: String
+    let city: String
+    let email: String
+    let birthday: String
+    let sex: String
+}
+
 protocol ProfilePresenter {
     func update()
     func setViewController(viewController: ProfileView)

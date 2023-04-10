@@ -24,6 +24,10 @@ extension UIButton {
 
     func largeButtonConf() -> UIButton.Configuration {
         var config = UIButton.Configuration.tinted()
+        config.buttonSize = .large
+        config.cornerStyle = .medium
+        config.baseBackgroundColor = .white
+        self.layer.cornerRadius = 15
         //...
         return config
     }

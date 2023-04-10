@@ -11,6 +11,7 @@ final class ProfileViewController: UIViewController {
     init(presenter: ProfilePresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        view = profileView
         setupActions()
     }
 
@@ -25,16 +26,15 @@ final class ProfileViewController: UIViewController {
 
 
 extension ProfileViewController: ProfileView {
-    // эту функцию дергает презентер
-    func setUserInfo(user: CurrentUser) {
-        // profileView.updateUserName(with: str)
+    func setUserInfo(user: ProfileUserInfo) {
+        profileView.setUserInfo(user:user)
     }
 }
 
 
 private extension ProfileViewController {
     func setupActions() {
-        // здесь буду коллы к самой вьюшке, чтобы связать действия презентера на нажатия кнопок
-        // profileView.setProfileDetailButtonAction(self.presenter.navigateToProfileDetails)
+        profileView.setLogoutAction(self.presenter.logout)
+        profileView.setDeleteAction(self.presenter.deleteAccount)
     }
 }

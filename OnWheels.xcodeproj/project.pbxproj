@@ -26,6 +26,7 @@
 		706F1CE829E054500064F80E /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F1CE729E054500064F80E /* ProfilePresenter.swift */; };
 		706F1CEA29E054BE0064F80E /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F1CE929E054BE0064F80E /* ProfileRouter.swift */; };
 		706F1CED29E0602F0064F80E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F1CEC29E0602F0064F80E /* ProfileView.swift */; };
+		70A9576629E4BAD100DA0A66 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A9576529E4BAD100DA0A66 /* UIStackViewExtension.swift */; };
 		7F02BD952926A6B400DDA504 /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD8F2926A6B300DDA504 /* EventsPresenter.swift */; };
 		7F02BD962926A6B400DDA504 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD902926A6B300DDA504 /* EventsViewController.swift */; };
 		7F02BD972926A6B400DDA504 /* EventsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD912926A6B300DDA504 /* EventsRouter.swift */; };
@@ -120,6 +121,7 @@
 		706F1CE729E054500064F80E /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		706F1CE929E054BE0064F80E /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		706F1CEC29E0602F0064F80E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		70A9576529E4BAD100DA0A66 /* UIStackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtension.swift; sourceTree = "<group>"; };
 		7F02BD8F2926A6B300DDA504 /* EventsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
 		7F02BD902926A6B300DDA504 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		7F02BD912926A6B300DDA504 /* EventsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsRouter.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 				94AEE7AA295B483100572BEF /* LocationExtension.swift */,
 				706ED36E29D8E63600B0914D /* DateExtension.swift */,
 				85B83EB0CB1263E667FF1DC3 /* BaseComponents */,
+				70A9576529E4BAD100DA0A66 /* UIStackViewExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
 				947DFC2F292C032600045932 /* OneEventProtocols.swift in Sources */,
 				706F1CE829E054500064F80E /* ProfilePresenter.swift in Sources */,
+				70A9576629E4BAD100DA0A66 /* UIStackViewExtension.swift in Sources */,
 				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
 				7F02BDA82926AC5900DDA504 /* MyEventsProtocols.swift in Sources */,
 				941E987E2955F4AE0068F802 /* URLParameterEncoder.swift in Sources */,
