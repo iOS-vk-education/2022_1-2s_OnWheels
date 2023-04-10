@@ -1,22 +1,15 @@
 //
-//  CustomMainButton.swift
+//  BaseButton.swift
 //  OnWheels
 //
-//  Created by Veronika on 05.04.2023.
+//  Created by Veronika on 10.04.2023.
 //
 
 import UIKit
 
-class CustomButton: UIButton {
+class BaseButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.configuration = .filled()
-        self.tintColor = R.color.mainBlue()
-        self.configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
-            var outgoing = incoming
-            outgoing.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-            return outgoing
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -37,9 +30,5 @@ class CustomButton: UIButton {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseOut], animations: {
             self.transform = CGAffineTransform.identity
         }, completion: nil)
-    }
-    
-    func setupTitle(with text: String) {
-        self.setTitle(text, for: .normal)
     }
 }

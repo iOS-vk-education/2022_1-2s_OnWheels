@@ -45,7 +45,7 @@ extension RaceEndPoint: EndPointType {
             return "/\(raceId)/like"
         case .postView(let raceId):
             return "/\(raceId)/view"
-        case .postRace(let raceInfo):
+        case .postRace(_):
             return ""
         }
     }
@@ -54,15 +54,15 @@ extension RaceEndPoint: EndPointType {
         switch self {
         case .getAllRaces:
             return .get
-        case .getRace(raceId: _):
+        case .getRace(_):
             return .get
         case .getListOfRaces:
             return .get
-        case .postLike(raceId: _):
+        case .postLike(_):
             return .post
-        case .postView(raceId: _):
+        case .postView(_):
             return .post
-        case .postRace(raceInfo: _):
+        case .postRace(_):
             return .post
         }
     }

@@ -23,7 +23,13 @@ class LocationDecoder {
                 return
             }
             
-            let location = Location(latitude: placemark.location?.coordinate.latitude ?? 0, longitude: placemark.location?.coordinate.longitude ?? 0)
+            guard let latitude = placemark.location?.coordinate.latitude,
+                  let longitude = placemark.location?.coordinate.longitude else {
+                      return
+                  }
+            
+            let location = Location(latitude: latitude,
+                                    longitude: longitude)
             completion(location, nil)
         }
     }

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AddEventModuleInput {
-	var moduleOutput: AddEventModuleOutput? { get }
+    var moduleOutput: AddEventModuleOutput? { get }
 }
 
 protocol AddEventModuleOutput: AnyObject {

@@ -81,10 +81,7 @@ final class LogInViewController: UIViewController {
         return b
     }()
     
-    private(set) lazy var enterButton: CustomButton = {
-        let button = CustomButton()
-        return button
-    }()
+    private(set) lazy var enterButton = CustomButton()
     
     private(set) lazy var regButton: UIButton = {
         let b: UIButton = .init()

@@ -24,7 +24,7 @@ extension AddEventInteractor: AddEventInteractorInput {
         let raceInfoStrings = raceInfo.compactMap{ $0 }
         
         // TODO: сделать с помощью экстеншена Артема перевод времени из строки
-        let raceDate = DateClass(from: "2023-04-10T08:18:45.754Z", to: "2023-04-10T08:18:45.754Z")
+        let raceDate = Duration(from: "2023-04-10T08:18:45.754Z", to: "2023-04-10T08:18:45.754Z")
         
         locationDecoder.getLocation(from: raceInfoStrings[3]) { location, error in
             if let error = error {
