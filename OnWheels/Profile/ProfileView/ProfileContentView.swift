@@ -30,6 +30,7 @@ final class ProfileContentView: UIView {
     required init?(coder: NSCoder) {
         return nil
     }
+    
 }
 
 
@@ -54,10 +55,14 @@ private extension ProfileContentView {
         setupConstraints()
     }
     
-    
     func initElements() {
         self.backgroundColor = .white
         userAvatar.image = R.image.profileImage()
+        userAvatar.contentMode = .scaleAspectFit
+        // TODO: сделать появление картинки анимированнымe
+//        UIView.transition(with: userAvatar, duration: 2.0, animations: {}) { bl in
+//            print(bl)
+//        }
         userNameLabel.font = .systemFont(ofSize: 25, weight: .semibold)
         setupLogoutButton()
         setupDeleteButton()
@@ -76,16 +81,21 @@ private extension ProfileContentView {
     
     
     func setupConstraints() {
-        // TODO: сделать
         userAvatar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(20)
-            make.height.equalTo(80)
+            make.width.height.equalTo(150)
         }
+        userAvatar.makeRounded(width: 150)
         
-        userCityLabel.snp.makeConstraints { make in
+        userNameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(userAvatar.snp.bottom).offset(20)
+        }
+
+        userCityLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(userNameLabel.snp.bottom).offset(20)
         }
         
         profileDetails.snp.makeConstraints { make in
@@ -99,12 +109,13 @@ private extension ProfileContentView {
            make.left.equalTo(self.snp.centerX).offset(10)
            make.height.equalTo(50)
         }
-       deleteAccountButton.snp.makeConstraints { make in
+        deleteAccountButton.snp.makeConstraints { make in
            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(50)
            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(20)
            make.right.equalTo(self.snp.centerX).inset(10)
            make.height.equalTo(50)
-       }
+        }
+       
     }
     
     

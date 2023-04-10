@@ -37,7 +37,7 @@ extension EventsInteractor: EventsInteractorInput {
                 if let error = error {
                     print(error)
                 } else {
-                    print(raceId)
+                    print("liked race_id: ", raceId)
                     self.output?.setLike(raceId: raceId)
                 }
             }
@@ -50,7 +50,7 @@ extension EventsInteractor: EventsInteractorInput {
                 if let error = error {
                     print(error)
                 } else {
-                    print(raceId)
+                    print("viewed race_id: ", raceId)
                     self.output?.setViews(raceId: raceId)
                 }
             }
