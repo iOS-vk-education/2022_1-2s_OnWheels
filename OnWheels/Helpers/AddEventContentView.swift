@@ -90,11 +90,8 @@ final class AddEventContentView: UIView {
         return image
     }()
     
-    private let addButton: CustomButton = {
-        let add = CustomButton()
-        add.translatesAutoresizingMaskIntoConstraints = false
-        return add
-    }()
+    
+    private let addButton = MainAppButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -115,6 +112,7 @@ final class AddEventContentView: UIView {
 
 extension AddEventContentView {
     func addVeiws() {
+        addButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(mainLabel)
         self.addSubview(closeButton)
         self.addSubview(eventNameTextField)

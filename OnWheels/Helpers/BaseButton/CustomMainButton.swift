@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomButton: BaseButton, ButtonConfiguration {
+class MainAppButton: BaseButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setBackgroundColor()

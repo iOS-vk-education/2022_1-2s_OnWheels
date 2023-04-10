@@ -105,8 +105,8 @@ final class RegistrationContentView: UIView {
         return rules
     }()
     
-    let registrationButton: CustomButton = {
-        let registration = CustomButton()
+    let registrationButton: MainAppButton = {
+        let registration = MainAppButton()
         registration.translatesAutoresizingMaskIntoConstraints = false
         return registration
     }()
