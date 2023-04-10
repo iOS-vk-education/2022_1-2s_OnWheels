@@ -64,4 +64,5 @@
 "dateTo" = "Date to";
 "eventDescription" = "Race description";
 "placeOfEvent" = "Location of a race";
+"noDescription" = "Description is empty";
 

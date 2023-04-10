@@ -20,7 +20,7 @@ protocol AddEventViewInput: AnyObject {
 
 protocol AddEventViewOutput: AnyObject {
     func closeButtonWasTapped()
-    func addButtonWasTapped()
+    func didTapAddRace(with raceInfo: [String?])
 }
 
 protocol AddEventInteractorInput: AnyObject {
@@ -28,6 +28,7 @@ protocol AddEventInteractorInput: AnyObject {
 }
 
 protocol AddEventInteractorOutput: AnyObject {
+    func addButtonWasTapped()
 }
 
 protocol AddEventRouterInput: AnyObject {

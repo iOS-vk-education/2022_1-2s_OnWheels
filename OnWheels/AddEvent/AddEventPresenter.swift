@@ -42,12 +42,6 @@ extension AddEventPresenter: AddEventViewOutput {
     func closeButtonWasTapped() {
         router.didTapCloseButton()
     }
-    func addButtonWasTapped() {
-        router.didTapAddButton()
-    }
-}
-
-extension AddEventPresenter: AddEventInteractorOutput {
     func didTapAddRace(with raceInfo: [String?]) {
         let emptyFieldsIndexes = getIndexesOfEmptyFields(addRaceInfo: raceInfo)
         if emptyFieldsIndexes.isEmpty {
@@ -55,5 +49,11 @@ extension AddEventPresenter: AddEventInteractorOutput {
         } else if !emptyFieldsIndexes.isEmpty{
 //            view?.showEmptyFields(withIndexes: emptyFieldsIndexes)
         }
+    }
+}
+
+extension AddEventPresenter: AddEventInteractorOutput {
+    func addButtonWasTapped() {
+        router.didTapAddButton()
     }
 }

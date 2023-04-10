@@ -12,12 +12,12 @@ protocol RacesNetworkManager {
     func getRace(with id: Int, completion: @escaping(_ race: OneRace?, _ error: String?)->())
     func postLike(with id: Int, complition: @escaping(_ error: String?)->())
     func postView(with id: Int, complition: @escaping(_ error: String?)->())
-    func putRace(with id: Int, and raceInfo: AddRace, completion: @escaping(_ error: String?)->())
+    func postRace(with raceInfo: AddRace, completion: @escaping(_ error: String?)->())
 }
 
 final class RacesNetworkManagerImpl: NetworkManager, RacesNetworkManager {
-    func putRace(with id: Int, and raceInfo: AddRace, completion: @escaping (String?) -> ()) {
-        router.request(.putRace(raceId: id, raceInfo: raceInfo)) { data, response, error in
+    func postRace(with raceInfo: AddRace, completion: @escaping (String?) -> ()) {
+        router.request(.postRace(raceInfo: raceInfo)) { data, response, error in
             if error != nil {
                 completion("Check network connection")
             }

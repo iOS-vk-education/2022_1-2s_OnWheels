@@ -40,8 +40,8 @@ extension AddEventViewController: AddEventViewInput {
 
 private extension AddEventViewController {
     func setupButtonActions() {
-        addRaceContentView.setAddAction {
-            print("Add button tapped")
+        addRaceContentView.setAddAction { [weak self] info in
+            self?.output.didTapAddRace(with: info)
         }
         
         addRaceContentView.setCloseAction { [weak self] in

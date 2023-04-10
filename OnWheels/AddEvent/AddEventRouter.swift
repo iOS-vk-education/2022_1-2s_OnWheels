@@ -17,6 +17,6 @@ extension AddEventRouter: AddEventRouterInput {
     }
     
     func didTapAddButton() {
-        
+        print("Гонка добавлена")
     }
 }

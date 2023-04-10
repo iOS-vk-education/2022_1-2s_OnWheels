@@ -90,13 +90,14 @@ struct AddRace: Codable {
     let name: String
     let location: Location
     let date: DateClass
-    let oneRaceDescription: String
+    let addRaceDescription: String
     let images, tags: [String]
 
     enum AddRaceCodingKeys: String, CodingKey {
         case name, location, date
-        case oneRaceDescription = "description"
-        case images, tags
+        case addRaceDescription = "description"
+        case images = "imageUrls"
+        case tags
     }
 }
 
@@ -106,7 +107,7 @@ extension AddRace {
         name = try addRaceContainer.decode(String.self, forKey: .name)
         location = try addRaceContainer.decode(Location.self, forKey: .location)
         date = try addRaceContainer.decode(DateClass.self, forKey: .date)
-        oneRaceDescription = try addRaceContainer.decode(String.self, forKey: .oneRaceDescription)
+        addRaceDescription = try addRaceContainer.decode(String.self, forKey: .addRaceDescription)
         images = try addRaceContainer.decode([String].self, forKey: .images)
         tags = try addRaceContainer.decode([String].self, forKey: .tags)
     }

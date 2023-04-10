@@ -17,7 +17,8 @@ final class AddEventContainer {
         let router = AddEventRouter()
         let networkRouter = Router<RaceEndPoint>()
         let raceManager = RacesNetworkManagerImpl(router: networkRouter)
-        let interactor = AddEventInteractor(raceManager: raceManager)
+        let locationDecoder = LocationDecoder()
+        let interactor = AddEventInteractor(raceManager: raceManager, locationDecoder: locationDecoder)
         let presenter = AddEventPresenter(router: router, interactor: interactor)
 		let viewController = AddEventViewController(output: presenter)
 

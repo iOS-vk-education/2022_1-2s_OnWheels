@@ -68,6 +68,7 @@
 		942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCF12950DE4F00A13511 /* CustomTextField.swift */; };
 		944C6F1A29DDA9C900947A1F /* CustomMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C6F1929DDA9C900947A1F /* CustomMainButton.swift */; };
 		944C6F1C29DDB1D800947A1F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C6F1B29DDB1D800947A1F /* ImagePicker.swift */; };
+		946C741429E2D536008353DE /* LocationDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946C741329E2D536008353DE /* LocationDecoder.swift */; };
 		947DFC2C292C032600045932 /* OneEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC26292C032600045932 /* OneEventPresenter.swift */; };
 		947DFC2D292C032600045932 /* OneEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC27292C032600045932 /* OneEventRouter.swift */; };
 		947DFC2E292C032600045932 /* OneEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC28292C032600045932 /* OneEventViewController.swift */; };
@@ -161,6 +162,7 @@
 		942FBCF12950DE4F00A13511 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		944C6F1929DDA9C900947A1F /* CustomMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMainButton.swift; sourceTree = "<group>"; };
 		944C6F1B29DDB1D800947A1F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		946C741329E2D536008353DE /* LocationDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDecoder.swift; sourceTree = "<group>"; };
 		947DFC26292C032600045932 /* OneEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventPresenter.swift; sourceTree = "<group>"; };
 		947DFC27292C032600045932 /* OneEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventRouter.swift; sourceTree = "<group>"; };
 		947DFC28292C032600045932 /* OneEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventViewController.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				9401587129DAD6F1002F42FC /* AddEventContentView.swift */,
 				944C6F1929DDA9C900947A1F /* CustomMainButton.swift */,
 				944C6F1B29DDB1D800947A1F /* ImagePicker.swift */,
+				946C741329E2D536008353DE /* LocationDecoder.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				5455F97E292B893300E63E72 /* LogInContainer.swift in Sources */,
 				7F02BD992926A6B400DDA504 /* EventsProtocols.swift in Sources */,
 				941E98822955F7DB0068F802 /* NetworkRouter.swift in Sources */,
+				946C741429E2D536008353DE /* LocationDecoder.swift in Sources */,
 				94187A41291D191B00A8163B /* EnterPresenter.swift in Sources */,
 				941E989C2958E4830068F802 /* RefreshToken.swift in Sources */,
 				941E98942958BB4C0068F802 /* RacesNetworkManager.swift in Sources */,

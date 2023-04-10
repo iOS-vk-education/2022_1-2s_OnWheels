@@ -12,7 +12,7 @@ enum RaceEndPoint {
     case getListOfRaces
     case postLike(raceId: Int)
     case postView(raceId: Int)
-    case putRace(raceId: Int, raceInfo: AddRace)
+    case postRace(raceInfo: AddRace)
 }
 
 extension RaceEndPoint: EndPointType {
@@ -45,8 +45,8 @@ extension RaceEndPoint: EndPointType {
             return "/\(raceId)/like"
         case .postView(let raceId):
             return "/\(raceId)/view"
-        case .putRace(let raceId, let raceInfo):
-            return "/\(raceId)"
+        case .postRace(let raceInfo):
+            return ""
         }
     }
     
@@ -62,8 +62,8 @@ extension RaceEndPoint: EndPointType {
             return .post
         case .postView(raceId: _):
             return .post
-        case .putRace(raceId: _, raceInfo: _):
-            return .put
+        case .postRace(raceInfo: _):
+            return .post
         }
     }
     
@@ -80,8 +80,17 @@ extension RaceEndPoint: EndPointType {
             return .request
         case .postLike(_):
             return .request
-        case .putRace(raceId: _, raceInfo: _):
-            return .request
+        case let .postRace(raceInfo: raceInfo):
+            return .requestParameters(bodyParameters: [
+                "name": raceInfo.name,
+                "location": ["longitude" : raceInfo.location.longitude,
+                             "latitude" : raceInfo.location.latitude],
+                "date": ["from" : raceInfo.date.from,
+                         "to" : raceInfo.date.to],
+                "description": raceInfo.addRaceDescription,
+                "imageUrls": raceInfo.images,
+                "tags": raceInfo.tags
+            ], urlParameters: nil)
         }
     }
     
@@ -89,3 +98,4 @@ extension RaceEndPoint: EndPointType {
         return nil
     }
 }
+
