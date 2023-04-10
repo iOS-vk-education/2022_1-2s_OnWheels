@@ -54,3 +54,6 @@
 
 "alertTitle" = "Ой";
 "alertMessage" = "Проверьте заполненность полей";
+
+"logoutButtonText" = "Выйти";
+"deleteAccountButtonText" = "Удалить аккаунт";
