@@ -5,7 +5,7 @@ import UIKit
 
 
 extension UIButton {
-    func basicButtonConf() -> UIButton.Configuration {
+    static func basicButtonConf() -> UIButton.Configuration {
         var config = UIButton.Configuration.tinted()
         config.buttonSize = .large
         config.cornerStyle = .medium
@@ -18,17 +18,19 @@ extension UIButton {
         config.imagePadding = 5
         config.imagePlacement = .trailing
         config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(scale: .medium)
-        self.layer.cornerRadius = 20
+        config.background.cornerRadius = 20
         return config
     }
 
-    func largeButtonConf() -> UIButton.Configuration {
-        var config = UIButton.Configuration.tinted()
+    static func largeButtonConf() -> UIButton.Configuration {
+        var config = UIButton.Configuration.borderedTinted()
         config.buttonSize = .large
         config.cornerStyle = .medium
         config.baseBackgroundColor = .white
-        self.layer.cornerRadius = 15
-        //...
+        config.background.cornerRadius = 15
+        config.background.strokeWidth = 1
+        config.imagePadding = 5
+    //...
         return config
     }
 }
