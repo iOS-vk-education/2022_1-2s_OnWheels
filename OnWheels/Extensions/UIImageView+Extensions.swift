@@ -7,7 +7,7 @@ import UIKit
 extension UIImageView {
     func makeRounded(width: CGFloat) {
         layer.borderWidth = 1
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = UIColor.systemGray4.cgColor
         layer.masksToBounds = false
         layer.cornerRadius = width / 2
         clipsToBounds = true

@@ -15,6 +15,7 @@ final class ProfileContentView: UIView {
     private let userAvatar = UIImageView(frame: .zero)
     private let userNameLabel = UILabel(frame: .zero)
     private let userCityLabel = UILabel(frame: .zero)
+    private let detailsLabel = UILabel(frame: .zero)
     private let profileDetails = UIStackView(frame: .zero)
     private let logoutButton = UIButton(frame: .zero)
     private let deleteAccountButton = UIButton(frame: .zero)
@@ -56,9 +57,12 @@ private extension ProfileContentView {
     }
     
     func initElements() {
-        self.backgroundColor = .white
         userAvatar.image = R.image.profileImage()
+        backgroundColor = .systemGray5
         userAvatar.contentMode = .scaleAspectFit
+        detailsLabel.text = R.string.localizable.aboutMe()
+        detailsLabel.font = .systemFont(ofSize: 17, weight: .regular)
+        detailsLabel.textColor = R.color.mainBlue()
         // TODO: сделать появление картинки анимированнымe
 //        UIView.transition(with: userAvatar, duration: 2.0, animations: {}) { bl in
 //            print(bl)
@@ -72,7 +76,7 @@ private extension ProfileContentView {
     
     func placeElements() {
         let subviews = [userAvatar, userNameLabel, userCityLabel,
-                        profileDetails, deleteAccountButton, logoutButton]
+                        profileDetails, detailsLabel, deleteAccountButton, logoutButton]
         subviews.forEach {
             box in
             self.addSubview(box)
@@ -83,10 +87,10 @@ private extension ProfileContentView {
     func setupConstraints() {
         userAvatar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(20)
-            make.width.height.equalTo(150)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.width.height.equalTo(115)
         }
-        userAvatar.makeRounded(width: 150)
+        userAvatar.makeRounded(width: 115)
         
         userNameLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -95,25 +99,36 @@ private extension ProfileContentView {
 
         userCityLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(userNameLabel.snp.bottom).offset(20)
+            make.top.equalTo(userNameLabel.snp.bottom).offset(10)
         }
         
         profileDetails.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(20)
+            make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-20)
+            make.top.equalTo(userCityLabel.snp.bottom).offset(50)
+        }
+        profileDetails.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        profileDetails.isLayoutMarginsRelativeArrangement = true
+        profileDetails.layer.masksToBounds = false
+        profileDetails.layer.cornerRadius = 20
+        profileDetails.clipsToBounds = true
+        
+        detailsLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(profileDetails.snp.top).offset(-7)
+            make.left.equalTo(profileDetails.snp.left).offset(15)
         }
         
         logoutButton.snp.makeConstraints { make in
-           make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(50)
-           make.right.equalTo(self.safeAreaLayoutGuide.snp.right).inset(20)
-           make.left.equalTo(self.snp.centerX).offset(10)
-           make.height.equalTo(50)
+            make.top.equalTo(profileDetails.snp.bottom).offset(15)
+            make.right.equalTo(self.safeAreaLayoutGuide.snp.right).inset(20)
+            make.left.equalTo(self.snp.centerX).offset(10)
+            make.height.equalTo(50)
         }
         deleteAccountButton.snp.makeConstraints { make in
-           make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(50)
-           make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(20)
-           make.right.equalTo(self.snp.centerX).inset(10)
-           make.height.equalTo(50)
+            make.top.equalTo(profileDetails.snp.bottom).offset(15)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(20)
+            make.right.equalTo(self.snp.centerX).inset(10)
+            make.height.equalTo(50)
         }
        
     }
@@ -123,6 +138,8 @@ private extension ProfileContentView {
         // email, birthday, sex
         profileDetails.axis = .vertical
         profileDetails.alignment = .leading
+        profileDetails.spacing = 10
+        profileDetails.backgroundColor = .white
     }
     
     // MARK: - buttons initialization
@@ -131,7 +148,7 @@ private extension ProfileContentView {
         var config = UIButton.largeButtonConf()
         config.title = R.string.localizable.logoutButtonText()
         config.image = UIImage(systemSymbol: .rectanglePortraitAndArrowRight)
-        config.background.strokeColor = .systemBlue
+        config.background.backgroundColor = .white
         button.configuration = config
         
         button.addTarget(self, action: #selector(logoutButtonTapped),
@@ -142,9 +159,9 @@ private extension ProfileContentView {
         let button = deleteAccountButton
         var config = UIButton.largeButtonConf()
         config.title = R.string.localizable.deleteAccountButtonText()
-        config.background.strokeColor = .red
         config.baseForegroundColor = .red
         config.image = UIImage(systemSymbol: .trash).withRenderingMode(.alwaysTemplate).withTintColor(.red)
+        config.background.backgroundColor = .white
         button.configuration = config
         
         button.addTarget(self, action: #selector(deleteButtonTapped),
@@ -172,23 +189,56 @@ extension ProfileContentView {
     
     private func updateStackview(email: String, birthday: String, sex: String) {
         // TODO: навести красивости
+        profileDetails.removeFullyAllArrangedSubviews()
+
         let emailDescriptionLabel = UILabel()
         emailDescriptionLabel.text = R.string.localizable.emailAdress()
+        emailDescriptionLabel.font = .systemFont(ofSize: 16, weight: .light)
+        emailDescriptionLabel.textColor = R.color.mainBlue()
+        
         let emailLabel = UILabel()
         emailLabel.text = email
+        emailLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        emailLabel.textColor = R.color.profileCellTextColor()
+        
+        profileDetails.addArrangedSubviews(emailDescriptionLabel, emailLabel)
+        
+        let firstSeparator = UIView()
+        firstSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        firstSeparator.backgroundColor = .systemGray
+        profileDetails.addArrangedSubview(firstSeparator)
+        firstSeparator.widthAnchor.constraint(equalTo: profileDetails.widthAnchor, multiplier: 0.9).isActive = true
         
         let birthdayDescriptionLabel = UILabel()
         birthdayDescriptionLabel.text = R.string.localizable.dateOfBirth()
+        birthdayDescriptionLabel.font = .systemFont(ofSize: 16, weight: .light)
+        birthdayDescriptionLabel.textColor = R.color.mainBlue()
+        
         let birthdayLabel = UILabel()
         let dateString: String = recodeDateString(birthday: birthday)
         birthdayLabel.text = dateString
+        birthdayLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        birthdayLabel.textColor = R.color.profileCellTextColor()
+        
+        profileDetails.addArrangedSubviews(birthdayDescriptionLabel, birthdayLabel)
+        
+        let secondSeparator = UIView()
+        secondSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        secondSeparator.backgroundColor = .systemGray
+        profileDetails.addArrangedSubview(secondSeparator)
+        secondSeparator.widthAnchor.constraint(equalTo: profileDetails.widthAnchor, multiplier: 0.9).isActive = true
         
         let sexDescriptionLabel = UILabel()
         sexDescriptionLabel.text = R.string.localizable.sex()
+        sexDescriptionLabel.font = .systemFont(ofSize: 16, weight: .light)
+        sexDescriptionLabel.textColor = R.color.mainBlue()
+        
         let sexLabel = UILabel()
         sexLabel.text = sex
-        profileDetails.removeFullyAllArrangedSubviews()
-        profileDetails.addArrangedSubviews(emailDescriptionLabel, emailLabel, birthdayDescriptionLabel, birthdayLabel, sexDescriptionLabel, sexLabel)
+        sexLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        sexLabel.textColor = R.color.profileCellTextColor()
+        
+        profileDetails.addArrangedSubviews(sexDescriptionLabel, sexLabel)
     }
     
     private func recodeDateString(birthday: String) -> String {

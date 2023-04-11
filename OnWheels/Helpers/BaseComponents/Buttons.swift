@@ -28,7 +28,6 @@ extension UIButton {
         config.cornerStyle = .medium
         config.baseBackgroundColor = .white
         config.background.cornerRadius = 15
-        config.background.strokeWidth = 1
         config.imagePadding = 5
     //...
         return config
