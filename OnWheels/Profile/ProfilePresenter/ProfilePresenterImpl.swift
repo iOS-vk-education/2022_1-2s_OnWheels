@@ -30,7 +30,6 @@ final class ProfilePresenterImpl: ProfilePresenter {
                     self.viewController?.setUserInfo(user: userInfo)
                 }
             }
-            
         }
     }
     

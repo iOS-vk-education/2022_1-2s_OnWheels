@@ -7,7 +7,7 @@ import UIKit
 
 protocol ProfileBuilder {
     var presenter: ProfilePresenter { get }
-    var view: ProfileView { get }
+    var view: UIViewController { get }
     var router: ProfileRouter { get }
     static func assemble(window: UIWindow, navigationController: UINavigationController) -> ProfileBuilder
 }
@@ -15,10 +15,10 @@ protocol ProfileBuilder {
 
 final class ProfileBuilderImpl: ProfileBuilder {
     let presenter: ProfilePresenter
-    let view: ProfileView
+    let view: UIViewController
     let router: ProfileRouter
 
-    private init(view: ProfileView, presenter: ProfilePresenter, router: ProfileRouter) {
+    private init(view: UIViewController, presenter: ProfilePresenter, router: ProfileRouter) {
         self.view = view
         self.presenter = presenter
         self.router = router

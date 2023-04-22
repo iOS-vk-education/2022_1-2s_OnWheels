@@ -31,7 +31,6 @@ final class ProfileContentView: UIView {
     required init?(coder: NSCoder) {
         return nil
     }
-    
 }
 
 
@@ -63,16 +62,12 @@ private extension ProfileContentView {
         detailsLabel.text = R.string.localizable.aboutMe()
         detailsLabel.font = .systemFont(ofSize: 17, weight: .regular)
         detailsLabel.textColor = R.color.mainBlue()
-        // TODO: сделать появление картинки анимированнымe
-//        UIView.transition(with: userAvatar, duration: 2.0, animations: {}) { bl in
-//            print(bl)
-//        }
+
         userNameLabel.font = .systemFont(ofSize: 25, weight: .semibold)
         setupLogoutButton()
         setupDeleteButton()
         setupStackview()
     }
-    
     
     func placeElements() {
         let subviews = [userAvatar, userNameLabel, userCityLabel,
@@ -82,7 +77,6 @@ private extension ProfileContentView {
             self.addSubview(box)
         }
     }
-    
     
     func setupConstraints() {
         userAvatar.snp.makeConstraints { make in
@@ -96,7 +90,7 @@ private extension ProfileContentView {
             make.centerX.equalToSuperview()
             make.top.equalTo(userAvatar.snp.bottom).offset(20)
         }
-
+        
         userCityLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(userNameLabel.snp.bottom).offset(10)
@@ -130,9 +124,7 @@ private extension ProfileContentView {
             make.right.equalTo(self.snp.centerX).inset(10)
             make.height.equalTo(50)
         }
-       
     }
-    
     
     func setupStackview() {
         // email, birthday, sex
@@ -140,6 +132,7 @@ private extension ProfileContentView {
         profileDetails.alignment = .leading
         profileDetails.spacing = 10
         profileDetails.backgroundColor = .white
+        initStackview()
     }
     
     // MARK: - buttons initialization
@@ -187,17 +180,21 @@ extension ProfileContentView {
         updateStackview(email: user.email, birthday: user.birthday, sex: user.sex)
     }
     
-    private func updateStackview(email: String, birthday: String, sex: String) {
-        // TODO: навести красивости
+    enum profileDetailsViewEnum: Int {
+        case emailLabel = 1, birthdayLabel = 2, sexLabel = 3
+    }
+    
+    func initStackview() {
         profileDetails.removeFullyAllArrangedSubviews()
-
+        
         let emailDescriptionLabel = UILabel()
         emailDescriptionLabel.text = R.string.localizable.emailAdress()
         emailDescriptionLabel.font = .systemFont(ofSize: 16, weight: .light)
         emailDescriptionLabel.textColor = R.color.mainBlue()
         
         let emailLabel = UILabel()
-        emailLabel.text = email
+        emailLabel.tag = profileDetailsViewEnum.emailLabel.rawValue
+        //emailLabel.text = email
         emailLabel.font = .systemFont(ofSize: 16, weight: .regular)
         emailLabel.textColor = R.color.profileCellTextColor()
         
@@ -215,8 +212,8 @@ extension ProfileContentView {
         birthdayDescriptionLabel.textColor = R.color.mainBlue()
         
         let birthdayLabel = UILabel()
-        let dateString: String = recodeDateString(birthday: birthday)
-        birthdayLabel.text = dateString
+        birthdayLabel.tag = profileDetailsViewEnum.birthdayLabel.rawValue
+
         birthdayLabel.font = .systemFont(ofSize: 16, weight: .regular)
         birthdayLabel.textColor = R.color.profileCellTextColor()
         
@@ -234,11 +231,23 @@ extension ProfileContentView {
         sexDescriptionLabel.textColor = R.color.mainBlue()
         
         let sexLabel = UILabel()
-        sexLabel.text = sex
+        sexLabel.tag = profileDetailsViewEnum.sexLabel.rawValue
         sexLabel.font = .systemFont(ofSize: 16, weight: .regular)
         sexLabel.textColor = R.color.profileCellTextColor()
         
         profileDetails.addArrangedSubviews(sexDescriptionLabel, sexLabel)
+    }
+    
+    private func updateStackview(email: String, birthday: String, sex: String) {
+        // TODO: навести красивости
+        let emailLabel = profileDetails.viewWithTag(profileDetailsViewEnum.emailLabel.rawValue)! as! UILabel
+        let birthdayLabel = profileDetails.viewWithTag(profileDetailsViewEnum.birthdayLabel.rawValue)! as! UILabel
+        let sexLabel = profileDetails.viewWithTag(profileDetailsViewEnum.sexLabel.rawValue)! as! UILabel
+        
+        emailLabel.text = email
+        let dateString: String = recodeDateString(birthday: birthday)
+        birthdayLabel.text = dateString
+        sexLabel.text = sex
     }
     
     private func recodeDateString(birthday: String) -> String {
