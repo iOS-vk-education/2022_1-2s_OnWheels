@@ -53,9 +53,8 @@ extension MainFlowCoordinator{
             print("No navController")
             return
         }
-        let profileContext = ProfileContext(window: window)
-        let profileContainer = ProfileContainer.assemble(with: profileContext)
-        navController.setViewControllers([profileContainer.viewController], animated: true)
+        let profileContainer = ProfileBuilderImpl.assemble(window: window, navigationController: navController)
+        navController.setViewControllers([profileContainer.view], animated: true)
     }
     
     fileprivate static func makeNavigationControllers() -> [NavControllerType: UINavigationController] {

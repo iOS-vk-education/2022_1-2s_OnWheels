@@ -13,6 +13,7 @@
 "myEvents" = "Мои мероприятия";
 "profile" = "Профиль";
 "deleteAccount" = "Удалить аккаунт";
+"logout" = "Выйти";
 
 //events
 "eventName" = "Чемпионат России. Гонки на льду - класс 500. Полуфинал - 1 этап";
@@ -54,3 +55,6 @@
 
 "alertTitle" = "Ой";
 "alertMessage" = "Проверьте заполненность полей";
+
+"logoutButtonText" = "Выйти";
+"deleteAccountButtonText" = "Удалить аккаунт";
