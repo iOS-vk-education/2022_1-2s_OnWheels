@@ -175,7 +175,7 @@ private extension ProfileContentView {
 
 extension ProfileContentView {
     func setUserInfo(user: ProfileUserInfo) {
-        userNameLabel.text = user.name
+        userNameLabel.text = user.fullName
         userCityLabel.text = user.city
         updateStackview(email: user.email, birthday: user.birthday, sex: user.sex)
     }

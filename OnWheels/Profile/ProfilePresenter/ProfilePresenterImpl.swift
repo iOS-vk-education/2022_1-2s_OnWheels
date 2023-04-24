@@ -26,7 +26,7 @@ final class ProfilePresenterImpl: ProfilePresenter {
                     print(error)
                 }
                 if let user = user {
-                    let userInfo: ProfileUserInfo = ProfileUserInfo(name: user.firstname + " " + user.lastname, city: user.city, email: user.email, birthday: user.birthday, sex: user.sex)
+                    let userInfo: ProfileUserInfo = ProfileUserInfo(firstname: user.firstname, surname: user.lastname, city: user.city, email: user.email, birthday: user.birthday, sex: user.sex)
                     self.viewController?.setUserInfo(user: userInfo)
                 }
             }

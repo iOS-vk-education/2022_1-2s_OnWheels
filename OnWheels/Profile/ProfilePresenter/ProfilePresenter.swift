@@ -8,11 +8,16 @@
 import Foundation
 
 struct ProfileUserInfo {
-    let name: String
+    let firstname: String
+    let surname: String
     let city: String
     let email: String
     let birthday: String
     let sex: String
+    
+    var fullName: String {
+        return firstname + " " + surname
+    }
 }
 
 protocol ProfilePresenter {
