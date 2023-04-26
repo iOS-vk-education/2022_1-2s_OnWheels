@@ -19,7 +19,8 @@ protocol MyEventsViewInput: AnyObject {
 }
 
 protocol MyEventsViewOutput: AnyObject {
-}
+        func jumpButtonTapped()
+    }
 
 protocol MyEventsInteractorInput: AnyObject {
 }
@@ -28,4 +29,5 @@ protocol MyEventsInteractorOutput: AnyObject {
 }
 
 protocol MyEventsRouterInput: AnyObject {
+    func jumpButtonPressed()
 }

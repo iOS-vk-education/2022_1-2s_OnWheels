@@ -19,6 +19,14 @@ final class MyEventsViewController: UIViewController {
         return table
     }()
     
+    private let jumpButton: UIButton = {
+        let back = UIButton()
+        back.translatesAutoresizingMaskIntoConstraints = false
+        back.setImage(R.image.jumpButton(), for: .normal)
+        back.tintColor = R.color.mainBlue()
+        return back
+    }()
+    
     private let myEventsHeaderView = MyEventsHeader()
     
     init(output: MyEventsViewOutput) {
@@ -71,6 +79,13 @@ private extension MyEventsViewController {
          NSAttributedString.Key.foregroundColor: R.color.mainBlue() ?? .black]
         self.title = R.string.localizable.myEvents()
     }
+    
+    private func setupNavBar (){
+        jumpButton.addTarget(self, action: #selector(jumpButtonTapped), for: .touchUpInside)
+        let leftNavBarItem = UIBarButtonItem(customView: jumpButton)
+        self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
+    }
+    
     
     func setupMyEventsTableView() {
         myEventsTableView.separatorStyle = .none
@@ -127,6 +142,16 @@ extension MyEventsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 330
+    }
+    
+    @objc
+    func jumpButtonTapped(){
+        output.jumpButtonTapped()
+    }
+    
+    @objc
+    func swipeAction(swipe: UISwipeGestureRecognizer) {
+        output.jumpButtonTapped()
     }
 }
 

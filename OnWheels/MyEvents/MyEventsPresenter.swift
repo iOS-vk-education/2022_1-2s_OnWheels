@@ -25,7 +25,13 @@ extension MyEventsPresenter: MyEventsModuleInput {
 }
 
 extension MyEventsPresenter: MyEventsViewOutput {
-}
+    func jumpButtonTapped(){
+        router.jumpButtonPressed()
+    }
+    }
+    
+
 
 extension MyEventsPresenter: MyEventsInteractorOutput {
 }
+

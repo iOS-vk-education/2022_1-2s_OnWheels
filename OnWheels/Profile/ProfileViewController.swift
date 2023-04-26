@@ -8,6 +8,9 @@
 
 import UIKit
 import PinLayout
+//import R.swift
+import SFSafeSymbols
+import SnapKit
 
 final class ProfileViewController: UIViewController {
     private let output: ProfileViewOutput
