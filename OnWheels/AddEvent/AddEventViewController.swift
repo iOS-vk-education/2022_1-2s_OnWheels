@@ -13,6 +13,9 @@ import PinLayout
 final class AddEventViewController: UIViewController {
     private let output: AddEventViewOutput
     
+    private let labels = ["название", "дата начала",
+                          "дата окончания","местоположение"]
+    
     private let addRaceContentView = AddEventContentView()
     
     init(output: AddEventViewOutput) {
@@ -37,9 +40,34 @@ final class AddEventViewController: UIViewController {
 }
 
 extension AddEventViewController: AddEventViewInput {
+    func showEmptyFields(withIndexes: [Int]) {
+        var alertString = "Не заполены поля: "
+        for index in withIndexes {
+            if index != withIndexes.last {
+                alertString.append(contentsOf: "\(labels[index]), ")
+            } else {
+                alertString.append(contentsOf: "\(labels[index]).")
+            }
+        }
+        
+        let alert = UIAlertController(title: R.string.localizable.alertTitle(),
+                                      message: alertString,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: R.string.localizable.alertConfirmation(), style: .default))
+        self.present(alert, animated: true)
+    }
+    
     func selectImage(imageData: Data?) {
         guard let image = imageData else { return }
         addRaceContentView.raceImageView.image = UIImage(data: image)
+    }
+    
+    func showError(with error: String) {
+        let alert = UIAlertController(title: R.string.localizable.alertTitle(),
+                                      message: error,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: R.string.localizable.alertConfirmation(), style: .default))
+        self.present(alert, animated: true)
     }
     
 }

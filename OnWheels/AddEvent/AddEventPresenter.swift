@@ -49,7 +49,7 @@ extension AddEventPresenter: AddEventViewOutput {
         if emptyFieldsIndexes.isEmpty {
             interactor.addRace(with: raceInfo, and: image)
         } else if !emptyFieldsIndexes.isEmpty{
-            //            view?.showEmptyFields(withIndexes: emptyFieldsIndexes)
+            view?.showEmptyFields(withIndexes: emptyFieldsIndexes)
         }
     }
     
@@ -61,6 +61,10 @@ extension AddEventPresenter: AddEventViewOutput {
 extension AddEventPresenter: AddEventInteractorOutput {
     func addButtonWasTapped() {
         router.didTapAddButton()
+    }
+    
+    func showError(with error: String) {
+        view?.showError(with: error)
     }
 }
 

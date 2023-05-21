@@ -17,6 +17,8 @@ protocol AddEventModuleOutput: AnyObject {
 
 protocol AddEventViewInput: AnyObject {
     func selectImage(imageData: Data?)
+    func showError(with error: String)
+    func showEmptyFields(withIndexes: [Int])
 }
 
 protocol AddEventViewOutput: AnyObject {
@@ -31,6 +33,7 @@ protocol AddEventInteractorInput: AnyObject {
 
 protocol AddEventInteractorOutput: AnyObject {
     func addButtonWasTapped()
+    func showError(with error: String)
 }
 
 protocol AddEventRouterInput: AnyObject {

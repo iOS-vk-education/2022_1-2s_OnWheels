@@ -78,14 +78,14 @@ extension AddEventInteractor: AddEventInteractorInput {
                     let convertedInfo = self.makeRaceInfo(raceInfo: raceInfo, imageId: imageId) { race, error in
                         if let error = error {
                             print("error")
-                            // TODO: view?.showError(with: error)
+                            self.output?.showError(with: error)
                         }
                         
                         if let convertedRaceInfo = race {
                             self.raceManager.postRace(with: convertedRaceInfo) { error in
                                 if let error = error {
                                     print(error)
-                                    // TODO: view?.showError(with: error)
+                                    self.output?.showError(with: error)
                                 } else {
                                     self.output?.addButtonWasTapped()
                                 }

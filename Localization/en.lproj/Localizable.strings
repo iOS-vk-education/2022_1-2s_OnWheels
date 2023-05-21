@@ -55,6 +55,7 @@
 // alerts
 "alertTitle" = "Oh, fuck";
 "alertMessage" = "Check fields completion";
+"alertConfirmation" = "Ok";
 
 
 // addEvent
