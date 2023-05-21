@@ -28,6 +28,7 @@ final class AddEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtonActions()
+        setupImagePickerAction()
     }
     
     override func loadView() {
@@ -36,6 +37,10 @@ final class AddEventViewController: UIViewController {
 }
 
 extension AddEventViewController: AddEventViewInput {
+    func selectImage(image: UIImage?) {
+        addRaceContentView.raceImageView.image = image
+    }
+    
 }
 
 private extension AddEventViewController {
@@ -46,6 +51,13 @@ private extension AddEventViewController {
         
         addRaceContentView.setCloseAction { [weak self] in
             self?.output.closeButtonWasTapped()
+        }
+    }
+    
+    func setupImagePickerAction() {
+        addRaceContentView.setPickerAction { [weak self] in
+            guard let `self` = self else { return }
+            self.output.showImagePicker()
         }
     }
 }

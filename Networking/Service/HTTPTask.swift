@@ -17,5 +17,6 @@ public enum HTTPTask {
     case requestParametersAndHeaders(bodyParameters: Parameters?,
                                      urlParameters: Parameters?,
                                      additionHeaders: HTTPHeaders)
-   
+    
+    case uploadImage(image: Data)
 }

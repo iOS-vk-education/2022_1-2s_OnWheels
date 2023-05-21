@@ -10,10 +10,13 @@ import UIKit
 final class AddEventContentView: UIView {
     typealias CloseClosure = () -> Void
     typealias AddClosure = ([String?]) -> Void
+    typealias PickerClosure = () -> ()
     
     private var closeAction: CloseClosure?
     
     private var addAction: AddClosure?
+    
+    private var photoPickerAction: PickerClosure?
     
     private let mainLabel: UILabel = {
         let main = UILabel()
@@ -221,6 +224,7 @@ extension AddEventContentView {
     func addTargets() {
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        raceImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imagePickerTapped)))
     }
     
     func setCloseAction(_ action: @escaping CloseClosure) {
@@ -231,9 +235,18 @@ extension AddEventContentView {
         self.addAction = action
     }
     
+    func setPickerAction(_ action: @escaping PickerClosure) {
+        self.photoPickerAction = action
+    }
+    
     @objc
     func closeButtonTapped() {
         closeAction?()
+    }
+    
+    @objc
+    func imagePickerTapped() {
+        photoPickerAction?()
     }
     
     @objc

@@ -22,6 +22,7 @@ final class AddEventContainer {
         let presenter = AddEventPresenter(router: router, interactor: interactor)
         let viewController = AddEventViewController(output: presenter)
         
+        router.viewController = viewController
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
         

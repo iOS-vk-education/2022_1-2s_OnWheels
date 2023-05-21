@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 final class AddEventPresenter {
+    
     weak var view: AddEventViewInput?
     weak var moduleOutput: AddEventModuleOutput?
     
@@ -42,6 +44,7 @@ extension AddEventPresenter: AddEventViewOutput {
     func closeButtonWasTapped() {
         router.didTapCloseButton()
     }
+    
     func didTapAddRace(with raceInfo: [String?]) {
         let emptyFieldsIndexes = getIndexesOfEmptyFields(addRaceInfo: raceInfo)
         if emptyFieldsIndexes.isEmpty {
@@ -50,10 +53,22 @@ extension AddEventPresenter: AddEventViewOutput {
 //            view?.showEmptyFields(withIndexes: emptyFieldsIndexes)
         }
     }
+    
+    func showImagePicker() {
+        router.showImagePicker(delegateForPicker: self)
+    }
 }
 
 extension AddEventPresenter: AddEventInteractorOutput {
     func addButtonWasTapped() {
         router.didTapAddButton()
+    }
+}
+
+
+extension AddEventPresenter: ImagePickerDelegate {
+    func didSelect(image: UIImage?) {
+        guard let image = image else { return }
+        view?.selectImage(image: image)
     }
 }

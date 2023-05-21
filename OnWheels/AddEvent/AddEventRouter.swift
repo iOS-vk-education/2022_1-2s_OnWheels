@@ -9,6 +9,8 @@
 import UIKit
 
 final class AddEventRouter {
+    var viewController: UIViewController?
+    private var imagePicker: ImagePicker?
 }
 
 extension AddEventRouter: AddEventRouterInput {
@@ -18,5 +20,11 @@ extension AddEventRouter: AddEventRouterInput {
     
     func didTapAddButton() {
         print("Гонка добавлена")
+    }
+    
+    func showImagePicker(delegateForPicker delegate: ImagePickerDelegate) {
+        guard let viewController = viewController else { return }
+        imagePicker = ImagePicker(presentationController: viewController, delegate: delegate)
+        imagePicker?.present(from: viewController.view)
     }
 }
