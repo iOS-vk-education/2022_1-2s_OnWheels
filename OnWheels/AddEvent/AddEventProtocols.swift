@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol AddEventModuleInput {
     var moduleOutput: AddEventModuleOutput? { get }
@@ -17,12 +16,12 @@ protocol AddEventModuleOutput: AnyObject {
 }
 
 protocol AddEventViewInput: AnyObject {
-    func selectImage(image: UIImage?)
+    func selectImage(imageData: Data?)
 }
 
 protocol AddEventViewOutput: AnyObject {
     func closeButtonWasTapped()
-    func didTapAddRace(with raceInfo: [String?])
+    func didTapAddRace(with raceInfo: [String?], and imageData: Data?)
     func showImagePicker()
 }
 

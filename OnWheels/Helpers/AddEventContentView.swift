@@ -9,7 +9,7 @@ import UIKit
 
 final class AddEventContentView: UIView {
     typealias CloseClosure = () -> Void
-    typealias AddClosure = ([String?]) -> Void
+    typealias AddClosure = ([String?], Data?) -> Void
     typealias PickerClosure = () -> ()
     
     private var closeAction: CloseClosure?
@@ -158,7 +158,7 @@ extension AddEventContentView {
             descriptonTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
             descriptonTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
             descriptonTextView.heightAnchor.constraint(equalToConstant: 100),
-
+            
             raceImageView.topAnchor.constraint(equalTo: descriptonTextView.bottomAnchor, constant: 12),
             raceImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
             raceImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
@@ -175,7 +175,7 @@ extension AddEventContentView {
         let dateFromPicker = setupDate()
         let dateToPicker = setupDate()
         dateFromPicker.addTarget(self, action: #selector(dateFromChange(datePicker:)),
-                             for: UIControl.Event.valueChanged)
+                                 for: UIControl.Event.valueChanged)
         dateToPicker.addTarget(self, action: #selector(dateToChange(datePicker:)),
                                for: UIControl.Event.valueChanged)
         
@@ -225,6 +225,7 @@ extension AddEventContentView {
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         raceImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imagePickerTapped)))
+        raceImageView.isUserInteractionEnabled = true
     }
     
     func setCloseAction(_ action: @escaping CloseClosure) {
@@ -260,9 +261,10 @@ extension AddEventContentView {
             addRaceInfo[4] = R.string.localizable.noDescription()
         } else {
             addRaceInfo[4] = descriptonTextView.text
-
         }
-        addAction?(addRaceInfo)
+        
+        let imageData = raceImageView.image?.jpegData(compressionQuality: 0.8)
+        addAction?(addRaceInfo, imageData)
     }
     
     func setupActions() {

@@ -47,7 +47,7 @@ final class AddEventInteractor {
         let date = formatDate(dateFrom: raceInfoStrings[1], dateTo: raceInfoStrings[2])
         
         let raceDate = Duration(from: date.0, to: date.1)
-                
+        
         locationDecoder.getLocation(from: raceInfoStrings[3]) { location, error in
             if let error = error {
                 print("\(error.localizedDescription)")
@@ -66,8 +66,6 @@ final class AddEventInteractor {
 
 extension AddEventInteractor: AddEventInteractorInput {
     func addRace(with raceInfo: [String?], and imageData: Data?) {
-        
-        var imageResult: (imageData: ImageModel?, error: String?)? = nil
         if let image = imageData {
             imageManager.postImage(with: image) {imageData, error in
                 if error != nil {
@@ -77,38 +75,27 @@ extension AddEventInteractor: AddEventInteractorInput {
                         return
                     }
                     
-                    let convertedInfo = makeRaceInfo(raceInfo: raceInfo, imageId: imageId) {
+                    let convertedInfo = self.makeRaceInfo(raceInfo: raceInfo, imageId: imageId) { race, error in
+                        if let error = error {
+                            print("error")
+                            // TODO: view?.showError(with: error)
+                        }
+                        
+                        if let convertedRaceInfo = race {
+                            self.raceManager.postRace(with: convertedRaceInfo) { error in
+                                if let error = error {
+                                    print(error)
+                                    // TODO: view?.showError(with: error)
+                                } else {
+                                    self.output?.addButtonWasTapped()
+                                }
+                            }
+                        }
                         
                     }
                 }
             }
         }
-        
-        
-//        let raceInfoStrings = raceInfo.compactMap{ $0 }
-//
-//        // TODO: сделать с помощью экстеншена Артема перевод времени из строки
-//        let raceDate = Duration(from: "2023-04-10T08:18:45.754Z", to: "2023-04-10T08:18:45.754Z")
-//
-//        locationDecoder.getLocation(from: raceInfoStrings[3]) { location, error in
-//            if let error = error {
-//                print("Ошибка получения координат: \(error.localizedDescription)")
-//            } else if let location = location {
-//                let addRaceModel = AddRace(name: raceInfoStrings[0],
-//                                           location: location,
-//                                           date: raceDate,
-//                                           addRaceDescription: raceInfoStrings[4],
-//                                           images: [""],
-//                                           tags: [""])
-//                self.raceManager.postRace(with: addRaceModel) { error in
-//                    if error == nil {
-//                        self.output?.addButtonWasTapped()
-//                    } else {
-//                        print(error)
-//                    }
-//                }
-//            }
-//        }
     }
 }
 

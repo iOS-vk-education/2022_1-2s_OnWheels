@@ -37,16 +37,17 @@ final class AddEventViewController: UIViewController {
 }
 
 extension AddEventViewController: AddEventViewInput {
-    func selectImage(image: UIImage?) {
-        addRaceContentView.raceImageView.image = image
+    func selectImage(imageData: Data?) {
+        guard let image = imageData else { return }
+        addRaceContentView.raceImageView.image = UIImage(data: image)
     }
     
 }
 
 private extension AddEventViewController {
     func setupButtonActions() {
-        addRaceContentView.setAddAction { [weak self] info in
-            self?.output.didTapAddRace(with: info)
+        addRaceContentView.setAddAction { [weak self] info, image in
+            self?.output.didTapAddRace(with: info, and: image)
         }
         
         addRaceContentView.setCloseAction { [weak self] in

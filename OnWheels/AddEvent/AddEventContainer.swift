@@ -15,10 +15,12 @@ final class AddEventContainer {
     
     class func assemble(with context: AddEventContext) -> AddEventContainer {
         let router = AddEventRouter()
-        let networkRouter = Router<RaceEndPoint>()
-        let raceManager = RacesNetworkManagerImpl(router: networkRouter)
+        let networkRaceRouter = Router<RaceEndPoint>()
+        let raceManager = RacesNetworkManagerImpl(router: networkRaceRouter)
         let locationDecoder = LocationDecoder()
-        let interactor = AddEventInteractor(raceManager: raceManager, locationDecoder: locationDecoder)
+        let networkImageRouter = Router<ImageEndPoint>()
+        let imageManager = ImageManagerImpl(router: networkImageRouter)
+        let interactor = AddEventInteractor(raceManager: raceManager, locationDecoder: locationDecoder, imageManager: imageManager)
         let presenter = AddEventPresenter(router: router, interactor: interactor)
         let viewController = AddEventViewController(output: presenter)
         
