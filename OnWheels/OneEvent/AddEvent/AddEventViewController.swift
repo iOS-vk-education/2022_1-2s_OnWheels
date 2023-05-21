@@ -8,13 +8,12 @@
 
 
 import UIKit
-import PinLayout
 
 final class AddEventViewController: UIViewController {
     private let output: AddEventViewOutput
     
-    private let labels = ["название", "дата начала",
-                          "дата окончания","местоположение"]
+    private let labels = [R.string.localizable.enterName(), R.string.localizable.dateFrom(),
+                          R.string.localizable.dateTo(), R.string.localizable.placeOfEvent()]
     
     private let addRaceContentView = AddEventContentView()
     
