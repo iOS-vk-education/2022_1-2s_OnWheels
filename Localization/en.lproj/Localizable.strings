@@ -13,6 +13,7 @@
 "myEvents" = "My events";
 "profile" = "Profile";
 "deleteAccount" = "Delete account";
+"logout" = "Log out";
 
 //events
 "eventName" = "Championship of Russia. Racing on Ice - Class 500. Semifinal - Stage 1";
@@ -67,4 +68,7 @@
 "placeOfEvent" = "Location of a race";
 "noDescription" = "Description is empty";
 "locationError" = "Ploblems with location decoding";
+
+"logoutButtonText" = "Log out";
+"deleteAccountButtonText" = "Delete account";
 

@@ -18,7 +18,7 @@ final class Router<EndPoint: EndPointType>: NetworkRouter {
                 if let data = data {
                     do {
                         let info = try JSONSerialization.jsonObject(with: data)
-                        print(info)
+                        //print(info)
                     } catch {
                         print(error)
                     }

@@ -21,7 +21,7 @@ enum UserEndPoint {
 }
 
 extension UserEndPoint: EndPointType {
-    var enviromentslBaseUrl: String {
+    var environmentBaseUrl: String {
         switch NetworkManager.environment {
         case .qa:
             return "https://onwheels.enula.ru/api/User"
@@ -32,7 +32,7 @@ extension UserEndPoint: EndPointType {
         }
     }
     var baseURL: URL {
-        guard let url = URL(string: enviromentslBaseUrl) else {
+        guard let url = URL(string: environmentBaseUrl) else {
             fatalError("Base url is invalid")
         }
         return url

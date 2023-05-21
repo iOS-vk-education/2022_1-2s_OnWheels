@@ -16,7 +16,7 @@ enum RaceEndPoint {
 }
 
 extension RaceEndPoint: EndPointType {
-    var enviromentslBaseUrl: String {
+    var environmentBaseUrl: String {
         switch NetworkManager.environment {
         case .qa:
             return "https://onwheels.enula.ru/api/Race"
@@ -27,7 +27,7 @@ extension RaceEndPoint: EndPointType {
         }
     }
     var baseURL: URL {
-        guard let url = URL(string: enviromentslBaseUrl) else {
+        guard let url = URL(string: environmentBaseUrl) else {
             fatalError("Base url is invalid")
         }
         return url
