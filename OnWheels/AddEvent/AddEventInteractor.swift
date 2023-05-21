@@ -50,7 +50,7 @@ final class AddEventInteractor {
         
         locationDecoder.getLocation(from: raceInfoStrings[3]) { location, error in
             if let error = error {
-                print("\(error.localizedDescription)")
+                self.output?.showError(with: R.string.localizable.locationError())
             } else if let location = location {
                 let addRaceInfo = AddRace(name: raceInfoStrings[0],
                                           location: location,
@@ -68,8 +68,8 @@ extension AddEventInteractor: AddEventInteractorInput {
     func addRace(with raceInfo: [String?], and imageData: Data?) {
         if let image = imageData {
             imageManager.postImage(with: image) {imageData, error in
-                if error != nil {
-                    print(error)
+                if let error = error {
+                    self.output?.showError(with: error)
                 } else {
                     guard let imageId = imageData?.imageId else {
                         return

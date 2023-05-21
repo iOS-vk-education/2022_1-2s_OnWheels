@@ -66,4 +66,5 @@
 "eventDescription" = "Race description";
 "placeOfEvent" = "Location of a race";
 "noDescription" = "Description is empty";
+"locationError" = "Ploblems with location decoding";
 
