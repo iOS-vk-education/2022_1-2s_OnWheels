@@ -81,12 +81,7 @@ final class LogInViewController: UIViewController {
         return b
     }()
     
-    private(set) lazy var enterButton: UIButton = {
-        let b: UIButton = .init(configuration: .filled())
-        b.titleLabel?.font = .systemFont(ofSize: 20)
-        b.setTitle(R.string.localizable.enter(), for: .normal)
-        return b
-    }()
+    private(set) lazy var enterButton = MainAppButton()
     
     private(set) lazy var regButton: UIButton = {
         let b: UIButton = .init()
@@ -164,6 +159,7 @@ final class LogInViewController: UIViewController {
                                regButton, skipLoginButton)
         setupObserversForKeyboard()
         setupBinding()
+        setupTitleForEnterButton()
     }
     
     @objc
@@ -220,6 +216,9 @@ final class LogInViewController: UIViewController {
 }
 
 private extension LogInViewController {
+    func setupTitleForEnterButton() {
+        enterButton.setupTitle(with: R.string.localizable.enter())
+    }
     func setupObserversForKeyboard(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,

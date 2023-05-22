@@ -53,8 +53,21 @@
 "man" = "муж";
 "woman" = "жен";
 
+
+// alerts
 "alertTitle" = "Ой";
 "alertMessage" = "Проверьте заполненность полей";
+"alertConfirmation" = "Окей";
+
+// addRace
+"addRace" = "Добавить гонку";
+"eventName" = "Название гонки";
+"dateFrom" = "Дата начала";
+"dateTo" = "Дата окончания";
+"eventDescription" = "Описание гонки";
+"placeOfEvent" = "Место проведения";
+"noDescription" = "Описание отсутсвует";
+"locationError" = "Невозможно раскодировать местоположение гонки";
 
 "logoutButtonText" = "Выйти";
 "deleteAccountButtonText" = "Удалить аккаунт";

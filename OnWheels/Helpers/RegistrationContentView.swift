@@ -105,14 +105,9 @@ final class RegistrationContentView: UIView {
         return rules
     }()
     
-    let registrationButton: UIButton = {
-        let registration = UIButton()
+    let registrationButton: MainAppButton = {
+        let registration = MainAppButton()
         registration.translatesAutoresizingMaskIntoConstraints = false
-        registration.configuration = .filled()
-        registration.titleLabel?.font = .systemFont(ofSize: 20)
-        registration.setTitle(R.string.localizable.register(), for: .normal)
-        registration.tintColor = R.color.mainBlue()
-        registration.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         return registration
     }()
     
@@ -122,6 +117,7 @@ final class RegistrationContentView: UIView {
         setupTextFields()
         setupGenderField()
         setupDatePicker()
+        setupRegistrationButton()
     }
     
     required init?(coder: NSCoder) {
@@ -196,6 +192,11 @@ extension RegistrationContentView {
             registrationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -43),
             registrationButton.heightAnchor.constraint(equalToConstant: 42)
         ])
+    }
+    
+    func setupRegistrationButton() {
+        registrationButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+        registrationButton.setupTitle(with: R.string.localizable.register())
     }
     
     func setupTextFields(){
