@@ -98,6 +98,8 @@
 		94C1B23B2A1AA07300CEEE42 /* AddEventProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2352A1AA07300CEEE42 /* AddEventProtocols.swift */; };
 		94C1B23C2A1AA07300CEEE42 /* AddEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2362A1AA07300CEEE42 /* AddEventInteractor.swift */; };
 		94C1B23D2A1AA07300CEEE42 /* AddEventContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2372A1AA07300CEEE42 /* AddEventContainer.swift */; };
+		94C1B2402A1CDFFF00CEEE42 /* EventsContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B23F2A1CDFFF00CEEE42 /* EventsContentProvider.swift */; };
+		94C1B2422A1CE00F00CEEE42 /* EventsContentProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2412A1CE00F00CEEE42 /* EventsContentProviderImpl.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
 		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB88CE292CDA2C00A567C6 /* EventMapView.swift */; };
@@ -203,6 +205,8 @@
 		94C1B2352A1AA07300CEEE42 /* AddEventProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventProtocols.swift; sourceTree = "<group>"; };
 		94C1B2362A1AA07300CEEE42 /* AddEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInteractor.swift; sourceTree = "<group>"; };
 		94C1B2372A1AA07300CEEE42 /* AddEventContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventContainer.swift; sourceTree = "<group>"; };
+		94C1B23F2A1CDFFF00CEEE42 /* EventsContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsContentProvider.swift; sourceTree = "<group>"; };
+		94C1B2412A1CE00F00CEEE42 /* EventsContentProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsContentProviderImpl.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		94FB88CE292CDA2C00A567C6 /* EventMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapView.swift; sourceTree = "<group>"; };
@@ -343,6 +347,7 @@
 		94187A2C291CFD7900A8163B /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				94C1B23E2A1CDFE400CEEE42 /* EventsContentProvider */,
 				7F02BD9B2926A6BD00DDA504 /* Cell */,
 				7F02BD922926A6B300DDA504 /* EventsContainer.swift */,
 				7F02BD942926A6B400DDA504 /* EventsInteractor.swift */,
@@ -503,6 +508,15 @@
 			);
 			name = AddEvent;
 			path = OneEvent/AddEvent;
+			sourceTree = "<group>";
+		};
+		94C1B23E2A1CDFE400CEEE42 /* EventsContentProvider */ = {
+			isa = PBXGroup;
+			children = (
+				94C1B23F2A1CDFFF00CEEE42 /* EventsContentProvider.swift */,
+				94C1B2412A1CE00F00CEEE42 /* EventsContentProviderImpl.swift */,
+			);
+			path = EventsContentProvider;
 			sourceTree = "<group>";
 		};
 		94E574932917C82100EF9585 /* Helpers */ = {
@@ -723,6 +737,7 @@
 				941E987A2955F3060068F802 /* HTTPTask.swift in Sources */,
 				7F02BD982926A6B400DDA504 /* EventsContainer.swift in Sources */,
 				94187A43291D191B00A8163B /* EnterViewController.swift in Sources */,
+				94C1B2422A1CE00F00CEEE42 /* EventsContentProviderImpl.swift in Sources */,
 				5455F995292B8A2600E63E72 /* UIStackView+Extensions.swift in Sources */,
 				5455F98E292B893B00E63E72 /* RegistrationPresenter.swift in Sources */,
 				5455F98F292B893B00E63E72 /* RegistrationProtocols.swift in Sources */,
@@ -741,6 +756,7 @@
 				706F1CE829E054500064F80E /* ProfilePresenter.swift in Sources */,
 				70A9576629E4BAD100DA0A66 /* UIStackViewExtension.swift in Sources */,
 				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
+				94C1B2402A1CDFFF00CEEE42 /* EventsContentProvider.swift in Sources */,
 				941E987E2955F4AE0068F802 /* URLParameterEncoder.swift in Sources */,
 				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
 				94C1B23C2A1AA07300CEEE42 /* AddEventInteractor.swift in Sources */,
