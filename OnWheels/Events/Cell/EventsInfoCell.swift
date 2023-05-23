@@ -18,6 +18,7 @@ final class EventsInfoCell: UITableViewCell {
     //    Вью летющей ячейки
     private let cellView: UIView = {
         let cell = UIView()
+        cell.translatesAutoresizingMaskIntoConstraints = false
         cell.backgroundColor = R.color.cellColor()
         cell.layer.cornerRadius = 16
         cell.layer.masksToBounds = true
@@ -27,18 +28,27 @@ final class EventsInfoCell: UITableViewCell {
     //    Заглавная надпись
     private let mainLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .regular)
-        label.numberOfLines = 0
-        label.textColor = .mainBlueColor
+        label.numberOfLines = 2
+        label.textColor = R.color.mainBlue()
         return label
     }()
     
     //    Надпись времени события
     private let dateLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = R.color.mainOrange()
+        label.numberOfLines = 0
         return label
+    }()
+    
+    private let eventInfoStackView: UIStackView = {
+        let info = UIStackView()
+        info.translatesAutoresizingMaskIntoConstraints = false
+        return info
     }()
     
 //    private let placeInfoStackVeiw = EventInfoStackView()
@@ -48,6 +58,7 @@ final class EventsInfoCell: UITableViewCell {
     
     private let eventImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -81,9 +92,9 @@ final class EventsInfoCell: UITableViewCell {
         mainLabel.text = ""
         dateLabel.text = ""
 //        placeInfoStackVeiw.infoLabel.text = ""
-        sharedInfoStackView.infoLabel.text = ""
-        watchedInfoStackView.infoLabel.text = ""
-        likeInfoStackVeiw.infoLabel.text = ""
+        sharedInfoStackView.configureForParticipants(numberOfParticipants: 0)
+        watchedInfoStackView.configureForWatchers(numberOfWatchers: 0)
+        likeInfoStackVeiw.configureForLikes(isLiked: false, numberOfLikes: 0)
     }
     
     required init?(coder: NSCoder) {
@@ -103,9 +114,15 @@ final class EventsInfoCell: UITableViewCell {
         
         cellView.addSubview(eventImageView)
         
-        cellView.addSubview(likeInfoStackVeiw)
-        cellView.addSubview(sharedInfoStackView)
-        cellView.addSubview(watchedInfoStackView)
+        cellView.addSubview(eventInfoStackView)
+        
+        eventInfoStackView.addArrangedSubview(likeInfoStackVeiw)
+        eventInfoStackView.addArrangedSubview(sharedInfoStackView)
+        eventInfoStackView.addArrangedSubview(watchedInfoStackView)
+        
+        likeInfoStackVeiw.translatesAutoresizingMaskIntoConstraints = false
+        sharedInfoStackView.translatesAutoresizingMaskIntoConstraints = false
+        watchedInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         
         setupLayout()
         setupLikeStackView()
@@ -116,135 +133,47 @@ final class EventsInfoCell: UITableViewCell {
     }
     
     func setupLayout() {
-        cellView.pin
-            .top(Constants.CellView.top)
-            .left()
-            .right()
-            .height(Constants.CellView.height)
-            .bottom(Constants.CellView.bottom)
         
-        mainLabel.pin
-            .top(Constants.MainLabel.top)
-            .left(Constants.MainLabel.left)
-            .right(Constants.MainLabel.right)
-            .height(Constants.MainLabel.height)
-        
-        dateLabel.pin
-            .top(to: mainLabel.edge.bottom)
-            .marginTop(Constants.DateLabel.top)
-            .left(Constants.DateLabel.left)
-            .right(Constants.DateLabel.right)
-            .height(Constants.DateLabel.height)
-        
-//        placeInfoStackVeiw.pin
-//            .top(to: dateLabel.edge.bottom)
-//            .marginTop(Constants.PlaceInfoStackView.top)
-//            .left(Constants.PlaceInfoStackView.left)
-//            .height(Constants.PlaceInfoStackView.height)
-//            .width(Constants.PlaceInfoStackView.width)
-        
-        tagsStackVeiw.pin
-            .top(to: dateLabel.edge.bottom)
-            .marginTop(Constants.TagsStackView.top)
-            .left(Constants.TagsStackView.left)
-            .right(Constants.TagsStackView.right)
-            .height(Constants.TagsStackView.height)
-        
-        eventImageView.pin
-            .top(to: tagsStackVeiw.edge.bottom)
-            .marginTop(Constants.EventImageView.top)
-            .height(Constants.EventImageView.height)
-            .left(Constants.EventImageView.left)
-            .right(Constants.EventImageView.right)
-        
-        likeInfoStackVeiw.pin
-            .top(to: eventImageView.edge.bottom)
-            .marginTop(Constants.InfoStackVeiws.top)
-            .left(Constants.InfoStackVeiws.left)
-            .width(Constants.InfoStackVeiws.width)
-            .height(Constants.InfoStackVeiws.height)
-        
-        sharedInfoStackView.pin
-            .top(to: eventImageView.edge.bottom)
-            .marginTop(Constants.InfoStackVeiws.top)
-            .left(to: likeInfoStackVeiw.edge.right)
-            .marginLeft(Constants.InfoStackVeiws.left)
-            .width(Constants.InfoStackVeiws.width)
-            .height(Constants.InfoStackVeiws.height)
-        
-        watchedInfoStackView.pin
-            .top(to: eventImageView.edge.bottom)
-            .marginTop(Constants.InfoStackVeiws.top)
-            .left(to: sharedInfoStackView.edge.right)
-            .marginLeft(Constants.InfoStackVeiws.left)
-            .width(Constants.InfoStackVeiws.width)
-            .height(Constants.InfoStackVeiws.height)
-    }
-    
-    struct Constants {
-        struct CellView {
-            static let top: CGFloat = 10
-            static let bottom: CGFloat = 10
-            static let height: CGFloat = 316
-        }
-        
-        struct MainLabel {
-            static let top: CGFloat = 8
-            static let left: CGFloat = 24
-            static let right: CGFloat = 24
-            static let height: CGFloat = 24
-        }
-        
-        struct DateLabel {
-            static let top: CGFloat = 5
-            static let left: CGFloat = 24
-            static let right: CGFloat = 24
-            static let height: CGFloat = 14
-        }
-        
-        struct PlaceInfoStackView {
-            static let top: CGFloat = 8
-            static let left: CGFloat = 24
-            static let width: CGFloat = 200
-            static let height: CGFloat = 30
-        }
-        
-        struct TagsStackView {
-            static let top: CGFloat = 10
-            static let left: CGFloat = 24
-            static let right: CGFloat = 24
-            static let height: CGFloat = 20
-        }
-        
-        struct EventImageView {
-            static let top: CGFloat = 12
-            static let left: CGFloat = 12
-            static let right: CGFloat = 12
-            static let height: CGFloat = 180
-        }
-        
-        struct InfoStackVeiws {
-            static let top: CGFloat = 10
-            static let left: CGFloat = 24
-            static let width: CGFloat = 32
-            static let height: CGFloat = 24
-        }
+        NSLayoutConstraint.activate([
+            cellView.topAnchor.constraint(equalTo: self.topAnchor),
+            cellView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            cellView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            cellView.heightAnchor.constraint(equalToConstant: 400),
+            
+            mainLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 10),
+            mainLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 24),
+            mainLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -24),
+            mainLabel.heightAnchor.constraint(equalToConstant: 44),
+            
+            dateLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 6),
+            dateLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 24),
+            dateLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -24),
+            
+            eventImageView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 12),
+            eventImageView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 12),
+            eventImageView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -12),
+            eventImageView.heightAnchor.constraint(equalToConstant: 240),
+            
+            eventInfoStackView.topAnchor.constraint(equalTo: eventImageView.bottomAnchor, constant: 6),
+            eventInfoStackView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 24),
+            eventInfoStackView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -24),
+            eventInfoStackView.heightAnchor.constraint(equalToConstant: 24),
+        ])
     }
     
     func setupLikeStackView(){
         likeInfoStackVeiw.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                       action: #selector(setState)))
-        likeInfoStackVeiw.infoLabel.isHidden = true
     }
     
     @objc
     func setState() {
         if !isEventLiked {
-            likeInfoStackVeiw.infoImageView.image = R.image.likeTapped()
+            likeInfoStackVeiw.configureForLikes(isLiked: isEventLiked, numberOfLikes: 0)
             isEventLiked = !isEventLiked
             likeAction?()
         } else {
-            likeInfoStackVeiw.infoImageView.image = R.image.likes()
+            likeInfoStackVeiw.configureForLikes(isLiked: isEventLiked, numberOfLikes: 0)
             isEventLiked = !isEventLiked
         }
     }
