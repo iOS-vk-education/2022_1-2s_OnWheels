@@ -9,14 +9,14 @@ import UIKit
 import PinLayout
 
 class EventInfoStackView: UIStackView {
-    let infoImageView: UIImageView = {
+    private let infoImageView: UIImageView = {
         let info = UIImageView()
         info.contentMode = .scaleAspectFill
         info.layer.masksToBounds = true
         return info
     }()
     
-    let infoLabel: UILabel = {
+    private let infoLabel: UILabel = {
         let info = UILabel()
         info.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         info.textAlignment = .center
@@ -47,6 +47,7 @@ class EventInfoStackView: UIStackView {
             .bottom()
             .height(24)
             .width(24)
+        
         infoLabel.pin
             .vCenter()
         
@@ -58,5 +59,20 @@ class EventInfoStackView: UIStackView {
         let image = UIImage(named: image)
         infoImageView.image = image
         infoLabel.text = text
+    }
+    
+    func configureForLikes(isLiked: Bool, numberOfLikes: Int) {
+        infoImageView.image = isLiked ? R.image.likeTapped() : R.image.likes()
+        infoLabel.text = "\(numberOfLikes)"
+    }
+    
+    func configureForParticipants(numberOfParticipants: Int) {
+        infoImageView.image = R.image.people()
+        infoLabel.text = "\(numberOfParticipants)"
+    }
+    
+    func configureForWatchers(numberOfWatchers: Int) {
+        infoImageView.image = R.image.eye()
+        infoLabel.text = "\(numberOfWatchers)"
     }
 }

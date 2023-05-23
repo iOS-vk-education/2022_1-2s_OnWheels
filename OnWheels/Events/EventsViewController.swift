@@ -44,7 +44,6 @@ final class EventsViewController: UIViewController {
 
 extension EventsViewController: EventsViewInput {
     func setData(raceData: RaceList) {
-        //print(raceData)
         raceDataList = raceData
         eventsTableView.reloadData()
     }
