@@ -11,8 +11,10 @@ import PinLayout
 final class EventsInfoCell: UITableViewCell {
     
     typealias LikeClosure = () -> Void
+    typealias DislikeClosure = () -> Void
     
     private var likeAction: LikeClosure?
+    private var dislikeAction: DislikeClosure?
     
     var id: Int = 0
     //    Вью летющей ячейки
@@ -47,14 +49,16 @@ final class EventsInfoCell: UITableViewCell {
     
     private let eventInfoStackView: UIStackView = {
         let info = UIStackView()
+        info.axis = .horizontal
+        info.distribution = .fillProportionally
         info.translatesAutoresizingMaskIntoConstraints = false
         return info
     }()
     
 //    private let placeInfoStackVeiw = EventInfoStackView()
     private let likeInfoStackVeiw = EventInfoStackView()
-    private let sharedInfoStackView = EventInfoStackView()
-    private let watchedInfoStackView = EventInfoStackView()
+    private let participantsInfoStackView = EventInfoStackView()
+    private let viewsInfoStackView = EventInfoStackView()
     
     private let eventImageView: UIImageView = {
         let imageView = UIImageView()
@@ -92,8 +96,8 @@ final class EventsInfoCell: UITableViewCell {
         mainLabel.text = ""
         dateLabel.text = ""
 //        placeInfoStackVeiw.infoLabel.text = ""
-        sharedInfoStackView.configureForParticipants(numberOfParticipants: 0)
-        watchedInfoStackView.configureForWatchers(numberOfWatchers: 0)
+        participantsInfoStackView.configureForParticipants(numberOfParticipants: 0)
+        viewsInfoStackView.configureForWatchers(numberOfWatchers: 0)
         likeInfoStackVeiw.configureForLikes(isLiked: false, numberOfLikes: 0)
     }
     
@@ -117,12 +121,12 @@ final class EventsInfoCell: UITableViewCell {
         cellView.addSubview(eventInfoStackView)
         
         eventInfoStackView.addArrangedSubview(likeInfoStackVeiw)
-        eventInfoStackView.addArrangedSubview(sharedInfoStackView)
-        eventInfoStackView.addArrangedSubview(watchedInfoStackView)
+        eventInfoStackView.addArrangedSubview(participantsInfoStackView)
+        eventInfoStackView.addArrangedSubview(viewsInfoStackView)
         
         likeInfoStackVeiw.translatesAutoresizingMaskIntoConstraints = false
-        sharedInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-        watchedInfoStackView.translatesAutoresizingMaskIntoConstraints = false
+        participantsInfoStackView.translatesAutoresizingMaskIntoConstraints = false
+        viewsInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         
         setupLayout()
         setupLikeStackView()
@@ -132,13 +136,16 @@ final class EventsInfoCell: UITableViewCell {
         self.likeAction = action
     }
     
+    func setDislikeAction(_ action: @escaping DislikeClosure) {
+        self.dislikeAction = action
+    }
+    
     func setupLayout() {
-        
         NSLayoutConstraint.activate([
             cellView.topAnchor.constraint(equalTo: self.topAnchor),
             cellView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             cellView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            cellView.heightAnchor.constraint(equalToConstant: 400),
+            cellView.heightAnchor.constraint(equalToConstant: 370),
             
             mainLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 10),
             mainLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 24),
@@ -169,12 +176,9 @@ final class EventsInfoCell: UITableViewCell {
     @objc
     func setState() {
         if !isEventLiked {
-            likeInfoStackVeiw.configureForLikes(isLiked: isEventLiked, numberOfLikes: 0)
-            isEventLiked = !isEventLiked
             likeAction?()
         } else {
-            likeInfoStackVeiw.configureForLikes(isLiked: isEventLiked, numberOfLikes: 0)
-            isEventLiked = !isEventLiked
+            dislikeAction?()
         }
     }
     
@@ -209,9 +213,9 @@ final class EventsInfoCell: UITableViewCell {
                    dateText: String,
                    placeText: String,
                    imageName: String,
-                   likeText: Int,
-                   sharedText: Int,
-                   watchedText: Int,
+                   likesNumber: Int,
+                   participantsNumber: Int,
+                   viewsNumber: Int,
                    isLiked: Bool) {
         let image = UIImage(named: imageName)
         id = indexPath
@@ -219,17 +223,10 @@ final class EventsInfoCell: UITableViewCell {
         dateLabel.text = dateText
 //        placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
 //                                              text: placeText)
-        if isLiked {
-            likeInfoStackVeiw.configureStackVeiw(image: R.image.likeTapped.name,
-                                                 text: "\(likeText)")
-        } else {
-            likeInfoStackVeiw.configureStackVeiw(image: R.image.likes.name,
-                                                 text: "\(likeText)")
-        }
-        sharedInfoStackView.configureStackVeiw(image: R.image.people.name,
-                                               text: "\(sharedText)")
-        watchedInfoStackView.configureStackVeiw(image: R.image.eye.name,
-                                                text: "\(watchedText)")
+        
+        likeInfoStackVeiw.configureForLikes(isLiked: isLiked, numberOfLikes: likesNumber)
+        participantsInfoStackView.configureForParticipants(numberOfParticipants: participantsNumber)
+        viewsInfoStackView.configureForWatchers(numberOfWatchers: viewsNumber)
         eventImageView.image = image
         isEventLiked = isLiked
     }

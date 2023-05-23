@@ -11,6 +11,7 @@ import PinLayout
 class EventInfoStackView: UIStackView {
     private let infoImageView: UIImageView = {
         let info = UIImageView()
+        info.translatesAutoresizingMaskIntoConstraints = false
         info.contentMode = .scaleAspectFill
         info.layer.masksToBounds = true
         return info
@@ -18,8 +19,9 @@ class EventInfoStackView: UIStackView {
     
     private let infoLabel: UILabel = {
         let info = UILabel()
+        info.translatesAutoresizingMaskIntoConstraints = false
         info.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        info.textAlignment = .center
+//        info.textAlignment = .center
         info.textColor = R.color.mainBlue()
         return info
     }()
@@ -41,24 +43,19 @@ class EventInfoStackView: UIStackView {
     func setupUI(){
         self.addArrangedSubview(infoImageView)
         self.addArrangedSubview(infoLabel)
-        infoImageView.pin
-            .top()
-            .left()
-            .bottom()
-            .height(24)
-            .width(24)
         
-        infoLabel.pin
-            .vCenter()
+        NSLayoutConstraint.activate([
+            infoImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            infoImageView.heightAnchor.constraint(equalToConstant: 24),
+            infoImageView.widthAnchor.constraint(equalToConstant: 24),
+            infoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            infoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            infoLabel.centerYAnchor.constraint(equalTo: infoImageView.centerYAnchor)
+        ])
         
         self.axis = .horizontal
         self.setCustomSpacing(4, after: infoImageView)
-    }
-    
-    func configureStackVeiw(image: String, text: String){
-        let image = UIImage(named: image)
-        infoImageView.image = image
-        infoLabel.text = text
     }
     
     func configureForLikes(isLiked: Bool, numberOfLikes: Int) {

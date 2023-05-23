@@ -119,9 +119,9 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
                        dateText: dateString,
                        placeText: "\(raceDataList[indexPath.row].location.latitude)",
                        imageName: R.image.bikes2.name,
-                       likeText: raceDataList[indexPath.row].likes,
-                       sharedText: raceDataList[indexPath.row].views,
-                       watchedText: raceDataList[indexPath.row].members.count,
+                       likesNumber: raceDataList[indexPath.row].likes,
+                       participantsNumber: raceDataList[indexPath.row].views,
+                       viewsNumber: raceDataList[indexPath.row].members.count,
                        isLiked: userLiked.bool(forKey: "\(indexPath.row)"))
         cell.setLikeAction {[weak self] in
             self?.output.didSetLike(for: indexPath.row)
@@ -130,7 +130,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 330
+        return 400
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
