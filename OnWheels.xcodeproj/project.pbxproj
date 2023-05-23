@@ -34,12 +34,6 @@
 		7F02BD992926A6B400DDA504 /* EventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD932926A6B300DDA504 /* EventsProtocols.swift */; };
 		7F02BD9A2926A6B400DDA504 /* EventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD942926A6B400DDA504 /* EventsInteractor.swift */; };
 		7F02BD9D2926A6BD00DDA504 /* EventsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */; };
-		7F02BDA52926AC5900DDA504 /* MyEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD9F2926AC5900DDA504 /* MyEventsPresenter.swift */; };
-		7F02BDA62926AC5900DDA504 /* MyEventsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA02926AC5900DDA504 /* MyEventsRouter.swift */; };
-		7F02BDA72926AC5900DDA504 /* MyEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA12926AC5900DDA504 /* MyEventsViewController.swift */; };
-		7F02BDA82926AC5900DDA504 /* MyEventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA22926AC5900DDA504 /* MyEventsProtocols.swift */; };
-		7F02BDA92926AC5900DDA504 /* MyEventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA32926AC5900DDA504 /* MyEventsInteractor.swift */; };
-		7F02BDAA2926AC5900DDA504 /* MyEventsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BDA42926AC5900DDA504 /* MyEventsContainer.swift */; };
 		85B834A0F14331C2E8805664 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83DDD268418AFFC162895 /* ProfileBuilder.swift */; };
 		85B8367AF9BC200A760A3C79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83CA7F27A9276D33236F0 /* ProfileViewController.swift */; };
 		85B83773ACD5A09B643182B8 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83CDB2032C8C32DE9FD72 /* UIImageView+Extensions.swift */; };
@@ -47,6 +41,7 @@
 		85B83D480B7C7930E8F8A30A /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83F3DD2E586BFB4033AC7 /* ProfileContentView.swift */; };
 		85B83F5A0830F9BD91C41E1E /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83750D021D3A9E5F5CBF4 /* Buttons.swift */; };
 		85B83F8217BE2D89E57224AF /* ProfileRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B8374AF554D3FEEB90A11C /* ProfileRouterImpl.swift */; };
+		9401587229DAD6F1002F42FC /* AddEventContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9401587129DAD6F1002F42FC /* AddEventContentView.swift */; };
 		94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A23291CFB8400A8163B /* AuthCoordinator.swift */; };
 		94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A25291CFB9100A8163B /* AppCoordinator.swift */; };
 		94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */; };
@@ -77,6 +72,9 @@
 		941E989C2958E4830068F802 /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E989B2958E4830068F802 /* RefreshToken.swift */; };
 		942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */; };
 		942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942FBCF12950DE4F00A13511 /* CustomTextField.swift */; };
+		944C6F1A29DDA9C900947A1F /* CustomMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C6F1929DDA9C900947A1F /* CustomMainButton.swift */; };
+		944C6F1C29DDB1D800947A1F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C6F1B29DDB1D800947A1F /* ImagePicker.swift */; };
+		946C741429E2D536008353DE /* LocationDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946C741329E2D536008353DE /* LocationDecoder.swift */; };
 		947DFC2C292C032600045932 /* OneEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC26292C032600045932 /* OneEventPresenter.swift */; };
 		947DFC2D292C032600045932 /* OneEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC27292C032600045932 /* OneEventRouter.swift */; };
 		947DFC2E292C032600045932 /* OneEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC28292C032600045932 /* OneEventViewController.swift */; };
@@ -84,11 +82,22 @@
 		947DFC30292C032600045932 /* OneEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC2A292C032600045932 /* OneEventInteractor.swift */; };
 		947DFC31292C032600045932 /* OneEventContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC2B292C032600045932 /* OneEventContainer.swift */; };
 		947DFC33292C063600045932 /* EventTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC32292C063600045932 /* EventTagView.swift */; };
+		9490598D29E4248D00362DF3 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490598C29E4248D00362DF3 /* BaseButton.swift */; };
 		94AEE7AB295B483100572BEF /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEE7AA295B483100572BEF /* LocationExtension.swift */; };
 		94AEFDC92936312000DD3786 /* EventInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEFDC82936312000DD3786 /* EventInfoStackView.swift */; };
-		94AEFDCC2937547000DD3786 /* MyEventsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEFDCB2937547000DD3786 /* MyEventsHeader.swift */; };
 		94B2BF99291E52BA00F864B9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2BF98291E52BA00F864B9 /* R.generated.swift */; };
 		94B2BF9D291E557800F864B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94B2BF9F291E557800F864B9 /* Localizable.strings */; };
+		94C1B2232A19F4B700CEEE42 /* ImageEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2222A19F4B700CEEE42 /* ImageEndPoint.swift */; };
+		94C1B2252A19F68600CEEE42 /* MediaEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2242A19F68600CEEE42 /* MediaEncoder.swift */; };
+		94C1B2272A19F73200CEEE42 /* ImageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2262A19F73200CEEE42 /* ImageNetworkManager.swift */; };
+		94C1B22A2A19F75200CEEE42 /* ImageNetworkManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2292A19F75200CEEE42 /* ImageNetworkManagerImpl.swift */; };
+		94C1B22C2A19F79300CEEE42 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B22B2A19F79300CEEE42 /* ImageModel.swift */; };
+		94C1B2382A1AA07300CEEE42 /* AddEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2322A1AA07300CEEE42 /* AddEventPresenter.swift */; };
+		94C1B2392A1AA07300CEEE42 /* AddEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2332A1AA07300CEEE42 /* AddEventRouter.swift */; };
+		94C1B23A2A1AA07300CEEE42 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2342A1AA07300CEEE42 /* AddEventViewController.swift */; };
+		94C1B23B2A1AA07300CEEE42 /* AddEventProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2352A1AA07300CEEE42 /* AddEventProtocols.swift */; };
+		94C1B23C2A1AA07300CEEE42 /* AddEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2362A1AA07300CEEE42 /* AddEventInteractor.swift */; };
+		94C1B23D2A1AA07300CEEE42 /* AddEventContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2372A1AA07300CEEE42 /* AddEventContainer.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
 		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB88CE292CDA2C00A567C6 /* EventMapView.swift */; };
@@ -129,12 +138,6 @@
 		7F02BD932926A6B300DDA504 /* EventsProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProtocols.swift; sourceTree = "<group>"; };
 		7F02BD942926A6B400DDA504 /* EventsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInteractor.swift; sourceTree = "<group>"; };
 		7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInfoCell.swift; sourceTree = "<group>"; };
-		7F02BD9F2926AC5900DDA504 /* MyEventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsPresenter.swift; sourceTree = "<group>"; };
-		7F02BDA02926AC5900DDA504 /* MyEventsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsRouter.swift; sourceTree = "<group>"; };
-		7F02BDA12926AC5900DDA504 /* MyEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsViewController.swift; sourceTree = "<group>"; };
-		7F02BDA22926AC5900DDA504 /* MyEventsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsProtocols.swift; sourceTree = "<group>"; };
-		7F02BDA32926AC5900DDA504 /* MyEventsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsInteractor.swift; sourceTree = "<group>"; };
-		7F02BDA42926AC5900DDA504 /* MyEventsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsContainer.swift; sourceTree = "<group>"; };
 		85B834CD2F87E7468D80ED20 /* ProfilePresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePresenterImpl.swift; sourceTree = "<group>"; };
 		85B8374AF554D3FEEB90A11C /* ProfileRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRouterImpl.swift; sourceTree = "<group>"; };
 		85B83750D021D3A9E5F5CBF4 /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		85B83CDB2032C8C32DE9FD72 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		85B83DDD268418AFFC162895 /* ProfileBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
 		85B83F3DD2E586BFB4033AC7 /* ProfileContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
+		9401587129DAD6F1002F42FC /* AddEventContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventContentView.swift; sourceTree = "<group>"; };
 		94187A23291CFB8400A8163B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		94187A25291CFB9100A8163B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -172,6 +176,9 @@
 		941E989B2958E4830068F802 /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
 		942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationContentView.swift; sourceTree = "<group>"; };
 		942FBCF12950DE4F00A13511 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		944C6F1929DDA9C900947A1F /* CustomMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMainButton.swift; sourceTree = "<group>"; };
+		944C6F1B29DDB1D800947A1F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		946C741329E2D536008353DE /* LocationDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDecoder.swift; sourceTree = "<group>"; };
 		947DFC26292C032600045932 /* OneEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventPresenter.swift; sourceTree = "<group>"; };
 		947DFC27292C032600045932 /* OneEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventRouter.swift; sourceTree = "<group>"; };
 		947DFC28292C032600045932 /* OneEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventViewController.swift; sourceTree = "<group>"; };
@@ -179,12 +186,23 @@
 		947DFC2A292C032600045932 /* OneEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventInteractor.swift; sourceTree = "<group>"; };
 		947DFC2B292C032600045932 /* OneEventContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventContainer.swift; sourceTree = "<group>"; };
 		947DFC32292C063600045932 /* EventTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTagView.swift; sourceTree = "<group>"; };
+		9490598C29E4248D00362DF3 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		94AEE7AA295B483100572BEF /* LocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
 		94AEFDC82936312000DD3786 /* EventInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoStackView.swift; sourceTree = "<group>"; };
-		94AEFDCB2937547000DD3786 /* MyEventsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventsHeader.swift; sourceTree = "<group>"; };
 		94B2BF98291E52BA00F864B9 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		94B2BF9E291E557800F864B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94B2BFA0291E55A300F864B9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		94C1B2222A19F4B700CEEE42 /* ImageEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEndPoint.swift; sourceTree = "<group>"; };
+		94C1B2242A19F68600CEEE42 /* MediaEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaEncoder.swift; sourceTree = "<group>"; };
+		94C1B2262A19F73200CEEE42 /* ImageNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworkManager.swift; sourceTree = "<group>"; };
+		94C1B2292A19F75200CEEE42 /* ImageNetworkManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworkManagerImpl.swift; sourceTree = "<group>"; };
+		94C1B22B2A19F79300CEEE42 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		94C1B2322A1AA07300CEEE42 /* AddEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventPresenter.swift; sourceTree = "<group>"; };
+		94C1B2332A1AA07300CEEE42 /* AddEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventRouter.swift; sourceTree = "<group>"; };
+		94C1B2342A1AA07300CEEE42 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		94C1B2352A1AA07300CEEE42 /* AddEventProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventProtocols.swift; sourceTree = "<group>"; };
+		94C1B2362A1AA07300CEEE42 /* AddEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventInteractor.swift; sourceTree = "<group>"; };
+		94C1B2372A1AA07300CEEE42 /* AddEventContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventContainer.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		94FB88CE292CDA2C00A567C6 /* EventMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapView.swift; sourceTree = "<group>"; };
@@ -292,20 +310,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		7F02BD9E2926ABEB00DDA504 /* MyEvents */ = {
-			isa = PBXGroup;
-			children = (
-				94AEFDCA2937545800DD3786 /* Cells */,
-				7F02BD9F2926AC5900DDA504 /* MyEventsPresenter.swift */,
-				7F02BDA02926AC5900DDA504 /* MyEventsRouter.swift */,
-				7F02BDA12926AC5900DDA504 /* MyEventsViewController.swift */,
-				7F02BDA22926AC5900DDA504 /* MyEventsProtocols.swift */,
-				7F02BDA32926AC5900DDA504 /* MyEventsInteractor.swift */,
-				7F02BDA42926AC5900DDA504 /* MyEventsContainer.swift */,
-			);
-			path = MyEvents;
-			sourceTree = "<group>";
-		};
 		85B83C49FF54511A7B33A528 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +397,7 @@
 			children = (
 				941E9887295721CE0068F802 /* UserEndPoint.swift */,
 				941E98992958C2330068F802 /* RaceEndPoint.swift */,
+				94C1B2222A19F4B700CEEE42 /* ImageEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				941E987B2955F3C90068F802 /* ParameterEncoding.swift */,
 				941E987D2955F4AE0068F802 /* URLParameterEncoder.swift */,
 				941E987F2955F70E0068F802 /* JSONParameterEncoder.swift */,
+				94C1B2242A19F68600CEEE42 /* MediaEncoder.swift */,
 			);
 			path = Encoding;
 			sourceTree = "<group>";
@@ -422,6 +428,7 @@
 				941E98912958731E0068F802 /* ErrorModel.swift */,
 				941E98952958C15A0068F802 /* RacesModel.swift */,
 				941E989B2958E4830068F802 /* RefreshToken.swift */,
+				94C1B22B2A19F79300CEEE42 /* ImageModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -429,6 +436,7 @@
 		941E988E29573E330068F802 /* NetworkManagers */ = {
 			isa = PBXGroup;
 			children = (
+				94C1B2282A19F73A00CEEE42 /* ImageNetworkManager */,
 				941E988F29573E610068F802 /* UserNetworkManager.swift */,
 				941E98932958BB4C0068F802 /* RacesNetworkManager.swift */,
 			);
@@ -448,12 +456,13 @@
 			path = OneEvent;
 			sourceTree = "<group>";
 		};
-		94AEFDCA2937545800DD3786 /* Cells */ = {
+		9490598E29E425F200362DF3 /* BaseButton */ = {
 			isa = PBXGroup;
 			children = (
-				94AEFDCB2937547000DD3786 /* MyEventsHeader.swift */,
+				944C6F1929DDA9C900947A1F /* CustomMainButton.swift */,
+				9490598C29E4248D00362DF3 /* BaseButton.swift */,
 			);
-			path = Cells;
+			path = BaseButton;
 			sourceTree = "<group>";
 		};
 		94B2BF9A291E553D00F864B9 /* Localization */ = {
@@ -473,9 +482,33 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		94C1B2282A19F73A00CEEE42 /* ImageNetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				94C1B2292A19F75200CEEE42 /* ImageNetworkManagerImpl.swift */,
+				94C1B2262A19F73200CEEE42 /* ImageNetworkManager.swift */,
+			);
+			path = ImageNetworkManager;
+			sourceTree = "<group>";
+		};
+		94C1B2312A1AA04600CEEE42 /* AddEvent */ = {
+			isa = PBXGroup;
+			children = (
+				94C1B2322A1AA07300CEEE42 /* AddEventPresenter.swift */,
+				94C1B2332A1AA07300CEEE42 /* AddEventRouter.swift */,
+				94C1B2342A1AA07300CEEE42 /* AddEventViewController.swift */,
+				94C1B2352A1AA07300CEEE42 /* AddEventProtocols.swift */,
+				94C1B2362A1AA07300CEEE42 /* AddEventInteractor.swift */,
+				94C1B2372A1AA07300CEEE42 /* AddEventContainer.swift */,
+			);
+			name = AddEvent;
+			path = OneEvent/AddEvent;
+			sourceTree = "<group>";
+		};
 		94E574932917C82100EF9585 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9490598E29E425F200362DF3 /* BaseButton */,
 				94187A22291CF95B00A8163B /* Coordinator */,
 				94E574942917C82F00EF9585 /* ColorExtension.swift */,
 				94E574972917CA0600EF9585 /* ReuseIdentifier.swift */,
@@ -485,6 +518,9 @@
 				94AEFDC82936312000DD3786 /* EventInfoStackView.swift */,
 				942FBCEF294F66AA00A13511 /* RegistrationContentView.swift */,
 				94AEE7AA295B483100572BEF /* LocationExtension.swift */,
+				9401587129DAD6F1002F42FC /* AddEventContentView.swift */,
+				944C6F1B29DDB1D800947A1F /* ImagePicker.swift */,
+				946C741329E2D536008353DE /* LocationDecoder.swift */,
 				706ED36E29D8E63600B0914D /* DateExtension.swift */,
 				85B83EB0CB1263E667FF1DC3 /* BaseComponents */,
 				70A9576529E4BAD100DA0A66 /* UIStackViewExtension.swift */,
@@ -526,7 +562,7 @@
 				941E988B295728F50068F802 /* Entities */,
 				941E98702955F1DB0068F802 /* Networking */,
 				947DFC25292C02F800045932 /* OneEvent */,
-				7F02BD9E2926ABEB00DDA504 /* MyEvents */,
+				94C1B2312A1AA04600CEEE42 /* AddEvent */,
 				94B2BFA329211F3900F864B9 /* Delegates */,
 				94B2BF98291E52BA00F864B9 /* R.generated.swift */,
 				5455F984292B893B00E63E72 /* Registration */,
@@ -694,17 +730,21 @@
 				947DFC33292C063600045932 /* EventTagView.swift in Sources */,
 				5455F98B292B893B00E63E72 /* RegistrationInteractor.swift in Sources */,
 				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
+				944C6F1A29DDA9C900947A1F /* CustomMainButton.swift in Sources */,
 				5455F97F292B893300E63E72 /* LogInInteractor.swift in Sources */,
+				94C1B2392A1AA07300CEEE42 /* AddEventRouter.swift in Sources */,
+				94C1B2252A19F68600CEEE42 /* MediaEncoder.swift in Sources */,
+				94C1B2272A19F73200CEEE42 /* ImageNetworkManager.swift in Sources */,
 				5455F983292B893300E63E72 /* LogInRouter.swift in Sources */,
 				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
 				947DFC2F292C032600045932 /* OneEventProtocols.swift in Sources */,
 				706F1CE829E054500064F80E /* ProfilePresenter.swift in Sources */,
 				70A9576629E4BAD100DA0A66 /* UIStackViewExtension.swift in Sources */,
 				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
-				7F02BDA82926AC5900DDA504 /* MyEventsProtocols.swift in Sources */,
 				941E987E2955F4AE0068F802 /* URLParameterEncoder.swift in Sources */,
 				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
-				7F02BDA52926AC5900DDA504 /* MyEventsPresenter.swift in Sources */,
+				94C1B23C2A1AA07300CEEE42 /* AddEventInteractor.swift in Sources */,
+				94C1B2232A19F4B700CEEE42 /* ImageEndPoint.swift in Sources */,
 				94187A42291D191B00A8163B /* EnterRouter.swift in Sources */,
 				94187A45291D191B00A8163B /* EnterInteractor.swift in Sources */,
 				7F02BD972926A6B400DDA504 /* EventsRouter.swift in Sources */,
@@ -716,14 +756,15 @@
 				941E989A2958C2330068F802 /* RaceEndPoint.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
 				941E988A295724470068F802 /* NetworkEnvironment.swift in Sources */,
-				7F02BDA72926AC5900DDA504 /* MyEventsViewController.swift in Sources */,
-				7F02BDA92926AC5900DDA504 /* MyEventsInteractor.swift in Sources */,
 				94B2BF99291E52BA00F864B9 /* R.generated.swift in Sources */,
 				5455F990292B893B00E63E72 /* RegistrationViewController.swift in Sources */,
 				5455F97E292B893300E63E72 /* LogInContainer.swift in Sources */,
 				7F02BD992926A6B400DDA504 /* EventsProtocols.swift in Sources */,
 				941E98822955F7DB0068F802 /* NetworkRouter.swift in Sources */,
+				94C1B23D2A1AA07300CEEE42 /* AddEventContainer.swift in Sources */,
+				946C741429E2D536008353DE /* LocationDecoder.swift in Sources */,
 				94187A41291D191B00A8163B /* EnterPresenter.swift in Sources */,
+				94C1B22A2A19F75200CEEE42 /* ImageNetworkManagerImpl.swift in Sources */,
 				941E989C2958E4830068F802 /* RefreshToken.swift in Sources */,
 				941E98942958BB4C0068F802 /* RacesNetworkManager.swift in Sources */,
 				7F02BD9A2926A6B400DDA504 /* EventsInteractor.swift in Sources */,
@@ -737,27 +778,31 @@
 				947DFC30292C032600045932 /* OneEventInteractor.swift in Sources */,
 				941E98922958731E0068F802 /* ErrorModel.swift in Sources */,
 				942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */,
-				7F02BDA62926AC5900DDA504 /* MyEventsRouter.swift in Sources */,
+				9401587229DAD6F1002F42FC /* AddEventContentView.swift in Sources */,
+				94C1B22C2A19F79300CEEE42 /* ImageModel.swift in Sources */,
 				941E98962958C15A0068F802 /* RacesModel.swift in Sources */,
 				94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */,
 				941E98802955F70E0068F802 /* JSONParameterEncoder.swift in Sources */,
+				94C1B23A2A1AA07300CEEE42 /* AddEventViewController.swift in Sources */,
 				94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */,
 				947DFC31292C032600045932 /* OneEventContainer.swift in Sources */,
 				947DFC2D292C032600045932 /* OneEventRouter.swift in Sources */,
+				94C1B2382A1AA07300CEEE42 /* AddEventPresenter.swift in Sources */,
 				941E989029573E610068F802 /* UserNetworkManager.swift in Sources */,
+				94C1B23B2A1AA07300CEEE42 /* AddEventProtocols.swift in Sources */,
 				5455F98D292B893B00E63E72 /* RegistrationContainer.swift in Sources */,
 				706F1CEA29E054BE0064F80E /* ProfileRouter.swift in Sources */,
 				941E9886295600700068F802 /* NetworkManager.swift in Sources */,
-				94AEFDCC2937547000DD3786 /* MyEventsHeader.swift in Sources */,
 				94187A44291D191B00A8163B /* EnterProtocols.swift in Sources */,
 				941E9888295721CE0068F802 /* UserEndPoint.swift in Sources */,
 				941E98782955F29E0068F802 /* HTTPMethod.swift in Sources */,
 				94187A2A291CFBAA00A8163B /* CoordinatorProtocol.swift in Sources */,
+				944C6F1C29DDB1D800947A1F /* ImagePicker.swift in Sources */,
 				5455F98C292B893B00E63E72 /* RegistrationRouter.swift in Sources */,
 				94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */,
 				94AEFDC92936312000DD3786 /* EventInfoStackView.swift in Sources */,
 				7F02BD9D2926A6BD00DDA504 /* EventsInfoCell.swift in Sources */,
-				7F02BDAA2926AC5900DDA504 /* MyEventsContainer.swift in Sources */,
+				9490598D29E4248D00362DF3 /* BaseButton.swift in Sources */,
 				941E98842955F8CB0068F802 /* Router.swift in Sources */,
 				94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */,
 				706ED36F29D8E63600B0914D /* DateExtension.swift in Sources */,

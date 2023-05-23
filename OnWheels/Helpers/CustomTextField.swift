@@ -21,7 +21,18 @@ class СustomTextField: UITextField {
     required init?(coder: NSCoder) {
         return nil
     }
+    
     func setupTextField(with placeholder: String) {
-        self.placeholder = placeholder
+        self.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [NSAttributedString.Key.foregroundColor: R.color.textFieldText()])
+    }
+    
+    func setupInputView(with inputView: UIView?) {
+        self.inputView = inputView
+    }
+    
+    func setupText(with text: String) {
+        self.text = text
     }
 }
