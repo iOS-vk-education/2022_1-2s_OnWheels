@@ -100,6 +100,8 @@
 		94C1B23D2A1AA07300CEEE42 /* AddEventContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2372A1AA07300CEEE42 /* AddEventContainer.swift */; };
 		94C1B2402A1CDFFF00CEEE42 /* EventsContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B23F2A1CDFFF00CEEE42 /* EventsContentProvider.swift */; };
 		94C1B2422A1CE00F00CEEE42 /* EventsContentProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2412A1CE00F00CEEE42 /* EventsContentProviderImpl.swift */; };
+		94C1B2442A1D0C3A00CEEE42 /* EventsTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2432A1D0C3A00CEEE42 /* EventsTableAdapter.swift */; };
+		94C1B2472A1D0F4C00CEEE42 /* RaceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2462A1D0F4C00CEEE42 /* RaceInfo.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
 		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB88CE292CDA2C00A567C6 /* EventMapView.swift */; };
@@ -207,6 +209,8 @@
 		94C1B2372A1AA07300CEEE42 /* AddEventContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventContainer.swift; sourceTree = "<group>"; };
 		94C1B23F2A1CDFFF00CEEE42 /* EventsContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsContentProvider.swift; sourceTree = "<group>"; };
 		94C1B2412A1CE00F00CEEE42 /* EventsContentProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsContentProviderImpl.swift; sourceTree = "<group>"; };
+		94C1B2432A1D0C3A00CEEE42 /* EventsTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableAdapter.swift; sourceTree = "<group>"; };
+		94C1B2462A1D0F4C00CEEE42 /* RaceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceInfo.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		94FB88CE292CDA2C00A567C6 /* EventMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapView.swift; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 		94187A2C291CFD7900A8163B /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				94C1B2452A1D0F3F00CEEE42 /* Model */,
 				94C1B23E2A1CDFE400CEEE42 /* EventsContentProvider */,
 				7F02BD9B2926A6BD00DDA504 /* Cell */,
 				7F02BD922926A6B300DDA504 /* EventsContainer.swift */,
@@ -355,6 +360,7 @@
 				7F02BD932926A6B300DDA504 /* EventsProtocols.swift */,
 				7F02BD912926A6B300DDA504 /* EventsRouter.swift */,
 				7F02BD902926A6B300DDA504 /* EventsViewController.swift */,
+				94C1B2432A1D0C3A00CEEE42 /* EventsTableAdapter.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -517,6 +523,14 @@
 				94C1B2412A1CE00F00CEEE42 /* EventsContentProviderImpl.swift */,
 			);
 			path = EventsContentProvider;
+			sourceTree = "<group>";
+		};
+		94C1B2452A1D0F3F00CEEE42 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				94C1B2462A1D0F4C00CEEE42 /* RaceInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		94E574932917C82100EF9585 /* Helpers */ = {
@@ -733,6 +747,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94AEE7AB295B483100572BEF /* LocationExtension.swift in Sources */,
+				94C1B2442A1D0C3A00CEEE42 /* EventsTableAdapter.swift in Sources */,
 				941E987C2955F3C90068F802 /* ParameterEncoding.swift in Sources */,
 				941E987A2955F3060068F802 /* HTTPTask.swift in Sources */,
 				7F02BD982926A6B400DDA504 /* EventsContainer.swift in Sources */,
@@ -782,6 +797,7 @@
 				94187A41291D191B00A8163B /* EnterPresenter.swift in Sources */,
 				94C1B22A2A19F75200CEEE42 /* ImageNetworkManagerImpl.swift in Sources */,
 				941E989C2958E4830068F802 /* RefreshToken.swift in Sources */,
+				94C1B2472A1D0F4C00CEEE42 /* RaceInfo.swift in Sources */,
 				941E98942958BB4C0068F802 /* RacesNetworkManager.swift in Sources */,
 				7F02BD9A2926A6B400DDA504 /* EventsInteractor.swift in Sources */,
 				94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */,
