@@ -13,6 +13,7 @@ protocol UserInteractionNetworkManager {
     func deleteLike(with id: Int, completion: @escaping(_ error: String?)->())
     func postMember(with id: Int, completion: @escaping(_ error: String?)->())
     func deleteMember(with id: Int, completion: @escaping(_ error: String?)->())
+    func getMember(with id: Int, completion: @escaping(_ isMember: Bool?, _ error: String?) -> ())
 }
 
 
