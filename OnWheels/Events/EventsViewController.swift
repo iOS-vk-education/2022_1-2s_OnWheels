@@ -76,6 +76,7 @@ extension EventsViewController {
     func setupActions() {
         eventsTableAdapter.setOpenAction { [weak self] index in
             self?.output.rowDidSelect(at: index)
+            self?.output.didSetVeiw(at: index)
         }
         
         eventsTableAdapter.setLikeAction { [weak self] index in
@@ -95,6 +96,10 @@ extension EventsViewController: EventsViewInput {
     
     func setLike(raceId: Int) {
         eventsTableAdapter.updateWithLike(withIndex: raceId)
+    }
+    
+    func setView(raceId: Int) {
+        eventsTableAdapter.updateWatchers(withIndex: raceId)
     }
     
     func setDislike(raceId: Int) {
