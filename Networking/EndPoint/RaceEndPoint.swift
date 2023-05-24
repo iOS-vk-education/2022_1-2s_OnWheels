@@ -10,8 +10,6 @@ enum RaceEndPoint {
     case getAllRaces
     case getRace(raceId: Int)
     case getListOfRaces
-    case postLike(raceId: Int)
-    case postView(raceId: Int)
     case postRace(raceInfo: AddRace)
 }
 
