@@ -116,7 +116,7 @@ extension EventsTableAdapter {
 
 extension EventsTableAdapter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 390
+        return 400
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

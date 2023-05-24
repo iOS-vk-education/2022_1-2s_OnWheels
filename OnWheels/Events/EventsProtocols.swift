@@ -34,6 +34,7 @@ protocol EventsInteractorInput: AnyObject {
     func setLike(for raceId: Int)
     func setView(for raceId: Int)
     func getEvent(by index: Int) -> RaceInfo
+    func setDislike(for raceId: Int)
 }
 
 protocol EventsInteractorOutput: AnyObject {

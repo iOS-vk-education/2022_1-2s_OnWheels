@@ -37,25 +37,8 @@ final class EventsViewController: UIViewController {
         setupLayout()
         setupEventsTableView()
         setupNavigationBar()
+        setupActions()
         output.didLoadRaces()
-    }
-}
-
-extension EventsViewController: EventsViewInput {
-    func update(withRaces races: [RaceInfo]) {
-        eventsTableAdapter.update(with: races)
-    }
-    
-    func setLike(raceId: Int) {
-        eventsTableAdapter.updateWithLike(withIndex: raceId)
-    }
-    
-    func setDislike(raceId: Int) {
-        eventsTableAdapter.updateWithDislike(withIndex: raceId)
-    }
-    
-    func addWatcher(raceId: Int) {
-        eventsTableAdapter.updateWatchers(withIndex: raceId)
     }
 }
 
@@ -105,3 +88,20 @@ extension EventsViewController {
     }
 }
 
+extension EventsViewController: EventsViewInput {
+    func update(withRaces races: [RaceInfo]) {
+        eventsTableAdapter.update(with: races)
+    }
+    
+    func setLike(raceId: Int) {
+        eventsTableAdapter.updateWithLike(withIndex: raceId)
+    }
+    
+    func setDislike(raceId: Int) {
+        eventsTableAdapter.updateWithDislike(withIndex: raceId)
+    }
+    
+    func addWatcher(raceId: Int) {
+        eventsTableAdapter.updateWatchers(withIndex: raceId)
+    }
+}
