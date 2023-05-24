@@ -8,6 +8,6 @@
 import Foundation
 
 protocol EventsContentProvider {
-    func getEvent(with index: Int) -> RaceListElement
-    func insertEvents(with events: [RaceListElement])
+    func getEvent(with index: Int) -> RaceInfo
+    func insertEvents(with events: [RaceInfo])
 }

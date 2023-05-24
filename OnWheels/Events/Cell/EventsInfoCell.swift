@@ -104,7 +104,9 @@ final class EventsInfoCell: UITableViewCell {
     required init?(coder: NSCoder) {
         return nil
     }
-    
+}
+
+private extension EventsInfoCell {
     private func setupCell(){
         self.contentView.addSubview(cellView)
         
@@ -130,14 +132,6 @@ final class EventsInfoCell: UITableViewCell {
         
         setupLayout()
         setupLikeStackView()
-    }
-    
-    func setLikeAction(_ action: @escaping LikeClosure) {
-        self.likeAction = action
-    }
-    
-    func setDislikeAction(_ action: @escaping DislikeClosure) {
-        self.dislikeAction = action
     }
     
     func setupLayout() {
@@ -197,28 +191,17 @@ final class EventsInfoCell: UITableViewCell {
             tagsStackVeiw.setCustomSpacing(24 + tag.frame.width , after: tag)
         }
     }
-    
-    /// заполнение ячейки данными
-    /// - Parameters:
-    ///   - mainText: Главный текст
-    ///   - dateText: Время проведения
-    ///   - placeText: Место проведения
-    ///   - likeText: Количество лайков
-    ///   - sharedText: Количество поделившихся
-    ///   - watchedText: Количество просмторевших
-    ///   - imageName: Название картинки
-    ///   - isLiked: Проверка на лайк
-    func configure(indexPath: Int,
-                   mainText: String,
+}
+
+extension EventsInfoCell {
+    func configure(mainText: String,
                    dateText: String,
-                   placeText: String,
                    imageName: String,
                    likesNumber: Int,
                    participantsNumber: Int,
                    viewsNumber: Int,
                    isLiked: Bool) {
         let image = UIImage(named: imageName)
-        id = indexPath
         mainLabel.text = mainText
         dateLabel.text = dateText
 //        placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
@@ -229,5 +212,13 @@ final class EventsInfoCell: UITableViewCell {
         viewsInfoStackView.configureForWatchers(numberOfWatchers: viewsNumber)
         eventImageView.image = image
         isEventLiked = isLiked
+    }
+    
+    func setLikeAction(_ action: @escaping LikeClosure) {
+        self.likeAction = action
+    }
+    
+    func setDislikeAction(_ action: @escaping DislikeClosure) {
+        self.dislikeAction = action
     }
 }

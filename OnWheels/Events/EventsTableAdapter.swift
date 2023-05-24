@@ -39,7 +39,6 @@ extension EventsTableAdapter {
             
             cell.configure(mainText: item.title,
                            dateText: item.dateSubtitle,
-                           placeText: item.placeName,
                            imageName: item.imageId,
                            likesNumber: item.numberOfLikes,
                            participantsNumber: item.numberOfParticipants,

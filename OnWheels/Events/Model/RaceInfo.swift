@@ -10,7 +10,6 @@ struct RaceInfo: Hashable {
     let id: Int
     let title: String
     let dateSubtitle: String
-    let placeName: String
     let imageId: String
     var numberOfLikes: Int
     var numberOfParticipants: Int

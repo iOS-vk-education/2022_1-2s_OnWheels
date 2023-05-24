@@ -16,26 +16,29 @@ protocol EventsModuleOutput: AnyObject {
 }
 
 protocol EventsViewInput: AnyObject {
-    func setData(raceData: RaceList)
-    func setLikeData(index: Int)
-    
-    func setViewsData(index: Int)
+    func update(withRaces races: [RaceInfo])
+    func setLike(raceId: Int)
+    func setDislike(raceId: Int)
+    func addWatcher(raceId: Int)
 }
 
 protocol EventsViewOutput: AnyObject {
     func rowDidSelect(at index: Int)
     func didLoadRaces()
     func didSetLike(for raceId: Int)
+    func didSetDislike(for raceId: Int)
 }
 
 protocol EventsInteractorInput: AnyObject {
     func loadRaces()
     func setLike(for raceId: Int)
     func setView(for raceId: Int)
+    func getEvent(by index: Int) -> RaceInfo
 }
 
 protocol EventsInteractorOutput: AnyObject {
-    func setRaces(races: RaceList)
+    func setRaces(races: [RaceInfo])
+    func setDislike(for index: Int)
     func setLike(raceId: Int)
     func setViews(raceId: Int)
 }
