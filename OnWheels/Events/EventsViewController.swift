@@ -90,6 +90,16 @@ extension EventsViewController {
 }
 
 extension EventsViewController: EventsViewInput {
+    func showLoaderView() {
+        eventsTableView.isHidden = true
+        self.showLoader()
+    }
+    
+    func hideLoaderView() {
+        self.hideLoader()
+        eventsTableView.isHidden = false
+    }
+    
     func update(withRaces races: [RaceInfo]) {
         eventsTableAdapter.update(with: races)
     }

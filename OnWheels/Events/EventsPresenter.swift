@@ -45,6 +45,10 @@ extension EventsPresenter: EventsViewOutput {
     func didLoadRaces() {
         interactor.loadRaces()
     }
+    
+    func showLoaderView() {
+        view?.showLoaderView()
+    }
 }
 
 extension EventsPresenter: EventsInteractorOutput {
@@ -62,5 +66,6 @@ extension EventsPresenter: EventsInteractorOutput {
     
     func setRaces(races: [RaceInfo]) {
         view?.update(withRaces: races)
+        view?.hideLoaderView()
     }
 }
