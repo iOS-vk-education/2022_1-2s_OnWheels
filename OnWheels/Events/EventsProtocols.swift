@@ -20,6 +20,7 @@ protocol EventsViewInput: AnyObject {
     func setLike(raceId: Int)
     func setDislike(raceId: Int)
     func addWatcher(raceId: Int)
+    func setView(raceId: Int)
 }
 
 protocol EventsViewOutput: AnyObject {
@@ -27,6 +28,7 @@ protocol EventsViewOutput: AnyObject {
     func didLoadRaces()
     func didSetLike(for raceId: Int)
     func didSetDislike(for raceId: Int)
+    func didSetVeiw(at index: Int)
 }
 
 protocol EventsInteractorInput: AnyObject {

@@ -36,6 +36,9 @@ extension EventsPresenter: EventsViewOutput {
     func rowDidSelect(at index: Int) {
         let race = interactor.getEvent(by: index)
         router.selectedRowTapped(at: race.id)
+    }
+    
+    func didSetVeiw(at index: Int) {
         interactor.setView(for: index)
     }
     
@@ -54,7 +57,7 @@ extension EventsPresenter: EventsInteractorOutput {
     }
     
     func setViews(raceId: Int) {
-        //
+        view?.setView(raceId: raceId)
     }
     
     func setRaces(races: [RaceInfo]) {
