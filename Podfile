@@ -11,5 +11,6 @@ target 'OnWheels' do
   pod 'SnapKit'
   pod 'SFSafeSymbols'
   pod 'Kingfisher'
+  pod 'lottie-ios'
 
 end
