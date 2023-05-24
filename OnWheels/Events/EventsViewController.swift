@@ -9,13 +9,12 @@
 import UIKit
 import PinLayout
 
-var userLiked = UserDefaults.standard
-
 final class EventsViewController: UIViewController {
     private let output: EventsViewOutput
     var raceDataList: RaceList = []
     
     private let eventsTableView = UITableView(frame: .zero, style: .plain)
+    private lazy var eventsTableAdapter = EventsTableAdapter(tableView: eventsTableView)
         
     init(output: EventsViewOutput) {
         self.output = output
@@ -43,17 +42,20 @@ final class EventsViewController: UIViewController {
 }
 
 extension EventsViewController: EventsViewInput {
-    func setData(raceData: RaceList) {
-        raceDataList = raceData
-        eventsTableView.reloadData()
+    func update(withRaces races: [RaceInfo]) {
+        eventsTableAdapter.update(with: races)
     }
     
-    func setLikeData(index: Int){
-        eventsTableView.reloadData()
+    func setLike(raceId: Int) {
+        eventsTableAdapter.updateWithLike(withIndex: raceId)
     }
     
-    func setViewsData(index: Int){
-        eventsTableView.reloadData()
+    func setDislike(raceId: Int) {
+        eventsTableAdapter.updateWithDislike(withIndex: raceId)
+    }
+    
+    func addWatcher(raceId: Int) {
+        eventsTableAdapter.updateWatchers(withIndex: raceId)
     }
 }
 
@@ -83,58 +85,23 @@ extension EventsViewController {
         eventsTableView.showsVerticalScrollIndicator = false
         eventsTableView.separatorStyle = .none
         eventsTableView.backgroundColor = R.color.background()
-        eventsTableView.delegate = self
-        eventsTableView.dataSource = self
+        eventsTableView.delegate = eventsTableAdapter
         eventsTableView.register(EventsInfoCell.self)
         eventsTableView.allowsSelection = true
     }
-}
-
-extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return raceDataList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
-        cell.selectionStyle = .none
-        cell.setupLayout()
-        let formatter1 = DateFormatter()
-        formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        formatter1.locale = Locale(identifier: "en_US_POSIX")
-        var dateString = ""
-          
-        if let date2 = formatter1.date(from: raceDataList[indexPath.row].date.from) {
-            let formatter2 = DateFormatter()
-            formatter2.dateFormat = "EEEE, MMM d, yyyy"
-            formatter2.locale = Locale(identifier: "en_US_POSIX")
-
-            dateString = formatter2.string(from: date2)
+    func setupActions() {
+        eventsTableAdapter.setOpenAction { [weak self] index in
+            self?.output.rowDidSelect(at: index)
         }
         
-        cell.configure(indexPath: indexPath.row,
-                       mainText: raceDataList[indexPath.row].name,
-                       dateText: dateString,
-                       placeText: "\(raceDataList[indexPath.row].location.latitude)",
-                       imageName: R.image.bikes2.name,
-                       likesNumber: raceDataList[indexPath.row].likes,
-                       participantsNumber: raceDataList[indexPath.row].views,
-                       viewsNumber: raceDataList[indexPath.row].members.count,
-                       isLiked: userLiked.bool(forKey: "\(indexPath.row)"))
-        cell.setLikeAction {[weak self] in
-            self?.output.didSetLike(for: indexPath.row)
+        eventsTableAdapter.setLikeAction { [weak self] index in
+            self?.output.didSetLike(for: index)
         }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        output.rowDidSelect(at: indexPath.row + 1)
-        eventsTableView.reloadData()
+        
+        eventsTableAdapter.setDislikeAction { [weak self] index in
+            self?.output.didSetDislike(for: index)
+        }
     }
 }
+

@@ -25,6 +25,7 @@ typealias RaceList = [RaceListElement]
 
 struct RaceListElement: Codable {
     let creatorUserID: Int
+    let raceId: Int
     let name: String
     let location: Location
     let date: Duration
@@ -32,12 +33,14 @@ struct RaceListElement: Codable {
     let images, tags: [String]
     let members: [Int]
     let likes, views: Int
+    let isLiked: Bool
 
     enum CodingKeys: String, CodingKey {
         case creatorUserID = "creatorUserId"
+        case raceId = "raceId"
         case name, location, date
         case raceListDescription = "description"
-        case images, tags, members, likes, views
+        case images, tags, members, likes, views, isLiked
     }
 }
 

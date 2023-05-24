@@ -8,13 +8,13 @@
 import Foundation
 
 final class EventsContentProviderImpl: EventsContentProvider {
-    private var eventsInfo: [RaceListElement] = []
+    private var eventsInfo: [RaceInfo] = []
     
-    func getEvent(with index: Int) -> RaceListElement {
+    func getEvent(with index: Int) -> RaceInfo {
         return eventsInfo[index]
     }
     
-    func insertEvents(with events: [RaceListElement]) {
+    func insertEvents(with events: [RaceInfo]) {
         eventsInfo.insert(contentsOf: events, at: 0)
     }
 }

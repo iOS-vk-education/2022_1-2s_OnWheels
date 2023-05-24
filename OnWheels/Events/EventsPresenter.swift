@@ -29,11 +29,15 @@ extension EventsPresenter: EventsViewOutput {
         interactor.setLike(for: raceId)
     }
     
-    func rowDidSelect(at index: Int) {
-        interactor.setView(for: index)
-        router.selectedRowTapped(at: index)
+    func didSetDislike(for raceId: Int) {
+//        interactor.setDislike(for: raceId)
     }
     
+    func rowDidSelect(at index: Int) {
+        let race = interactor.getEvent(by: index)
+        router.selectedRowTapped(at: race.id)
+        interactor.setView(for: index)
+    }
     
     func didLoadRaces() {
         interactor.loadRaces()
@@ -41,21 +45,19 @@ extension EventsPresenter: EventsViewOutput {
 }
 
 extension EventsPresenter: EventsInteractorOutput {
+    func setDislike(for index: Int) {
+        //
+    }
+    
     func setLike(raceId: Int) {
-        view?.setLikeData(index: raceId)
-        if userLiked.bool(forKey: "\(raceId)") {
-            userLiked.set(false, forKey: "\(raceId)")
-        } else {
-            userLiked.set(true, forKey: "\(raceId)")
-        }
-        
+        view?.setLike(raceId: raceId)
     }
     
     func setViews(raceId: Int) {
-        view?.setViewsData(index: raceId)
+        //
     }
     
-    func setRaces(races: RaceList) {
-        view?.setData(raceData: races)
+    func setRaces(races: [RaceInfo]) {
+        view?.update(withRaces: races)
     }
 }

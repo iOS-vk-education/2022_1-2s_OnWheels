@@ -102,6 +102,10 @@
 		94C1B2422A1CE00F00CEEE42 /* EventsContentProviderImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2412A1CE00F00CEEE42 /* EventsContentProviderImpl.swift */; };
 		94C1B2442A1D0C3A00CEEE42 /* EventsTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2432A1D0C3A00CEEE42 /* EventsTableAdapter.swift */; };
 		94C1B2472A1D0F4C00CEEE42 /* RaceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2462A1D0F4C00CEEE42 /* RaceInfo.swift */; };
+		94C1B24A2A1D160900CEEE42 /* UserInteractionNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2492A1D160900CEEE42 /* UserInteractionNetworkManager.swift */; };
+		94C1B24C2A1D161200CEEE42 /* UserInteractionNetworkManagerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B24B2A1D161200CEEE42 /* UserInteractionNetworkManagerImpl.swift */; };
+		94C1B24E2A1D162500CEEE42 /* UserInteractionEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B24D2A1D162500CEEE42 /* UserInteractionEndPoint.swift */; };
+		94C1B2502A1D185C00CEEE42 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B24F2A1D185C00CEEE42 /* CollectionExtension.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
 		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB88CE292CDA2C00A567C6 /* EventMapView.swift */; };
@@ -211,6 +215,10 @@
 		94C1B2412A1CE00F00CEEE42 /* EventsContentProviderImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsContentProviderImpl.swift; sourceTree = "<group>"; };
 		94C1B2432A1D0C3A00CEEE42 /* EventsTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableAdapter.swift; sourceTree = "<group>"; };
 		94C1B2462A1D0F4C00CEEE42 /* RaceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceInfo.swift; sourceTree = "<group>"; };
+		94C1B2492A1D160900CEEE42 /* UserInteractionNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionNetworkManager.swift; sourceTree = "<group>"; };
+		94C1B24B2A1D161200CEEE42 /* UserInteractionNetworkManagerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionNetworkManagerImpl.swift; sourceTree = "<group>"; };
+		94C1B24D2A1D162500CEEE42 /* UserInteractionEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionEndPoint.swift; sourceTree = "<group>"; };
+		94C1B24F2A1D185C00CEEE42 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		94FB88CE292CDA2C00A567C6 /* EventMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapView.swift; sourceTree = "<group>"; };
@@ -269,6 +277,7 @@
 				5455F992292B8A2600E63E72 /* UIView+Extensions.swift */,
 				5455F993292B8A2600E63E72 /* UIStackView+Extensions.swift */,
 				85B83CDB2032C8C32DE9FD72 /* UIImageView+Extensions.swift */,
+				94C1B24F2A1D185C00CEEE42 /* CollectionExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -409,6 +418,7 @@
 				941E9887295721CE0068F802 /* UserEndPoint.swift */,
 				941E98992958C2330068F802 /* RaceEndPoint.swift */,
 				94C1B2222A19F4B700CEEE42 /* ImageEndPoint.swift */,
+				94C1B24D2A1D162500CEEE42 /* UserInteractionEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -447,6 +457,7 @@
 		941E988E29573E330068F802 /* NetworkManagers */ = {
 			isa = PBXGroup;
 			children = (
+				94C1B2482A1D15E700CEEE42 /* UserInteractionNetworkManger */,
 				94C1B2282A19F73A00CEEE42 /* ImageNetworkManager */,
 				941E988F29573E610068F802 /* UserNetworkManager.swift */,
 				941E98932958BB4C0068F802 /* RacesNetworkManager.swift */,
@@ -531,6 +542,15 @@
 				94C1B2462A1D0F4C00CEEE42 /* RaceInfo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		94C1B2482A1D15E700CEEE42 /* UserInteractionNetworkManger */ = {
+			isa = PBXGroup;
+			children = (
+				94C1B2492A1D160900CEEE42 /* UserInteractionNetworkManager.swift */,
+				94C1B24B2A1D161200CEEE42 /* UserInteractionNetworkManagerImpl.swift */,
+			);
+			path = UserInteractionNetworkManger;
 			sourceTree = "<group>";
 		};
 		94E574932917C82100EF9585 /* Helpers */ = {
@@ -748,6 +768,7 @@
 			files = (
 				94AEE7AB295B483100572BEF /* LocationExtension.swift in Sources */,
 				94C1B2442A1D0C3A00CEEE42 /* EventsTableAdapter.swift in Sources */,
+				94C1B24A2A1D160900CEEE42 /* UserInteractionNetworkManager.swift in Sources */,
 				941E987C2955F3C90068F802 /* ParameterEncoding.swift in Sources */,
 				941E987A2955F3060068F802 /* HTTPTask.swift in Sources */,
 				7F02BD982926A6B400DDA504 /* EventsContainer.swift in Sources */,
@@ -795,7 +816,9 @@
 				94C1B23D2A1AA07300CEEE42 /* AddEventContainer.swift in Sources */,
 				946C741429E2D536008353DE /* LocationDecoder.swift in Sources */,
 				94187A41291D191B00A8163B /* EnterPresenter.swift in Sources */,
+				94C1B2502A1D185C00CEEE42 /* CollectionExtension.swift in Sources */,
 				94C1B22A2A19F75200CEEE42 /* ImageNetworkManagerImpl.swift in Sources */,
+				94C1B24C2A1D161200CEEE42 /* UserInteractionNetworkManagerImpl.swift in Sources */,
 				941E989C2958E4830068F802 /* RefreshToken.swift in Sources */,
 				94C1B2472A1D0F4C00CEEE42 /* RaceInfo.swift in Sources */,
 				941E98942958BB4C0068F802 /* RacesNetworkManager.swift in Sources */,
@@ -808,6 +831,7 @@
 				5455F982292B893300E63E72 /* LogInPresenter.swift in Sources */,
 				942FBCF22950DE4F00A13511 /* CustomTextField.swift in Sources */,
 				947DFC30292C032600045932 /* OneEventInteractor.swift in Sources */,
+				94C1B24E2A1D162500CEEE42 /* UserInteractionEndPoint.swift in Sources */,
 				941E98922958731E0068F802 /* ErrorModel.swift in Sources */,
 				942FBCF0294F66AA00A13511 /* RegistrationContentView.swift in Sources */,
 				9401587229DAD6F1002F42FC /* AddEventContentView.swift in Sources */,
