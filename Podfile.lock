@@ -1,10 +1,12 @@
 PODS:
+  - Kingfisher (7.6.2)
   - PinLayout (1.10.3)
   - R.swift (7.2.4)
   - SFSafeSymbols (4.1.1)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - Kingfisher
   - PinLayout (= 1.10.3)
   - R.swift
   - SFSafeSymbols
@@ -12,17 +14,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Kingfisher
     - PinLayout
     - R.swift
     - SFSafeSymbols
     - SnapKit
 
 SPEC CHECKSUMS:
+  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   PinLayout: 0090ccbf29ae69af6ae5a15eaeaf27ed7b2c4d83
   R.swift: 681bb9135f482e7a81d9d27445b837fef5467e11
   SFSafeSymbols: 902576dbf8ea16b4c6152cef2a26e47b3f55defb
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 637e69968b3ada5ff287ecf3fccb291ac3171767
+PODFILE CHECKSUM: 4fddac4be50a3307bc3a296af453b8d4e70f71a5
 
 COCOAPODS: 1.11.3
