@@ -139,9 +139,9 @@ private extension EventsInfoCell {
             cellView.topAnchor.constraint(equalTo: self.topAnchor),
             cellView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             cellView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            cellView.heightAnchor.constraint(equalToConstant: 370),
+            cellView.heightAnchor.constraint(equalToConstant: 380),
             
-            mainLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 10),
+            mainLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 6),
             mainLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 24),
             mainLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -24),
             mainLabel.heightAnchor.constraint(equalToConstant: 44),

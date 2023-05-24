@@ -30,7 +30,7 @@ extension EventsPresenter: EventsViewOutput {
     }
     
     func didSetDislike(for raceId: Int) {
-//        interactor.setDislike(for: raceId)
+        interactor.setDislike(for: raceId)
     }
     
     func rowDidSelect(at index: Int) {
@@ -46,7 +46,7 @@ extension EventsPresenter: EventsViewOutput {
 
 extension EventsPresenter: EventsInteractorOutput {
     func setDislike(for index: Int) {
-        //
+        view?.setDislike(raceId: index)
     }
     
     func setLike(raceId: Int) {

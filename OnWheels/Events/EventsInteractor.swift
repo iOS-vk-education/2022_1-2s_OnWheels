@@ -96,26 +96,42 @@ extension EventsInteractor: EventsInteractorInput {
         }
     }
     
-    func setLike(for raceId: Int){
-        userInteractionsManager.postLike(with: raceId) { error in
+    func setLike(for raceId: Int) {
+        let currentRace = contentProvider.getEvent(with: raceId)
+        userInteractionsManager.postLike(with: currentRace.id) { error in
             DispatchQueue.main.async {
                 if let error = error {
                     print(error)
                 } else {
-                    print("liked race_id: ", raceId)
+                    print("liked race_id: ", currentRace.id)
                     self.output?.setLike(raceId: raceId)
                 }
             }
         }
     }
     
-    func setView(for raceId: Int) {
-        userInteractionsManager.postView(with: raceId) { error in
+    func setDislike(for raceId: Int) {
+        let currentRace = contentProvider.getEvent(with: raceId)
+        userInteractionsManager.deleteLike(with: currentRace.id) { error in
             DispatchQueue.main.async {
                 if let error = error {
                     print(error)
                 } else {
-                    print("viewed race_id: ", raceId)
+                    print("liked race_id: ", currentRace.id)
+                    self.output?.setDislike(for: raceId)
+                }
+            }
+        }
+    }
+    
+    func setView(for raceId: Int) {
+        let currentRace = contentProvider.getEvent(with: raceId)
+        userInteractionsManager.postView(with: currentRace.id) { error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error)
+                } else {
+                    print("viewed race_id: ", currentRace.id)
                     self.output?.setViews(raceId: raceId)
                 }
             }
