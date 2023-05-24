@@ -12,11 +12,13 @@ final class EventsInteractor {
 	weak var output: EventsInteractorOutput?
     private let raceManager: RacesNetworkManager
     private let contentProvider: EventsContentProvider
+    private let userInteractionsManager: UserInteractionNetworkManager
 
     
-    init(raceManager: RacesNetworkManager, contentProvider: EventsContentProvider) {
+    init(raceManager: RacesNetworkManager, contentProvider: EventsContentProvider, userInteractionsManager: UserInteractionNetworkManager) {
         self.raceManager = raceManager
         self.contentProvider = contentProvider
+        self.userInteractionsManager = userInteractionsManager
     }
     
     func updateRaces(with raceInfo: [RaceInfo]?) {
@@ -95,7 +97,7 @@ extension EventsInteractor: EventsInteractorInput {
     }
     
     func setLike(for raceId: Int){
-        raceManager.postLike(with: raceId) { error in
+        userInteractionsManager.postLike(with: raceId) { error in
             DispatchQueue.main.async {
                 if let error = error {
                     print(error)
@@ -108,7 +110,7 @@ extension EventsInteractor: EventsInteractorInput {
     }
     
     func setView(for raceId: Int) {
-        raceManager.postView(with: raceId) { error in
+        userInteractionsManager.postView(with: raceId) { error in
             DispatchQueue.main.async {
                 if let error = error {
                     print(error)
