@@ -43,7 +43,7 @@ final class EventsInfoCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = R.color.mainOrange()
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         return label
     }()
     
@@ -60,13 +60,12 @@ final class EventsInfoCell: UITableViewCell {
     private let participantsInfoStackView = EventInfoStackView()
     private let viewsInfoStackView = EventInfoStackView()
     
-    private let eventImageView: UIImageView = {
-        let imageView = UIImageView()
+    private let eventImageView: KingfisherImage = {
+        let imageView = KingfisherImage(placeHolderType: .event)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.image = R.image.eventImageBase()
         return imageView
     }()
     
@@ -210,7 +209,7 @@ extension EventsInfoCell {
         likeInfoStackVeiw.configureForLikes(isLiked: isLiked, numberOfLikes: likesNumber)
         participantsInfoStackView.configureForParticipants(numberOfParticipants: participantsNumber)
         viewsInfoStackView.configureForWatchers(numberOfWatchers: viewsNumber)
-        eventImageView.image = image
+        eventImageView.setImage(url: URL(string: imageName))
         isEventLiked = isLiked
     }
     

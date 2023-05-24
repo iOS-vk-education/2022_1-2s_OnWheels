@@ -107,6 +107,7 @@
 		94C1B24E2A1D162500CEEE42 /* UserInteractionEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B24D2A1D162500CEEE42 /* UserInteractionEndPoint.swift */; };
 		94C1B2502A1D185C00CEEE42 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B24F2A1D185C00CEEE42 /* CollectionExtension.swift */; };
 		94C1B2522A1E47A900CEEE42 /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2512A1E47A900CEEE42 /* MemberModel.swift */; };
+		94C1B2542A1E696900CEEE42 /* KingfisherImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
 		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB88CE292CDA2C00A567C6 /* EventMapView.swift */; };
@@ -221,6 +222,7 @@
 		94C1B24D2A1D162500CEEE42 /* UserInteractionEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionEndPoint.swift; sourceTree = "<group>"; };
 		94C1B24F2A1D185C00CEEE42 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		94C1B2512A1E47A900CEEE42 /* MemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
+		94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherImage.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		94FB88CE292CDA2C00A567C6 /* EventMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapView.swift; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 				706ED36E29D8E63600B0914D /* DateExtension.swift */,
 				85B83EB0CB1263E667FF1DC3 /* BaseComponents */,
 				70A9576529E4BAD100DA0A66 /* UIStackViewExtension.swift */,
+				94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */,
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
 				941E989A2958C2330068F802 /* RaceEndPoint.swift in Sources */,
+				94C1B2542A1E696900CEEE42 /* KingfisherImage.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
 				941E988A295724470068F802 /* NetworkEnvironment.swift in Sources */,
 				94B2BF99291E52BA00F864B9 /* R.generated.swift in Sources */,
