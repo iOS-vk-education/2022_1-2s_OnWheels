@@ -55,7 +55,7 @@ final class EventsInfoCell: UITableViewCell {
         return info
     }()
     
-//    private let placeInfoStackVeiw = EventInfoStackView()
+    //    private let placeInfoStackVeiw = EventInfoStackView()
     private let likeInfoStackVeiw = EventInfoStackView()
     private let participantsInfoStackView = EventInfoStackView()
     private let viewsInfoStackView = EventInfoStackView()
@@ -73,6 +73,8 @@ final class EventsInfoCell: UITableViewCell {
     var isTagsAlreadyDone = false
     var isEventLiked = false
     
+    var tagViews: [EventTagView] = []
+    
     let tagsStackVeiw: UIStackView = {
         let tags = UIStackView()
         tags.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +87,10 @@ final class EventsInfoCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = R.color.background()
         setupCell()
+        if !isTagsAlreadyDone {
+            addTags(with: tags)
+            isTagsAlreadyDone = true
+        }
     }
     
     override func prepareForReuse() {
@@ -108,7 +114,7 @@ private extension EventsInfoCell {
         cellView.addSubview(mainLabel)
         
         cellView.addSubview(dateLabel)
-                
+        
         cellView.addSubview(tagsStackVeiw)
         
         cellView.addSubview(eventImageView)
@@ -191,6 +197,8 @@ private extension EventsInfoCell {
             ])
             
             tagsStackVeiw.setCustomSpacing(24 + tag.frame.width , after: tag)
+            
+            tagViews.append(tag)
         }
     }
 }
@@ -207,8 +215,8 @@ extension EventsInfoCell {
         let image = UIImage(named: imageName)
         mainLabel.text = mainText
         dateLabel.text = dateText
-//        placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
-//                                              text: placeText)
+        //        placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
+        //                                              text: placeText)
         
         likeInfoStackVeiw.configureForLikes(isLiked: isLiked, numberOfLikes: likesNumber)
         participantsInfoStackView.configureForParticipants(numberOfParticipants: participantsNumber)
@@ -216,9 +224,8 @@ extension EventsInfoCell {
         eventImageView.setImage(url: URL(string: imageName))
         isEventLiked = isLiked
         
-        if !isTagsAlreadyDone {
-            addTags(with: tags)
-            isTagsAlreadyDone = true
+        for index in 0...tagViews.count - 1 {
+            tagViews[index].configureTag(with: tags[index])
         }
     }
     
