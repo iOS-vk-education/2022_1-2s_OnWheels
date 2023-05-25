@@ -15,7 +15,9 @@ final class EventsViewController: UIViewController {
     
     private let eventsTableView = UITableView(frame: .zero, style: .plain)
     private lazy var eventsTableAdapter = EventsTableAdapter(tableView: eventsTableView)
-        
+    
+    private let refreshControl = UIRefreshControl()
+    
     init(output: EventsViewOutput) {
         self.output = output
         
@@ -30,6 +32,14 @@ final class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupEventsTableView()
+        setupNavigationBar()
+        setupActions()
+        setupRefreshControl()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         output.showLoaderView()
         output.didLoadRaces()
     }
@@ -37,9 +47,6 @@ final class EventsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupLayout()
-        setupEventsTableView()
-        setupNavigationBar()
-        setupActions()
     }
 }
 
@@ -88,6 +95,17 @@ extension EventsViewController {
             self?.output.didSetDislike(for: index)
         }
     }
+    
+    func setupRefreshControl() {
+        refreshControl.tintColor = R.color.mainBlue()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        eventsTableView.addSubview(refreshControl)
+    }
+    
+    @objc
+    func refresh() {
+        output.didLoadRaces()
+    }
 }
 
 extension EventsViewController: EventsViewInput {
@@ -102,6 +120,7 @@ extension EventsViewController: EventsViewInput {
     }
     
     func update(withRaces races: [RaceInfo]) {
+        refreshControl.endRefreshing()
         eventsTableAdapter.update(with: races)
     }
     

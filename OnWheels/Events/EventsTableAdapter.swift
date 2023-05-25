@@ -103,7 +103,6 @@ extension EventsTableAdapter {
     }
     
     func updateWatchers(withIndex index: Int) {
-        racesInfo[index].numberOfWatchers += 1
         applySnapshot()
     }
     
