@@ -69,7 +69,6 @@ final class EventsInfoCell: UITableViewCell {
         return imageView
     }()
     
-    let tags: [String] = [R.string.localizable.firstTag(), R.string.localizable.secondTag()]
     var isTagsAlreadyDone = false
     var isEventLiked = false
     
@@ -87,10 +86,6 @@ final class EventsInfoCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = R.color.background()
         setupCell()
-        if !isTagsAlreadyDone {
-            addTags(with: tags)
-            isTagsAlreadyDone = true
-        }
     }
     
     override func prepareForReuse() {
@@ -212,21 +207,27 @@ extension EventsInfoCell {
                    viewsNumber: Int,
                    isLiked: Bool,
                    tags: [String]) {
-        let image = UIImage(named: imageName)
         mainLabel.text = mainText
         dateLabel.text = dateText
-        //        placeInfoStackVeiw.configureStackVeiw(image: R.image.location.name,
-        //                                              text: placeText)
-        
         likeInfoStackVeiw.configureForLikes(isLiked: isLiked, numberOfLikes: likesNumber)
         participantsInfoStackView.configureForParticipants(numberOfParticipants: participantsNumber)
         viewsInfoStackView.configureForWatchers(numberOfWatchers: viewsNumber)
         eventImageView.setImage(url: URL(string: imageName))
         isEventLiked = isLiked
         
-        for index in 0...tagViews.count - 1 {
-            tagViews[index].configureTag(with: tags[index])
+        if !tags.isEmpty {
+            if !isTagsAlreadyDone {
+                addTags(with: tags)
+                isTagsAlreadyDone = true
+            }
+            
+            let range = min(tags.count - 1, tagViews.count - 1)
+            
+            for index in 0...range {
+                tagViews[index].configureTag(with: tags[index])
+            }
         }
+        
     }
     
     func setLikeAction(_ action: @escaping LikeClosure) {
