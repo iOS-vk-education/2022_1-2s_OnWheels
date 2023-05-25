@@ -10,5 +10,7 @@ target 'OnWheels' do
   pod 'R.swift'
   pod 'SnapKit'
   pod 'SFSafeSymbols'
+  pod 'Kingfisher'
+  pod 'lottie-ios'
 
 end
