@@ -43,7 +43,8 @@ extension EventsTableAdapter {
                            likesNumber: item.numberOfLikes,
                            participantsNumber: item.numberOfParticipants,
                            viewsNumber: item.numberOfWatchers,
-                           isLiked: item.isLiked)
+                           isLiked: item.isLiked,
+                           tags: item.tags)
             
             if item.isLiked {
                 cell.setDislikeAction {
@@ -115,7 +116,7 @@ extension EventsTableAdapter {
 
 extension EventsTableAdapter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return 410
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
