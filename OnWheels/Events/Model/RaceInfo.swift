@@ -15,4 +15,5 @@ struct RaceInfo: Hashable {
     var numberOfParticipants: Int
     var numberOfWatchers: Int
     var isLiked: Bool
+    let tags: [String]
 }

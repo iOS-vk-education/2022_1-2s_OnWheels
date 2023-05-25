@@ -75,6 +75,7 @@ final class EventsInfoCell: UITableViewCell {
     
     let tagsStackVeiw: UIStackView = {
         let tags = UIStackView()
+        tags.translatesAutoresizingMaskIntoConstraints = false
         tags.axis = .horizontal
         tags.distribution = .fillProportionally
         return tags
@@ -84,17 +85,12 @@ final class EventsInfoCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = R.color.background()
         setupCell()
-        if !isTagsAlreadyDone {
-            addTags(with: tags)
-            isTagsAlreadyDone = true
-        }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         mainLabel.text = ""
         dateLabel.text = ""
-//        placeInfoStackVeiw.infoLabel.text = ""
         participantsInfoStackView.configureForParticipants(numberOfParticipants: 0)
         viewsInfoStackView.configureForWatchers(numberOfWatchers: 0)
         likeInfoStackVeiw.configureForLikes(isLiked: false, numberOfLikes: 0)
@@ -112,9 +108,7 @@ private extension EventsInfoCell {
         cellView.addSubview(mainLabel)
         
         cellView.addSubview(dateLabel)
-        
-//        cellView.addSubview(placeInfoStackVeiw)
-        
+                
         cellView.addSubview(tagsStackVeiw)
         
         cellView.addSubview(eventImageView)
@@ -138,7 +132,7 @@ private extension EventsInfoCell {
             cellView.topAnchor.constraint(equalTo: self.topAnchor),
             cellView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             cellView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            cellView.heightAnchor.constraint(equalToConstant: 380),
+            cellView.heightAnchor.constraint(equalToConstant: 400),
             
             mainLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 6),
             mainLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 24),
@@ -148,8 +142,14 @@ private extension EventsInfoCell {
             dateLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 6),
             dateLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 24),
             dateLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -24),
+            dateLabel.heightAnchor.constraint(equalToConstant: 22),
             
-            eventImageView.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 12),
+            tagsStackVeiw.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 6),
+            tagsStackVeiw.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 24),
+            tagsStackVeiw.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -24),
+            tagsStackVeiw.heightAnchor.constraint(equalToConstant: 20),
+            
+            eventImageView.topAnchor.constraint(equalTo: tagsStackVeiw.bottomAnchor, constant: 12),
             eventImageView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 12),
             eventImageView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -12),
             eventImageView.heightAnchor.constraint(equalToConstant: 240),
@@ -183,9 +183,12 @@ private extension EventsInfoCell {
             tag.layer.cornerRadius = 8
             
             tagsStackVeiw.addArrangedSubview(tag)
-            tag.pin
-                .top(to: tagsStackVeiw.edge.top)
-                .bottom(to: tagsStackVeiw.edge.bottom)
+            tag.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                tag.topAnchor.constraint(equalTo: tagsStackVeiw.topAnchor),
+                tag.bottomAnchor.constraint(equalTo: tagsStackVeiw.bottomAnchor)
+            ])
             
             tagsStackVeiw.setCustomSpacing(24 + tag.frame.width , after: tag)
         }
@@ -199,7 +202,8 @@ extension EventsInfoCell {
                    likesNumber: Int,
                    participantsNumber: Int,
                    viewsNumber: Int,
-                   isLiked: Bool) {
+                   isLiked: Bool,
+                   tags: [String]) {
         let image = UIImage(named: imageName)
         mainLabel.text = mainText
         dateLabel.text = dateText
@@ -211,6 +215,11 @@ extension EventsInfoCell {
         viewsInfoStackView.configureForWatchers(numberOfWatchers: viewsNumber)
         eventImageView.setImage(url: URL(string: imageName))
         isEventLiked = isLiked
+        
+        if !isTagsAlreadyDone {
+            addTags(with: tags)
+            isTagsAlreadyDone = true
+        }
     }
     
     func setLikeAction(_ action: @escaping LikeClosure) {
