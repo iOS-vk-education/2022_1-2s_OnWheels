@@ -23,6 +23,7 @@
 "firstTag" = "enduro on motorcycles";
 "secondTag" = "amateurs";
 "mapEventPlace" = "Location";
+"loader" = "Loading ...";
 
 //myEvents
 "participate" = "Participate";

@@ -23,6 +23,7 @@
 "firstTag" = "эндуро на мотоциклах";
 "secondTag" = "любители";
 "mapEventPlace" = "Место проведения";
+"loader" = "Загрузка ...";
 
 //myEvents
 "participate" = "Участвую";

@@ -16,8 +16,8 @@ extension UIViewController {
         loader.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            loader.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loader.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            loader.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            loader.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
         loader.startAnimation()
