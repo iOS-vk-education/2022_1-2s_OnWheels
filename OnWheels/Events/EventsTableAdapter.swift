@@ -36,7 +36,8 @@ extension EventsTableAdapter {
             let cell = tableView.dequeueCell(cellType: EventsInfoCell.self, for: indexPath)
             
             cell.selectionStyle = .none
-            
+            print(item.title)
+            print(item.tags)
             cell.configure(mainText: item.title,
                            dateText: item.dateSubtitle,
                            imageName: item.imageId,

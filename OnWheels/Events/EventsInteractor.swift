@@ -42,10 +42,9 @@ final class EventsInteractor {
                                 numberOfParticipants: elem.members.count,
                                 numberOfWatchers: elem.views,
                                 isLiked: elem.isLiked,
-                                tags: [elem.tags[safe: 0] ?? "", elem.tags[safe: 1] ?? ""])
+                                tags: elem.tags)
             raceInfo.insert(race, at: 0)
         }
-        
         return raceInfo
     }
     
