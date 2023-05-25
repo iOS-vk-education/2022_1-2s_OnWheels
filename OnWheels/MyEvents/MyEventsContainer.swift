@@ -18,7 +18,7 @@ final class MyEventsContainer {
         let interactor = MyEventsInteractor()
         let presenter = MyEventsPresenter(router: router, interactor: interactor)
 		let viewController = MyEventsViewController(output: presenter)
-
+        router.viewController = viewController
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
 

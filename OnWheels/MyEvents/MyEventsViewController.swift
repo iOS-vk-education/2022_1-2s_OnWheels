@@ -24,6 +24,7 @@ final class MyEventsViewController: UIViewController {
         back.translatesAutoresizingMaskIntoConstraints = false
         back.setImage(R.image.jumpButton(), for: .normal)
         back.tintColor = R.color.mainBlue()
+        
         return back
     }()
     
@@ -51,6 +52,7 @@ final class MyEventsViewController: UIViewController {
         setupLayout()
         setupMyEventsTableView()
         setupNavigationBar()
+        setupNavBar()
     }
 }
 

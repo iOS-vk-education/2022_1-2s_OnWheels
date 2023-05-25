@@ -14,8 +14,12 @@ final class MyEventsRouter {
 }
 
 extension MyEventsRouter: MyEventsRouterInput {
-    func jumpButtonPressed(){
-        self.viewController?.navigationController?.pushViewController( OneEventViewController, animated: true)
+    func jumpButtonPressed() {
+        let oneEventContainer = OneEventContainer.assemble(with: .init(raceId: 4))
+        self.viewController?.navigationController?.pushViewController(
+            oneEventContainer.viewController,
+            animated: true
+        )
     }
 }
 

@@ -24,7 +24,7 @@ final class OneEventContainer {
 
 		presenter.view = viewController
 		presenter.moduleOutput = context.moduleOutput
-        router.window = context.window
+//        router.window = context.window
         router.viewController = viewController
 		interactor.output = presenter
         
@@ -41,6 +41,6 @@ final class OneEventContainer {
 
 struct OneEventContext {
 	weak var moduleOutput: OneEventModuleOutput?
-    let window: UIWindow
+//    let window: UIWindow
     let raceId: Int
 }
