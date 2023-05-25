@@ -30,6 +30,8 @@ final class EventsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        output.showLoaderView()
+        output.didLoadRaces()
     }
     
     override func viewDidLayoutSubviews() {
@@ -38,7 +40,6 @@ final class EventsViewController: UIViewController {
         setupEventsTableView()
         setupNavigationBar()
         setupActions()
-        output.didLoadRaces()
     }
 }
 
