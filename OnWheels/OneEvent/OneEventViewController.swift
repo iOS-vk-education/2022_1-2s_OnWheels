@@ -36,6 +36,12 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
         return back
     }()
     
+    private let shareButton: UIButton = {
+        let share = UIButton()
+        share.translatesAutoresizingMaskIntoConstraints = false
+        share.setImage(R.image.share(), for: .normal)
+        return share
+    }()
     
     init(output: OneEventViewOutput) {
         self.output = output
@@ -67,6 +73,11 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     @objc
     func backButtonTapped(){
         output.backButtonTapped()
+    }
+    
+    @objc
+    func shareButtonTapped() {
+        print("share")
     }
     
     @objc
@@ -115,7 +126,11 @@ extension OneEventViewController {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         let leftNavBarItem = UIBarButtonItem(customView: backButton)
         
+        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+        let rightNavBarItem = UIBarButtonItem(customView: shareButton)
+        
         self.navigationItem.setLeftBarButton(leftNavBarItem, animated: true)
+        self.navigationItem.setRightBarButton(rightNavBarItem, animated: true)
     }
     
     private func setupGestureRecognizer(){
