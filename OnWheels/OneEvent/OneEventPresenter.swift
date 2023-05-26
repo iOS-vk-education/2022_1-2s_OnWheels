@@ -43,6 +43,10 @@ extension OneEventPresenter: OneEventViewOutput {
 }
 
 extension OneEventPresenter: OneEventInteractorOutput {
+    func showError(error: String) {
+        view?.showError(error: error)
+    }
+    
     func setMember() {
         view?.addMember()
     }
