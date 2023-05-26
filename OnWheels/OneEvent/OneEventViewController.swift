@@ -60,7 +60,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
         super.viewDidLayoutSubviews()
        
         let widthFrame = eventContentView.frame.width
-        let height = Double(eventContentView.realHeight + 50)
+        let height = Double((eventContentView.realHeight) * 1.2)
         eventScrollView.contentSize = CGSize(width: widthFrame, height: height)
     }
     
@@ -125,6 +125,14 @@ extension OneEventViewController {
 }
 
 extension OneEventViewController: OneEventViewInput {
+    func addMember() {
+        self.eventContentView.configureButton(isMember: true)
+    }
+    
+    func deleteMember() {
+        self.eventContentView.configureButton(isMember: false)
+    }
+    
     func setData(raceData: OneEvent) {
         DispatchQueue.main.async {
             self.eventContentView.configureViewWith(imageURL: raceData.imageId,
@@ -135,6 +143,7 @@ extension OneEventViewController: OneEventViewInput {
                                                     longitude: raceData.longitude,
                                                     latitude: raceData.latitude,
                                                     tags: raceData.tags)
+            self.eventContentView.configureButton(isMember: raceData.isMember)
         }
     }
 }

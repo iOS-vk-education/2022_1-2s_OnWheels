@@ -13,10 +13,12 @@ final class OneEventInteractor {
 	weak var output: OneEventInteractorOutput?
     
     private let raceManager: RacesNetworkManager
+    private let userInteractionsManager: UserInteractionNetworkManager
     private let raceId: Int
     
-    init(raceManager: RacesNetworkManager, raceId: Int) {
+    init(raceManager: RacesNetworkManager, userInteraction: UserInteractionNetworkManager, raceId: Int) {
         self.raceManager = raceManager
+        self.userInteractionsManager = userInteraction
         self.raceId = raceId
     }
     
@@ -49,7 +51,16 @@ final class OneEventInteractor {
 
 extension OneEventInteractor: OneEventInteractorInput {
     func loadRaceInfo() {
-        
+        var isUserMember = false
+        self.userInteractionsManager.getMember(with: raceId) { isMember, error in
+            if let error = error {
+                print(error)
+            }
+            
+            if let isMember = isMember {
+                isUserMember = isMember
+            }
+        }
         
         self.raceManager.getRace(with: raceId) { race, error in
             DispatchQueue.main.async {
@@ -82,11 +93,29 @@ extension OneEventInteractor: OneEventInteractorInput {
                                                 imageId: race.images[safe: 0] ?? "",
                                                 description: race.oneRaceDescription,
                                                 tags: race.tags,
-                                                isMember: false)
+                                                isMember: isUserMember)
                         self.output?.setRace(races: convertedRaceInfo)
                     }
                 }
             }
+        }
+    }
+    
+    func addMember() {
+        self.userInteractionsManager.postMember(with: raceId) {error in
+            if let error = error {
+                print(error)
+            }
+            self.output?.setMember()
+        }
+    }
+    
+    func deleteMember() {
+        self.userInteractionsManager.deleteMember(with: raceId) {error in
+            if let error = error {
+                print(error)
+            }
+            self.output?.deleteMember()
         }
     }
 }

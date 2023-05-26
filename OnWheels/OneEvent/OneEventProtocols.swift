@@ -17,6 +17,8 @@ protocol OneEventModuleOutput: AnyObject {
 
 protocol OneEventViewInput: AnyObject {
     func setData(raceData: OneEvent)
+    func addMember()
+    func deleteMember()
 }
 
 protocol OneEventViewOutput: AnyObject {
@@ -26,10 +28,14 @@ protocol OneEventViewOutput: AnyObject {
 
 protocol OneEventInteractorInput: AnyObject {
     func loadRaceInfo()
+    func addMember()
+    func deleteMember()
 }
 
 protocol OneEventInteractorOutput: AnyObject {
     func setRace(races: OneEvent)
+    func setMember()
+    func deleteMember()
 }
 
 protocol OneEventRouterInput: AnyObject {
