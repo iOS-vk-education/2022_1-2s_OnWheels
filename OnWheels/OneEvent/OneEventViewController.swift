@@ -161,4 +161,12 @@ extension OneEventViewController: OneEventViewInput {
             self.eventContentView.configureButton(isMember: raceData.isMember)
         }
     }
+    
+    func showError(error: String) {
+        let alert = UIAlertController(title: R.string.localizable.alertTitle(),
+                                      message: error,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: R.string.localizable.alertConfirmation(), style: .default))
+        self.present(alert, animated: true)
+    }
 }

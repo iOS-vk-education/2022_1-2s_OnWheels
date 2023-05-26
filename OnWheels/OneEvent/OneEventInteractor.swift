@@ -55,6 +55,7 @@ extension OneEventInteractor: OneEventInteractorInput {
         self.userInteractionsManager.getMember(with: raceId) { isMember, error in
             if let error = error {
                 print(error)
+                self.output?.showError(error: error)
             }
             
             if let isMember = isMember {
@@ -66,6 +67,7 @@ extension OneEventInteractor: OneEventInteractorInput {
             DispatchQueue.main.async {
                 if let error = error {
                     print(error)
+                    self.output?.showError(error: error)
                 }
                 if let race = race {
 //                    print(race)
@@ -105,6 +107,7 @@ extension OneEventInteractor: OneEventInteractorInput {
         self.userInteractionsManager.postMember(with: raceId) {error in
             if let error = error {
                 print(error)
+                self.output?.showError(error: error)
             }
             self.output?.setMember()
         }
@@ -114,6 +117,7 @@ extension OneEventInteractor: OneEventInteractorInput {
         self.userInteractionsManager.deleteMember(with: raceId) {error in
             if let error = error {
                 print(error)
+                self.output?.showError(error: error)
             }
             self.output?.deleteMember()
         }
