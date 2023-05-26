@@ -16,7 +16,7 @@ protocol OneEventModuleOutput: AnyObject {
 }
 
 protocol OneEventViewInput: AnyObject {
-    func setData(raceData: OneRace)
+    func setData(raceData: OneEvent)
 }
 
 protocol OneEventViewOutput: AnyObject {
@@ -29,7 +29,7 @@ protocol OneEventInteractorInput: AnyObject {
 }
 
 protocol OneEventInteractorOutput: AnyObject {
-    func setRace(races: OneRace)
+    func setRace(races: OneEvent)
 }
 
 protocol OneEventRouterInput: AnyObject {

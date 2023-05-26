@@ -125,39 +125,16 @@ extension OneEventViewController {
 }
 
 extension OneEventViewController: OneEventViewInput {
-    func setData(raceData: OneRace){
-        print(raceData)
-        let formatter1 = DateFormatter()
-        formatter1.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        formatter1.locale = Locale(identifier: "en_US_POSIX")
-        var dateString = ""
-          
-        if let date2 = formatter1.date(from: raceData.date.from) {
-            let formatter2 = DateFormatter()
-            formatter2.dateFormat = "EEEE, MMM d, yyyy"
-            formatter2.locale = Locale(identifier: "en_US_POSIX")
-
-            dateString = formatter2.string(from: date2)
-        }
-        
-        let location = CLLocation(latitude: raceData.location.latitude, longitude: raceData.location.longitude)
-        
-        var cityLoc = ""
-        var countryLoc = ""
-        
-        location.fetchCityAndCountry { [weak self] city, country, error in
-            guard let city = city, let country = country, error == nil else { return }
-            cityLoc = city // Rio de Janeiro, Brazil
-            DispatchQueue.main.async {
-                self?.eventContentView.configureViewWith(imageURL: raceData.images[safe: 0] ?? "",
-                                                         mainText: raceData.name,
-                                                         placeName: cityLoc,
-                                                         dateText: dateString,
-                                                         additionalText: raceData.oneRaceDescription,
-                                                         longitude: raceData.location.longitude,
-                                                         latitude: raceData.location.latitude,
-                                                         tags: ["a", "b"])
-            }
+    func setData(raceData: OneEvent) {
+        DispatchQueue.main.async {
+            self.eventContentView.configureViewWith(imageURL: raceData.imageId,
+                                                    mainText: raceData.title,
+                                                    placeName: raceData.placeName,
+                                                    dateText: raceData.dateSubtitle,
+                                                    additionalText: raceData.description,
+                                                    longitude: raceData.longitude,
+                                                    latitude: raceData.latitude,
+                                                    tags: raceData.tags)
         }
     }
 }
