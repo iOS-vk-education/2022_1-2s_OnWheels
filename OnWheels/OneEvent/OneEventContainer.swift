@@ -15,10 +15,14 @@ final class OneEventContainer {
 
 	static func assemble(with context: OneEventContext) -> OneEventContainer {
         let router = OneEventRouter()
-        let networkRouter = Router<RaceEndPoint>()
-        let raceManager = RacesNetworkManagerImpl(router: networkRouter)
+        let raceNetworkRouter = Router<RaceEndPoint>()
+        let userInteractionRouter = Router<UserInteractionEndPoint>()
+        let raceManager = RacesNetworkManagerImpl(router: raceNetworkRouter)
+        let userInteractionManager = UserInteractionNetworkManagerImpl(router: userInteractionRouter)
         let raceId = context.raceId
-        let interactor = OneEventInteractor(raceManager: raceManager, raceId: raceId)
+        let interactor = OneEventInteractor(raceManager: raceManager,
+                                            userInteraction: userInteractionManager,
+                                            raceId: raceId)
         let presenter = OneEventPresenter(router: router, interactor: interactor)
 		let viewController = OneEventViewController(output: presenter)
 

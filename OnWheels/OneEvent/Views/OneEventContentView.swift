@@ -127,7 +127,7 @@ final class OneEventContentView: UIView {
         realHeight = realHeight + tagsStackVeiw.frame.size.height
         realHeight = realHeight + eventDescriptionLabel.frame.size.height
         realHeight = realHeight + mapView.frame.size.height
-        realHeight = realHeight + participateButton.frame.size.height + 110
+        realHeight = realHeight + participateButton.frame.size.height + 100
     }
 }
 
