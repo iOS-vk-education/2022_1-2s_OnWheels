@@ -30,6 +30,12 @@ class MainAppButton: BaseButton {
             return outgoing
         }
     }
+}
+
+extension MainAppButton {
+    func changeButtonColor(with color: UIColor) {
+        self.tintColor = color
+    }
     
     func setupTitle(with text: String) {
         self.setTitle(text, for: .normal)
