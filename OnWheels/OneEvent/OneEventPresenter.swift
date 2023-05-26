@@ -34,7 +34,7 @@ extension OneEventPresenter: OneEventViewOutput {
 }
 
 extension OneEventPresenter: OneEventInteractorOutput {
-    func setRace(races: OneRace) {
+    func setRace(races: OneEvent) {
         view?.setData(raceData: races)
     }
 }

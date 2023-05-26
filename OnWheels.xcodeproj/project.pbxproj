@@ -113,6 +113,7 @@
 		94C1B25B2A1E80E800CEEE42 /* JSONEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */; };
 		94C1B25D2A1E831600CEEE42 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25C2A1E831600CEEE42 /* UIViewControllerExtension.swift */; };
 		94C1B2602A20E4B600CEEE42 /* OneEventContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */; };
+		94C1B2632A20F59600CEEE42 /* OneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2622A20F59600CEEE42 /* OneEvent.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
 		94E574982917CA0600EF9585 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574972917CA0600EF9585 /* ReuseIdentifier.swift */; };
 		94FB88CF292CDA2C00A567C6 /* EventMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FB88CE292CDA2C00A567C6 /* EventMapView.swift */; };
@@ -233,6 +234,7 @@
 		94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEnum.swift; sourceTree = "<group>"; };
 		94C1B25C2A1E831600CEEE42 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventContentView.swift; sourceTree = "<group>"; };
+		94C1B2622A20F59600CEEE42 /* OneEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEvent.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		94E574972917CA0600EF9585 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
 		94FB88CE292CDA2C00A567C6 /* EventMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapView.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 		947DFC25292C02F800045932 /* OneEvent */ = {
 			isa = PBXGroup;
 			children = (
+				94C1B2612A20F58700CEEE42 /* Model */,
 				94C1B25E2A20E4A500CEEE42 /* Views */,
 				947DFC26292C032600045932 /* OneEventPresenter.swift */,
 				947DFC27292C032600045932 /* OneEventRouter.swift */,
@@ -585,6 +588,14 @@
 				94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		94C1B2612A20F58700CEEE42 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				94C1B2622A20F59600CEEE42 /* OneEvent.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		94E574932917C82100EF9585 /* Helpers */ = {
@@ -865,6 +876,7 @@
 				941E989C2958E4830068F802 /* RefreshToken.swift in Sources */,
 				94C1B2472A1D0F4C00CEEE42 /* RaceInfo.swift in Sources */,
 				941E98942958BB4C0068F802 /* RacesNetworkManager.swift in Sources */,
+				94C1B2632A20F59600CEEE42 /* OneEvent.swift in Sources */,
 				7F02BD9A2926A6B400DDA504 /* EventsInteractor.swift in Sources */,
 				94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */,
 				947DFC2C292C032600045932 /* OneEventPresenter.swift in Sources */,
