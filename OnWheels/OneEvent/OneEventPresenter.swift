@@ -28,8 +28,17 @@ extension OneEventPresenter: OneEventViewOutput {
     func backButtonTapped(){
         router.backButtonPressed()
     }
+    
     func loadInfo(){
         interactor.loadRaceInfo()
+    }
+    
+    func postMember() {
+        interactor.addMember()
+    }
+    
+    func removeMember() {
+        interactor.deleteMember()
     }
 }
 
