@@ -29,6 +29,7 @@ final class OneEventContentView: UIView {
     
     let tagsStackVeiw: UIStackView = {
         let tags = UIStackView()
+        tags.translatesAutoresizingMaskIntoConstraints = false
         tags.axis = .horizontal
         tags.distribution = .fillProportionally
         return tags
@@ -123,9 +124,10 @@ final class OneEventContentView: UIView {
         realHeight = eventImage.frame.size.height
         realHeight = realHeight + eventNameLabel.frame.size.height
         realHeight = realHeight + placeDateInfoStackVeiw.frame.size.height
+        realHeight = realHeight + tagsStackVeiw.frame.size.height
         realHeight = realHeight + eventDescriptionLabel.frame.size.height
         realHeight = realHeight + mapView.frame.size.height
-        realHeight = realHeight + participateButton.frame.size.height + 100
+        realHeight = realHeight + participateButton.frame.size.height + 110
     }
 }
 
@@ -137,6 +139,7 @@ private extension OneEventContentView {
         placeDateInfoStackVeiw.addArrangedSubview(placeLabel)
         placeDateInfoStackVeiw.addArrangedSubview(spacingLabel)
         placeDateInfoStackVeiw.addArrangedSubview(dateLabel)
+        self.addSubview(tagsStackVeiw)
         self.addSubview(eventDescriptionLabel)
         self.addSubview(mapView)
         self.addSubview(participateButton)
@@ -163,7 +166,14 @@ private extension OneEventContentView {
         ])
         
         NSLayoutConstraint.activate([
-            eventDescriptionLabel.topAnchor.constraint(equalTo: placeDateInfoStackVeiw.bottomAnchor, constant: 12),
+            tagsStackVeiw.topAnchor.constraint(equalTo: placeDateInfoStackVeiw.bottomAnchor, constant: 12),
+            tagsStackVeiw.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            tagsStackVeiw.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            tagsStackVeiw.heightAnchor.constraint(equalToConstant: 24)
+        ])
+        
+        NSLayoutConstraint.activate([
+            eventDescriptionLabel.topAnchor.constraint(equalTo: tagsStackVeiw.bottomAnchor, constant: 12),
             eventDescriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             eventDescriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
         ])
@@ -191,9 +201,13 @@ private extension OneEventContentView {
             tag.layer.cornerRadius = 8
             
             tagsStackVeiw.addArrangedSubview(tag)
-            tag.pin
-                .top(to: tagsStackVeiw.edge.top)
-                .bottom(to: tagsStackVeiw.edge.bottom)
+            
+            tag.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                tag.topAnchor.constraint(equalTo: tagsStackVeiw.topAnchor),
+                tag.bottomAnchor.constraint(equalTo: tagsStackVeiw.bottomAnchor)
+            ])
             
             tagsStackVeiw.setCustomSpacing(24 + tag.frame.width , after: tag)
             
