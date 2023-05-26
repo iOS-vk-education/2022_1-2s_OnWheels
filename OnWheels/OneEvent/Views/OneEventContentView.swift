@@ -113,6 +113,7 @@ final class OneEventContentView: UIView {
         super.init(frame: frame)
         addViews()
         setupLayout()
+        setupAction()
     }
     
     required init?(coder: NSCoder) {
@@ -214,6 +215,22 @@ private extension OneEventContentView {
             tagViews.append(tag)
         }
     }
+    
+    func setupAction() {
+        participateButton.addTarget(self, action: #selector(participateButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    func participateButtonTapped() {
+        if !isUserMember {
+            setParticipationAction?()
+            isUserMember = !isUserMember
+        } else {
+            unsetParticipationAction?()
+            isUserMember = !isUserMember
+        }
+    }
+
 }
 
 extension OneEventContentView {

@@ -53,7 +53,7 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
         setupGestureRecognizer()
         output.loadInfo()
         setupLayout()
-
+        setupActions()
     }
     
     override func viewDidLayoutSubviews() {
@@ -122,15 +122,30 @@ extension OneEventViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
+    
+    func setupActions() {
+        eventContentView.setParticipateAction {
+            self.output.postMember()
+        }
+        
+        eventContentView.unsetParticipateAction {
+            self.output.removeMember()
+        }
+    }
 }
 
 extension OneEventViewController: OneEventViewInput {
     func addMember() {
-        self.eventContentView.configureButton(isMember: true)
+        DispatchQueue.main.async {
+            self.eventContentView.configureButton(isMember: true)
+        }
     }
     
     func deleteMember() {
-        self.eventContentView.configureButton(isMember: false)
+        DispatchQueue.main.async {
+            self.eventContentView.configureButton(isMember: false)
+
+        }
     }
     
     func setData(raceData: OneEvent) {

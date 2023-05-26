@@ -24,6 +24,8 @@ protocol OneEventViewInput: AnyObject {
 protocol OneEventViewOutput: AnyObject {
     func backButtonTapped()
     func loadInfo()
+    func postMember()
+    func removeMember()
 }
 
 protocol OneEventInteractorInput: AnyObject {
