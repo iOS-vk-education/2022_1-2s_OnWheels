@@ -60,9 +60,8 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
         super.viewDidLayoutSubviews()
        
         let widthFrame = eventContentView.frame.width
-        let height = eventContentView.bounds.height
-        eventScrollView.contentSize = CGSize(width: widthFrame,
-                                             height: height)
+        let height = Double(eventContentView.realHeight + 50)
+        eventScrollView.contentSize = CGSize(width: widthFrame, height: height)
     }
     
     @objc
@@ -78,23 +77,34 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
 
 extension OneEventViewController {
     private func setupLayout(){
-        eventContentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(eventScrollView)
         NSLayoutConstraint.activate([
-            eventScrollView.topAnchor.constraint(equalTo: eventImage.bottomAnchor),
+            eventScrollView.topAnchor.constraint(equalTo: view.topAnchor),
             eventScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             eventScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            eventScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            eventScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            eventScrollView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
         
-        eventScrollView.addSubview(eventContentView)
+        eventScrollView.addSubview(contentView)
+        
         NSLayoutConstraint.activate([
-            eventContentView.topAnchor.constraint(equalTo: eventScrollView.topAnchor, constant: 16),
-            eventContentView.leadingAnchor.constraint(equalTo: eventScrollView.leadingAnchor, constant: 20),
-            eventScrollView.trailingAnchor.constraint(equalTo: eventScrollView.trailingAnchor, constant: -20),
-            eventContentView.bottomAnchor.constraint(equalTo: eventScrollView.bottomAnchor),
-            eventContentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            eventContentView.heightAnchor.constraint(equalTo: eventScrollView.heightAnchor, multiplier: 1.1)
+            contentView.topAnchor.constraint(equalTo: eventScrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: eventScrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: eventScrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: eventScrollView.widthAnchor),
+            contentView.bottomAnchor.constraint(equalTo: eventScrollView.bottomAnchor),
+            contentView.heightAnchor.constraint(equalTo: eventScrollView.heightAnchor, multiplier: 1.2)
+        ])
+        
+        contentView.addSubview(eventContentView)
+        NSLayoutConstraint.activate([
+            eventContentView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            eventContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            eventScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            eventContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            eventContentView.widthAnchor.constraint(equalTo: contentView.widthAnchor)
         ])
         
         
@@ -139,10 +149,14 @@ extension OneEventViewController: OneEventViewInput {
             guard let city = city, let country = country, error == nil else { return }
             cityLoc = city // Rio de Janeiro, Brazil
             DispatchQueue.main.async {
-                self?.configureViewWith(name: raceData.name,
-                                  description: raceData.oneRaceDescription,
-                                  place: cityLoc, date: dateString)
-                self?.mapView.cofigureMap(latitude: raceData.location.latitude, longitude: raceData.location.longitude, name: cityLoc)
+                self?.eventContentView.configureViewWith(imageURL: raceData.images[safe: 0] ?? "",
+                                                         mainText: raceData.name,
+                                                         placeName: cityLoc,
+                                                         dateText: dateString,
+                                                         additionalText: raceData.oneRaceDescription,
+                                                         longitude: raceData.location.longitude,
+                                                         latitude: raceData.location.latitude,
+                                                         tags: ["a", "b"])
             }
         }
     }

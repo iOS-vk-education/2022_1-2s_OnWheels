@@ -106,7 +106,7 @@ final class OneEventContentView: UIView {
         return button
     }()
     
-    var realHeight = 0
+    var realHeight: CGFloat = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -120,10 +120,12 @@ final class OneEventContentView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        realHeight = eventImage.frame.size.height + eventNameLabel.frame.size.height
-        + placeDateInfoStackVeiw.frame.size.height
+        realHeight = eventImage.frame.size.height
+        realHeight = realHeight + eventNameLabel.frame.size.height
+        realHeight = realHeight + placeDateInfoStackVeiw.frame.size.height
         realHeight = realHeight + eventDescriptionLabel.frame.size.height
-        + mapView.frame.size.height + participateButton.frame.size.height +  60
+        realHeight = realHeight + mapView.frame.size.height
+        realHeight = realHeight + participateButton.frame.size.height + 100
     }
 }
 
@@ -201,13 +203,15 @@ private extension OneEventContentView {
 }
 
 extension OneEventContentView {
-    func configureViewWith(mainText: String,
+    func configureViewWith(imageURL: String,
+                           mainText: String,
                            placeName: String,
                            dateText: String,
                            additionalText: String,
                            longitude: Double,
                            latitude: Double,
                            tags: [String]) {
+        eventImage.setImage(url: URL(string: imageURL))
         eventNameLabel.text = mainText
         placeLabel.text = placeName
         dateLabel.text = dateText
