@@ -74,7 +74,7 @@ final class AddEventContentView: UIView {
         description.textColor = R.color.textFieldText()
         description.backgroundColor = .secondarySystemBackground
         description.font = .systemFont(ofSize: 13)
-        description.layer.borderColor = R.color.textFieldBackground()?.cgColor
+        description.layer.borderColor = UIColor.systemGray3.cgColor
         description.layer.borderWidth = 1
         description.layer.cornerRadius = 4
         description.layer.cornerRadius = 4
