@@ -29,7 +29,7 @@ final class LoaderView: UIView {
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
-
+  
     init(animationName: String) {
         super.init(frame: .zero)
         self.backgroundColor = R.color.background()
