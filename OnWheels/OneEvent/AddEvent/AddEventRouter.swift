@@ -15,11 +15,11 @@ final class AddEventRouter {
 
 extension AddEventRouter: AddEventRouterInput {
     func didTapCloseButton() {
-        print("Здесь будет закрываться вью контроллер")
+        viewController?.dismiss(animated: true)
     }
     
     func didTapAddButton() {
-        print("Гонка добавлена")
+        viewController?.dismiss(animated: true)
     }
     
     func showImagePicker(delegateForPicker delegate: ImagePickerDelegate) {
