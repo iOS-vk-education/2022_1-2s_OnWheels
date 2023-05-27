@@ -244,8 +244,8 @@ extension AddEventContentView {
         dateToTextField.setupTextField(with: R.string.localizable.dateTo())
         placeTextField.setupTextField(with: R.string.localizable.placeOfEvent())
         descriptonTextView.text = R.string.localizable.eventDescription()
-        firstTag.text = R.string.localizable.firstTag()
-        secondTag.text = R.string.localizable.secondTag()
+        firstTag.setupTextField(with: R.string.localizable.firstTag())
+        secondTag.setupTextField(with: R.string.localizable.secondTag())
     }
     
     func setupTitleForAddButton() {
