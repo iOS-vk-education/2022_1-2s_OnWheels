@@ -36,6 +36,7 @@
 		7F02BD9D2926A6BD00DDA504 /* EventsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */; };
 		85B834A0F14331C2E8805664 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83DDD268418AFFC162895 /* ProfileBuilder.swift */; };
 		85B8367AF9BC200A760A3C79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83CA7F27A9276D33236F0 /* ProfileViewController.swift */; };
+		85B836B09C71D686A5629BB2 /* LaunchScreenAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B836A1CDE687C620E55A52 /* LaunchScreenAnimation.json */; };
 		85B83773ACD5A09B643182B8 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83CDB2032C8C32DE9FD72 /* UIImageView+Extensions.swift */; };
 		85B83A4E8B34BE5126E6DB0B /* ProfilePresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B834CD2F87E7468D80ED20 /* ProfilePresenterImpl.swift */; };
 		85B83D480B7C7930E8F8A30A /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83F3DD2E586BFB4033AC7 /* ProfileContentView.swift */; };
@@ -154,6 +155,7 @@
 		7F02BD942926A6B400DDA504 /* EventsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInteractor.swift; sourceTree = "<group>"; };
 		7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInfoCell.swift; sourceTree = "<group>"; };
 		85B834CD2F87E7468D80ED20 /* ProfilePresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePresenterImpl.swift; sourceTree = "<group>"; };
+		85B836A1CDE687C620E55A52 /* LaunchScreenAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LaunchScreenAnimation.json; sourceTree = "<group>"; };
 		85B8374AF554D3FEEB90A11C /* ProfileRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRouterImpl.swift; sourceTree = "<group>"; };
 		85B83750D021D3A9E5F5CBF4 /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		85B83CA7F27A9276D33236F0 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -670,6 +672,7 @@
 				ECC991F829054F3B00BC3FA5 /* LaunchScreen.storyboard */,
 				ECC991FB29054F3B00BC3FA5 /* Info.plist */,
 				85B83C49FF54511A7B33A528 /* Profile */,
+				85B836A1CDE687C620E55A52 /* LaunchScreenAnimation.json */,
 			);
 			path = OnWheels;
 			sourceTree = "<group>";
@@ -741,6 +744,7 @@
 				94B2BF9D291E557800F864B9 /* Localizable.strings in Resources */,
 				ECC991F729054F3B00BC3FA5 /* Assets.xcassets in Resources */,
 				ECC991F529054F3A00BC3FA5 /* Main.storyboard in Resources */,
+				85B836B09C71D686A5629BB2 /* LaunchScreenAnimation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

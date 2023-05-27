@@ -13,7 +13,7 @@ final class EnterViewController: UIViewController {
     private let output: EnterViewOutput
     
     var timer = Timer()
-    let timeInterval = 1.0 //5.0
+    let timeInterval = 3.0
     
     let lauchImage: UIImageView = {
         let image = UIImageView()
@@ -45,6 +45,7 @@ final class EnterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.launchScreenColor()
+        showLoader()
         timer = Timer.scheduledTimer(timeInterval: timeInterval,
                                      target: self,
                                      selector: #selector(nextView),
@@ -64,6 +65,7 @@ final class EnterViewController: UIViewController {
     
     @objc
     func nextView(){
+        hideLoader()
         output.showNextScreen()
     }
 }
@@ -73,19 +75,17 @@ extension EnterViewController: EnterViewInput {
 
 extension EnterViewController {
     func setupLayout(){
-        view.addSubview(lauchImage)
-        lauchImage.pin
-            .center()
-            .height(Constants.LauchImage.heightPercent)
-            .width(Constants.LauchImage.widthPercent)
-        
+//        view.addSubview(lauchImage)
+//        lauchImage.pin
+//            .center()
+//            .height(Constants.LauchImage.heightPercent)
+//            .width(Constants.LauchImage.widthPercent)
+//
         view.addSubview(progressView)
         progressView.pin
-            .width(Constants.ProgressView.width)
-            .height(Constants.ProgressView.height)
-            .top(to: lauchImage.edge.bottom)
-            .marginTop(Constants.ProgressView.marginTop)
-            .hCenter(to: lauchImage.edge.hCenter)
+                .width(Constants.ProgressView.width)
+                .height(Constants.ProgressView.height)
+                .center()
     }
     
     func setupProgressView(){
