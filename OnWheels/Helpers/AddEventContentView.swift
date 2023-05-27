@@ -98,6 +98,7 @@ final class AddEventContentView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = R.color.background()
         descriptonTextView.delegate = self
         addVeiws()
         setupConstraints()

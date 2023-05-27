@@ -18,7 +18,7 @@ final class TabBarCenterButton: UIButton {
         image.clipsToBounds = true
         return image
     }()
-    
+
     private let buttonLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,12 +27,12 @@ final class TabBarCenterButton: UIButton {
         label.font = UIFont.systemFont(ofSize: 11, weight: .medium)
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButton()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupButton()
@@ -48,7 +48,7 @@ private extension TabBarCenterButton {
             buttonImageView.heightAnchor.constraint(equalToConstant: 64),
             buttonImageView.widthAnchor.constraint(equalToConstant: 64)
         ])
-        
+
         self.addSubview(buttonLabel)
         NSLayoutConstraint.activate([
             buttonLabel.topAnchor.constraint(equalTo: buttonImageView.bottomAnchor, constant: 6),

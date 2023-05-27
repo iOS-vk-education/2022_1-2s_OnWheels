@@ -9,11 +9,11 @@ import UIKit
 
 final class CustomTabBar: UITabBarController {
     var window: UIWindow
-    var navController: UINavigationController
+//    var navController: UINavigationController
     
-    init (window: UIWindow, navigationController: UINavigationController) {
+    init (window: UIWindow) {
         self.window = window
-        self.navController = navigationController
+//        self.navController = navigationController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,9 +34,10 @@ private extension CustomTabBar {
         eventsViewController.tabBarItem = UITabBarItem(title: R.string.localizable.events(), image: R.image.events(), tag: 0)
         let eventsNavigationController = UINavigationController(rootViewController: eventsViewController)
         
-        let profileViewController = setupProfile()
+        var profileNavigationController = UINavigationController()
+        let profileViewController = setupProfile(with: profileNavigationController)
         profileViewController.tabBarItem = UITabBarItem(title: R.string.localizable.profile(), image: R.image.profile(), tag: 2)
-        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+        profileNavigationController = UINavigationController(rootViewController: profileViewController)
         
         viewControllers = [eventsNavigationController, profileNavigationController]
         
@@ -56,9 +57,8 @@ private extension CustomTabBar {
         return addEventContainer.viewController
     }
     
-    private func setupProfile() -> UIViewController {
-        let profileContainer = ProfileBuilderImpl.assemble(window: window,
-                                                           navigationController: navController)
+    private func setupProfile(with navController: UINavigationController) -> UIViewController {
+        let profileContainer = ProfileBuilderImpl.assemble(window: window, navigationController: navController)
         return profileContainer.view
     }
     
@@ -87,7 +87,7 @@ private extension CustomTabBar {
     
     @objc
     func buttonAction() {
-        let newAddRaceViewController = setupAddEvent()
-        present(newAddRaceViewController, animated: true)
+        let addRaceViewController = setupAddEvent()
+        present(addRaceViewController, animated: true)
     }
 }
