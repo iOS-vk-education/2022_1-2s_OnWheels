@@ -9,11 +9,9 @@ import UIKit
 
 final class CustomTabBar: UITabBarController {
     var window: UIWindow
-//    var navController: UINavigationController
     
     init (window: UIWindow) {
         self.window = window
-//        self.navController = navigationController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -71,6 +69,7 @@ private extension CustomTabBar {
         let appearance = UITabBarAppearance()
         appearance.configureWithDefaultBackground()
         appearance.backgroundColor = R.color.cellColor()
+
         
         self.tabBarController?.tabBar.standardAppearance = appearance
         self.tabBarController?.tabBar.scrollEdgeAppearance = tabBar.standardAppearance
