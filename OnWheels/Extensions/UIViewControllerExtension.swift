@@ -22,10 +22,16 @@ extension UIViewController {
         
         loader.startAnimation()
     }
+
     
     func hideLoader() {
         let loader = self.view.subviews.first { $0 is LoaderView }
         loader?.removeFromSuperview()
+    }
+
+    func scaleLoader(scaleCoeff: Double) {
+        let loader = self.view.subviews.first { $0 is LoaderView } as! LoaderView
+        loader.scaleConstraints(scaleCoeff: scaleCoeff)
     }
     
     func showLoaderIfNeeded(isLoading: Bool, animationName: String) {

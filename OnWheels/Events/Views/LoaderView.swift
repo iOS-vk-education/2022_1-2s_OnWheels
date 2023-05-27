@@ -8,8 +8,12 @@
 import Foundation
 import Lottie
 import RswiftResources
+import SnapKit
 
 final class LoaderView: UIView {
+    var heightConstraint: Constraint!
+    var widthConstraint: Constraint!
+
     let loaderAnimationView: LottieAnimationView = {
         let animation = LottieAnimationView()
         animation.translatesAutoresizingMaskIntoConstraints = false
@@ -42,19 +46,32 @@ extension LoaderView {
     private func setupConstraints() {
         self.addSubview(loaderAnimationView)
         self.addSubview(loaderLabel)
-        
-        NSLayoutConstraint.activate([
-            loaderAnimationView.topAnchor.constraint(equalTo: self.topAnchor),
-            loaderAnimationView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            loaderAnimationView.widthAnchor.constraint(equalToConstant: 200),
-            loaderAnimationView.heightAnchor.constraint(equalToConstant: 200),
-            
-            loaderLabel.topAnchor.constraint(equalTo: loaderAnimationView.bottomAnchor, constant: 0),
-            loaderLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        ])
+
+        loaderAnimationView.snp.makeConstraints { make in
+            heightConstraint = make.height.equalTo(200).constraint
+            widthConstraint = make.width.equalTo(200).constraint
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+
+        loaderLabel.snp.makeConstraints { make in
+            make.top.equalTo(loaderAnimationView.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+        }
     }
     
     func startAnimation() {
         loaderAnimationView.play()
+    }
+
+    func scaleConstraints(scaleCoeff: Double) {
+        heightConstraint.deactivate()
+        widthConstraint.deactivate()
+        loaderAnimationView.snp.makeConstraints { make in
+            heightConstraint = make.height.equalTo(200 * scaleCoeff).constraint
+            widthConstraint = make.width.equalTo(200 * scaleCoeff).constraint
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
     }
 }
