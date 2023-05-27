@@ -60,6 +60,7 @@ final class LogInViewController: UIViewController {
     private(set) lazy var loginField: СustomTextField = {
         let t: СustomTextField = .init()
         t.placeholder = R.string.localizable.enterEmail()
+        t.autocapitalizationType = .none
         return t
     }()
     
@@ -67,6 +68,7 @@ final class LogInViewController: UIViewController {
         let t: СustomTextField = .init()
         t.placeholder = R.string.localizable.enterPassword()
         t.isSecureTextEntry = true
+        t.autocapitalizationType = .none
         return t
     }()
     

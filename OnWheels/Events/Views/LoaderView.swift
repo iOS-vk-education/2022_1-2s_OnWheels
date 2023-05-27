@@ -7,12 +7,13 @@
 
 import Foundation
 import Lottie
+import RswiftResources
 
 final class LoaderView: UIView {
     private let loaderAnimationView: LottieAnimationView = {
         let animation = LottieAnimationView()
         animation.translatesAutoresizingMaskIntoConstraints = false
-        animation.animation = LottieAnimation.named(JSONEnum.animation.rawValue)
+        animation.animation = LottieAnimation.named(R.file.loaderAnimationJson.name)
         animation.loopMode = .autoReverse
         return animation
     }()

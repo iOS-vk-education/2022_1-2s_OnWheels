@@ -110,7 +110,6 @@
 		94C1B2542A1E696900CEEE42 /* KingfisherImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */; };
 		94C1B2562A1E7FE400CEEE42 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2552A1E7FE400CEEE42 /* LoaderView.swift */; };
 		94C1B2592A1E809B00CEEE42 /* LoaderAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 94C1B2582A1E809B00CEEE42 /* LoaderAnimation.json */; };
-		94C1B25B2A1E80E800CEEE42 /* JSONEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */; };
 		94C1B25D2A1E831600CEEE42 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25C2A1E831600CEEE42 /* UIViewControllerExtension.swift */; };
 		94C1B2602A20E4B600CEEE42 /* OneEventContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */; };
 		94C1B2632A20F59600CEEE42 /* OneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2622A20F59600CEEE42 /* OneEvent.swift */; };
@@ -231,7 +230,6 @@
 		94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherImage.swift; sourceTree = "<group>"; };
 		94C1B2552A1E7FE400CEEE42 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		94C1B2582A1E809B00CEEE42 /* LoaderAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoaderAnimation.json; sourceTree = "<group>"; };
-		94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEnum.swift; sourceTree = "<group>"; };
 		94C1B25C2A1E831600CEEE42 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventContentView.swift; sourceTree = "<group>"; };
 		94C1B2622A20F59600CEEE42 /* OneEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEvent.swift; sourceTree = "<group>"; };
@@ -618,7 +616,6 @@
 				85B83EB0CB1263E667FF1DC3 /* BaseComponents */,
 				70A9576529E4BAD100DA0A66 /* UIStackViewExtension.swift */,
 				94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */,
-				94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -851,7 +848,6 @@
 				94187A42291D191B00A8163B /* EnterRouter.swift in Sources */,
 				94187A45291D191B00A8163B /* EnterInteractor.swift in Sources */,
 				7F02BD972926A6B400DDA504 /* EventsRouter.swift in Sources */,
-				94C1B25B2A1E80E800CEEE42 /* JSONEnum.swift in Sources */,
 				7F02BD952926A6B400DDA504 /* EventsPresenter.swift in Sources */,
 				706F1CED29E0602F0064F80E /* ProfileView.swift in Sources */,
 				7F02BD962926A6B400DDA504 /* EventsViewController.swift in Sources */,

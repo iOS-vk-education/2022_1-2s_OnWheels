@@ -17,8 +17,8 @@ final class ProfileContentView: UIView {
     private let userCityLabel = UILabel(frame: .zero)
     private let detailsLabel = UILabel(frame: .zero)
     private let profileDetails = UIStackView(frame: .zero)
-    private let logoutButton = UIButton(frame: .zero)
-    private let deleteAccountButton = UIButton(frame: .zero)
+    private let logoutButton = CustomButton(frame: .zero)
+    private let deleteAccountButton = CustomButton(frame: .zero)
     
     private var profileLogoutAction: ProfileLogoutAction?
     private var profileDeleteAction: ProfileDeleteAction?
@@ -101,10 +101,10 @@ private extension ProfileContentView {
             make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-20)
             make.top.equalTo(userCityLabel.snp.bottom).offset(50)
         }
-        profileDetails.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        profileDetails.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         profileDetails.isLayoutMarginsRelativeArrangement = true
         profileDetails.layer.masksToBounds = false
-        profileDetails.layer.cornerRadius = 20
+        profileDetails.layer.cornerRadius = 15
         profileDetails.clipsToBounds = true
         
         detailsLabel.snp.makeConstraints { make in
@@ -116,13 +116,13 @@ private extension ProfileContentView {
             make.top.equalTo(profileDetails.snp.bottom).offset(15)
             make.right.equalTo(self.safeAreaLayoutGuide.snp.right).inset(20)
             make.left.equalTo(self.snp.centerX).offset(10)
-            make.height.equalTo(50)
+            make.height.equalTo(70)
         }
         deleteAccountButton.snp.makeConstraints { make in
             make.top.equalTo(profileDetails.snp.bottom).offset(15)
             make.left.equalTo(self.safeAreaLayoutGuide.snp.left).offset(20)
             make.right.equalTo(self.snp.centerX).inset(10)
-            make.height.equalTo(50)
+            make.height.equalTo(70)
         }
     }
     
@@ -130,7 +130,7 @@ private extension ProfileContentView {
         // email, birthday, sex
         profileDetails.axis = .vertical
         profileDetails.alignment = .leading
-        profileDetails.spacing = 10
+        profileDetails.spacing = 7
         profileDetails.backgroundColor = .white
         initStackview()
     }
@@ -138,27 +138,18 @@ private extension ProfileContentView {
     // MARK: - buttons initialization
     func setupLogoutButton() {
         let button = logoutButton
-        var config = UIButton.largeButtonConf()
-        config.title = R.string.localizable.logoutButtonText()
-        config.image = UIImage(systemSymbol: .rectanglePortraitAndArrowRight)
-        config.background.backgroundColor = .white
-        button.configuration = config
-        
-        button.addTarget(self, action: #selector(logoutButtonTapped),
-                         for: .touchUpInside)
+        button.configureViewWith(text: R.string.localizable.logoutButtonText(), textColor: R.color.profileCellTextColor(), image: UIImage(systemSymbol: .rectanglePortraitAndArrowRight))
+        button.setprofileAction(logoutButtonTapped)
+        button.layer.cornerRadius = 10
     }
     
     func setupDeleteButton() {
         let button = deleteAccountButton
-        var config = UIButton.largeButtonConf()
-        config.title = R.string.localizable.deleteAccountButtonText()
-        config.baseForegroundColor = .red
-        config.image = UIImage(systemSymbol: .trash).withRenderingMode(.alwaysTemplate).withTintColor(.red)
-        config.background.backgroundColor = .white
-        button.configuration = config
-        
-        button.addTarget(self, action: #selector(deleteButtonTapped),
-                         for: .touchUpInside)
+        button.configureViewWith(text: R.string.localizable.deleteAccountButtonText(), textColor: R.color.profileCellTextColor(), image: UIImage(systemSymbol: .trash).withRenderingMode(.alwaysTemplate))
+        button.setprofileAction(deleteButtonTapped)
+        button.actionLabel.textColor = .red
+        button.actionImageView.tintColor = .red
+        button.layer.cornerRadius = 10
     }
 }
 
