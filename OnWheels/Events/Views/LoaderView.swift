@@ -10,10 +10,9 @@ import Lottie
 import RswiftResources
 
 final class LoaderView: UIView {
-    private let loaderAnimationView: LottieAnimationView = {
+    let loaderAnimationView: LottieAnimationView = {
         let animation = LottieAnimationView()
         animation.translatesAutoresizingMaskIntoConstraints = false
-        animation.animation = LottieAnimation.named(R.file.loaderAnimationJson.name)
         animation.loopMode = .autoReverse
         return animation
     }()
@@ -26,10 +25,11 @@ final class LoaderView: UIView {
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    init(animationName: String) {
+        super.init(frame: .zero)
         self.backgroundColor = R.color.background()
+        self.loaderAnimationView.animation = LottieAnimation.named(animationName)
         setupConstraints()
     }
     
@@ -49,7 +49,7 @@ extension LoaderView {
             loaderAnimationView.widthAnchor.constraint(equalToConstant: 200),
             loaderAnimationView.heightAnchor.constraint(equalToConstant: 200),
             
-            loaderLabel.topAnchor.constraint(equalTo: loaderAnimationView.bottomAnchor, constant: -20),
+            loaderLabel.topAnchor.constraint(equalTo: loaderAnimationView.bottomAnchor, constant: 0),
             loaderLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }

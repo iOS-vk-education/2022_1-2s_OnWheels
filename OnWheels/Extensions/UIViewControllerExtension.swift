@@ -8,8 +8,8 @@
 import UIKit
 
 extension UIViewController {
-    func showLoader() {
-        let loader = LoaderView()
+    func showLoader(animationName: String) {
+        let loader = LoaderView(animationName: animationName)
         
         self.view.addSubview(loader)
         
@@ -28,9 +28,9 @@ extension UIViewController {
         loader?.removeFromSuperview()
     }
     
-    func showLoaderIfNeeded(isLoading: Bool) {
+    func showLoaderIfNeeded(isLoading: Bool, animationName: String) {
         if isLoading {
-            showLoader()
+            showLoader(animationName: animationName)
         } else {
             hideLoader()
         }

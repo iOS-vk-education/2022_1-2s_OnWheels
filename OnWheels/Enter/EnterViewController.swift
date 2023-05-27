@@ -45,7 +45,7 @@ final class EnterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.launchScreenColor()
-        showLoader()
+        showLoader(animationName: R.file.loaderAnimationJson.name)
         timer = Timer.scheduledTimer(timeInterval: timeInterval,
                                      target: self,
                                      selector: #selector(nextView),

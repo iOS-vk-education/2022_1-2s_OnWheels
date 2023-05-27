@@ -8,38 +8,42 @@
 
 import UIKit
 import PinLayout
-
+import Lottie
 
 final class LogInViewController: UIViewController {
     private let output: LogInViewOutput
     
     let fields = ["Почта", "Пароль"]
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        let image: UIImage = UIImage(named: R.image.loginPic.name) ?? .init()
-        let startImage = CIImage(image: image)
-        if traitCollection.userInterfaceStyle == .dark {
-            let filter = CIFilter(name: "CIColorInvert")
-            filter?.setValue(startImage, forKey: kCIInputImageKey)
-            let newImage = UIImage(ciImage: filter?.outputImage ?? .empty())
-            bikeImage.image = newImage
-        } else {
-            bikeImage.image = image
-        }
-    }
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        let image: UIImage = UIImage(named: R.image.loginPic.name) ?? .init()
+//        let startImage = CIImage(image: image)
+//        if traitCollection.userInterfaceStyle == .dark {
+//            let filter = CIFilter(name: "CIColorInvert")
+//            filter?.setValue(startImage, forKey: kCIInputImageKey)
+//            let newImage = UIImage(ciImage: filter?.outputImage ?? .empty())
+//            bikeImage.image = newImage
+//        } else {
+//            bikeImage.image = image
+//        }
+//    }
     
-    private(set) lazy var bikeImage: UIImageView = {
-        let image: UIImage = UIImage(named: R.image.loginPic.name) ?? .init()
-        let i: UIImageView = .init(image: image)
-        if traitCollection.userInterfaceStyle == .dark {
-            let startImage = CIImage(image: image)
-            let filter = CIFilter(name: "CIColorInvert")
-            filter?.setValue(startImage, forKey: kCIInputImageKey)
-            let newImage = UIImage(ciImage: filter?.outputImage ?? .empty())
-            i.image = newImage
-        }
-        i.contentMode = .scaleAspectFit
-        return i
+    private(set) lazy var bikeImage: LottieAnimationView = {
+        let animation = LottieAnimationView()
+        animation.translatesAutoresizingMaskIntoConstraints = false
+        animation.loopMode = .autoReverse
+        return animation
+//        let image: UIImage = UIImage(named: R.image.loginPic.name) ?? .init()
+//        let i: UIImageView = .init(image: image)
+//        if traitCollection.userInterfaceStyle == .dark {
+//            let startImage = CIImage(image: image)
+//            let filter = CIFilter(name: "CIColorInvert")
+//            filter?.setValue(startImage, forKey: kCIInputImageKey)
+//            let newImage = UIImage(ciImage: filter?.outputImage ?? .empty())
+//            i.image = newImage
+//        }
+//        i.contentMode = .scaleAspectFit
+//        return i
     }()
     
     private(set) lazy var scrollView: UIScrollView = {
@@ -57,15 +61,15 @@ final class LogInViewController: UIViewController {
         return l
     }()
     
-    private(set) lazy var loginField: СustomTextField = {
-        let t: СustomTextField = .init()
+    private(set) lazy var loginField: CustomTextField = {
+        let t: CustomTextField = .init()
         t.placeholder = R.string.localizable.enterEmail()
         t.autocapitalizationType = .none
         return t
     }()
     
-    private(set) lazy var passField: СustomTextField = {
-        let t: СustomTextField = .init()
+    private(set) lazy var passField: CustomTextField = {
+        let t: CustomTextField = .init()
         t.placeholder = R.string.localizable.enterPassword()
         t.isSecureTextEntry = true
         t.autocapitalizationType = .none
@@ -210,9 +214,15 @@ final class LogInViewController: UIViewController {
         super.viewDidLayoutSubviews()
         setupLayout()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bikeImage.play()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        bikeImage.stop()
         removeObserversForKeyboard()
     }
 }
@@ -256,11 +266,12 @@ private extension LogInViewController {
             .bottom()
         
         bikeImage.pin
-            .top(to: scrollView.edge.top)
-            .marginTop(-20)
-            .hCenter()
-            .height(Constants.BikeImage.height)
-        
+                .top(to: scrollView.edge.top)
+                .marginTop(-20)
+                .width(350)
+                .height(350)
+                .hCenter()
+
         welcomeLabel.pin
             .top(to: bikeImage.edge.bottom)
             .marginTop(Constants.WelcomeLabel.marginTop)
@@ -340,9 +351,9 @@ private struct Constants {
         static let marginTop: CGFloat = 0
     }
     
-    struct BikeImage {
-        static let height: Percent = 50%
-    }
+//    struct BikeImage {
+//        static let height: Percent = 50%
+//    }
     
     struct Block {
         static let marginTop: CGFloat = 21
