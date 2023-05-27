@@ -16,6 +16,7 @@ final class TabBarCenterButton: UIButton {
         image.layer.borderColor = R.color.mainOrange()?.cgColor
         image.layer.cornerRadius = 32
         image.clipsToBounds = true
+        image.layer.shadowRadius = 2
         return image
     }()
 
@@ -36,6 +37,22 @@ final class TabBarCenterButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupButton()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseOut], animations: {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }, completion: nil)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseOut], animations: {
+            self.transform = CGAffineTransform.identity
+        }, completion: nil)
     }
 }
 
