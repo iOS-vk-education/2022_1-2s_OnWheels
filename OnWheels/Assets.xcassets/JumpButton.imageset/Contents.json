@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "tiff2pdf.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "tiff2pdf 1.pdf",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "tiff2pdf 2.pdf",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 final class OneEventRouter {
-    var window: UIWindow?
+//    var window: UIWindow?
     var viewController: UIViewController?
 }
 

@@ -95,8 +95,8 @@ fileprivate enum NavControllerType: Int, CaseIterable {
         switch self {
         case .events:
             return R.image.events()
-        case .myEvents:
-            return R.image.myEvents()
+      case .myEvents:
+         return R.image.myEvents()
         case .profile:
             return R.image.profile()
         }
