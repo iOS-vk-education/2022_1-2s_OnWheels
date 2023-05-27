@@ -68,6 +68,27 @@ final class AddEventContentView: UIView {
         return place
     }()
     
+    private let tagsStackView: UIStackView = {
+        let tags = UIStackView()
+        tags.translatesAutoresizingMaskIntoConstraints = false
+        tags.axis = .horizontal
+        tags.distribution = .fillProportionally
+        tags.spacing = 12
+        return tags
+    }()
+    
+    private let firstTag: СustomTextField = {
+        let tag = СustomTextField()
+        tag.translatesAutoresizingMaskIntoConstraints = false
+        return tag
+    }()
+    
+    private let secondTag: СustomTextField = {
+        let tag = СustomTextField()
+        tag.translatesAutoresizingMaskIntoConstraints = false
+        return tag
+    }()
+    
     private let descriptonTextView: UITextView = {
         let description = UITextView()
         description.translatesAutoresizingMaskIntoConstraints = false
@@ -123,6 +144,9 @@ extension AddEventContentView {
         dateFromToStackView.addArrangedSubview(dateFromTextField)
         dateFromToStackView.addArrangedSubview(dateToTextField)
         self.addSubview(placeTextField)
+        self.addSubview(tagsStackView)
+        tagsStackView.addArrangedSubview(firstTag)
+        tagsStackView.addArrangedSubview(secondTag)
         self.addSubview(descriptonTextView)
         self.addSubview(addButton)
         self.addSubview(raceImageView)
@@ -154,7 +178,12 @@ extension AddEventContentView {
             placeTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
             placeTextField.heightAnchor.constraint(equalToConstant: 42),
             
-            descriptonTextView.topAnchor.constraint(equalTo: placeTextField.bottomAnchor, constant: 12),
+            tagsStackView.topAnchor.constraint(equalTo: placeTextField.bottomAnchor, constant: 12),
+            tagsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
+            tagsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
+            tagsStackView.heightAnchor.constraint(equalToConstant: 42),
+            
+            descriptonTextView.topAnchor.constraint(equalTo: tagsStackView.bottomAnchor, constant: 12),
             descriptonTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
             descriptonTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
             descriptonTextView.heightAnchor.constraint(equalToConstant: 100),
@@ -215,6 +244,8 @@ extension AddEventContentView {
         dateToTextField.setupTextField(with: R.string.localizable.dateTo())
         placeTextField.setupTextField(with: R.string.localizable.placeOfEvent())
         descriptonTextView.text = R.string.localizable.eventDescription()
+        firstTag.text = R.string.localizable.firstTag()
+        secondTag.text = R.string.localizable.secondTag()
     }
     
     func setupTitleForAddButton() {
@@ -252,7 +283,7 @@ extension AddEventContentView {
     
     @objc
     func addButtonTapped() {
-        var addRaceInfo: [String?] = ["name","datefrom", "dateto", "place", "description"]
+        var addRaceInfo: [String?] = ["name","datefrom", "dateto", "place", "description", "tag1", "tag2"]
         addRaceInfo[0] = eventNameTextField.text
         addRaceInfo[1] = dateFromTextField.text
         addRaceInfo[2] = dateToTextField.text
@@ -262,6 +293,8 @@ extension AddEventContentView {
         } else {
             addRaceInfo[4] = descriptonTextView.text
         }
+        addRaceInfo[5] = firstTag.text
+        addRaceInfo[6] = secondTag.text
         
         let imageData = raceImageView.image?.jpegData(compressionQuality: 0.8)
         addAction?(addRaceInfo, imageData)
