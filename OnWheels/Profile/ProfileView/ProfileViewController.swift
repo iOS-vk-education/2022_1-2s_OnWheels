@@ -21,6 +21,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.presenter.update()
+        self.tabBarController?.tabBar.backgroundColor = R.color.cellColor()
     }
 }
 
