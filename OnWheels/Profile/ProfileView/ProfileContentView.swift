@@ -81,7 +81,7 @@ private extension ProfileContentView {
     func setupConstraints() {
         userAvatar.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(-15)
             make.width.height.equalTo(115)
         }
         userAvatar.makeRounded(width: 115)
@@ -101,10 +101,10 @@ private extension ProfileContentView {
             make.right.equalTo(self.safeAreaLayoutGuide.snp.right).offset(-20)
             make.top.equalTo(userCityLabel.snp.bottom).offset(50)
         }
-        profileDetails.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        profileDetails.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         profileDetails.isLayoutMarginsRelativeArrangement = true
         profileDetails.layer.masksToBounds = false
-        profileDetails.layer.cornerRadius = 15
+        profileDetails.layer.cornerRadius = 10
         profileDetails.clipsToBounds = true
         
         detailsLabel.snp.makeConstraints { make in
@@ -131,7 +131,7 @@ private extension ProfileContentView {
         profileDetails.axis = .vertical
         profileDetails.alignment = .leading
         profileDetails.spacing = 7
-        profileDetails.backgroundColor = .white
+        profileDetails.backgroundColor = R.color.cellColor()
         initStackview()
     }
     
@@ -195,7 +195,7 @@ extension ProfileContentView {
         firstSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         firstSeparator.backgroundColor = .systemGray
         profileDetails.addArrangedSubview(firstSeparator)
-        firstSeparator.widthAnchor.constraint(equalTo: profileDetails.widthAnchor, multiplier: 0.9).isActive = true
+        firstSeparator.widthAnchor.constraint(equalTo: profileDetails.widthAnchor, multiplier: 0.93).isActive = true
         
         let birthdayDescriptionLabel = UILabel()
         birthdayDescriptionLabel.text = R.string.localizable.dateOfBirth()
@@ -214,7 +214,7 @@ extension ProfileContentView {
         secondSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         secondSeparator.backgroundColor = .systemGray
         profileDetails.addArrangedSubview(secondSeparator)
-        secondSeparator.widthAnchor.constraint(equalTo: profileDetails.widthAnchor, multiplier: 0.9).isActive = true
+        secondSeparator.widthAnchor.constraint(equalTo: profileDetails.widthAnchor, multiplier: 0.93).isActive = true
         
         let sexDescriptionLabel = UILabel()
         sexDescriptionLabel.text = R.string.localizable.sex()
