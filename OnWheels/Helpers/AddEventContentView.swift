@@ -35,8 +35,8 @@ final class AddEventContentView: UIView {
         return close
     }()
     
-    private let eventNameTextField: СustomTextField = {
-        let event = СustomTextField()
+    private let eventNameTextField: CustomTextField = {
+        let event = CustomTextField()
         event.translatesAutoresizingMaskIntoConstraints = false
         return event
     }()
@@ -50,20 +50,20 @@ final class AddEventContentView: UIView {
         return dates
     }()
     
-    private let dateFromTextField: СustomTextField = {
-        let dateFrom = СustomTextField()
+    private let dateFromTextField: CustomTextField = {
+        let dateFrom = CustomTextField()
         dateFrom.translatesAutoresizingMaskIntoConstraints = false
         return dateFrom
     }()
     
-    private let dateToTextField: СustomTextField = {
-        let dateTo = СustomTextField()
+    private let dateToTextField: CustomTextField = {
+        let dateTo = CustomTextField()
         dateTo.translatesAutoresizingMaskIntoConstraints = false
         return dateTo
     }()
     
-    private let placeTextField: СustomTextField = {
-        let place = СustomTextField()
+    private let placeTextField: CustomTextField = {
+        let place = CustomTextField()
         place.translatesAutoresizingMaskIntoConstraints = false
         return place
     }()

@@ -8,8 +8,8 @@
 import UIKit
 
 extension UIViewController {
-    func showLoader() {
-        let loader = LoaderView()
+    func showLoader(animationName: String) {
+        let loader = LoaderView(animationName: animationName)
         
         self.view.addSubview(loader)
         
@@ -27,10 +27,15 @@ extension UIViewController {
         let loader = self.view.subviews.first { $0 is LoaderView }
         loader?.removeFromSuperview()
     }
+
+    func scaleLoader(scaleCoeff: Double) {
+        let loader = self.view.subviews.first { $0 is LoaderView } as! LoaderView
+        loader.scaleConstraints(scaleCoeff: scaleCoeff)
+    }
     
-    func showLoaderIfNeeded(isLoading: Bool) {
+    func showLoaderIfNeeded(isLoading: Bool, animationName: String) {
         if isLoading {
-            showLoader()
+            showLoader(animationName: animationName)
         } else {
             hideLoader()
         }

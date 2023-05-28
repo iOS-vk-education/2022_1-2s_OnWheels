@@ -35,6 +35,7 @@
 		7F02BD9A2926A6B400DDA504 /* EventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD942926A6B400DDA504 /* EventsInteractor.swift */; };
 		7F02BD9D2926A6BD00DDA504 /* EventsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */; };
 		85B834A0F14331C2E8805664 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83DDD268418AFFC162895 /* ProfileBuilder.swift */; };
+		85B835AB294ECD40F7800AC8 /* HelmetAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B8314AA296999971B90304 /* HelmetAnimation.json */; };
 		85B8367AF9BC200A760A3C79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83CA7F27A9276D33236F0 /* ProfileViewController.swift */; };
 		85B83773ACD5A09B643182B8 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83CDB2032C8C32DE9FD72 /* UIImageView+Extensions.swift */; };
 		85B83A4E8B34BE5126E6DB0B /* ProfilePresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B834CD2F87E7468D80ED20 /* ProfilePresenterImpl.swift */; };
@@ -110,7 +111,6 @@
 		94C1B2542A1E696900CEEE42 /* KingfisherImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */; };
 		94C1B2562A1E7FE400CEEE42 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2552A1E7FE400CEEE42 /* LoaderView.swift */; };
 		94C1B2592A1E809B00CEEE42 /* LoaderAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 94C1B2582A1E809B00CEEE42 /* LoaderAnimation.json */; };
-		94C1B25B2A1E80E800CEEE42 /* JSONEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */; };
 		94C1B25D2A1E831600CEEE42 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25C2A1E831600CEEE42 /* UIViewControllerExtension.swift */; };
 		94C1B2602A20E4B600CEEE42 /* OneEventContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */; };
 		94C1B2632A20F59600CEEE42 /* OneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2622A20F59600CEEE42 /* OneEvent.swift */; };
@@ -154,6 +154,7 @@
 		7F02BD932926A6B300DDA504 /* EventsProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsProtocols.swift; sourceTree = "<group>"; };
 		7F02BD942926A6B400DDA504 /* EventsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInteractor.swift; sourceTree = "<group>"; };
 		7F02BD9C2926A6BD00DDA504 /* EventsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsInfoCell.swift; sourceTree = "<group>"; };
+		85B8314AA296999971B90304 /* HelmetAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HelmetAnimation.json; sourceTree = "<group>"; };
 		85B834CD2F87E7468D80ED20 /* ProfilePresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePresenterImpl.swift; sourceTree = "<group>"; };
 		85B8374AF554D3FEEB90A11C /* ProfileRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRouterImpl.swift; sourceTree = "<group>"; };
 		85B83750D021D3A9E5F5CBF4 /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
@@ -231,7 +232,6 @@
 		94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherImage.swift; sourceTree = "<group>"; };
 		94C1B2552A1E7FE400CEEE42 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		94C1B2582A1E809B00CEEE42 /* LoaderAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoaderAnimation.json; sourceTree = "<group>"; };
-		94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEnum.swift; sourceTree = "<group>"; };
 		94C1B25C2A1E831600CEEE42 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventContentView.swift; sourceTree = "<group>"; };
 		94C1B2622A20F59600CEEE42 /* OneEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEvent.swift; sourceTree = "<group>"; };
@@ -618,7 +618,6 @@
 				85B83EB0CB1263E667FF1DC3 /* BaseComponents */,
 				70A9576529E4BAD100DA0A66 /* UIStackViewExtension.swift */,
 				94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */,
-				94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -673,6 +672,7 @@
 				ECC991F829054F3B00BC3FA5 /* LaunchScreen.storyboard */,
 				ECC991FB29054F3B00BC3FA5 /* Info.plist */,
 				85B83C49FF54511A7B33A528 /* Profile */,
+				85B8314AA296999971B90304 /* HelmetAnimation.json */,
 			);
 			path = OnWheels;
 			sourceTree = "<group>";
@@ -744,6 +744,7 @@
 				94B2BF9D291E557800F864B9 /* Localizable.strings in Resources */,
 				ECC991F729054F3B00BC3FA5 /* Assets.xcassets in Resources */,
 				ECC991F529054F3A00BC3FA5 /* Main.storyboard in Resources */,
+				85B835AB294ECD40F7800AC8 /* HelmetAnimation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

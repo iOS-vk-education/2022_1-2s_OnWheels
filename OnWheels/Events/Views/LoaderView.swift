@@ -7,12 +7,16 @@
 
 import Foundation
 import Lottie
+import RswiftResources
+import SnapKit
 
 final class LoaderView: UIView {
-    private let loaderAnimationView: LottieAnimationView = {
+    var heightConstraint: Constraint!
+    var widthConstraint: Constraint!
+
+    let loaderAnimationView: LottieAnimationView = {
         let animation = LottieAnimationView()
         animation.translatesAutoresizingMaskIntoConstraints = false
-        animation.animation = LottieAnimation.named(JSONEnum.animation.rawValue)
         animation.loopMode = .autoReverse
         return animation
     }()
@@ -25,10 +29,11 @@ final class LoaderView: UIView {
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         return label
     }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+  
+    init(animationName: String) {
+        super.init(frame: .zero)
         self.backgroundColor = R.color.background()
+        self.loaderAnimationView.animation = LottieAnimation.named(animationName)
         setupConstraints()
     }
     
@@ -41,19 +46,32 @@ extension LoaderView {
     private func setupConstraints() {
         self.addSubview(loaderAnimationView)
         self.addSubview(loaderLabel)
-        
-        NSLayoutConstraint.activate([
-            loaderAnimationView.topAnchor.constraint(equalTo: self.topAnchor),
-            loaderAnimationView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            loaderAnimationView.widthAnchor.constraint(equalToConstant: 200),
-            loaderAnimationView.heightAnchor.constraint(equalToConstant: 200),
-            
-            loaderLabel.topAnchor.constraint(equalTo: loaderAnimationView.bottomAnchor, constant: -20),
-            loaderLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        ])
+
+        loaderAnimationView.snp.makeConstraints { make in
+            heightConstraint = make.height.equalTo(200).constraint
+            widthConstraint = make.width.equalTo(200).constraint
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+
+        loaderLabel.snp.makeConstraints { make in
+            make.top.equalTo(loaderAnimationView.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+        }
     }
     
     func startAnimation() {
         loaderAnimationView.play()
+    }
+
+    func scaleConstraints(scaleCoeff: Double) {
+        heightConstraint.deactivate()
+        widthConstraint.deactivate()
+        loaderAnimationView.snp.makeConstraints { make in
+            heightConstraint = make.height.equalTo(200 * scaleCoeff).constraint
+            widthConstraint = make.width.equalTo(200 * scaleCoeff).constraint
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
     }
 }
