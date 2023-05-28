@@ -112,7 +112,7 @@ extension EventsViewController {
 extension EventsViewController: EventsViewInput {
     func showLoaderView() {
         eventsTableView.isHidden = true
-        self.showLoader()
+        self.showLoader(animationName: R.file.loaderAnimationJson.name)
     }
     
     func hideLoaderView() {

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class СustomTextField: UITextField {
+class CustomTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.borderStyle = .roundedRect

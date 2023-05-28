@@ -13,28 +13,10 @@ final class EnterViewController: UIViewController {
     private let output: EnterViewOutput
     
     var timer = Timer()
-    let timeInterval = 1.0 //5.0
-    
-    let lauchImage: UIImageView = {
-        let image = UIImageView()
-        image.image = R.image.launchImage()
-        return image
-    }()
-    
-    let progressView: UIProgressView = {
-        let progress = UIProgressView(progressViewStyle: .bar)
-        progress.progressTintColor = .mainOrangeColor
-        progress.trackTintColor = R.color.cellColor()
-        progress.layer.cornerRadius = 6
-        progress.clipsToBounds = true
-        progress.progress = 0
-        progress.heightAnchor.constraint(equalToConstant: 7)
-        return progress
-    }()
+    let timeInterval = 3.0
     
     init(output: EnterViewOutput) {
         self.output = output
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -45,6 +27,8 @@ final class EnterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.launchScreenColor()
+        showLoader(animationName: R.file.loaderAnimationJson.name)
+        scaleLoader(scaleCoeff: 1.8)
         timer = Timer.scheduledTimer(timeInterval: timeInterval,
                                      target: self,
                                      selector: #selector(nextView),
@@ -53,8 +37,6 @@ final class EnterViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupProgressView()
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,6 +46,7 @@ final class EnterViewController: UIViewController {
     
     @objc
     func nextView(){
+        hideLoader()
         output.showNextScreen()
     }
 }
@@ -73,37 +56,6 @@ extension EnterViewController: EnterViewInput {
 
 extension EnterViewController {
     func setupLayout(){
-        view.addSubview(lauchImage)
-        lauchImage.pin
-            .center()
-            .height(Constants.LauchImage.heightPercent)
-            .width(Constants.LauchImage.widthPercent)
-        
-        view.addSubview(progressView)
-        progressView.pin
-            .width(Constants.ProgressView.width)
-            .height(Constants.ProgressView.height)
-            .top(to: lauchImage.edge.bottom)
-            .marginTop(Constants.ProgressView.marginTop)
-            .hCenter(to: lauchImage.edge.hCenter)
     }
-    
-    func setupProgressView(){
-        UIView.animate(withDuration: timeInterval) {
-            self.progressView.setProgress(1.0, animated: true)
-        }
-    }
-    
-    struct Constants {
-        struct LauchImage {
-            static let widthPercent: Percent = 65%
-            static let heightPercent: Percent = 45%
-        }
-        
-        struct ProgressView {
-            static let marginTop: CGFloat = 50
-            static let height: CGFloat = 10
-            static let width: CGFloat = 250
-        }
-    }
+
 }
