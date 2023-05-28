@@ -27,12 +27,14 @@ protocol OneEventViewOutput: AnyObject {
     func loadInfo()
     func postMember()
     func removeMember()
+    func raceID() -> Int
 }
 
 protocol OneEventInteractorInput: AnyObject {
     func loadRaceInfo()
     func addMember()
     func deleteMember()
+    func getRaceId() -> Int
 }
 
 protocol OneEventInteractorOutput: AnyObject {

@@ -7,15 +7,20 @@
 
 import UIKit
 
-final class MainFlowCoordinator: CoordinatorProtocol{
+final class MainFlowCoordinator: CoordinatorProtocol {
     internal var window: UIWindow
     private lazy var tabBar: UITabBarController = UITabBarController()
     private lazy var navigationControllers = MainFlowCoordinator.makeNavigationControllers()
+
     init (window: UIWindow) {
         self.window = window
     }
-    
+
     func start() {
+        start(nil)
+    }
+
+    func start(_ deepLink: DeeplinkData?) {
         setupEvents()
         setupMyEvents()
         setupProfile()
@@ -24,6 +29,16 @@ final class MainFlowCoordinator: CoordinatorProtocol{
         }
         tabBar.setViewControllers(navigationControllers, animated: true)
         window.rootViewController = tabBar
+        if let deepLink = deepLink, case DeeplinkData.race(let raceID) = deepLink {
+            guard let navController = self.navigationControllers[.events] else {
+                print("No navController for events, can't deeplink")
+                return
+            }
+            let oneEvent = OneEventContainer.assemble(with: .init(moduleOutput: nil, window: window, raceId: raceID))
+            navController.pushViewController(oneEvent.viewController, animated: true)
+        } else {
+            print("no deeplink found")
+        }
         window.makeKeyAndVisible()
     }
 }

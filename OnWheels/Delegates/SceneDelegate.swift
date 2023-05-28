@@ -27,6 +27,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        var deeplink: DeeplinkData?
+        if let firstUrl = URLContexts.first?.url {
+            let host = firstUrl.host
+            var parameters: [String: String] = [:]
+            URLComponents(url: firstUrl, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+                parameters[$0.name] = $0.value
+            }
+
+            if host == "race", let id = parameters["id"], let idInt = Int(id) {
+                deeplink = .race(idInt)
+            }
+        }
+
+
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        let window: UIWindow = UIWindow(windowScene: windowScene)
+        self.window = window
+
+        let enterContainer = EnterContainer.assemble(with: EnterContext(window: window, deeplink: deeplink))
+        let navigationController = UINavigationController(rootViewController: enterContainer.viewController)
+
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

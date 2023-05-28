@@ -15,6 +15,7 @@ final class EnterContainer {
     
     static func assemble(with context: EnterContext) -> EnterContainer {
         let router = EnterRouter()
+        router.deepLink = context.deeplink
         let interactor = EnterInteractor()
         let presenter = EnterPresenter(router: router, interactor: interactor)
         let viewController = EnterViewController(output: presenter)
@@ -36,8 +37,12 @@ final class EnterContainer {
     }
 }
 
+enum DeeplinkData {
+    case race(Int)
+}
+
 struct EnterContext {
     weak var moduleOutput: EnterModuleOutput?
     let window: UIWindow
-    
+    var deeplink: DeeplinkData?
 }

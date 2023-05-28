@@ -25,6 +25,10 @@ extension OneEventPresenter: OneEventModuleInput {
 }
 
 extension OneEventPresenter: OneEventViewOutput {
+    func raceID() -> Int {
+        interactor.getRaceId()
+    }
+
     func backButtonTapped(){
         router.backButtonPressed()
     }

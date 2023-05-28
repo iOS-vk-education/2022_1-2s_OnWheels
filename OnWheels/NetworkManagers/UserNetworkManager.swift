@@ -43,7 +43,7 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
 
     private func storeCookieForExtendedTime(_ cookie: HTTPCookie) {
         var properties = cookie.properties!
-        properties[.expires] = Date.init(timeIntervalSinceNow: 2_592_000) as NSDate
+        properties[.expires] = Date.init(timeIntervalSinceNow: 600) as NSDate
         properties[.discard] = nil
         if let newCookie = HTTPCookie(properties: properties) {
             HTTPCookieStorage.shared.setCookie(newCookie)
@@ -139,7 +139,7 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                             })
                             self.storeCookieForExtendedTime(cookies!)
                             completion(.authorized(accessToken: cookies?.value ?? ""))
-                            defaults.set(cookies, forKey: "cookie")
+                            //defaults.set(cookies, forKey: "cookie")
                         }
                     } catch {
                         completion(.nonAuthorized(error: NetworkResponse.unableToDecode.rawValue))
@@ -173,7 +173,7 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                             })
                             self.storeCookieForExtendedTime(cookies!)
                             completion(.authorized(accessToken: cookies?.value ?? ""))
-                            defaults.set(cookies, forKey: "cookie")
+                            //defaults.set(cookies, forKey: "cookie")
                         }
                     } catch {
                         completion(.nonAuthorized(error: NetworkResponse.unableToDecode.rawValue))
