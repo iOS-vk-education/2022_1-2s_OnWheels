@@ -78,6 +78,12 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     @objc
     func shareButtonTapped() {
         print("share")
+        if let myWebsite = URL(string: "https://t.me/tinartem") {
+            let objectsToShare = [myWebsite] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityVC.popoverPresentationController?.sourceView = view
+            self.present(activityVC, animated: true, completion: nil)
+        }
     }
     
     @objc

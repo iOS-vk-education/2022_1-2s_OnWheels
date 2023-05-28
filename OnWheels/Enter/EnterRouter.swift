@@ -16,6 +16,8 @@ final class EnterRouter {
 
 extension EnterRouter: EnterRouterInput {
     func timerFinished(){
+        // TODO check if cookies present
+        // TODO somewhere here souhld be deep linker
         guard let window = window else { return }
         appCoordinator = AppCoordinator(window: window, instructor: .authorization)
         appCoordinator?.start()
