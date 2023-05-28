@@ -67,10 +67,10 @@ final class RegistrationContentView: UIView {
         return hint
     }()
     
-    private(set) lazy var textFields: [СustomTextField] = {
-        var textFields = [СustomTextField]()
+    private(set) lazy var textFields: [CustomTextField] = {
+        var textFields = [CustomTextField]()
         for value in 0..<8 {
-            let text = СustomTextField()
+            let text = CustomTextField()
             text.translatesAutoresizingMaskIntoConstraints = false
             text.tag = value + 1
             text.autocorrectionType = .no

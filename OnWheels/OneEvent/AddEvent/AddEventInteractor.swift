@@ -57,7 +57,7 @@ final class AddEventInteractor {
                                           date: raceDate,
                                           addRaceDescription: raceInfoStrings[4],
                                           images: ["https://onwheels.enula.ru/api/Image/\(imageId)"],
-                                          tags: [])
+                                          tags: [raceInfoStrings[5], raceInfoStrings[6]])
                 return completion(addRaceInfo, nil)
             }
         }

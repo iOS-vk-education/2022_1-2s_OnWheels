@@ -63,6 +63,7 @@ extension EventsViewController {
     private func setupUI(){
         view.backgroundColor = R.color.background()
         view.addSubview(eventsTableView)
+        self.tabBarController?.tabBar.backgroundColor = R.color.cellColor()
     }
     
     private func setupNavigationBar(){
@@ -111,7 +112,7 @@ extension EventsViewController {
 extension EventsViewController: EventsViewInput {
     func showLoaderView() {
         eventsTableView.isHidden = true
-        self.showLoader()
+        self.showLoader(animationName: R.file.loaderAnimationJson.name)
     }
     
     func hideLoaderView() {
