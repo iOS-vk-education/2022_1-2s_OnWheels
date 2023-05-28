@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier=""/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AddEvent" representedClassName="AddEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="dateFrom" optional="YES" attributeType="String"/>
+        <attribute name="dateTo" optional="YES" attributeType="String"/>
+        <attribute name="eventDescription" optional="YES" attributeType="String"/>
+        <attribute name="eventImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="firstTag" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="nameText" optional="YES" attributeType="String"/>
+        <attribute name="secondTag" optional="YES" attributeType="String"/>
+    </entity>
+</model>

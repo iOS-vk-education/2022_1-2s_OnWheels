@@ -85,6 +85,8 @@
 		947DFC31292C032600045932 /* OneEventContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC2B292C032600045932 /* OneEventContainer.swift */; };
 		947DFC33292C063600045932 /* EventTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DFC32292C063600045932 /* EventTagView.swift */; };
 		9490598D29E4248D00362DF3 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490598C29E4248D00362DF3 /* BaseButton.swift */; };
+		949E728F2A23CA1E00DE5798 /* AddEvent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949E728D2A23CA1E00DE5798 /* AddEvent+CoreDataClass.swift */; };
+		949E72902A23CA1E00DE5798 /* AddEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949E728E2A23CA1E00DE5798 /* AddEvent+CoreDataProperties.swift */; };
 		94AEE7AB295B483100572BEF /* LocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEE7AA295B483100572BEF /* LocationExtension.swift */; };
 		94AEFDC92936312000DD3786 /* EventInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEFDC82936312000DD3786 /* EventInfoStackView.swift */; };
 		94B2BF99291E52BA00F864B9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2BF98291E52BA00F864B9 /* R.generated.swift */; };
@@ -205,6 +207,8 @@
 		947DFC2B292C032600045932 /* OneEventContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventContainer.swift; sourceTree = "<group>"; };
 		947DFC32292C063600045932 /* EventTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTagView.swift; sourceTree = "<group>"; };
 		9490598C29E4248D00362DF3 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		949E728D2A23CA1E00DE5798 /* AddEvent+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		949E728E2A23CA1E00DE5798 /* AddEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddEvent+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		94AEE7AA295B483100572BEF /* LocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationExtension.swift; sourceTree = "<group>"; };
 		94AEFDC82936312000DD3786 /* EventInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoStackView.swift; sourceTree = "<group>"; };
 		94B2BF98291E52BA00F864B9 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -366,6 +370,8 @@
 		941076112A23C3A7009D49D4 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				949E728D2A23CA1E00DE5798 /* AddEvent+CoreDataClass.swift */,
+				949E728E2A23CA1E00DE5798 /* AddEvent+CoreDataProperties.swift */,
 				941076122A23C3B7009D49D4 /* Events.xcdatamodeld */,
 				941076152A23C3D6009D49D4 /* CoreDataStack.swift */,
 			);
@@ -819,6 +825,7 @@
 				5455F995292B8A2600E63E72 /* UIStackView+Extensions.swift in Sources */,
 				5455F98E292B893B00E63E72 /* RegistrationPresenter.swift in Sources */,
 				5455F98F292B893B00E63E72 /* RegistrationProtocols.swift in Sources */,
+				949E72902A23CA1E00DE5798 /* AddEvent+CoreDataProperties.swift in Sources */,
 				5455F980292B893300E63E72 /* LogInViewController.swift in Sources */,
 				947DFC33292C063600045932 /* EventTagView.swift in Sources */,
 				5455F98B292B893B00E63E72 /* RegistrationInteractor.swift in Sources */,
@@ -830,6 +837,7 @@
 				94C1B2252A19F68600CEEE42 /* MediaEncoder.swift in Sources */,
 				94C1B2522A1E47A900CEEE42 /* MemberModel.swift in Sources */,
 				94C1B2272A19F73200CEEE42 /* ImageNetworkManager.swift in Sources */,
+				949E728F2A23CA1E00DE5798 /* AddEvent+CoreDataClass.swift in Sources */,
 				5455F983292B893300E63E72 /* LogInRouter.swift in Sources */,
 				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
 				947DFC2F292C032600045932 /* OneEventProtocols.swift in Sources */,
