@@ -77,14 +77,14 @@ final class AddEventContentView: UIView {
         return tags
     }()
     
-    private let firstTag: СustomTextField = {
-        let tag = СustomTextField()
+    private let firstTag: CustomTextField = {
+        let tag = CustomTextField()
         tag.translatesAutoresizingMaskIntoConstraints = false
         return tag
     }()
     
-    private let secondTag: СustomTextField = {
-        let tag = СustomTextField()
+    private let secondTag: CustomTextField = {
+        let tag = CustomTextField()
         tag.translatesAutoresizingMaskIntoConstraints = false
         return tag
     }()
@@ -95,7 +95,7 @@ final class AddEventContentView: UIView {
         description.textColor = R.color.textFieldText()
         description.backgroundColor = .secondarySystemBackground
         description.font = .systemFont(ofSize: 13)
-        description.layer.borderColor = R.color.textFieldBackground()?.cgColor
+        description.layer.borderColor = UIColor.systemGray3.cgColor
         description.layer.borderWidth = 1
         description.layer.cornerRadius = 4
         description.layer.cornerRadius = 4
@@ -119,6 +119,7 @@ final class AddEventContentView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = R.color.background()
         descriptonTextView.delegate = self
         addVeiws()
         setupConstraints()

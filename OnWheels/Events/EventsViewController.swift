@@ -63,6 +63,7 @@ extension EventsViewController {
     private func setupUI(){
         view.backgroundColor = R.color.background()
         view.addSubview(eventsTableView)
+        self.tabBarController?.tabBar.backgroundColor = R.color.cellColor()
     }
     
     private func setupNavigationBar(){
