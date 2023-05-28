@@ -65,6 +65,10 @@ final class AddEventInteractor {
 }
 
 extension AddEventInteractor: AddEventInteractorInput {
+    func saveEventToCoreData(with raceInfo: [String?], and imageData: Data?) {
+//        <#code#>
+    }
+    
     func addRace(with raceInfo: [String?], and imageData: Data?) {
         if let image = imageData {
             imageManager.postImage(with: image) {imageData, error in

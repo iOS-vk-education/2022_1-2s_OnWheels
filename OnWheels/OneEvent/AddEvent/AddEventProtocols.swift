@@ -22,13 +22,14 @@ protocol AddEventViewInput: AnyObject {
 }
 
 protocol AddEventViewOutput: AnyObject {
-    func closeButtonWasTapped()
+    func closeButtonWasTapped(with raceInfo: [String?], and imageData: Data?)
     func didTapAddRace(with raceInfo: [String?], and imageData: Data?)
     func showImagePicker()
 }
 
 protocol AddEventInteractorInput: AnyObject {
     func addRace(with raceInfo: [String?], and imageData: Data?)
+    func saveEventToCoreData(with raceInfo: [String?], and imageData: Data?)
 }
 
 protocol AddEventInteractorOutput: AnyObject {

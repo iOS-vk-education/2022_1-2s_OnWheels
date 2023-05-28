@@ -77,8 +77,8 @@ private extension AddEventViewController {
             self?.output.didTapAddRace(with: info, and: image)
         }
         
-        addRaceContentView.setCloseAction { [weak self] in
-            self?.output.closeButtonWasTapped()
+        addRaceContentView.setCloseAction { [weak self] info, image in
+            self?.output.closeButtonWasTapped(with: info, and: image)
         }
     }
     

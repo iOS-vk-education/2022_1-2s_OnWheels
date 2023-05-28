@@ -8,7 +8,7 @@
 import UIKit
 
 final class AddEventContentView: UIView {
-    typealias CloseClosure = () -> Void
+    typealias CloseClosure = ([String?], Data?) -> Void
     typealias AddClosure = ([String?], Data?) -> Void
     typealias PickerClosure = () -> ()
     
@@ -242,7 +242,19 @@ extension AddEventContentView {
     
     @objc
     func closeButtonTapped() {
-        closeAction?()
+        var addRaceInfo: [String?] = ["name","datefrom", "dateto", "place", "description"]
+        addRaceInfo[0] = eventNameTextField.text
+        addRaceInfo[1] = dateFromTextField.text
+        addRaceInfo[2] = dateToTextField.text
+        addRaceInfo[3] = placeTextField.text
+        if descriptonTextView.text == "" || descriptonTextView.text == R.string.localizable.eventDescription() {
+            addRaceInfo[4] = R.string.localizable.noDescription()
+        } else {
+            addRaceInfo[4] = descriptonTextView.text
+        }
+        
+        let imageData = raceImageView.image?.jpegData(compressionQuality: 0.8)
+        closeAction?(addRaceInfo, imageData)
     }
     
     @objc

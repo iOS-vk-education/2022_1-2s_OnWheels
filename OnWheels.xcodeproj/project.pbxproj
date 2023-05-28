@@ -42,6 +42,8 @@
 		85B83F5A0830F9BD91C41E1E /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B83750D021D3A9E5F5CBF4 /* Buttons.swift */; };
 		85B83F8217BE2D89E57224AF /* ProfileRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B8374AF554D3FEEB90A11C /* ProfileRouterImpl.swift */; };
 		9401587229DAD6F1002F42FC /* AddEventContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9401587129DAD6F1002F42FC /* AddEventContentView.swift */; };
+		941076142A23C3B7009D49D4 /* Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 941076122A23C3B7009D49D4 /* Events.xcdatamodeld */; };
+		941076162A23C3D6009D49D4 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941076152A23C3D6009D49D4 /* CoreDataStack.swift */; };
 		94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A23291CFB8400A8163B /* AuthCoordinator.swift */; };
 		94187A26291CFB9100A8163B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A25291CFB9100A8163B /* AppCoordinator.swift */; };
 		94187A28291CFB9E00A8163B /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */; };
@@ -160,6 +162,8 @@
 		85B83DDD268418AFFC162895 /* ProfileBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
 		85B83F3DD2E586BFB4033AC7 /* ProfileContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
 		9401587129DAD6F1002F42FC /* AddEventContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventContentView.swift; sourceTree = "<group>"; };
+		941076132A23C3B7009D49D4 /* Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Events.xcdatamodel; sourceTree = "<group>"; };
+		941076152A23C3D6009D49D4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		94187A23291CFB8400A8163B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		94187A25291CFB9100A8163B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		94187A27291CFB9E00A8163B /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -357,6 +361,15 @@
 				85B83750D021D3A9E5F5CBF4 /* Buttons.swift */,
 			);
 			path = BaseComponents;
+			sourceTree = "<group>";
+		};
+		941076112A23C3A7009D49D4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				941076122A23C3B7009D49D4 /* Events.xcdatamodeld */,
+				941076152A23C3D6009D49D4 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		94187A22291CF95B00A8163B /* Coordinator */ = {
@@ -631,6 +644,7 @@
 		ECC991EC29054F3A00BC3FA5 /* OnWheels */ = {
 			isa = PBXGroup;
 			children = (
+				941076112A23C3A7009D49D4 /* CoreData */,
 				94C1B2582A1E809B00CEEE42 /* LoaderAnimation.json */,
 				941E988E29573E330068F802 /* NetworkManagers */,
 				941E988B295728F50068F802 /* Entities */,
@@ -800,6 +814,7 @@
 				941E987A2955F3060068F802 /* HTTPTask.swift in Sources */,
 				7F02BD982926A6B400DDA504 /* EventsContainer.swift in Sources */,
 				94187A43291D191B00A8163B /* EnterViewController.swift in Sources */,
+				941076162A23C3D6009D49D4 /* CoreDataStack.swift in Sources */,
 				94C1B2422A1CE00F00CEEE42 /* EventsContentProviderImpl.swift in Sources */,
 				5455F995292B8A2600E63E72 /* UIStackView+Extensions.swift in Sources */,
 				5455F98E292B893B00E63E72 /* RegistrationPresenter.swift in Sources */,
@@ -883,6 +898,7 @@
 				941E9886295600700068F802 /* NetworkManager.swift in Sources */,
 				94187A44291D191B00A8163B /* EnterProtocols.swift in Sources */,
 				941E9888295721CE0068F802 /* UserEndPoint.swift in Sources */,
+				941076142A23C3B7009D49D4 /* Events.xcdatamodeld in Sources */,
 				941E98782955F29E0068F802 /* HTTPMethod.swift in Sources */,
 				94187A2A291CFBAA00A8163B /* CoordinatorProtocol.swift in Sources */,
 				944C6F1C29DDB1D800947A1F /* ImagePicker.swift in Sources */,
@@ -1135,6 +1151,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		941076122A23C3B7009D49D4 /* Events.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				941076132A23C3B7009D49D4 /* Events.xcdatamodel */,
+			);
+			currentVersion = 941076132A23C3B7009D49D4 /* Events.xcdatamodel */;
+			path = Events.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ECC991E229054F3A00BC3FA5 /* Project object */;
 }

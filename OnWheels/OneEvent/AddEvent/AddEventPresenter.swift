@@ -40,7 +40,8 @@ extension AddEventPresenter: AddEventModuleInput {
 }
 
 extension AddEventPresenter: AddEventViewOutput {
-    func closeButtonWasTapped() {
+    func closeButtonWasTapped(with raceInfo: [String?], and imageData: Data?) {
+        interactor.saveEventToCoreData(with: raceInfo, and: imageData)
         router.didTapCloseButton()
     }
     
