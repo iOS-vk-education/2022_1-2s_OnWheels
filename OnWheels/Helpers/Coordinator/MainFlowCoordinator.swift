@@ -22,12 +22,12 @@ final class MainFlowCoordinator: CoordinatorProtocol {
     func start(_ deepLink: DeeplinkData?) {
         window.rootViewController = tabBar
         if let deepLink = deepLink, case DeeplinkData.race(let raceID) = deepLink {
-            guard let navController = self.navigationControllers[.events] else {
-                print("No navController for events, can't deeplink")
+            guard let navControllers = tabBar.viewControllers, navControllers.count != 0 else {
+                print("No navControllers, can't deeplink")
                 return
             }
-            let oneEvent = OneEventContainer.assemble(with: .init(moduleOutput: nil, window: window, raceId: raceID))
-            navController.pushViewController(oneEvent.viewController, animated: true)
+            let oneEvent = OneEventContainer.assemble(with: .init(moduleOutput: nil, raceId: raceID))
+            (navControllers[0] as? UINavigationController)?.pushViewController(oneEvent.viewController, animated: true)
         } else {
             print("no deeplink found")
         }
