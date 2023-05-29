@@ -22,7 +22,28 @@ final class CustomTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.isTranslucent = false
+        delegate = self
         configureTabBar()
+    }
+}
+
+protocol TabBarReselectHandling {
+    func handleReselect()
+}
+
+extension CustomTabBar: UITabBarControllerDelegate {
+    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if tabBarController.selectedViewController === viewController {
+            if let handler = (viewController as? UINavigationController)?.viewControllers[0] as? TabBarReselectHandling {
+                handler.handleReselect()
+            } else {
+                print("could not convert handler, NOT OK")
+            }
+        } else {
+            print("not matching selected, OK")
+        }
+
+        return true
     }
 }
 
