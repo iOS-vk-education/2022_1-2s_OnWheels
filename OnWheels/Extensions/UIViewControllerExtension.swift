@@ -22,7 +22,6 @@ extension UIViewController {
         
         loader.startAnimation()
     }
-
     
     func hideLoader() {
         let loader = self.view.subviews.first { $0 is LoaderView }

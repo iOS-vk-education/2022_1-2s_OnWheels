@@ -112,6 +112,8 @@
 		94C1B2562A1E7FE400CEEE42 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2552A1E7FE400CEEE42 /* LoaderView.swift */; };
 		94C1B2592A1E809B00CEEE42 /* LoaderAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 94C1B2582A1E809B00CEEE42 /* LoaderAnimation.json */; };
 		94C1B25D2A1E831600CEEE42 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25C2A1E831600CEEE42 /* UIViewControllerExtension.swift */; };
+		94C1B2652A21F52000CEEE42 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2642A21F52000CEEE42 /* CustomTabBar.swift */; };
+		94C1B2672A21F69E00CEEE42 /* TabBarCenterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2662A21F69E00CEEE42 /* TabBarCenterButton.swift */; };
 		94C1B2602A20E4B600CEEE42 /* OneEventContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */; };
 		94C1B2632A20F59600CEEE42 /* OneEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C1B2622A20F59600CEEE42 /* OneEvent.swift */; };
 		94E574952917C82F00EF9585 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E574942917C82F00EF9585 /* ColorExtension.swift */; };
@@ -233,6 +235,8 @@
 		94C1B2552A1E7FE400CEEE42 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		94C1B2582A1E809B00CEEE42 /* LoaderAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoaderAnimation.json; sourceTree = "<group>"; };
 		94C1B25C2A1E831600CEEE42 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		94C1B2642A21F52000CEEE42 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		94C1B2662A21F69E00CEEE42 /* TabBarCenterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCenterButton.swift; sourceTree = "<group>"; };
 		94C1B25F2A20E4B600CEEE42 /* OneEventContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEventContentView.swift; sourceTree = "<group>"; };
 		94C1B2622A20F59600CEEE42 /* OneEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneEvent.swift; sourceTree = "<group>"; };
 		94E574942917C82F00EF9585 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -605,6 +609,7 @@
 				94187A22291CF95B00A8163B /* Coordinator */,
 				94E574942917C82F00EF9585 /* ColorExtension.swift */,
 				94E574972917CA0600EF9585 /* ReuseIdentifier.swift */,
+				94C1B2642A21F52000CEEE42 /* CustomTabBar.swift */,
 				942FBCF12950DE4F00A13511 /* CustomTextField.swift */,
 				947DFC32292C063600045932 /* EventTagView.swift */,
 				94FB88CE292CDA2C00A567C6 /* EventMapView.swift */,
@@ -618,6 +623,8 @@
 				85B83EB0CB1263E667FF1DC3 /* BaseComponents */,
 				70A9576529E4BAD100DA0A66 /* UIStackViewExtension.swift */,
 				94C1B2532A1E696900CEEE42 /* KingfisherImage.swift */,
+				94C1B25A2A1E80E800CEEE42 /* JSONEnum.swift */,
+				94C1B2662A21F69E00CEEE42 /* TabBarCenterButton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -841,6 +848,7 @@
 				5455F983292B893300E63E72 /* LogInRouter.swift in Sources */,
 				94187A46291D191B00A8163B /* EnterContainer.swift in Sources */,
 				947DFC2F292C032600045932 /* OneEventProtocols.swift in Sources */,
+				94C1B2652A21F52000CEEE42 /* CustomTabBar.swift in Sources */,
 				706F1CE829E054500064F80E /* ProfilePresenter.swift in Sources */,
 				70A9576629E4BAD100DA0A66 /* UIStackViewExtension.swift in Sources */,
 				94187A24291CFB8400A8163B /* AuthCoordinator.swift in Sources */,
@@ -852,12 +860,14 @@
 				94187A42291D191B00A8163B /* EnterRouter.swift in Sources */,
 				94187A45291D191B00A8163B /* EnterInteractor.swift in Sources */,
 				7F02BD972926A6B400DDA504 /* EventsRouter.swift in Sources */,
+				94C1B25B2A1E80E800CEEE42 /* JSONEnum.swift in Sources */,
 				7F02BD952926A6B400DDA504 /* EventsPresenter.swift in Sources */,
 				706F1CED29E0602F0064F80E /* ProfileView.swift in Sources */,
 				7F02BD962926A6B400DDA504 /* EventsViewController.swift in Sources */,
 				ECC991F229054F3A00BC3FA5 /* ViewController.swift in Sources */,
 				ECC991EE29054F3A00BC3FA5 /* AppDelegate.swift in Sources */,
 				94C1B25D2A1E831600CEEE42 /* UIViewControllerExtension.swift in Sources */,
+				94C1B2672A21F69E00CEEE42 /* TabBarCenterButton.swift in Sources */,
 				941E989A2958C2330068F802 /* RaceEndPoint.swift in Sources */,
 				94C1B2542A1E696900CEEE42 /* KingfisherImage.swift in Sources */,
 				ECC991F029054F3A00BC3FA5 /* SceneDelegate.swift in Sources */,
