@@ -109,6 +109,14 @@ extension EventsViewController {
     }
 }
 
+extension EventsViewController: TabBarReselectHandling {
+    func handleReselect() {
+        // scroll to top if reselected (double tap)
+        // maybe check if we're in main screen?
+        eventsTableView.scrollToRow(at: .init(item: 0, section: 0), at: .top, animated: true)
+    }
+}
+
 extension EventsViewController: EventsViewInput {
     func showLoaderView() {
         eventsTableView.isHidden = true
