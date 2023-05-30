@@ -26,15 +26,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        var deeplink: DeeplinkData?
+        if let firstUrl = URLContexts.first?.url {
+            let host = firstUrl.host
+            var parameters: [String: String] = [:]
+            URLComponents(url: firstUrl, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+                parameters[$0.name] = $0.value
+            }
 
-        //MARK: в переменную будем передавать значения из userDefaults, чтобы понимать, зашел уже человек или еще нет
-//        let bool = true
-//        if bool {
-//            coordinator = AppCoordinator(window: window, instructor: .authorization)
-//        } else {
-//            coordinator = AppCoordinator(window: window, instructor: .main)
-//        }
-//        coordinator?.start()
+            if host == "race", let id = parameters["id"], let idInt = Int(id) {
+                deeplink = .race(idInt)
+            }
+        }
+
+
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        let window: UIWindow = UIWindow(windowScene: windowScene)
+        self.window = window
+
+        let enterContainer = EnterContainer.assemble(with: EnterContext(window: window, deeplink: deeplink))
+        let navigationController = UINavigationController(rootViewController: enterContainer.viewController)
+
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

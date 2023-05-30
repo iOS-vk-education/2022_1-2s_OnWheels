@@ -19,7 +19,8 @@ extension RegistrationRouter: RegistrationRouterInput {
         guard let window = window else {
             return
         }
-        let coordinator = AppCoordinator(window: window, instructor: .main)
+        // TODO deeplink even after registration
+        let coordinator = AppCoordinator(window: window, instructor: .main(nil))
         coordinator.start()
     }
     
