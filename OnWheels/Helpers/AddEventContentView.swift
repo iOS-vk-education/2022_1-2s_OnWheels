@@ -11,12 +11,15 @@ final class AddEventContentView: UIView {
     typealias CloseClosure = ([String?], Data?) -> Void
     typealias AddClosure = ([String?], Data?) -> Void
     typealias PickerClosure = () -> ()
+    typealias CleanTFsClosure = () -> ()
     
     private var closeAction: CloseClosure?
     
     private var addAction: AddClosure?
     
     private var photoPickerAction: PickerClosure?
+    
+    private var cleanTFsAction: CleanTFsClosure?
     
     private let mainLabel: UILabel = {
         let main = UILabel()
@@ -33,6 +36,14 @@ final class AddEventContentView: UIView {
         close.translatesAutoresizingMaskIntoConstraints = false
         close.tintColor = R.color.mainBlue()
         return close
+    }()
+    
+    private let cleanTFButton: UIButton = {
+        let clean = UIButton()
+        clean.setImage(R.image.cleanTFs(), for: .normal)
+        clean.translatesAutoresizingMaskIntoConstraints = false
+        clean.tintColor = R.color.redColor()
+        return clean
     }()
     
     private let eventNameTextField: CustomTextField = {
@@ -140,6 +151,7 @@ extension AddEventContentView {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(mainLabel)
         self.addSubview(closeButton)
+        self.addSubview(cleanTFButton)
         self.addSubview(eventNameTextField)
         self.addSubview(dateFromToStackView)
         dateFromToStackView.addArrangedSubview(dateFromTextField)
@@ -163,6 +175,11 @@ extension AddEventContentView {
             closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
             closeButton.widthAnchor.constraint(equalToConstant: 48),
             closeButton.heightAnchor.constraint(equalToConstant: 48),
+            
+            cleanTFButton.centerYAnchor.constraint(equalTo: mainLabel.centerYAnchor),
+            cleanTFButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
+            cleanTFButton.widthAnchor.constraint(equalToConstant: 48),
+            cleanTFButton.heightAnchor.constraint(equalToConstant: 48),
             
             eventNameTextField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 24),
             eventNameTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
@@ -217,7 +234,7 @@ extension AddEventContentView {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
-        datePicker.maximumDate = Date()
+        datePicker.minimumDate = Date()
         datePicker.center = self.center
         return datePicker
     }
@@ -258,6 +275,7 @@ extension AddEventContentView {
         addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         raceImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imagePickerTapped)))
         raceImageView.isUserInteractionEnabled = true
+        cleanTFButton.addTarget(self, action: #selector(cleanTFButtonTapped), for: .touchUpInside)
     }
     
     func setCloseAction(_ action: @escaping CloseClosure) {
@@ -270,6 +288,10 @@ extension AddEventContentView {
     
     func setPickerAction(_ action: @escaping PickerClosure) {
         self.photoPickerAction = action
+    }
+    
+    func setCleanTFsAction(_ action: @escaping CleanTFsClosure) {
+        self.cleanTFsAction = action
     }
     
     @objc
@@ -315,6 +337,11 @@ extension AddEventContentView {
         addAction?(addRaceInfo, imageData)
     }
     
+    @objc
+    func cleanTFButtonTapped() {
+        cleanTFsAction?()
+    }
+    
     func setupActions() {
         let tapToHide = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.addGestureRecognizer(tapToHide)
@@ -339,6 +366,17 @@ extension AddEventContentView {
     
     func setImage(from imageData: UIImage?) {
         raceImageView.image = imageData
+    }
+    
+    func cleanDataFromView() {
+        eventNameTextField.text = ""
+        dateFromTextField.text = ""
+        dateToTextField.text = ""
+        placeTextField.text = ""
+        descriptonTextView.text = R.string.localizable.eventDescription()
+        firstTag.text = ""
+        secondTag.text = ""
+        raceImageView.image = R.image.addRacePicker()
     }
 }
 

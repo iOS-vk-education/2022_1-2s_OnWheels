@@ -20,6 +20,7 @@ protocol AddEventViewInput: AnyObject {
     func showError(with error: String)
     func showEmptyFields(withIndexes: [Int])
     func setDataFromCoreData(raceInfo: AddEventInfoCDModel, imageData: Data?)
+    func removeDataFromView()
 }
 
 protocol AddEventViewOutput: AnyObject {
@@ -27,6 +28,7 @@ protocol AddEventViewOutput: AnyObject {
     func didTapAddRace(with raceInfo: [String?], and imageData: Data?)
     func showImagePicker()
     func getDataFromCoreData()
+    func removeData()
 }
 
 protocol AddEventInteractorInput: AnyObject {
@@ -34,12 +36,14 @@ protocol AddEventInteractorInput: AnyObject {
     func saveEventToCoreData(with raceInfo: [String?], and imageData: Data?)
     func removeEventFromCoreData()
     func getEventFormCoreData()
+    func removeDataFromTFs()
 }
 
 protocol AddEventInteractorOutput: AnyObject {
     func addButtonWasTapped()
     func showError(with error: String)
     func setEventDataFromCoreData(raceData: AddEventInfoCDModel, imageData: Data?)
+    func cleanTFs()
 }
 
 protocol AddEventRouterInput: AnyObject {

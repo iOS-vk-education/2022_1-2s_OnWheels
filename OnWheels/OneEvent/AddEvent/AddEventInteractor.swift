@@ -101,6 +101,10 @@ extension AddEventInteractor: AddEventInteractorInput {
         coreDataManager.deleteEvent()
     }
     
+    func removeDataFromTFs() {
+        output?.cleanTFs()
+    }
+    
     func addRace(with raceInfo: [String?], and imageData: Data?) {
         if let image = imageData {
             imageManager.postImage(with: image) {imageData, error in

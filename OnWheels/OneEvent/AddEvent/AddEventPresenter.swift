@@ -62,9 +62,18 @@ extension AddEventPresenter: AddEventViewOutput {
     func getDataFromCoreData() {
         interactor.getEventFormCoreData()
     }
+    
+    func removeData() {
+        interactor.removeEventFromCoreData()
+        interactor.removeDataFromTFs()
+    }
 }
 
 extension AddEventPresenter: AddEventInteractorOutput {
+    func cleanTFs() {
+        view?.removeDataFromView()
+    }
+    
     func setEventDataFromCoreData(raceData: AddEventInfoCDModel, imageData: Data?) {
         view?.setDataFromCoreData(raceInfo: raceData, imageData: imageData)
     }

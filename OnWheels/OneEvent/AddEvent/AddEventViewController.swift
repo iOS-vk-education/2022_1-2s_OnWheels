@@ -41,6 +41,10 @@ final class AddEventViewController: UIViewController {
 }
 
 extension AddEventViewController: AddEventViewInput {
+    func removeDataFromView() {
+        addRaceContentView.cleanDataFromView()
+    }
+    
     func setDataFromCoreData(raceInfo: AddEventInfoCDModel, imageData: Data?) {
         addRaceContentView.setData(from: raceInfo)
         if imageData == nil {
@@ -93,6 +97,10 @@ private extension AddEventViewController {
         
         addRaceContentView.setCloseAction { [weak self] info, image in
             self?.output.closeButtonWasTapped(with: info, and: image)
+        }
+        
+        addRaceContentView.setCleanTFsAction { [weak self] in
+            self?.output.removeData()
         }
     }
     
