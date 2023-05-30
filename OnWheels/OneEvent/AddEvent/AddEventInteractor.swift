@@ -14,13 +14,15 @@ final class AddEventInteractor {
     private let raceManager: RacesNetworkManager
     private let locationDecoder: LocationDecoder
     private let imageManager: ImageManager
+    private let coreDataManager: AddEventCoreDataManager
     
-    var event: NSManagedObject = NSManagedObject()
+//    var event: NSManagedObject = NSManagedObject()
     
-    init(raceManager: RacesNetworkManager, locationDecoder: LocationDecoder, imageManager: ImageManager) {
+    init(raceManager: RacesNetworkManager, locationDecoder: LocationDecoder, imageManager: ImageManager, coreDataManager: AddEventCoreDataManager) {
         self.raceManager = raceManager
         self.locationDecoder = locationDecoder
         self.imageManager = imageManager
+        self.coreDataManager = coreDataManager
     }
     
     private func formatDate(dateFrom: String, dateTo: String) -> (String, String) {
@@ -69,6 +71,7 @@ final class AddEventInteractor {
 
 extension AddEventInteractor: AddEventInteractorInput {
     func saveEventToCoreData(with raceInfo: [String?], and imageData: Data?) {
+        coreDataManager.deleteEvent()
         let addRaceForCD = AddEventInfoCDModel(name: raceInfo[0] ?? "",
                                                loction: raceInfo[3] ?? "",
                                                dateFrom: raceInfo[1] ?? "",
@@ -77,18 +80,19 @@ extension AddEventInteractor: AddEventInteractorInput {
                                                imageData: imageData,
                                                firstTag: raceInfo[5] ?? "",
                                                secondTag: raceInfo[6] ?? "")
-
+        coreDataManager.addNewEvent(addRaceForCD)
     }
     
     func getEventFormCoreData() {
-        let eventFetch: NSFetchRequest<AddEventCDEntity> = AddEventCDEntity.fetchRequest()
-        do {
-            let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
-            let result = try managedContext.fetch(eventFetch)
-            //презентер -> вью -> show saved data if available
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
+        let events = coreDataManager.fetchEvents()
+        guard let event = events.last else {
+            return
         }
+        output?.setEventDataFromCoreData(raceData: event)
+    }
+    
+    func removeEventFromCoreData() {
+        coreDataManager.deleteEvent()
     }
     
     func addRace(with raceInfo: [String?], and imageData: Data?) {

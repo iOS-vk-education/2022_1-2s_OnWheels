@@ -274,7 +274,7 @@ extension AddEventContentView {
     
     @objc
     func closeButtonTapped() {
-        var addRaceInfo: [String?] = ["name","datefrom", "dateto", "place", "description"]
+        var addRaceInfo: [String?] = ["name","datefrom", "dateto", "place", "description", "tag1", "tag2"]
         addRaceInfo[0] = eventNameTextField.text
         addRaceInfo[1] = dateFromTextField.text
         addRaceInfo[2] = dateToTextField.text
@@ -284,6 +284,8 @@ extension AddEventContentView {
         } else {
             addRaceInfo[4] = descriptonTextView.text
         }
+        addRaceInfo[5] = firstTag.text
+        addRaceInfo[6] = secondTag.text
         
         let imageData = raceImageView.image?.jpegData(compressionQuality: 0.8)
         closeAction?(addRaceInfo, imageData)
@@ -321,6 +323,19 @@ extension AddEventContentView {
     @objc
     func dismissKeyboard() {
         self.endEditing(true)
+    }
+}
+
+extension AddEventContentView {
+    func setData(from raceInfo: AddEventInfoCDModel) {
+        eventNameTextField.text = raceInfo.name
+        dateFromTextField.text = raceInfo.dateFrom
+        dateToTextField.text = raceInfo.dateTo
+        placeTextField.text = raceInfo.loction
+        descriptonTextView.text = raceInfo.raceDescription
+        firstTag.text = raceInfo.firstTag
+        secondTag.text = raceInfo.secondTag
+//        raceImageView.image = raceInfo.imageData
     }
 }
 

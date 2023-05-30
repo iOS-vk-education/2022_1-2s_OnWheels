@@ -12,22 +12,23 @@ class CoreDataBaseManager {
         case eventDataModel = "Events"
     }
     
-    private(set) lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: modelName.rawValue)
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("[DEBUG]: - Unresolved error \(error), \(error.userInfo)")
+    private static var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Events")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Unable to load persistent stores: \(error)")
             }
-        })
+        }
         return container
     }()
+     
     
     private(set) lazy var context: NSManagedObjectContext = {
-        return persistentContainer.viewContext
+        return CoreDataBaseManager.persistentContainer.viewContext
     }()
     
     private(set) lazy var backgroundContext: NSManagedObjectContext = {
-        return persistentContainer.newBackgroundContext()
+        return CoreDataBaseManager.persistentContainer.newBackgroundContext()
     }()
     
     private let modelName: ModelName

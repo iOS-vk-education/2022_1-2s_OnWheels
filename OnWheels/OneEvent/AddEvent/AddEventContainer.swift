@@ -20,7 +20,8 @@ final class AddEventContainer {
         let locationDecoder = LocationDecoder()
         let networkImageRouter = Router<ImageEndPoint>()
         let imageManager = ImageManagerImpl(router: networkImageRouter)
-        let interactor = AddEventInteractor(raceManager: raceManager, locationDecoder: locationDecoder, imageManager: imageManager)
+        let coreDataManager = AddEventCoreDataManager(modelName: .eventDataModel)
+        let interactor = AddEventInteractor(raceManager: raceManager, locationDecoder: locationDecoder, imageManager: imageManager, coreDataManager: coreDataManager)
         let presenter = AddEventPresenter(router: router, interactor: interactor)
         let viewController = AddEventViewController(output: presenter)
         

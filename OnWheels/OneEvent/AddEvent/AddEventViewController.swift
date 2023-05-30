@@ -13,7 +13,8 @@ final class AddEventViewController: UIViewController {
     private let output: AddEventViewOutput
     
     private let labels = [R.string.localizable.enterName(), R.string.localizable.dateFrom(),
-                          R.string.localizable.dateTo(), R.string.localizable.placeOfEvent()]
+                          R.string.localizable.dateTo(), R.string.localizable.placeOfEvent(),
+                          R.string.localizable.firstTag(), R.string.localizable.secondTag()]
     
     private let addRaceContentView = AddEventContentView()
     
@@ -31,6 +32,7 @@ final class AddEventViewController: UIViewController {
         super.viewDidLoad()
         setupButtonActions()
         setupImagePickerAction()
+        output.getDataFromCoreData()
     }
     
     override func loadView() {
@@ -69,6 +71,9 @@ extension AddEventViewController: AddEventViewInput {
         self.present(alert, animated: true)
     }
     
+    func setDataFromCoreData(raceInfo: AddEventInfoCDModel) {
+        addRaceContentView.setData(from: raceInfo)
+    }
 }
 
 private extension AddEventViewController {
