@@ -50,6 +50,10 @@ final class OneEventInteractor {
 }
 
 extension OneEventInteractor: OneEventInteractorInput {
+    func getRaceId() -> Int {
+        return raceId
+    }
+
     func loadRaceInfo() {
         var isUserMember = false
         self.userInteractionsManager.getMember(with: raceId) { isMember, error in

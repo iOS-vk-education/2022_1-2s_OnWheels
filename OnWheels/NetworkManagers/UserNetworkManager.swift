@@ -41,15 +41,22 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
         self.router = router
     }
 
+    private func storeCookieForExtendedTime(_ cookie: HTTPCookie) {
+        var properties = cookie.properties!
+        properties[.expires] = Date.init(timeIntervalSinceNow: 600) as NSDate
+        properties[.discard] = nil
+        if let newCookie = HTTPCookie(properties: properties) {
+            HTTPCookieStorage.shared.setCookie(newCookie)
+        } else {
+            print("Couldn't change the cookie!")
+        }
+    }
+
     func currentUserInfo(completion: @escaping (CurrentUser?, String?) -> ()) {
         router.request(.currentUser) { data, response, error in
             if error != nil {
                 completion(nil, "Check network connection")
             }
-            // debug
-            completion(CurrentUser(id: 1, firstname: "Artem", lastname: "Tikhonenko", email: "test@test.com", city: "Москва", birthday: "2013-09-29T18:46:19-0700", sex: "Мужской"), nil)
-            return
-            //
             if let response = response as? HTTPURLResponse {
                 let result = self.handleNetworkResponse(response)
                 switch result {
@@ -129,9 +136,10 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                         DispatchQueue.main.async {
                             let cookies = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
                                 return cookie.name == ".AspNetCore.Session"
-                            })?.value ?? ""
-                            completion(.authorized(accessToken: cookies))
-                            defaults.set(cookies, forKey: "cookie")
+                            })
+                            self.storeCookieForExtendedTime(cookies!)
+                            completion(.authorized(accessToken: cookies?.value ?? ""))
+                            //defaults.set(cookies, forKey: "cookie")
                         }
                     } catch {
                         completion(.nonAuthorized(error: NetworkResponse.unableToDecode.rawValue))
@@ -160,11 +168,12 @@ final class UserNetworkManagerImpl: NetworkManager, UserNetworkManager {
                     }
                     do {
                         DispatchQueue.main.async {
-                            let cookies = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
+                            var cookies = HTTPCookieStorage.shared.cookies?.first(where: { cookie in
                                 return cookie.name == ".AspNetCore.Session"
-                            })?.value ?? ""
-                            completion(.authorized(accessToken: cookies))
-                            defaults.set(cookies, forKey: "cookie")
+                            })
+                            self.storeCookieForExtendedTime(cookies!)
+                            completion(.authorized(accessToken: cookies?.value ?? ""))
+                            //defaults.set(cookies, forKey: "cookie")
                         }
                     } catch {
                         completion(.nonAuthorized(error: NetworkResponse.unableToDecode.rawValue))

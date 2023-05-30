@@ -11,7 +11,7 @@ import PinLayout
 import CoreLocation
 
 final class OneEventViewController: UIViewController, UIGestureRecognizerDelegate {
-    private let output: OneEventViewOutput
+    private let output: OneEventViewOutput // presenter
     
     private let eventScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -78,6 +78,13 @@ final class OneEventViewController: UIViewController, UIGestureRecognizerDelegat
     @objc
     func shareButtonTapped() {
         print("share")
+        let raceID = output.raceID()
+        if let myWebsite = URL(string: "onwheels://race?id=\(raceID)") {
+            let objectsToShare = [myWebsite.absoluteString] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityVC.popoverPresentationController?.sourceView = view
+            self.present(activityVC, animated: true, completion: nil)
+        }
     }
     
     @objc
