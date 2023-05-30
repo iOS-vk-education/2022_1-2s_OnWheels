@@ -40,11 +40,12 @@ extension AddEventPresenter: AddEventModuleInput {
 }
 
 extension AddEventPresenter: AddEventViewOutput {
+    // TODO: save if dismissed
     func closeButtonWasTapped(with raceInfo: [String?], and imageData: Data?) {
         interactor.saveEventToCoreData(with: raceInfo, and: imageData)
         router.didTapCloseButton()
     }
-    
+
     func didTapAddRace(with raceInfo: [String?], and image: Data?) {
         let emptyFieldsIndexes = getIndexesOfEmptyFields(addRaceInfo: raceInfo)
         if emptyFieldsIndexes.isEmpty {

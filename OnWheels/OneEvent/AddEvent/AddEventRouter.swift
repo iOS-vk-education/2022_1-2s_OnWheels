@@ -15,11 +15,15 @@ final class AddEventRouter {
 
 extension AddEventRouter: AddEventRouterInput {
     func didTapCloseButton() {
-        viewController?.dismiss(animated: true)
+        DispatchQueue.main.async {
+            self.viewController?.dismiss(animated: true)
+        }
     }
     
     func didTapAddButton() {
-        viewController?.dismiss(animated: true)
+        DispatchQueue.main.async {
+            self.viewController?.dismiss(animated: true)
+        }
     }
     
     func showImagePicker(delegateForPicker delegate: ImagePickerDelegate) {

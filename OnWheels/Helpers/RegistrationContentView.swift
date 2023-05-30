@@ -76,6 +76,9 @@ final class RegistrationContentView: UIView {
             text.autocorrectionType = .no
             textFields.append(text)
         }
+        textFields[safe: 5]?.autocapitalizationType = .none
+        textFields[safe: 6]?.autocapitalizationType = .none
+        textFields[safe: 7]?.autocapitalizationType = .none
         return textFields
     }()
     

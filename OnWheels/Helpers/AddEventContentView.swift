@@ -360,6 +360,8 @@ extension AddEventContentView {
         dateToTextField.text = raceInfo.dateTo
         placeTextField.text = raceInfo.loction
         descriptonTextView.text = raceInfo.raceDescription
+        descriptonTextView.textColor = R.color.profileCellTextColor()
+
         firstTag.text = raceInfo.firstTag
         secondTag.text = raceInfo.secondTag
     }
