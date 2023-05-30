@@ -15,14 +15,14 @@ final class AddEventInteractor {
     private let locationDecoder: LocationDecoder
     private let imageManager: ImageManager
     private let coreDataManager: AddEventCoreDataManager
-    
-//    var event: NSManagedObject = NSManagedObject()
-    
-    init(raceManager: RacesNetworkManager, locationDecoder: LocationDecoder, imageManager: ImageManager, coreDataManager: AddEventCoreDataManager) {
+    private let imagesFileManager: ImagesFileManager
+        
+    init(raceManager: RacesNetworkManager, locationDecoder: LocationDecoder, imageManager: ImageManager, coreDataManager: AddEventCoreDataManager, imagesFileManager: ImagesFileManager) {
         self.raceManager = raceManager
         self.locationDecoder = locationDecoder
         self.imageManager = imageManager
         self.coreDataManager = coreDataManager
+        self.imagesFileManager = imagesFileManager
     }
     
     private func formatDate(dateFrom: String, dateTo: String) -> (String, String) {
@@ -72,14 +72,18 @@ final class AddEventInteractor {
 extension AddEventInteractor: AddEventInteractorInput {
     func saveEventToCoreData(with raceInfo: [String?], and imageData: Data?) {
         coreDataManager.deleteEvent()
-        let addRaceForCD = AddEventInfoCDModel(name: raceInfo[0] ?? "",
+        let uuid = UUID().uuidString
+        
+        let addRaceForCD = AddEventInfoCDModel(uid: uuid,
+                                               name: raceInfo[0] ?? "",
                                                loction: raceInfo[3] ?? "",
                                                dateFrom: raceInfo[1] ?? "",
                                                dateTo: raceInfo[2] ?? "",
                                                raceDescription: raceInfo[4] ?? "",
-                                               imageData: imageData,
                                                firstTag: raceInfo[5] ?? "",
                                                secondTag: raceInfo[6] ?? "")
+        
+        imagesFileManager.saveImageLocally(imageData: imageData, fileName: addRaceForCD.uid)
         coreDataManager.addNewEvent(addRaceForCD)
     }
     
@@ -88,7 +92,9 @@ extension AddEventInteractor: AddEventInteractorInput {
         guard let event = events.last else {
             return
         }
-        output?.setEventDataFromCoreData(raceData: event)
+        
+        let imageData = imagesFileManager.getImageFromName(fileName: event.uid)
+        output?.setEventDataFromCoreData(raceData: event, imageData: imageData)
     }
     
     func removeEventFromCoreData() {

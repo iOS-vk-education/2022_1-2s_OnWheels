@@ -41,6 +41,19 @@ final class AddEventViewController: UIViewController {
 }
 
 extension AddEventViewController: AddEventViewInput {
+    func setDataFromCoreData(raceInfo: AddEventInfoCDModel, imageData: Data?) {
+        addRaceContentView.setData(from: raceInfo)
+        if imageData == nil {
+            addRaceContentView.setImage(from: R.image.addRacePicker())
+        } else {
+            guard let imageData = imageData else {
+                return
+            }
+            let image = UIImage(data: imageData)
+            addRaceContentView.setImage(from: image)
+        }
+    }
+    
     func showEmptyFields(withIndexes: [Int]) {
         var alertString = "Не заполены поля: "
         for index in withIndexes {
@@ -69,10 +82,6 @@ extension AddEventViewController: AddEventViewInput {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: R.string.localizable.alertConfirmation(), style: .default))
         self.present(alert, animated: true)
-    }
-    
-    func setDataFromCoreData(raceInfo: AddEventInfoCDModel) {
-        addRaceContentView.setData(from: raceInfo)
     }
 }
 

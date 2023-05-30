@@ -65,8 +65,8 @@ extension AddEventPresenter: AddEventViewOutput {
 }
 
 extension AddEventPresenter: AddEventInteractorOutput {
-    func setEventDataFromCoreData(raceData: AddEventInfoCDModel) {
-        view?.setDataFromCoreData(raceInfo: raceData)
+    func setEventDataFromCoreData(raceData: AddEventInfoCDModel, imageData: Data?) {
+        view?.setDataFromCoreData(raceInfo: raceData, imageData: imageData)
     }
     
     func addButtonWasTapped() {

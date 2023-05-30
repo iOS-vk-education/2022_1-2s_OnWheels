@@ -19,7 +19,7 @@ protocol AddEventViewInput: AnyObject {
     func selectImage(imageData: Data?)
     func showError(with error: String)
     func showEmptyFields(withIndexes: [Int])
-    func setDataFromCoreData(raceInfo: AddEventInfoCDModel)
+    func setDataFromCoreData(raceInfo: AddEventInfoCDModel, imageData: Data?)
 }
 
 protocol AddEventViewOutput: AnyObject {
@@ -39,7 +39,7 @@ protocol AddEventInteractorInput: AnyObject {
 protocol AddEventInteractorOutput: AnyObject {
     func addButtonWasTapped()
     func showError(with error: String)
-    func setEventDataFromCoreData(raceData: AddEventInfoCDModel)
+    func setEventDataFromCoreData(raceData: AddEventInfoCDModel, imageData: Data?)
 }
 
 protocol AddEventRouterInput: AnyObject {

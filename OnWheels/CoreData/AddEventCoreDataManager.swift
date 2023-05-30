@@ -17,7 +17,7 @@ final class AddEventCoreDataManager: CoreDataBaseManager {
         newEvent.firstTag = eventInfo.firstTag
         newEvent.secondTag = eventInfo.secondTag
         newEvent.eventDescription = eventInfo.raceDescription
-        newEvent.eventImage = eventInfo.imageData
+        newEvent.eventUId = eventInfo.uid
         
         saveContext()
         

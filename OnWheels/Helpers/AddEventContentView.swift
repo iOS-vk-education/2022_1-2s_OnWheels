@@ -335,7 +335,10 @@ extension AddEventContentView {
         descriptonTextView.text = raceInfo.raceDescription
         firstTag.text = raceInfo.firstTag
         secondTag.text = raceInfo.secondTag
-//        raceImageView.image = raceInfo.imageData
+    }
+    
+    func setImage(from imageData: UIImage?) {
+        raceImageView.image = imageData
     }
 }
 
