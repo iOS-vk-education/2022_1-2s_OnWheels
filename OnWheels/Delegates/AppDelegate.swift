@@ -10,7 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    lazy var coreDataStack: CoreDataStack = .init(modelName: "Notes")
+    lazy var coreDataStack: CoreDataStack = .init(modelName: "Events")
     
     static let sharedAppDelegate: AppDelegate = {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {

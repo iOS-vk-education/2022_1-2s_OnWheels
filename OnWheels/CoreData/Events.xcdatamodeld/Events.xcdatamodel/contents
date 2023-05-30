@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AddEvent" representedClassName="AddEvent" syncable="YES" codeGenerationType="class">
+    <entity name="AddEventCDEntity" representedClassName="AddEventCDEntity" syncable="YES" codeGenerationType="class">
         <attribute name="dateFrom" optional="YES" attributeType="String"/>
         <attribute name="dateTo" optional="YES" attributeType="String"/>
         <attribute name="eventDescription" optional="YES" attributeType="String"/>

@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import CoreData
 
 final class AddEventInteractor {
     weak var output: AddEventInteractorOutput?
     private let raceManager: RacesNetworkManager
     private let locationDecoder: LocationDecoder
     private let imageManager: ImageManager
+    
+    var event: NSManagedObject = NSManagedObject()
     
     init(raceManager: RacesNetworkManager, locationDecoder: LocationDecoder, imageManager: ImageManager) {
         self.raceManager = raceManager
@@ -66,7 +69,26 @@ final class AddEventInteractor {
 
 extension AddEventInteractor: AddEventInteractorInput {
     func saveEventToCoreData(with raceInfo: [String?], and imageData: Data?) {
-//        <#code#>
+        let addRaceForCD = AddEventInfoCDModel(name: raceInfo[0] ?? "",
+                                               loction: raceInfo[3] ?? "",
+                                               dateFrom: raceInfo[1] ?? "",
+                                               dateTo: raceInfo[2] ?? "",
+                                               raceDescription: raceInfo[4] ?? "",
+                                               imageData: imageData,
+                                               firstTag: raceInfo[5] ?? "",
+                                               secondTag: raceInfo[6] ?? "")
+
+    }
+    
+    func getEventFormCoreData() {
+        let eventFetch: NSFetchRequest<AddEventCDEntity> = AddEventCDEntity.fetchRequest()
+        do {
+            let managedContext = AppDelegate.sharedAppDelegate.coreDataStack.managedContext
+            let result = try managedContext.fetch(eventFetch)
+            //презентер -> вью -> show saved data if available
+        } catch let error as NSError {
+            print("Fetch error: \(error) description: \(error.userInfo)")
+        }
     }
     
     func addRace(with raceInfo: [String?], and imageData: Data?) {
