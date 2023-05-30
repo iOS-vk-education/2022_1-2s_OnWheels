@@ -79,21 +79,21 @@ final class LogInViewController: UIViewController {
         return b
     }()
 
-    private(set) lazy var skipLoginButton: UIButton = {
-        let b: UIButton = .init()
-        var attrString0 = NSMutableAttributedString(string: R.string.localizable.or(),
-                attributes: [
-                    .font: UIFont.systemFont(ofSize: 15)])
-        let attrString1 = NSAttributedString(string: R.string.localizable.loginWithoutAccount(),
-                attributes: [
-                    .font: UIFont.systemFont(ofSize: 15),
-                    .foregroundColor: UIColor.systemBlue])
-        attrString0.append(attrString1)
-        b.setAttributedTitle(attrString0, for: .normal)
-        b.titleLabel?.textAlignment = .center
-        b.titleLabel?.numberOfLines = 0
-        return b
-    }()
+//    private(set) lazy var skipLoginButton: UIButton = {
+//        let b: UIButton = .init()
+//        var attrString0 = NSMutableAttributedString(string: R.string.localizable.or(),
+//                attributes: [
+//                    .font: UIFont.systemFont(ofSize: 15)])
+//        let attrString1 = NSAttributedString(string: R.string.localizable.loginWithoutAccount(),
+//                attributes: [
+//                    .font: UIFont.systemFont(ofSize: 15),
+//                    .foregroundColor: UIColor.systemBlue])
+//        attrString0.append(attrString1)
+//        b.setAttributedTitle(attrString0, for: .normal)
+//        b.titleLabel?.textAlignment = .center
+//        b.titleLabel?.numberOfLines = 0
+//        return b
+//    }()
 
 
     init(output: LogInViewOutput) {
@@ -142,24 +142,24 @@ final class LogInViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubviews(bikeImage, welcomeLabel, loginField,
                 passField, forgotPassButton, enterButton,
-                regButton, skipLoginButton)
+                regButton/*, skipLoginButton*/)
         setupObserversForKeyboard()
         setupBinding()
         setupTitleForEnterButton()
     }
 
-    @objc
-    private func didTapSkipLoginButton() {
-        view.endEditing(true)
-        UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.skipLoginButton.alpha = 0.7
-        } completion: { [weak self] finished in
-            if finished {
-                self?.output.didTapNoAccountButton()
-                self?.skipLoginButton.alpha = 1
-            }
-        }
-    }
+//    @objc
+//    private func didTapSkipLoginButton() {
+//        view.endEditing(true)
+//        UIView.animate(withDuration: 0.2) { [weak self] in
+//            self?.skipLoginButton.alpha = 0.7
+//        } completion: { [weak self] finished in
+//            if finished {
+//                self?.output.didTapNoAccountButton()
+//                self?.skipLoginButton.alpha = 1
+//            }
+//        }
+//    }
 
     @objc
     private func didTapLoginButton() {
@@ -236,7 +236,7 @@ private extension LogInViewController {
 
         enterButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         regButton.addTarget(self, action: #selector(didTapRegButton), for: .touchUpInside)
-        skipLoginButton.addTarget(self, action: #selector(didTapSkipLoginButton), for: .touchUpInside)
+        //skipLoginButton.addTarget(self, action: #selector(didTapSkipLoginButton), for: .touchUpInside)
     }
 
     func setupLayout() {
@@ -299,12 +299,12 @@ private extension LogInViewController {
                 .height(Constants.RegTextButton.height)
                 .sizeToFit(.height)
 
-        skipLoginButton.pin
-                .top(to: regButton.edge.bottom)
-                .marginTop(Constants.SkipLoginButton.marginTop)
-                .hCenter()
-                .height(Constants.SkipLoginButton.height)
-                .sizeToFit(.height)
+//        skipLoginButton.pin
+//                .top(to: regButton.edge.bottom)
+//                .marginTop(Constants.SkipLoginButton.marginTop)
+//                .hCenter()
+//                .height(Constants.SkipLoginButton.height)
+//                .sizeToFit(.height)
     }
 }
 
