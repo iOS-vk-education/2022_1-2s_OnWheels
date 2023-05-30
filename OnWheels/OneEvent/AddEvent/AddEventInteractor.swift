@@ -7,17 +7,22 @@
 //
 
 import Foundation
+import CoreData
 
 final class AddEventInteractor {
     weak var output: AddEventInteractorOutput?
     private let raceManager: RacesNetworkManager
     private let locationDecoder: LocationDecoder
     private let imageManager: ImageManager
-    
-    init(raceManager: RacesNetworkManager, locationDecoder: LocationDecoder, imageManager: ImageManager) {
+    private let coreDataManager: AddEventCoreDataManager
+    private let imagesFileManager: ImagesFileManager
+        
+    init(raceManager: RacesNetworkManager, locationDecoder: LocationDecoder, imageManager: ImageManager, coreDataManager: AddEventCoreDataManager, imagesFileManager: ImagesFileManager) {
         self.raceManager = raceManager
         self.locationDecoder = locationDecoder
         self.imageManager = imageManager
+        self.coreDataManager = coreDataManager
+        self.imagesFileManager = imagesFileManager
     }
     
     private func formatDate(dateFrom: String, dateTo: String) -> (String, String) {
@@ -65,6 +70,41 @@ final class AddEventInteractor {
 }
 
 extension AddEventInteractor: AddEventInteractorInput {
+    func saveEventToCoreData(with raceInfo: [String?], and imageData: Data?) {
+        coreDataManager.deleteEvent()
+        let uuid = UUID().uuidString
+        
+        let addRaceForCD = AddEventInfoCDModel(uid: uuid,
+                                               name: raceInfo[0] ?? "",
+                                               loction: raceInfo[3] ?? "",
+                                               dateFrom: raceInfo[1] ?? "",
+                                               dateTo: raceInfo[2] ?? "",
+                                               raceDescription: raceInfo[4] ?? "",
+                                               firstTag: raceInfo[5] ?? "",
+                                               secondTag: raceInfo[6] ?? "")
+        
+        imagesFileManager.saveImageLocally(imageData: imageData, fileName: addRaceForCD.uid)
+        coreDataManager.addNewEvent(addRaceForCD)
+    }
+    
+    func getEventFormCoreData() {
+        let events = coreDataManager.fetchEvents()
+        guard let event = events.last else {
+            return
+        }
+        
+        let imageData = imagesFileManager.getImageFromName(fileName: event.uid)
+        output?.setEventDataFromCoreData(raceData: event, imageData: imageData)
+    }
+    
+    func removeEventFromCoreData() {
+        coreDataManager.deleteEvent()
+    }
+    
+    func removeDataFromTFs() {
+        output?.cleanTFs()
+    }
+    
     func addRace(with raceInfo: [String?], and imageData: Data?) {
         if let image = imageData {
             imageManager.postImage(with: image) {imageData, error in

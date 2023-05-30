@@ -13,7 +13,8 @@ final class AddEventViewController: UIViewController {
     private let output: AddEventViewOutput
     
     private let labels = [R.string.localizable.enterName(), R.string.localizable.dateFrom(),
-                          R.string.localizable.dateTo(), R.string.localizable.placeOfEvent()]
+                          R.string.localizable.dateTo(), R.string.localizable.placeOfEvent(),
+                          R.string.localizable.firstTag(), R.string.localizable.secondTag()]
     
     private let addRaceContentView = AddEventContentView()
     
@@ -31,6 +32,7 @@ final class AddEventViewController: UIViewController {
         super.viewDidLoad()
         setupButtonActions()
         setupImagePickerAction()
+        output.getDataFromCoreData()
     }
     
     override func loadView() {
@@ -39,6 +41,23 @@ final class AddEventViewController: UIViewController {
 }
 
 extension AddEventViewController: AddEventViewInput {
+    func removeDataFromView() {
+        addRaceContentView.cleanDataFromView()
+    }
+    
+    func setDataFromCoreData(raceInfo: AddEventInfoCDModel, imageData: Data?) {
+        addRaceContentView.setData(from: raceInfo)
+        if imageData == nil {
+            addRaceContentView.setImage(from: R.image.addRacePicker())
+        } else {
+            guard let imageData = imageData else {
+                return
+            }
+            let image = UIImage(data: imageData)
+            addRaceContentView.setImage(from: image)
+        }
+    }
+    
     func showEmptyFields(withIndexes: [Int]) {
         var alertString = "Не заполены поля: "
         for index in withIndexes {
@@ -68,7 +87,6 @@ extension AddEventViewController: AddEventViewInput {
         alert.addAction(UIAlertAction(title: R.string.localizable.alertConfirmation(), style: .default))
         self.present(alert, animated: true)
     }
-    
 }
 
 private extension AddEventViewController {
@@ -77,8 +95,12 @@ private extension AddEventViewController {
             self?.output.didTapAddRace(with: info, and: image)
         }
         
-        addRaceContentView.setCloseAction { [weak self] in
-            self?.output.closeButtonWasTapped()
+        addRaceContentView.setCloseAction { [weak self] info, image in
+            self?.output.closeButtonWasTapped(with: info, and: image)
+        }
+        
+        addRaceContentView.setCleanTFsAction { [weak self] in
+            self?.output.removeData()
         }
     }
     

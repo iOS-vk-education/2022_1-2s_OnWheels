@@ -40,13 +40,15 @@ extension AddEventPresenter: AddEventModuleInput {
 }
 
 extension AddEventPresenter: AddEventViewOutput {
-    func closeButtonWasTapped() {
+    func closeButtonWasTapped(with raceInfo: [String?], and imageData: Data?) {
+        interactor.saveEventToCoreData(with: raceInfo, and: imageData)
         router.didTapCloseButton()
     }
     
     func didTapAddRace(with raceInfo: [String?], and image: Data?) {
         let emptyFieldsIndexes = getIndexesOfEmptyFields(addRaceInfo: raceInfo)
         if emptyFieldsIndexes.isEmpty {
+            interactor.removeEventFromCoreData()
             interactor.addRace(with: raceInfo, and: image)
         } else if !emptyFieldsIndexes.isEmpty{
             view?.showEmptyFields(withIndexes: emptyFieldsIndexes)
@@ -56,9 +58,26 @@ extension AddEventPresenter: AddEventViewOutput {
     func showImagePicker() {
         router.showImagePicker(delegateForPicker: self)
     }
+    
+    func getDataFromCoreData() {
+        interactor.getEventFormCoreData()
+    }
+    
+    func removeData() {
+        interactor.removeEventFromCoreData()
+        interactor.removeDataFromTFs()
+    }
 }
 
 extension AddEventPresenter: AddEventInteractorOutput {
+    func cleanTFs() {
+        view?.removeDataFromView()
+    }
+    
+    func setEventDataFromCoreData(raceData: AddEventInfoCDModel, imageData: Data?) {
+        view?.setDataFromCoreData(raceInfo: raceData, imageData: imageData)
+    }
+    
     func addButtonWasTapped() {
         router.didTapAddButton()
     }
