@@ -29,7 +29,8 @@ extension LogInRouter: LogInRouterInput {
         guard let window = window else {
             return
         }
-        let coordinator = AppCoordinator(window: window, instructor: .main)
+        // TODO deeplink even after login required
+        let coordinator = AppCoordinator(window: window, instructor: .main(nil))
         coordinator.start()
     }
     

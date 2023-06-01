@@ -25,19 +25,22 @@ typealias RaceList = [RaceListElement]
 
 struct RaceListElement: Codable {
     let creatorUserID: Int
+    let raceId: Int
     let name: String
     let location: Location
-    let date: DateClass
+    let date: Duration
     let raceListDescription: String
     let images, tags: [String]
     let members: [Int]
     let likes, views: Int
+    let isLiked: Bool
 
     enum CodingKeys: String, CodingKey {
         case creatorUserID = "creatorUserId"
+        case raceId = "raceId"
         case name, location, date
         case raceListDescription = "description"
-        case images, tags, members, likes, views
+        case images, tags, members, likes, views, isLiked
     }
 }
 
@@ -45,7 +48,7 @@ struct OneRace: Codable {
     let creatorUserID: Int
     let name: String
     let location: Location
-    let date: DateClass
+    let date: Duration
     let oneRaceDescription: String
     let images, tags: [String]
     let members: [Int]
@@ -65,7 +68,7 @@ extension OneRace {
         creatorUserID = try oneRaceContainer.decode(Int.self, forKey: .creatorUserID)
         name = try oneRaceContainer.decode(String.self, forKey: .name)
         location = try oneRaceContainer.decode(Location.self, forKey: .location)
-        date = try oneRaceContainer.decode(DateClass.self, forKey: .date)
+        date = try oneRaceContainer.decode(Duration.self, forKey: .date)
         oneRaceDescription = try oneRaceContainer.decode(String.self, forKey: .oneRaceDescription)
         images = try oneRaceContainer.decode([String].self, forKey: .images)
         tags = try oneRaceContainer.decode([String].self, forKey: .tags)
@@ -76,7 +79,7 @@ extension OneRace {
 }
 
 // MARK: - DateClass
-struct DateClass: Codable {
+struct Duration: Codable {
     let from, to: String
 }
 
@@ -84,3 +87,32 @@ struct DateClass: Codable {
 struct Location: Codable {
     let latitude, longitude: Double
 }
+
+
+struct AddRace: Codable {
+    let name: String
+    let location: Location
+    let date: Duration
+    let addRaceDescription: String
+    let images, tags: [String]
+
+    enum AddRaceCodingKeys: String, CodingKey {
+        case name, location, date
+        case addRaceDescription = "description"
+        case images = "imageUrls"
+        case tags
+    }
+}
+
+extension AddRace {
+    init(from decoder: Decoder) throws {
+        let addRaceContainer = try decoder.container(keyedBy: AddRaceCodingKeys.self)
+        name = try addRaceContainer.decode(String.self, forKey: .name)
+        location = try addRaceContainer.decode(Location.self, forKey: .location)
+        date = try addRaceContainer.decode(Duration.self, forKey: .date)
+        addRaceDescription = try addRaceContainer.decode(String.self, forKey: .addRaceDescription)
+        images = try addRaceContainer.decode([String].self, forKey: .images)
+        tags = try addRaceContainer.decode([String].self, forKey: .tags)
+    }
+}
+

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class СustomTextField: UITextField {
+class CustomTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.borderStyle = .roundedRect
@@ -21,7 +21,18 @@ class СustomTextField: UITextField {
     required init?(coder: NSCoder) {
         return nil
     }
+    
     func setupTextField(with placeholder: String) {
-        self.placeholder = placeholder
+        self.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [NSAttributedString.Key.foregroundColor: R.color.textFieldText()])
+    }
+    
+    func setupInputView(with inputView: UIView?) {
+        self.inputView = inputView
+    }
+    
+    func setupText(with text: String) {
+        self.text = text
     }
 }

@@ -21,13 +21,13 @@ final class AppCoordinator: CoordinatorProtocol{
         case .authorization:
             print("auth")
             performAuthorizationFlow()
-        case .main:
-            performMainFlow()
+        case .main(let deepLink):
+            performMainFlow(deepLink)
         }
     }
     
     enum LaunchInstructor {
-        case authorization, main
+        case authorization, main(DeeplinkData?)
     }
 }
 extension AppCoordinator{
@@ -36,8 +36,8 @@ extension AppCoordinator{
         coordinator.start()
     }
     
-    private func performMainFlow(){
+    private func performMainFlow(_ deepLink: DeeplinkData?){
         let coordinator = MainFlowCoordinator(window: window)
-        coordinator.start()
+        coordinator.start(deepLink)
     }
 }

@@ -18,7 +18,7 @@ extension EventsRouter: EventsRouterInput {
         guard let window = window else {
             return
         }
-        let oneEventContext = OneEventContext(window: window, raceId: index)
+        let oneEventContext = OneEventContext(raceId: index)
         let oneEventContainer = OneEventContainer.assemble(with: oneEventContext)
         viewController?.navigationController?.pushViewController(oneEventContainer.viewController, animated: true)
     }

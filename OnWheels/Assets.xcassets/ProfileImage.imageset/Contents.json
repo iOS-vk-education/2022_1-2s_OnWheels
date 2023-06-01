@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Rectangle 53.jpg",
+      "filename" : "Image.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Rectangle 53-1.jpg",
+      "filename" : "Image 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Rectangle 53-2.jpg",
+      "filename" : "Image 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
